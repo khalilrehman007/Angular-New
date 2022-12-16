@@ -625,8 +625,8 @@
                                                                     <p class="agent-details__property-list-item-date">
                                                                         Listed on
                                                                         {{viewList.requestedDateFormat}}</p>
-                                                                    <div class="property-uploader-img">
-                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    <div class="property-uploader-img" *ngIf="viewList.companyLogoImage!=''">
+                                                                        <img [src]="viewList.companyLogoImage" alt="" width="50" height="50">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -747,12 +747,9 @@
                                                         *ngFor=" let viewList of activityViewData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:activityViewData.length }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img *ngIf="viewList?.documents?.length > 0"
-                                                                    src="{{baseUrl}}{{viewList?.documents[0].fileUrl}}"
+                                                                <img
+                                                                    [src]="viewList.mainImage"
                                                                     alt=""
-                                                                    class="img-fluid agent-details__property-list-item-img">
-                                                                <img *ngIf="viewList?.documents.length == 0"
-                                                                    src="assets/images/placeholder.png" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
@@ -834,8 +831,8 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    <div class="col-md-2" *ngIf="viewList.companyLogoImage!=''">
+                                                                        <img [src]="viewList.companyLogoImage" alt="" width="50" height="50">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1030,8 +1027,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
-                                                                        <div class="col-md-2">
-                                                                            <img src="assets/images/better-home.svg"
+                                                                        <div class="col-md-2" *ngIf="wishData.companyLogoImage!=''">
+                                                                            <img [src]="wishData.companyLogoImage" width="50" height="50"
                                                                                 alt="">
                                                                         </div>
                                                                     </div>
@@ -1154,8 +1151,8 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    <div class="col-md-2" *ngIf="enquiredData.companyLogoImage!=''">
+                                                                        <img [src]="enquiredData.companyLogoImage" alt="" width="50" height="50">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2471,14 +2468,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                              
+
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">LinkedIn Profile</label>
-                                                                        <div class="brn-input">
+                                                                        <label class="h6-design">LinkedIn
+                                                                            Profile</label>
+                                                                        <div class="linkedin-input">
                                                                             <mat-form-field appearance="fill"
                                                                                 class="full-width select-form input-design-2">
-                                                                                <mat-label>Enter LinkedIn Profile Link</mat-label>
+                                                                                <mat-label>Enter LinkedIn Profile
+                                                                                    Link</mat-label>
                                                                                 <input matInput
                                                                                     formControlName="linkedIn">
                                                                             </mat-form-field>
@@ -2488,11 +2487,13 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Experience</label>
-                                                                        <div class="brn-input">
+                                                                        <div class="experience-input">
                                                                             <mat-form-field appearance="fill"
                                                                                 class="full-width select-form input-design-2">
-                                                                                <mat-label>Enter Experience In Years</mat-label>
-                                                                                <input matInput type="text" maxlength="2"
+                                                                                <mat-label>Enter Experience In
+                                                                                    Years</mat-label>
+                                                                                <input matInput type="text"
+                                                                                    maxlength="2"
                                                                                     formControlName="experience">
                                                                             </mat-form-field>
                                                                         </div>
@@ -2582,8 +2583,7 @@
                                                                                     Areas</mat-label>
                                                                                 <mat-select
                                                                                     [disableOptionCentering]="true"
-                                                                                    multiple
-                                                                                    formControlName="areas"
+                                                                                    multiple formControlName="areas"
                                                                                     required>
                                                                                     <mat-option>
                                                                                         <ngx-mat-select-search
@@ -2592,10 +2592,10 @@
                                                                                         </ngx-mat-select-search>
                                                                                     </mat-option>
                                                                                     <mat-option
-                                                                                    *ngFor="let item of filteredAreas | async"
-                                                                                    [value]="item.id">{{
-                                                                                    item.name }}
-                                                                                </mat-option>
+                                                                                        *ngFor="let item of filteredAreas | async"
+                                                                                        [value]="item.id">{{
+                                                                                        item.name }}
+                                                                                    </mat-option>
                                                                                 </mat-select>
                                                                             </mat-form-field>
                                                                         </div>
@@ -2641,73 +2641,25 @@
                                                                         *ngIf="agentFormRequired"
                                                                         class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12"
+                                                                        *ngFor="let type of agentDocumentTypes;let i=index">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div class="firstImage-input">
+                                                                            <div [className]="'a-'+type.id+'-input'">
                                                                                 <div ngClass="upload-files-design">
+                                                                                    <small>{{type.documentName}}</small>
                                                                                     <div ngClass="greybordered-btn">
                                                                                         <input type="file" hidden
                                                                                             #emirateInput0
                                                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 0)'>
+                                                                                            (change)='uploadAgentImages($any($event.target).files,type.id ,i)'>
                                                                                         <button mat-button
                                                                                             (click)="emirateInput0.click()"><span
                                                                                                 ngClass="outpup-filename">{{
-                                                                                                agentFileNames[0]
+                                                                                                agentFileNames[i]
                                                                                                 }}</span> <img
                                                                                                 src="{{upload}}">
                                                                                             <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Emirates ID (Fornt
-                                                                                                View)</span></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div class="secondImage-input">
-                                                                                <div ngClass="upload-files-design">
-                                                                                    <div ngClass="greybordered-btn">
-                                                                                        <input type="file" hidden
-                                                                                            #emirateInput1
-                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 1)'>
-                                                                                        <button mat-button
-                                                                                            (click)="emirateInput1.click()"><span
-                                                                                                ngClass="outpup-filename">{{
-                                                                                                agentFileNames[1]
-                                                                                                }}</span> <img
-                                                                                                src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Emirates ID (Back
-                                                                                                View)</span></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div class="thirdImage-input">
-                                                                                <div ngClass="upload-files-design">
-                                                                                    <div ngClass="greybordered-btn">
-                                                                                        <input type="file" hidden
-                                                                                            #emirateInput2
-                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 2)'>
-                                                                                        <button mat-button
-                                                                                            (click)="emirateInput2.click()"><span
-                                                                                                ngClass="outpup-filename">{{
-                                                                                                agentFileNames[2]
-                                                                                                }}</span> <img
-                                                                                                src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Official Rera
-                                                                                                ID</span></button>
+                                                                                                ngClass="btn-txt">{{type.documentName}}</span></button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2736,8 +2688,39 @@
                                             <form [formGroup]="companyDetailForm">
                                                 <div class="">
                                                     <div class="list-new-proerty-cntnt">
-                                                        <div ngClass="deed-numbers">
+                                                        <div ngClass="row">
+                                                            <div ngClass="col-sm-12">
+                                                                <div ngClass="block-wrapper mb-4">
+                                                                    <label class="h6-design">Registerd Companies</label>
+                                                                    <mat-form-field appearance="fill"
+                                                                        class="full-width select-form input-design-2">
+                                                                        <mat-label>Select your
+                                                                            company form list</mat-label>
+                                                                        <mat-select [disableOptionCentering]="true"
+                                                                            formControlName="companyId">
+                                                                            <mat-option>
+                                                                                <ngx-mat-select-search
+                                                                                    [formControl]="companyFilterCtrl"
+                                                                                    placeholderLabel="Search...">
+                                                                                </ngx-mat-select-search>
+                                                                            </mat-option>
+                                                                            <mat-option
+                                                                                *ngFor="let item of filteredCompanies | async"
+                                                                                [value]="item.id">{{
+                                                                                item.companyName
+                                                                                }}-{{item.tradeLicenseNo}}
+                                                                            </mat-option>
+                                                                            <mat-option value="other">Other
+                                                                            </mat-option>
+                                                                        </mat-select>
+                                                                    </mat-form-field>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="deed-numbers"
+                                                            *ngIf="companyDetailForm.value.id!=0 || companyDetailForm.value.companyId=='other'">
                                                             <div ngClass="row">
+
                                                                 <div ngClass="col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Company Name</label>
@@ -2844,32 +2827,32 @@
                                                                 <h6 ngClass="h6-design mb-3">Douments Upload <span
                                                                         class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div class="tradeLicenseImage-input">
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12"
+                                                                        *ngFor="let type of companyDocumentTypes;let i=index">
+                                                                        <div [className]="'c-'+type.id+'-input'">
                                                                             <div ngClass="blue-upload-box">
                                                                                 <div ngClass="upload-files-design">
+                                                                                    <small>{{type.documentName}}</small>
                                                                                     <div ngClass="greybordered-btn">
                                                                                         <input type="file" hidden
                                                                                             #emirateInput0
                                                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadCompanyImages($any($event.target).files, 0)'>
+                                                                                            (change)='uploadCompanyImages($any($event.target).files, type.id ,i)'>
                                                                                         <button mat-button
                                                                                             (click)="emirateInput0.click()"><span
                                                                                                 ngClass="outpup-filename">{{
-                                                                                                companyFileNames[0]
+                                                                                                companyFileNames[i]
                                                                                                 }}</span> <img
                                                                                                 src="{{upload}}">
                                                                                             <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Trade License
-                                                                                                Document</span>
+                                                                                                ngClass="btn-txt">{{type.documentName}}</span>
                                                                                         </button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                    <!-- <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
                                                                             <div class="permitNoImage-input">
                                                                                 <div ngClass="upload-files-design">
@@ -2941,7 +2924,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
 

@@ -138,14 +138,12 @@
                                 <div ngClass="property-item position-relative cursor-pointer"
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
-                                        <img *ngIf="slide.documents.length > 0"
-                                            src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
-                                            [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
-                                        <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
+                                        <img
+                                            [src]="slide.mainImage"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
-                                    <div ngClass="brand-logo">
-                                        <img src="{{ brandimg }}" alt="" />
+                                    <div ngClass="brand-logo" *ngIf="slide.companyLogoImage!=''">
+                                        <img [src]="slide.companyLogoImage" alt="" width="50" height="50"/>
                                     </div>
                                     <div class="pro_cntnt-main-wrap">
                                         <div class="property-cntnt_wrap">
@@ -333,14 +331,12 @@
                                 <div ngClass="property-item position-relative cursor-pointer"
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
-                                        <img *ngIf="slide.documents.length > 0"
-                                            src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
-                                            [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
-                                        <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
+                                        <img
+                                            [src]="slide.mainImage"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
-                                    <div ngClass="brand-logo">
-                                        <img src="{{ brandimg }}" alt="" />
+                                    <div ngClass="brand-logo" *ngIf="slide.companyLogoImage!=''">
+                                        <img [src]="slide.companyLogoImage" alt="" width="50" height="50"/>
                                     </div>
                                     <div class="pro_cntnt-main-wrap">
                                         <div class="property-cntnt_wrap">

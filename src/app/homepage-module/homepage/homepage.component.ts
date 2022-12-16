@@ -50,47 +50,97 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   countryData: any = "";
   id: any = 1;
   propertyDetails: any;
-  showLoader:boolean=false;
+  showLoader: boolean = false;
   oldData1() {
-    this.residentialLabel=this.Rent;
-    this.showLoader=true;
+    this.residentialLabel = this.Rent;
+    this.showLoader = true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
-      this.dynamicSlides1 = response.data;
-      this.showLoader=false;
-    },err=>{
-      this.showLoader=false;
+      this.SetResidentialSlideData(response.data);
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
     });
   }
   newData1() {
-    this.residentialLabel="Sale";
-    this.showLoader=true;
+    this.residentialLabel = "Sale";
+    this.showLoader = true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
-      this.dynamicSlides1 = response.data;
-      this.showLoader=false;
-    },err=>{
-      this.showLoader=false;
+      this.SetResidentialSlideData(response.data);
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
     });
   }
 
   oldData2() {
-    this.commercialLabel=this.Rent;
-    this.showLoader=true;
+    this.commercialLabel = this.Rent;
+    this.showLoader = true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
-      this.dynamicSlides2 = response.data;
-      this.showLoader=false;
-    },err=>{
-      this.showLoader=false;
+      this.SetCommercialSlideData(response.data);
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
     });
   }
   newData2() {
-    this.commercialLabel="Sale";
-    this.showLoader=true;
+    this.commercialLabel = "Sale";
+    this.showLoader = true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
-      this.dynamicSlides2 = response.data;
-      this.showLoader=false;
-    },err=>{
-      this.showLoader=false;
+      this.SetCommercialSlideData(response.data);
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
     });
+  }
+  SetResidentialSlideData(data: any) {
+    this.dynamicSlides1 = [];
+    data.forEach((element: any) => {
+      let mainImage: any = 'assets/images/placeholder.png';
+      if (element.documents != null && element.documents.length > 0) {
+        mainImage = this.baseUrl + element.documents[0].fileUrl;
+      }
+      let companyLogoImage = '';
+      if (element.company != null && element.company?.documents.length > 0) {
+        let companyLogo = element.company?.documents.find((y: any) => {
+          return y.registrationDocumentTypeId === 8
+        })
+        if (companyLogo != null && companyLogo != undefined) {
+          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        }
+      }
+      this.dynamicSlides1.push({
+        mainImage: mainImage, id: element.id, propertyPrice: element.propertyPrice, country: element.country, rentType: element.rentType,
+        propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
+        numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
+        bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package
+      })
+    })
+  }
+  SetCommercialSlideData(data:any){
+    this.dynamicSlides2 = [];
+    data.forEach((element: any) => {
+      let mainImage: any = 'assets/images/placeholder.png';
+      if (element.documents != null && element.documents.length > 0) {
+        mainImage = this.baseUrl + element.documents[0].fileUrl;
+      }
+      let companyLogoImage = '';
+      if (element.company != null && element.company?.documents.length > 0) {
+        let companyLogo = element.company?.documents.find((y: any) => {
+          return y.registrationDocumentTypeId === 8
+        })
+        if (companyLogo != null && companyLogo != undefined) {
+          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        }
+      }
+      this.dynamicSlides2.push({
+        mainImage: mainImage, id: element.id, propertyPrice: element.propertyPrice, country: element.country, rentType: element.rentType,
+        propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
+        numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
+        bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package
+      })
+    })
   }
   tenantsslide = [
     {
@@ -254,14 +304,14 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   userId: any;
   explorePlaces: any = [];
   trendTitle: any = [];
-  shareURL: any ="";
-  shareURLTemp: any ="";
-  whatsAppShareUrl: any ="";
-  facebookShareUrl: any ="";
-  twitterShareUrl: any ="";
-  residentialLabel:any=""
-  commercialLabel:any=""
-  constructor(private domSanitizer:DomSanitizer,private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
+  shareURL: any = "";
+  shareURLTemp: any = "";
+  whatsAppShareUrl: any = "";
+  facebookShareUrl: any = "";
+  twitterShareUrl: any = "";
+  residentialLabel: any = ""
+  commercialLabel: any = ""
+  constructor(private domSanitizer: DomSanitizer, private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -269,7 +319,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     temp[3] = temp[3] + "/";
     temp.pop().toString().replaceAll(",", "");
     this.shareURL = temp.toString().replaceAll(",", "");
-    this.shareURLTemp=this.shareURL;
+    this.shareURLTemp = this.shareURL;
     localStorage.removeItem("bounds");
     localStorage.removeItem("currency");
     localStorage.removeItem("arabicAddress");
@@ -611,12 +661,12 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       }, 1000);
     }
   }
-  openVerticallyCentered(content: any,id:any) {
-    this.shareURL += "property/detail?id="+id;
-    this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
-  this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-  this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-this.shareURL=this.shareURLTemp;
+  openVerticallyCentered(content: any, id: any) {
+    this.shareURL += "property/detail?id=" + id;
+    this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
+    this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+    this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + encodeURI(this.shareURL) + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+    this.shareURL = this.shareURLTemp;
     this.modalService.open(content, { centered: true });
   }
 }

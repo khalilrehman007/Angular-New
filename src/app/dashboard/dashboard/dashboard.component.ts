@@ -12,7 +12,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -59,6 +58,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
   loggedInUser: any = localStorage.getItem('user')
+  agentDocumentTypes: any = [];
+  companyDocumentTypes: any = [];
+  companiesList: any = [];
   user: any;
   greet: any;
   currentField: any;
@@ -95,14 +97,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   confirmMessage: any = "";
   showConfirm: any = "";
   deleteID: any = "";
-  showOldPassword:boolean=false;
-  showNewPassword:boolean=false;
-  showConfirmPassword:boolean=false;
+  showOldPassword: boolean = false;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
   showRecentTransactions: boolean = false;
   showPriceRange: boolean = false;
   showAvgSqft: boolean = false;
   showDIDiv: boolean = true;
-  viewChangeId: any='';
+  viewChangeId: any = '';
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -153,6 +155,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public filteredNationality: any = new ReplaySubject(1);
   public areaFilterCtrl: FormControl = new FormControl();
   public filteredAreas: any = new ReplaySubject(1);
+  public companyFilterCtrl: FormControl = new FormControl();
+  public filteredCompanies: any = new ReplaySubject(1);
   protected _onDestroy = new Subject();
   //Form Groups Start
   detailForm = new FormGroup({
@@ -171,14 +175,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     agentAboutMe: new FormControl(null),
     expertIn: new FormControl(null),
     linkedIn: new FormControl(null),
-    experience: new FormControl(null,Validators.maxLength(2)),
-    nationalityId: new FormControl(null,Validators.required),
-    areas: new FormControl([],Validators.required),
+    experience: new FormControl(null, [Validators.maxLength(2), Validators.pattern("^[0-9]*$")]),
+    nationalityId: new FormControl(null, Validators.required),
+    areas: new FormControl([], Validators.required),
     id: new FormControl(0),
     userId: new FormControl(null),
   })
   companyDetailForm = new FormGroup({
     id: new FormControl(0),
+    companyId: new FormControl(''),
     companyName: new FormControl(null, Validators.required),
     aboutCompany: new FormControl(null, Validators.required),
     tradeLicenseNo: new FormControl(null, Validators.required),
@@ -194,10 +199,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   companyDetailsFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
-    id:new FormControl(0),
-    oldPassword: new FormControl(null,Validators.required),
-    password: new FormControl(null,[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
-    confirmPassword: new FormControl(null,[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')])
+    id: new FormControl(0),
+    oldPassword: new FormControl(null, Validators.required),
+    password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
+    confirmPassword: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')])
   });
   cardForm = new FormGroup({
     cardNumber: new FormControl(""),
@@ -229,21 +234,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   whatsAppShareUrl: any = "";
   facebookShareUrl: any = "";
   twitterShareUrl: any = "";
-  constructor(private domSanitizer: DomSanitizer,private authService: AuthService,
+  constructor(private domSanitizer: DomSanitizer, private authService: AuthService,
     private datePipe: DatePipe,
     private service: AppService,
     private route: Router,
     private notifyService: NotificationService,
     private modalService: NgbModal,
     private cookie: CookieService) {
-      let temp: any = window.location.href;
+    let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
     temp[2] = temp[2] + "/";
     temp[3] = temp[3] + "/";
     temp.pop().toString().replaceAll(",", "");
     this.shareURL = temp.toString().replaceAll(",", "");
-    this.shareURLTemp=this.shareURL;
+    this.shareURLTemp = this.shareURL;
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -252,6 +257,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
+    this.GetCompaniesList();
+    this.GetAgentDocumentTypes();
+    this.GetCompanyDocumentTypes();
     this.LoadvaluationDashboard();
     this.getLoadMyValuaionListing();
     this.getSpokenLanguages();
@@ -264,7 +272,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
-    this.getAgentAndCompanyProfile()
+    this.getAgentAndCompanyProfile();
     this.service.UserProfile(this.userId).subscribe((result: any) => {
       this.userData = result.data;
       if (result.result == 1) {
@@ -376,6 +384,45 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.pointsHistory = result.data;
     })
   }
+
+  GetAgentDocumentTypes() {
+    this.showLoader = true;
+    this.service.GetAgentDocumentTypes().subscribe({
+      next: (resp: any) => {
+        this.agentDocumentTypes = resp.data;
+        this.showLoader = false;
+      },
+      error: (err: any) => {
+        this.showLoader = false;
+      }
+    })
+  }
+  GetCompanyDocumentTypes() {
+    this.showLoader = true;
+    this.service.GetCompanyDocumentTypes().subscribe({
+      next: (resp: any) => {
+        this.companyDocumentTypes = resp.data;
+        this.showLoader = false;
+      },
+      error: (err: any) => {
+        this.showLoader = false;
+      }
+    })
+  }
+  GetCompaniesList() {
+    this.showLoader = true;
+    this.service.GetAllCompanies().subscribe({
+      next: (resp: any) => {
+        this.companiesList = resp.data;
+        this.filteredCompanies.next(this.companiesList);
+        this.showLoader = false;
+      },
+      error: (err: any) => {
+        this.showLoader = false;
+      }
+    })
+  }
+
   ngAfterViewInit(): void {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
@@ -427,55 +474,55 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     })
   }
-  
+
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
+    let temp: any = $(this.currentField).offset()?.top;
+    $(this.currentField).addClass("blink");
+    $(this.currentField).on("click", () => {
+      $(this.currentField).removeClass("blink");
       this.currentField = "";
     })
     $(window).scrollTop(temp - 200);
   }
   getData() {
     if (this.detailForm.get('firstName')?.hasError('required')) {
-      this.currentField = "firstName-input";
+      this.currentField = ".firstName-input";
       this.error = "Enter First Name";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('lastName')?.hasError('required')) {
-      this.currentField = "lastName-input";
+      this.currentField = ".lastName-input";
       this.error = "Enter Last Name";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('gender')?.hasError('required')) {
-      this.currentField = "gender-input";
+      this.currentField = ".gender-input";
       this.error = "Select Gender";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('dateOfBirth')?.hasError('required')) {
-      this.currentField = "dob-input";
+      this.currentField = ".dob-input";
       this.error = "Select Date of Birth";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('countryId')?.hasError('required')) {
-      this.currentField = "country-input";
+      this.currentField = ".country-input";
       this.error = "Select Country";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('cityId')?.hasError('required')) {
-      this.currentField = "city-input";
+      this.currentField = ".city-input";
       this.error = "Select City";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('address')?.hasError('required')) {
-      this.currentField = "address-input";
+      this.currentField = ".address-input";
       this.error = "Enter Address";
       this.showError = true;
       return;
@@ -520,10 +567,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.commercial = response.data[1].categoryName;
     });
   }
-  getAreaData(e: any) {
-    this.areaData = e.value;
-  }
-
   myValuationlistingAll: any = [];
   getLoadMyValuaionListing() {
     let tempData: Array<Object> = []
@@ -661,11 +704,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.getNationality();
+    this.companyDetailForm.controls['companyId'].valueChanges.subscribe(x => {
+      if (x != "other") {
+        this.PatchCompanyForm(x)
+      }
+    })
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
-    })
-    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x => {
-    console.log("Selected Area",x)
     })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
@@ -691,6 +736,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterArea();
+      });
+    this.filteredCompanies.next(this.companiesList.slice());
+    this.companyFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterComapny();
       });
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -771,6 +822,55 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.filteredAreas.next(
       this.districts.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
     );
+  }
+  filterComapny() {
+    if (!this.companiesList) {
+      return;
+    }
+
+    let search = this.companyFilterCtrl.value;
+    if (!search) {
+      this.filteredCompanies.next(this.companiesList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCompanies.next(
+      this.companiesList.filter((x: any) => x.companyName.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  PatchCompanyForm(id: any) {
+    this.otherCompanyImages = [];
+    this.finalCompanyDocments = [];
+    this.companyFileNames = [];
+    let company = this.companiesList.find((y: any) => {
+      return y.id === id
+    })
+    if (company != null && company != undefined) {
+      this.companyDetailForm.patchValue({
+        id: company?.id,
+        companyName: company?.companyName,
+        aboutCompany: company?.aboutCompany,
+        tradeLicenseNo: company?.tradeLicenseNo,
+        premitNo: company?.premitNo,
+        ornNo: company?.ornNo,
+        reraNo: company?.reraNo,
+        companyAdress: company?.companyAdress,
+      })
+      if (company?.documents?.length > 0) {
+        company?.documents.sort((a: any, b: any) => (a.registrationDocumentTypeId > b.registrationDocumentTypeId) ? 1 : -1)
+        for (let item of company?.documents) {
+          this.companyFileNames.push(item.fileName);
+          this.finalCompanyDocments.push({
+            "FileId": item.fileId,
+            "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
+            "FileName": item.fileName, "Extension": item.extension, "FileUrl": item.fileUrl,
+            "Id": item.id
+          });
+        }
+      }
+    }
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -857,45 +957,53 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   otherAgentImages: any = [];
   agentFileNames: any = [];
-  uploadAgentImages(files: FileList, index: number) {
+  uploadAgentImages(files: FileList, documentType: any, index: number) {
     if (this.finalAgentDocments.length > 0) {
       this.finalAgentDocments.splice(index, 1);
     }
     if (files && files.length) {
-      let found: number = -1;
-      for (let i = 0; i < this.otherAgentImages.length; i++) {
-        if (this.otherAgentImages[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.otherAgentImages.push({ index: index, file: files[0] });
+      let found: boolean = this.otherAgentImages.some((x: any) => x.index === index);
+      if (found) {
+        this.otherAgentImages[index].file = files[0];
       } else {
-        this.otherAgentImages[found].file = files[0];
+        this.otherAgentImages.push({ index: index, file: files[0], RegistrationDocumentTypeId: documentType });
       }
       this.agentFileNames[index] = files[0].name;
     }
   }
+  documentsObject() {
+    this.otherAgentImages.forEach((element: any, i: any) => {
+      let found: boolean = this.finalAgentDocments.some((x: any) => x.RegistrationDocumentTypeId === element.RegistrationDocumentTypeId);
+      if (found == false) {
+        let extension: any = element.file.name.split(".");
+        this.finalAgentDocments.push({ "FileId": i + 1, "RegistrationDocumentTypeId": element.RegistrationDocumentTypeId, "FileName": element.file.name, "Extension": extension[1] });
+      }
+    })
+  }
   otherCompanyImages: any = [];
   companyFileNames: any = [];
-  uploadCompanyImages(files: FileList, index: number) {
+  uploadCompanyImages(files: FileList, documentType: any, index: number) {
     if (this.finalCompanyDocments.length > 0) {
       this.finalCompanyDocments.splice(index, 1);
     }
     if (files && files.length) {
-      let found: number = -1;
-      for (let i = 0; i < this.otherCompanyImages.length; i++) {
-        if (this.otherCompanyImages[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.otherCompanyImages.push({ index: index, file: files[0] });
+      let found: boolean = this.otherCompanyImages.some((x: any) => x.index === index);
+      if (found) {
+        this.otherCompanyImages[index].file = files[0];
       } else {
-        this.otherCompanyImages[found].file = files[0];
+        this.otherCompanyImages.push({ index: index, file: files[0], RegistrationDocumentTypeId: documentType });
       }
       this.companyFileNames[index] = files[0].name;
     }
+  }
+  documentsObjectCompany() {
+    this.otherCompanyImages.forEach((element: any, i: any) => {
+      let found: boolean = this.finalCompanyDocments.some((x: any) => x.RegistrationDocumentTypeId === element.RegistrationDocumentTypeId);
+      if (found == false) {
+        let extension: any = element.file.name.split(".");
+        this.finalCompanyDocments.push({ "FileId": i + 1, "RegistrationDocumentTypeId": element.RegistrationDocumentTypeId, "FileName": element.file.name, "Extension": extension[1] });
+      }
+    })
   }
 
   listingAll: any = [];
@@ -1026,22 +1134,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.NationalityId = event.value;
   }
 
-  documentsObject() {
-    this.otherAgentImages.forEach((element: any, i: any) => {
-      let extension: any = element.file.name.split(".");
-      this.finalAgentDocments.push({ "FileId": i + 1, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name, "Extension": extension[1] });
-    })
-  }
-  documentsObjectCompany() {
-   
-    this.otherCompanyImages.forEach((element: any, i: any) => {
-      let exists = this.finalCompanyDocments.some((x: any) => x.FileId ===this.otherCompanyImages[i].index+1 );
-      if(!exists){
-      let extension: any = element.file.name.split(".");
-      this.finalCompanyDocments.push({ "FileId": i + 1, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name, "Extension": extension[1] });
-      }
-    })
-  }
+
+
 
   companyDataId: any;
   imageObjectCompany: any = [];
@@ -1051,6 +1145,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let secondImage = this.otherCompanyImages.some((x: any) => x.index === 1);
     let thirdImage = this.otherCompanyImages.some((x: any) => x.index === 2);
     let fourthImage = this.otherCompanyImages.some((x: any) => x.index === 3);
+    let fifthImage = this.otherCompanyImages.some((x: any) => x.index === 4);
     if (this.finalCompanyDocments.length > 0) {
       firstImage = true;
     }
@@ -1063,69 +1158,78 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.finalCompanyDocments.length > 3) {
       fourthImage = true;
     }
+    if (this.finalCompanyDocments.length > 4) {
+      fifthImage = true;
+    }
     if (this.companyDetailForm.get('companyName')?.hasError('required')) {
-      this.currentField = "companyName-input";
+      this.currentField = ".companyName-input";
       this.error = "Enter Company Name";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('aboutCompany')?.hasError('required')) {
-      this.currentField = "aboutCompany-input";
+      this.currentField = ".aboutCompany-input";
       this.error = "Write About Your Company";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('tradeLicenseNo')?.hasError('required')) {
-      this.currentField = "tradeLicense-input";
+      this.currentField = ".tradeLicense-input";
       this.error = "Enter Trade License No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('premitNo')?.hasError('required')) {
-      this.currentField = "permitNo-input";
+      this.currentField = ".permitNo-input";
       this.error = "Enter Permit No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('ornNo')?.hasError('required')) {
-      this.currentField = "ornNo-input";
+      this.currentField = ".ornNo-input";
       this.error = "Enter ORN No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('reraNo')?.hasError('required')) {
-      this.currentField = "reraNo-input";
+      this.currentField = ".reraNo-input";
       this.error = "Enter RERA No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('companyAdress')?.hasError('required')) {
-      this.currentField = "companyAdress-input";
+      this.currentField = ".companyAdress-input";
       this.error = "Enter Company Address";
       this.showError = true;
       return;
     }
     else if (!firstImage) {
-      this.currentField = "tradeLicenseImage-input";
+      this.currentField = ".c-4-input";
       this.error = "Upload Trade License Document";
       this.showError = true;
       return;
     }
     else if (!secondImage) {
-      this.currentField = "permitNoImage-input";
+      this.currentField = ".c-5-input";
       this.error = "Upload Permit No Document";
       this.showError = true;
       return;
     }
     else if (!thirdImage) {
-      this.currentField = "ornImage-input";
+      this.currentField = ".c-6-input";
       this.error = "Upload ORN Document";
       this.showError = true;
       return;
     }
     else if (!fourthImage) {
-      this.currentField = "reraImage-input";
+      this.currentField = ".c-7-input";
       this.error = "Upload Rera Document";
+      this.showError = true;
+      return;
+    }
+    else if (!fifthImage) {
+      this.currentField = ".c-8-input";
+      this.error = "Upload Company Logo";
       this.showError = true;
       return;
     }
@@ -1155,8 +1259,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.service.AddUpdateCompany(companyRequestData).subscribe((resp: any) => {
       if (resp.result == 1) {
-        this.otherCompanyImages=[];
-        this.finalCompanyDocments=[];
+        this.otherCompanyImages = [];
+        this.finalCompanyDocments = [];
+        this.companyFileNames = [];
+        this.GetCompaniesList();
         this.getAgentAndCompanyProfile();
         this.showLoader = false;
         this.success = "Company Detail Updated Successfully!"
@@ -1192,56 +1298,62 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     if (this.agentDetailForm.get('agentAboutMe')?.hasError('required')) {
-      this.currentField = "aboutme-input";
+      this.currentField = ".aboutme-input";
       this.error = "Enter About Me";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('agentBrnNo')?.hasError('required')) {
-      this.currentField = "brn-input";
+      this.currentField = ".brn-input";
       this.error = "Enter BRN No.#";
       this.showError = true;
       return;
     }
+    else if (this.agentDetailForm.get('experience')?.hasError('pattern')) {
+      this.currentField = ".experience-input";
+      this.error = "Experience accepts only numbers";
+      this.showError = true;
+      return;
+    }
     else if (this.agentDetailForm.get('expertIn')?.hasError('required') && this.agentFormRequired) {
-      this.currentField = "expertIn-input";
+      this.currentField = ".expertIn-input";
       this.error = "Select Expert In";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('nationalityId')?.hasError('required')) {
-      this.currentField = "nationality-input";
+      this.currentField = ".nationality-input";
       this.error = "Select Nationality";
       this.showError = true;
       return;
     }
-    else if (this.agentDetailForm.get('areas')?.hasError('required') && this.agentDetailForm.value.areas?.length==0) {
-      this.currentField = "areas-input";
+    else if (this.agentDetailForm.get('areas')?.hasError('required') && this.agentDetailForm.value.areas?.length == 0) {
+      this.currentField = ".areas-input";
       this.error = "Select at least one area.";
       this.showError = true;
       return;
     }
     else if (this.agentFormRequired && (this.agentLanguages.length == 0)) {
-      this.currentField = "language-input";
+      this.currentField = ".language-input";
       this.error = "Select Languages";
       this.showError = true;
       return;
     }
     else if (!firstImage && this.agentFormRequired) {
-      this.currentField = "firstImage-input";
+      this.currentField = ".a-1-input";
       this.error = "Upload  Emirates ID (Fornt View)";
       this.showError = true;
       return;
     }
     else if (!secondImage && this.agentFormRequired) {
-      this.currentField = "secondImage-input";
+      this.currentField = ".a-2-input";
       this.error = "Upload  Emirates ID (Back View)";
       this.showError = true;
       return;
     }
     else if (!thirdImage && this.agentFormRequired) {
-      this.currentField = "thirdImage-input";
-      this.error = "Upload Official Rera ID";
+      this.currentField = ".a-3-input";
+      this.error = "Upload BRN Document";
       this.showError = true;
       return;
     }
@@ -1258,7 +1370,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < agentFormAreas.length; i++) {
       agentAreas.push({ "DistrictId": agentFormAreas[i] });
     }
-
     let agentFormData: any = {};
     agentFormData.Id = this.agentDetailForm.value.id;
     agentFormData.UserId = this.agentDetailForm.value.userId;
@@ -1279,8 +1390,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.service.AddUpdateAgentDetails(AgentRequestData).subscribe((resp: any) => {
       if (resp.result == 1) {
-        this.otherAgentImages=[];
-        this.finalAgentDocments=[];
+        this.otherAgentImages = [];
+        this.finalAgentDocments = [];
+        this.agentFileNames = [];
+        this.agentLanguages = [];
         this.getAgentAndCompanyProfile();
         this.showLoader = false;
         this.success = "Agent Detail Updated Successfully!"
@@ -1303,32 +1416,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   changePassword() {
     if (this.changePasswordForm.get('oldPassword')?.hasError('required')) {
-      this.currentField = "currentPass-Input";
+      this.currentField = ".currentPass-Input";
       this.error = "Enter Current Password";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.get('password')?.hasError('required')) {
-      this.currentField = "Pass-Input";
+      this.currentField = ".Pass-Input";
       this.error = "Enter New Password";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.get('password')?.hasError('pattern')) {
-      this.currentField = "Pass-Input";
+      this.currentField = ".Pass-Input";
       this.error = "New password doesn't meet the required pattern";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.value.password != this.changePasswordForm.value.confirmPassword) {
-      this.currentField = "confirmPass-Input";
+      this.currentField = ".confirmPass-Input";
       this.error = "Confirm password doesn't match the new password";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-     this.changePasswordForm.get('id')?.patchValue(this.userId);
-     this.service.ChangePassword(this.changePasswordForm.value).subscribe((resp: any) => {
+    this.changePasswordForm.get('id')?.patchValue(this.userId);
+    this.service.ChangePassword(this.changePasswordForm.value).subscribe((resp: any) => {
       if (resp.result == 1) {
         this.showLoader = false;
         this.success = "Password Updated Successfully!"
@@ -1347,7 +1460,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.error = error;
       }
     )
-    
+
   }
 
   viewBuyCount: any;
@@ -1357,7 +1470,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getViewCount() {
     let tempData: Array<Object> = []
     this.service.MyActivityViewCount(this.user.id).subscribe(data => {
-      console.log("viewcount",data)
       let response: any = data;
       this.viewAllCount = response.data.all
       this.viewRentCount = response.data.rent
@@ -1368,39 +1480,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   activeBuyCount: any;
   activeRentCount: any;
   activeAllCount: any;
-getActiveViewCount(){
-  this.showLoader=true;
-  this.service.MyActivityPropertyListingViewForAgentCount(this.userId).subscribe((resp:any)=>{
-    this.activeBuyCount=resp.data.buy
-    this.activeRentCount=resp.data.rent
-    this.activeAllCount=resp.data.all
-    this.showLoader=false;
-  },err=>{
-    this.showLoader=false;
-  })
-}
+  getActiveViewCount() {
+    this.showLoader = true;
+    this.service.MyActivityPropertyListingViewForAgentCount(this.userId).subscribe((resp: any) => {
+      this.activeBuyCount = resp.data.buy
+      this.activeRentCount = resp.data.rent
+      this.activeAllCount = resp.data.all
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
+    })
+  }
 
- 
+
   myActivityViewChange(e: any) {
     this.page = 1;
     this.viewChangeId = e;
-    console.log(this.viewChangeId)
     this.lordMyActivityListingView();
   }
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
-    console.log(this.viewChangeId)
-    this.showLoader=true;
+    this.showLoader = true;
     this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
-      console.log("Active Listing View ",data)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-       if (element.rentType != null && element.propertyListingTypeId != 2) {
+        if (element.rentType != null && element.propertyListingTypeId != 2) {
           rentTypeName = element.rentType.name
         }
         if (element.documents.length > 0) {
@@ -1411,13 +1520,13 @@ getActiveViewCount(){
         if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
           this.showRecentTransactions = true;
         }
-        else{
+        else {
           this.showRecentTransactions = false;
         }
         if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
           this.showAvgSqft = true;
         }
-        else{
+        else {
           this.showAvgSqft = false;
         }
         if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
@@ -1425,20 +1534,29 @@ getActiveViewCount(){
         ) {
           this.showPriceRange = true;
         }
-        else{
+        else {
           this.showPriceRange = false;
         }
         if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
           this.showDIDiv = false;
         }
-        else{
-          this.showDIDiv=true;
+        else {
+          this.showDIDiv = true;
         }
-        this.shareURL += "property/detail?id="+element.id;
-        this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
-      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-      
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
+        this.shareURL += "property/detail?id=" + element.id;
+        this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
+        this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+        this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + encodeURI(this.shareURL) + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+
         tempData.push(
           {
             buildupArea: element.buildupArea,
@@ -1451,35 +1569,60 @@ getActiveViewCount(){
             furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
             rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
-            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
-            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,
-            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
+            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale", showRecentTransactions: this.showRecentTransactions,
+            showAvgSqft: this.showAvgSqft, showPriceRange: this.showPriceRange, showDIDiv: this.showDIDiv,
+            whatsAppShareUrl: this.whatsAppShareUrl, facebookShareUrl: this.facebookShareUrl, twitterShareUrl: this.twitterShareUrl,companyLogoImage:companyLogoImage
           }
         );
-        this.shareURL=this.shareURLTemp;
+        this.shareURL = this.shareURLTemp;
       })
       this.totalLength = tempData.length
       this.myActivityListingView = tempData;
-      this.showLoader=false;
-    },err=>{
-      this.showLoader=false;
+      this.showLoader = false;
+    }, err => {
+      this.showLoader = false;
     });
   }
-activityViewType:any='';
-myActivityViewTypeChange(e: any) {
-  this.page = 1;
-  this.activityViewType = e;
-  this.loadViewActivityData();
-}
-loadViewActivityData(){
-  this.showLoader=true;
-  this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
-    this.activityViewData = result.data;
-    this.showLoader=false;
-  },err=>{
-    this.showLoader=false;
-  })
-}
+  activityViewType: any = '';
+  myActivityViewTypeChange(e: any) {
+    this.page = 1;
+    this.activityViewType = e;
+    this.loadViewActivityData();
+  }
+  loadViewActivityData() {
+    this.showLoader = true;
+    this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe({
+      next:(result: any) => {
+        let data = result.data;
+        data.forEach((element:any)=>{
+        let mainImage:any='assets/images/placeholder.png';
+        if(element.documents!=null && element.documents.length>0){
+          mainImage=this.baseUrl+element.documents[0].fileUrl;
+        }
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
+        this.activityViewData.push({
+          mainImage:mainImage,id:element.id,propertyPrice:element.propertyPrice,country:element.country,rentType:element.rentType,
+          propertyTitle:element.propertyTitle,requestedDateFormat:element.requestedDateFormat,numberOfUsershortListedProperty:element.numberOfUsershortListedProperty,
+          numberOfUserSeeingProperty:element.numberOfUserSeeingProperty,propertyAddress:element.propertyAddress,propertyType:element.propertyType,
+          bedrooms:element.bedrooms,bathrooms:element.bathrooms,plotSize:element.plotSize,buildupArea:element.buildupArea,carpetArea:element.carpetArea,
+          furnishingType:element.furnishingType,companyLogoImage:companyLogoImage
+        })
+        })
+        this.showLoader = false;
+      },
+      error:(err:any)=>{
+        this.showLoader=false;
+      }
+    })
+  }
   myActivityAgentView: any = []
   lordMyActivityAgentView() {
     let tempData: Array<Object> = []
@@ -1527,72 +1670,52 @@ loadViewActivityData(){
   buyCount: any;
   rentCount: any;
   allCount: any;
-  getAgentAndCompanyProfile(){
-    this.service.GetAgentProfile(this.userId).subscribe((resp: any) => {
-      if (resp.result == 1 && resp.data?.agentDetails != null) {
-        this.agentDetails = resp.data.agentDetails;
-        console.log(this.agentDetails)
-        let ExpertInId: any = null;
-        if (this.agentDetails.expertIn == "Residential") {
-          ExpertInId = 1;
-        }
-        if (this.agentDetails.expertIn == "Commercial") {
-          ExpertInId = 2;
-        }
-        if (this.agentDetails.expertIn == "Both") {
-          ExpertInId = 3;
-        }
-        if (this.agentDetails.userId == null || this.agentDetails.userId == undefined) {
-          this.agentDetails.userId = this.userId
-        }
-        let tempAreas:any=[]
-        this.agentDetails.agentAreas.forEach((x:any)=>{
-          tempAreas.push(x.districtId)
-        })
-        this.ExpertInName = this.agentDetails.expertIn;
-        this.agentDetailForm.patchValue({
-          agentAboutMe: this.agentDetails.aboutMe,
-          agentBrnNo: this.agentDetails.brnNo,
-          expertIn: ExpertInId,
-          nationalityId: this.agentDetails.nationalityId,
-          id: this.agentDetails.id,
-          userId: this.agentDetails.userId,
-          areas:tempAreas,
-          linkedIn:this.agentDetails.linkedIn,
-          experience:this.agentDetails.experience,
-        })
-        if (this.agentDetails.agentLanguages?.length > 0) {
-          for (let item of this.agentDetails.agentLanguages) {
-            this.agentLanguages.push(item.spokenLanguageId);
+  getAgentAndCompanyProfile() {
+    this.showLoader = true;
+    this.service.GetAgentProfile(this.userId).subscribe({
+      next: (resp: any) => {
+        if (resp.result == 1 && resp.data?.agentDetails != null) {
+          this.agentDetails = resp.data.agentDetails;
+          let ExpertInId: any = null;
+          if (this.agentDetails.expertIn == "Residential") {
+            ExpertInId = 1;
           }
-        }
-        if (this.agentDetails.documents?.length > 0) {
-          for (let item of this.agentDetails.documents) {
-            this.agentFileNames.push(item.fileName);
-            this.finalAgentDocments.push({
-              "FileId": item.fileId,
-              "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
-              "FileName": item.fileName, "Extension": item.extension, "FileUrl": item.fileUrl,
-              "Id": item.id
-            });
+          if (this.agentDetails.expertIn == "Commercial") {
+            ExpertInId = 2;
           }
-        }
-        //set agent company detail
-        if (this.agentDetails?.company != null) {
-          this.companyDetailForm.patchValue({
-            id: this.agentDetails?.company?.id,
-            companyName: this.agentDetails?.company?.companyName,
-            aboutCompany: this.agentDetails?.company?.aboutCompany,
-            tradeLicenseNo: this.agentDetails?.company?.tradeLicenseNo,
-            premitNo: this.agentDetails?.company?.premitNo,
-            ornNo: this.agentDetails?.company?.ornNo,
-            reraNo: this.agentDetails?.company?.reraNo,
-            companyAdress: this.agentDetails?.company?.companyAdress,
+          if (this.agentDetails.expertIn == "Both") {
+            ExpertInId = 3;
+          }
+          if (this.agentDetails.userId == null || this.agentDetails.userId == undefined) {
+            this.agentDetails.userId = this.userId
+          }
+          let tempAreas: any = []
+          this.agentDetails.agentAreas.forEach((x: any) => {
+            tempAreas.push(x.districtId)
           })
-          if (this.agentDetails?.company?.documents?.length > 0) {
-            for (let item of this.agentDetails.company?.documents) {
-              this.companyFileNames.push(item.fileName);
-              this.finalCompanyDocments.push({
+          this.ExpertInName = this.agentDetails.expertIn;
+          this.agentDetailForm.patchValue({
+            agentAboutMe: this.agentDetails.aboutMe,
+            agentBrnNo: this.agentDetails.brnNo,
+            expertIn: ExpertInId,
+            nationalityId: this.agentDetails.nationalityId,
+            id: this.agentDetails.id,
+            userId: this.agentDetails.userId,
+            areas: tempAreas,
+            linkedIn: this.agentDetails.linkedIn,
+            experience: this.agentDetails.experience,
+          })
+          if (this.agentDetails.agentLanguages?.length > 0) {
+            for (let item of this.agentDetails.agentLanguages) {
+              this.agentLanguages.push(item.spokenLanguageId);
+            }
+          }
+
+          if (this.agentDetails.documents?.length > 0) {
+            this.agentDetails.documents.sort((a: any, b: any) => (a.registrationDocumentTypeId > b.registrationDocumentTypeId) ? 1 : -1)
+            for (let item of this.agentDetails.documents) {
+              this.agentFileNames.push(item.fileName);
+              this.finalAgentDocments.push({
                 "FileId": item.fileId,
                 "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
                 "FileName": item.fileName, "Extension": item.extension, "FileUrl": item.fileUrl,
@@ -1600,7 +1723,37 @@ loadViewActivityData(){
               });
             }
           }
+          //set agent company detail
+          if (this.agentDetails?.company != null) {
+            this.companyDetailForm.patchValue({
+              id: this.agentDetails?.company?.id,
+              companyName: this.agentDetails?.company?.companyName,
+              aboutCompany: this.agentDetails?.company?.aboutCompany,
+              tradeLicenseNo: this.agentDetails?.company?.tradeLicenseNo,
+              premitNo: this.agentDetails?.company?.premitNo,
+              ornNo: this.agentDetails?.company?.ornNo,
+              reraNo: this.agentDetails?.company?.reraNo,
+              companyAdress: this.agentDetails?.company?.companyAdress,
+            })
+            // this.companyDetailForm.controls['companyId']?.patchValue(this.agentDetails?.company?.id,{ emitEvent: false, onlySelf: true })
+            if (this.agentDetails?.company?.documents?.length > 0) {
+              this.agentDetails?.company?.documents.sort((a: any, b: any) => (a.registrationDocumentTypeId > b.registrationDocumentTypeId) ? 1 : -1)
+              for (let item of this.agentDetails.company?.documents) {
+                this.companyFileNames.push(item.fileName);
+                this.finalCompanyDocments.push({
+                  "FileId": item.fileId,
+                  "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
+                  "FileName": item.fileName, "Extension": item.extension, "FileUrl": item.fileUrl,
+                  "Id": item.id
+                });
+              }
+            }
+          }
         }
+        this.showLoader = false;
+      },
+      error: (err: any) => {
+        this.showLoader = false;
       }
     })
   }
@@ -1648,7 +1801,15 @@ loadViewActivityData(){
         if (element.propertyType !== null && element.propertyType !== undefined) {
           propertyType = element.propertyType.typeDescription
         }
-
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -1668,7 +1829,8 @@ loadViewActivityData(){
             buildupArea: element.buildupArea,
             plotSize: element.plotSize,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingType,
+            companyLogoImage:companyLogoImage
           });
       })
     });
@@ -1772,6 +1934,15 @@ loadViewActivityData(){
         if (element.propertyType !== null && element.propertyType !== undefined) {
           propertyType = element.propertyType.typeDescription
         }
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -1789,7 +1960,8 @@ loadViewActivityData(){
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingType,
+            companyLogoImage:companyLogoImage
           });
       })
     });

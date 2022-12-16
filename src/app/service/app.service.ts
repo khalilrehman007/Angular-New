@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,11 +33,11 @@ export class AppService {
     return this.http.get(this.apiurl + 'PropertyType/');
   }
 
-  LoadBlogs(e:any) {
+  LoadBlogs(e: any) {
     // BlogBanners
     return this.http.get(this.apiurl + 'blogs/' + e);
   }
-  LoadBanners(data:any) {
+  LoadBanners(data: any) {
     // BlogBanners
     return this.http.get(this.apiurl + 'Banners/' + data);
   }
@@ -89,8 +90,8 @@ export class AppService {
   PropertyFeatures(id: any) {
     return this.http.get(this.apiurl + 'PropertyFeatures/' + id);
   }
-  PropertyUnitTypes(propertyTypeId:number) {
-    return this.http.get(this.apiurl + 'PropertyUnitTypes?propertyTypeId='+propertyTypeId);
+  PropertyUnitTypes(propertyTypeId: number) {
+    return this.http.get(this.apiurl + 'PropertyUnitTypes?propertyTypeId=' + propertyTypeId);
   }
   StoreListingPropertyForm(data: any) {
     return this.http.post(this.apiurl + 'AddPropertyListing', data);
@@ -128,7 +129,7 @@ export class AppService {
   PropertySortBy() {
     return this.http.get(this.apiurl + 'PropertySortBy/');
   }
-  ValuationTransactions(data:any) {
+  ValuationTransactions(data: any) {
     return this.http.get(this.apiurl + 'ValuationTransactions/' + data);
   }
   LoadProfessionalTypes() {
@@ -270,10 +271,10 @@ export class AppService {
   FindCities(data: any) {
     return this.http.post(this.apiurl + 'FindCities', data);
   }
-  BlogLatestNews(data:any) {
+  BlogLatestNews(data: any) {
     return this.http.get(this.apiurl + 'BlogLatestNews/' + data);
   }
-  BlogFeatures(data:any) {
+  BlogFeatures(data: any) {
     return this.http.get(this.apiurl + 'BlogFeatures/' + data);
   }
   BlogCategories() {
@@ -403,7 +404,7 @@ export class AppService {
   MyPackages(id: any) {
     return this.http.get(this.apiurl + 'MyPackages/' + id);
   }
-  DeveloperbyCountry(id:number) {
+  DeveloperbyCountry(id: number) {
     return this.http.get(this.apiurl + 'Developers/' + id);
   }
   LocatedNear() {
@@ -412,11 +413,20 @@ export class AppService {
   Permit() {
     return this.http.get(this.apiurl + 'PermitFor');
   }
+  GetAgentDocumentTypes(): Observable<any> {
+    return this.http.get(this.apiurl + "AgentDocumentTypes");
+  }
+  GetCompanyDocumentTypes(): Observable<any> {
+    return this.http.get(this.apiurl + "CompanyDocumentTypes");
+  }
+  GetAllCompanies(): Observable<any> {
+    return this.http.get(this.apiurl + "GetAllCompanies");
+  }
   AddUpdateAgentDetails(data: any) {
-    return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data ,{ headers: this.headersFormData });
+    return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data, { headers: this.headersFormData });
   }
   AddUpdateCompany(data: any) {
-    return this.http.post(this.apiurl + 'AddUpdateCompany', data,{ headers: this.headersFormData });
+    return this.http.post(this.apiurl + 'AddUpdateCompany', data, { headers: this.headersFormData });
   }
   GetAgentProfile(id: any) {
     return this.http.get(this.apiurl + 'UserAgentProfile/' + id);
@@ -436,64 +446,64 @@ export class AppService {
   PropertyStatuses() {
     return this.http.get(this.apiurl + 'PropertyStatuses');
   }
-  VerifyReferralCode(data:any) {
+  VerifyReferralCode(data: any) {
     return this.http.get(this.apiurl + 'VerifyReferralCode/' + data);
   }
-  MyWallet(data:any) {
+  MyWallet(data: any) {
     return this.http.get(this.apiurl + 'MyWallet?userId=' + data);
   }
-  GetPoints(data:any) {
+  GetPoints(data: any) {
     return this.http.get(this.apiurl + 'GetPoints?countryId=' + data);
   }
-  PointTransaction(data:any) {
+  PointTransaction(data: any) {
     return this.http.get(this.apiurl + 'PointTransaction?userId=' + data);
   }
-  PointPayment(data:any) {
-    return this.http.post(this.apiurl + 'PointPayment' , data);
+  PointPayment(data: any) {
+    return this.http.post(this.apiurl + 'PointPayment', data);
   }
-  PropertyListingPackages(data:any) {
+  PropertyListingPackages(data: any) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByPropertyListingType?listingTypeId=' + data);
   }
-  PurchasePackage(data:any) {
-    return this.http.post(this.apiurl + 'PurchasePackage' , data);
+  PurchasePackage(data: any) {
+    return this.http.post(this.apiurl + 'PurchasePackage', data);
   }
-  GetProjects(data:any) {
-    return this.http.post(this.apiurl + 'Projects' , data);
+  GetProjects(data: any) {
+    return this.http.post(this.apiurl + 'Projects', data);
   }
-  GetDevelopers(data:any) {
+  GetDevelopers(data: any) {
     return this.http.get(this.apiurl + 'Developers/' + data);
   }
   TransactionSequence() {
     return this.http.get(this.apiurl + 'TransactionSequence');
   }
-  GetResidentialTransactionData(data:any) {
+  GetResidentialTransactionData(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialTransactionData', data);
   }
-  GetResidentialRentData(data:any) {
+  GetResidentialRentData(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialRentData', data);
   }
-  GetUnitsByProjectId(data:any) {
+  GetUnitsByProjectId(data: any) {
     return this.http.get(this.apiurl + 'GetUnitsByProjectId/' + data);
   }
-  GetResidentialUnitTransactionHistory(data:any) {
+  GetResidentialUnitTransactionHistory(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialUnitTransactionHistory', data);
   }
-  GetResidentialMonthlyTransactionAnalysis(data:any) {
+  GetResidentialMonthlyTransactionAnalysis(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialMonthlyTransactionAnalysis', data);
   }
-  GetResidentialQuarterlyTransactionAnalysis(data:any) {
+  GetResidentialQuarterlyTransactionAnalysis(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialQuarterlyTransactionAnalysis', data);
   }
-  GetResidentialYearlyTransactionAnalysis(data:any) {
+  GetResidentialYearlyTransactionAnalysis(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialYearlyTransactionAnalysis', data);
   }
   GetTransactionType() {
     return this.http.get(this.apiurl + 'TransactionType');
   }
-  GetPopularListingsComparison(data:any) {
+  GetPopularListingsComparison(data: any) {
     return this.http.get(this.apiurl + 'GetPopularListingsComparison/' + data);
   }
-  ValuationDataIsExists(data:any) {
+  ValuationDataIsExists(data: any) {
     return this.http.post(this.apiurl + 'ValuationDataIsExists', data);
   }
   PropertyListingDetailComparison(id: any) {
@@ -505,7 +515,7 @@ export class AppService {
   ClassifiedCategories() {
     return this.http.get(this.apiurl + 'ClassifiedCategories');
   }
-  DeletePropertyListing(id:any) {
+  DeletePropertyListing(id: any) {
     return this.http.get(this.apiurl + 'DeletePropertyListing/' + id);
   }
 }
