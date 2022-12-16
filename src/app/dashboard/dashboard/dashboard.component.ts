@@ -1767,6 +1767,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
   getCountChange(e: any) {
+    this.page = 1;
     let PropertyListingTypeId: any;
     if (e == 1) {
       PropertyListingTypeId = 1
@@ -1780,6 +1781,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   wishlistingData: any = []
   getCountData(PropertyListingTypeId: any) {
+    this.showLoader=true;
     let tempData: Array<Object> = []
     this.service.FavoriteListing({ "UserId": this.user.id, "PropertyListingTypeId": PropertyListingTypeId }).subscribe(data => {
       let response: any = data;
@@ -1792,9 +1794,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           image = 'assets/images/placeholder.png'
         }
 
-        let rentType: any = '';
+        let rentTypeName: any = '';
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentType = '/' + element.rentType.name
+          rentTypeName = '/' + element.rentType.name
         }
 
         let propertyType: any = '';
@@ -1812,14 +1814,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         tempData.push(
           {
-            title: element.propertyTitle,
-            rentType: rentType,
+            propertyTitle: element.propertyTitle,
+            rentType: element.rentType,
+            rentTypeName: rentTypeName,
             propertyType: propertyType,
             currency: element.country.currency,
             price: element.propertyPrice,
             favorite: element.favorite,
             id: element.id,
-            alt: element.propertyTitle,
             src: image,
             bedrooms: element.bedrooms,
             propertyAddress: element.propertyAddress,
@@ -1830,12 +1832,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             plotSize: element.plotSize,
             requestedDateFormat: element.requestedDateFormat,
             furnishingType: element.furnishingType,
-            companyLogoImage:companyLogoImage
+            companyLogoImage:companyLogoImage,
+            documents:element.documents
           });
       })
     });
     setTimeout(() => {
       this.wishlistingData = tempData
+      this.showLoader=false;
     }, 1000);
   }
 
@@ -1864,8 +1868,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   allCheckbox: any = []
-  allFormCheckbox(id: number) {
-    this.allCheckbox.push({ 'id': id })
+  allFormCheckbox(data:any) {
+    console.log("checck",data)
+    this.allCheckbox.push({ 'id': data.id,'documents':data.documents,'propertyPrice':data.price,'currency':data.currency,
+  'rentType':data.rentType,'propertyTitle':data.propertyTitle,'propertyAddress':data.propertyAddress
+  })
   }
   compareProceed(type: any) {
     if (this.user.id == '') {
@@ -1881,9 +1888,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       if (this.allCheckbox.length < 2 || this.allCheckbox.length > 4) {
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
       } else {
-        localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
-        this.route.navigateByUrl('/PropertyCompare');
+        localStorage.removeItem("clickProprtyOne");
+        localStorage.removeItem("clickProprtyTwo");
+        localStorage.removeItem("clickProprtyThree");
+        this.allCheckbox.forEach((x:any,i:any)=>{
+          let name:string="clickProprty";
+          if(i==0){
+            name=name+"One";
+          }
+          if(i==1){
+            name=name+"Two";
+          }
+          if(i==2){
+            name=name+"Three";
+          }
+          localStorage.setItem(name,JSON.stringify(x));
+        })
+       // localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/compare/view');
       }
     }
   }
