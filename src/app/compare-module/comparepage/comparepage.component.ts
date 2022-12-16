@@ -31,6 +31,7 @@ export class ComparepageComponent implements OnInit {
   count: number = 0;
 
   constructor(private route: Router, private authService: AuthService, private service: AppService, private cookie: CookieService) {
+    
     $(window).scrollTop(0); 
     if (localStorage.getItem("clickProprtyOne")){
       this.count++
@@ -170,14 +171,17 @@ export class ComparepageComponent implements OnInit {
   removeProperty(){
     localStorage.removeItem("clickProprtyOne")
     this.viewPropertyOne = "";
+    this.count--;
   }
   removePropertyTwo(){
     localStorage.removeItem("clickProprtyTwo")
     this.viewPropertyTwo = "";
+    this.count--;
   }
   removePropertyThree(){
     localStorage.removeItem("clickProprtyThree")
     this.viewPropertyThree = "";
+    this.count--;
   }
   PopularComparisonList = [
     {

@@ -476,6 +476,9 @@ export class AppService {
   TransactionSequence() {
     return this.http.get(this.apiurl + 'TransactionSequence');
   }
+  GetResidentialListingData(data: any) {
+    return this.http.post(this.apiurl + 'GetResidentialListingData', data);
+  }
   GetResidentialTransactionData(data: any) {
     return this.http.post(this.apiurl + 'GetResidentialTransactionData', data);
   }

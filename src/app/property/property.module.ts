@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { PropertyRoutingModule } from './property-routing.module';
 import { SearchComponent } from './search/search.component';
@@ -65,6 +65,7 @@ import { AlertsModule } from '../alerts/alerts.module';
     CarouselModule,
     LoaderModule,
     AlertsModule
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class PropertyModule { }
