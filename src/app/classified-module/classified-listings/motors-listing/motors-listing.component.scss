@@ -224,8 +224,26 @@
         font-weight: 400;
     }
 }
-
-
+.motors-specifications-list ul {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.motors-specifications-list ul li {
+    margin-right: 10px;
+}
+.motors-specifications-list ul li.kilometers svg {
+    position: relative;
+    bottom: 1px;
+}
+.motors-specifications-list ul li.colors svg {
+    position: relative;
+    bottom: 1px;
+}
+.motors-specifications-list ul li.year svg {
+    position: relative;
+    bottom: 1px;
+}
 
 @media (max-width: 991px){
     .notification-box>.d-flex {

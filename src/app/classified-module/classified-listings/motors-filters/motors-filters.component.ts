@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2 } from 'select2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-motors-filters',
@@ -15,8 +18,11 @@ export class MotorsFiltersComponent implements OnInit {
     this.minValue = 1000;
     this.maxValue = 50000000;
   }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.AgentfilteredOptions = this.AgentSearchControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
   }
   status: boolean = false;
   status1: boolean = false;
@@ -33,4 +39,16 @@ export class MotorsFiltersComponent implements OnInit {
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
+
+
+  // Agent Search
+  AgentSearchControl = new FormControl('');
+  AgentSearchOptions: string[] = ['One', 'Two', 'Three'];
+  AgentfilteredOptions!: Observable<string[]>;
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.AgentSearchOptions.filter(option => option.toLowerCase().includes(filterValue));
+  }
+    // End Agent Search
 }
