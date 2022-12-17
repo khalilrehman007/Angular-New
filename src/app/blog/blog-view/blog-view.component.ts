@@ -46,7 +46,7 @@ export class BlogViewComponent implements OnInit {
         this.service.BlogBySlug(this.id).subscribe(data=>{
           this.blog=data;
           this.blog=this.blog.data;
-          this.blog.blogDocument.fileUrl = 'https://www.ovaluate.com/'+this.blog.blogDocument.fileUrl;
+          this.blog.blogDocument.fileUrl = this.baseUrl+this.blog.blogDocument.fileUrl;
           $(".blog-post-content").html(this.blog.contentData);
         });
       }
