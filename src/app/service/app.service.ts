@@ -521,4 +521,7 @@ export class AppService {
   DeletePropertyListing(id: any) {
     return this.http.get(this.apiurl + 'DeletePropertyListing/' + id);
   }
+  GetClassifiedLookUpsByCategory(category: any) {
+    return this.http.get(this.apiurl + 'GetClassifiedLookUpsByCategory/?category=' + category);
+  }
 }
