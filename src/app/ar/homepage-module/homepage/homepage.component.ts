@@ -30,6 +30,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   landdept = 'assets/images/Dubai-Land-LOGO.png'
   rera = 'assets/images/rera.png'
   tagicn = '../../../assets/images/icons/tag-icn.svg'
+  fb = '../../../assets/images/icons/fb-share.svg'
+  whatsapp = '../../../assets/images/icons/whatsapp.svg'
+  twitter = '../../../assets/images/icons/twiiter-share.svg'
+  content: any;
   baseUrl = environment.apiUrl;
   blogs: any;
   submitted = false;
@@ -45,6 +49,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   countryData: any = "";
   id: any = 1;
   propertyDetails: any;
+  showLoader: boolean = false;
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
@@ -231,7 +236,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   totalSales: any;
   totalMortgages: any;
   userId: any;
-  explorePlaces: any;
+  explorePlaces: any = [];
   trendTitle: any = [];
   constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
@@ -284,7 +289,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
-        this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
+        this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {          
           this.explorePlaces = result.data;
         });
         this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {

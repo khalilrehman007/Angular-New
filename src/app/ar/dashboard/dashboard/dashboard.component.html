@@ -395,8 +395,8 @@
 
                             <div ngClass="row">
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    <a [routerLink]="['/ar/blogs-details/' + blog.id]" ngClass="position-relative">
-                                        <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
+                                    <a routerLink="/ar/blog/details/{{blog.slugName}}" ngClass="position-relative">
+                                        <img [src]="this.baseUrl+blog.blogDocument.fileUrl"
                                             ngClass="img-fluid blog-image-homepage" alt="">
                                         <span ngClass="blog-tag">
                                             <img [src]="blog.src2" ngClass="img-fluid" alt="">
@@ -3171,9 +3171,8 @@
 
                             <div ngClass="row">
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    <a [routerLink]="['/ar/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}"
-                                        ngClass="position-relative">
-                                        <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
+                                    <a routerLink="/ar/blog/details/{{blog.slugName}}" ngClass="position-relative">
+                                        <img [src]="this.baseUrl+blog.blogDocument.fileUrl"
                                             ngClass="img-fluid blog-image-homepage" alt="">
                                         <span ngClass="blog-tag">
                                             <img [src]="blog.src2" ngClass="img-fluid" alt="">
