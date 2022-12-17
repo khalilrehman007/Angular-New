@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   agentDocumentTypes: any = [];
   companyDocumentTypes: any = [];
   companiesList: any = [];
+  firstSelectedArea:any='';
   user: any;
   greet: any;
   currentField: any;
@@ -272,7 +273,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
-    this.getAgentAndCompanyProfile();
     this.service.UserProfile(this.userId).subscribe((result: any) => {
       this.userData = result.data;
       if (result.result == 1) {
@@ -429,6 +429,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.LoadBlogs();
         this.getDistricts()
+        setTimeout(() => {
+          this.getAgentAndCompanyProfile();
+        }, 200);
         clearInterval(a);
       }
     }, 100);
@@ -711,6 +714,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     })
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
+    })
+    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x=>{
+      console.log(x);
+      if(x!=undefined && x?.length>0){
+        x.sort((a: any, b: any) => (a> b) ? 1 : -1)
+        let district = this.districts.find((y: any) => {
+          return y.id === x[0]
+        })
+        this.firstSelectedArea=district?.name;
+      }
     })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
@@ -1693,6 +1706,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.agentDetails.agentAreas.forEach((x: any) => {
             tempAreas.push(x.districtId)
           })
+          tempAreas.sort((a: any, b: any) => (a > b) ? 1 : -1)
+          console.log(tempAreas)
           this.ExpertInName = this.agentDetails.expertIn;
           this.agentDetailForm.patchValue({
             agentAboutMe: this.agentDetails.aboutMe,

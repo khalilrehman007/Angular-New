@@ -7,6 +7,7 @@ import { DecimalPipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
+import { MapStyle } from 'src/app/shared/map.retro.style';
 declare const google: any;
 
 @Component({
@@ -33,6 +34,7 @@ export class ViewmapComponent implements OnInit {
 
   @ViewChild('mapView') mapElement: any;
 
+ 
   dynamicSlides1 = [
     {
       id: 'slide1',
@@ -257,12 +259,13 @@ export class ViewmapComponent implements OnInit {
         );
       }
     }
+
     this.map = new google.maps.Map($(".mapView")[0], {
       center:centerPosition,
       zoom: zoom,
       disableDefaultUI: true,
     })
-    
+    this.map.setOptions({ styles: MapStyle.retro});
     for (let i = 0; i < this.searchListing.length; i++) {
       console.log(this.searchListing[i].rentType)
       const contentString =`<div class="row">

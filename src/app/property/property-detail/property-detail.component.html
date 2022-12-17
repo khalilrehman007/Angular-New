@@ -253,6 +253,10 @@
                                 <h6>Location</h6>
                             </div>
                             <div #propertyDetails__map class="property-details__map"></div>
+                            <div *ngIf="propertyDetailData?.propertyListingLocatedNears?.length>0" ngClass="description-block-design">
+                                <h5>Located Near</h5>
+                                <span class="compare-page-span" *ngFor="let x of propertyDetailData.propertyListingLocatedNears">{{x.locatedNear.name}}</span>
+                            </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
