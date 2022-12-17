@@ -3,9 +3,10 @@ import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { DecimalPipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 declare const google: any;
 
 @Component({
@@ -94,7 +95,7 @@ export class ViewmapComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   selectedPropertyTypeName: any;
-  constructor(private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router,private modalService: NgbModal) {
+  constructor(private decimalPipe: DecimalPipe,private currentLocation: Location,private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.totalRecord = this.activeRoute.snapshot.queryParamMap.get('totalRecord');
     this.selectedPropertyTypeName = this.activeRoute.snapshot.queryParamMap.get('selectedPropertyTypeName');
@@ -215,7 +216,7 @@ export class ViewmapComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
-      this.initMap(null, 6);
+      this.initMap(null, 10);
 
     });
   }
@@ -240,26 +241,80 @@ export class ViewmapComponent implements OnInit {
     this.loadListingProperty(params);
   }
   initMap(e: any, zoom: any) {
+    let centerPosition:any;
+    if(this.searchListing.length!=0){
+      centerPosition={'lat':this.searchListing[0].propertyLat,'lng':this.searchListing[0].propertyLong}
+    }
+    else{
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position: GeolocationPosition) => {
+            centerPosition = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+          },
+        );
+      }
+    }
     this.map = new google.maps.Map($(".mapView")[0], {
-      center: { "lat": 23.4241, "lng": 53.8478 },
+      center:centerPosition,
       zoom: zoom,
       disableDefaultUI: true,
     })
-    this.marker = new google.maps.Marker({
-      position: { "lat": 23.4241, "lng": 53.8478 },
-      map: this.map
-    })
+    
     for (let i = 0; i < this.searchListing.length; i++) {
+      console.log(this.searchListing[i].rentType)
+      const contentString =`<div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="add-compare-div add-compare-div-first">
+              <div ngClass="property-comparison-block position-relative">
+                  <div ngClass="com-img cursor-pointer">
+                      <img class="marker-img-style" src="${this.searchListing[i].documents}">
+                  </div>
+                  <div ngClass="com-cntnt cursor-pointer">
+                      <h4> ${this.decimalPipe.transform(this.searchListing[i].propertyPrice)} ${this.searchListing[i].currency}  
+                      </h4>
+                      <h5 >${this.searchListing[i].propertyTitle}</h5>
+                      <address>
+                           <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
+                                          <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
+                          </svg>  
+                          ${this.searchListing[i].propertyAddress}</address>
+                          <a style="font-size:16px" href="/property/detail?id=${this.searchListing[i].id}">View Listing</a>
+                  </div>
+              </div>
+          </div>
+      </div>`;
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
 
       let latLng = { lat: this.searchListing[i].propertyLat, lng: this.searchListing[i].propertyLong };
       this.marker = new google.maps.Marker({
         position: latLng,
+        icon:"../../../assets/images/map-marker.png",
         map: this.map
       })
-
+      this.marker.addListener("click", () => {
+        infowindow.open({
+          anchor: this.marker,
+          map:this.map,
+        });
+      });
       // marker.setMap(this.map)
     }
 
+  }
+  NavigateToDetail(id:number){
+    this.route.navigate(
+      ['/property/detail'],
+      { queryParams: { id: id } }
+    );
+  }
+  LocationBack(){
+    this.currentLocation.back();
   }
   videoSorting(event: any) {
     this.videoTourSorting = event.value
