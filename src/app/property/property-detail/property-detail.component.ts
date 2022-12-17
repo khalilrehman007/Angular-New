@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "../../service/app.service";
@@ -201,7 +201,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
     datasets: [
       {
         data: this.chartData,
-        label: 'Series A',
+        label: '',
         fill: false,
         tension: 0.5,
         borderColor: '#8dbfde',
@@ -236,7 +236,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   };
   public lineChartLegend = true;
 
-  constructor(private decimalPipe: DecimalPipe, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private decimalPipe: DecimalPipe,private datePipe:DatePipe, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -468,6 +468,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.reraNo = reraNo;
           this.propertyDetailData.permitNo = permitNo;
           this.propertyDetailData.companyLogoImage = companyLogoImage;
+          this.propertyDetailData.startDate =  (jsonParsDate.propertyListing.startDate == undefined || jsonParsDate.propertyListing.startDate == null) ? '' : jsonParsDate.propertyListing.startDate;
+          this.propertyDetailData.endDate =  (jsonParsDate.propertyListing.endDate == undefined || jsonParsDate.propertyListing.endDate == null) ? '' : jsonParsDate.propertyListing.endDate;
 
           // share url concatination
           // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
@@ -514,7 +516,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           datasets: [
             {
               data: this.chartData,
-              label: 'Series A',
+              label: 'Price',
               fill: false,
               tension: 0.5,
               borderColor: '#8dbfde',
@@ -641,6 +643,16 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         show: this.propertyDetailData.brokerageCharge,
         label: 'Brokerage Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
+      },
+      {
+        show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
+        label: 'Rent Start Date',
+        value: this.datePipe.transform(this.propertyDetailData.startDate,'mediumDate'),
+      },
+      {
+        show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
+        label: 'Rent End Date',
+        value: this.datePipe.transform(this.propertyDetailData.endDate,'mediumDate'),
       }
     ]
 
