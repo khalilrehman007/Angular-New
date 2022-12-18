@@ -513,9 +513,9 @@ export class HomepageComponent implements OnInit, AfterViewInit {
           { title: element.bannerHeader, desc: element.bannerTitle, img: this.baseUrl + image });
       })
     });
-    tempData.push({
-      title: 'The World’s 1st AI-Driven Property Valuation Platform', desc: 'With a  cutting-edge tech & an innovative platform, we provide an accurate valuation of your property.', img: 'assets/videos/OvaluatePromo.mp4',type:'video'
-    })
+    // tempData.push({
+    //   title: 'The World’s 1st AI-Driven Property Valuation Platform', desc: 'With a  cutting-edge tech & an innovative platform, we provide an accurate valuation of your property.', img: 'assets/videos/OvaluatePromo.mp4',type:'video'
+    // })
     this.homebanners = tempData
   }
 

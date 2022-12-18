@@ -358,7 +358,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           zoom: 16,
           disableDefaultUI: true,
         });
-        this.map.setOptions({ styles: MapStyle.retro});
+        //this.map.setOptions({ styles: MapStyle.retro});
         let marker = new google.maps.Marker({
           position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
           map: this.map,
