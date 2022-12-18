@@ -6,7 +6,7 @@
 :root {
 	--body-color: #fff;
 	--sidebar-color: #fff;
-	--primary-color: #595ad4 !important;
+	--primary-color: #645BD1 !important;
 	--primary-color-light: #888888;
 	--toggle-color: #ddd;
 	--text-color: #4a4a4a;
@@ -130,7 +130,7 @@ $background-color_5: #F0F3F5;
 $background-color_6: #f5f7fe;
 $background-color_7: #000;
 $background-color_8: #D3DBFF;
-$background-color_9: #595ad4;
+$background-color_9: #645BD1;
 $background-color_10: var(--light-blue);
 $background-color_11: var(--primary-color-light);
 $background-color_12: #6C30A6;
@@ -146,7 +146,7 @@ $background-color_21: #333;
 $background-color_22: green;
 $background-color_23: #ffebbf;
 $border-color_1: #D3DBFF;
-$border-color_2: #595ad4;
+$border-color_2: #645BD1;
 $border-color_3: #2DB57D;
 $border-color_4: #4A565F;
 $border-color_5: #E5E7EB;
@@ -1473,8 +1473,8 @@ input[type=number] {
 		&:checked {
 			+ {
 				.checkbox-btn {
-					border-color: #4A565F;
-					background: #4A565F;
+					border-color: #645BD1;
+					background: #645BD1;
 					color: #fff;
 					opacity: 1;
 
@@ -1494,8 +1494,8 @@ input[type=number] {
 		&:hover {
 			+ {
 				.checkbox-btn {
-					border-color: #4A565F;
-					background: #4A565F;
+					border-color: #645BD1;
+					background: #645BD1;
 					color: #fff;
 					opacity: 1;
 
@@ -7140,8 +7140,8 @@ img {
 				}
 
 				&:hover {
-					background-color: $background-color_16;
-					border-color: $border-color_6;
+					background-color: $background-color_9;
+					border-color: $border-color_2;
 
 					.mat-tab-label-content {
 						color: $color_5;
@@ -7150,8 +7150,8 @@ img {
 			}
 
 			.mat-tab-label.mat-tab-label-active {
-				background-color: $background-color_16;
-				border-color: $border-color_6;
+				background-color: $background-color_9;
+				border-color: $border-color_2;
 
 				.mat-tab-label-content {
 					color: $color_5;
@@ -7571,7 +7571,7 @@ img {
 	.navbar-nav {
 		.nav-link.blue-bordered-btn {
 			&:hover {
-				background: #4A565F;
+				background: #645BD1;
 			}
 		}
 	}
@@ -7666,10 +7666,10 @@ li.agent-details__property-list-item {
 			}
 
 			a {
-				background: $btncolor;
+				background: $background-color_9;
 				color: $color_4;
 				text-decoration: none;
-				border: 0.5px solid $btncolor;
+				border: 0.5px solid $border-color_4;
 				padding: 9px 15px;
 				border-radius: 5px;
 				font-size: 14px;
@@ -7679,8 +7679,8 @@ li.agent-details__property-list-item {
 				margin-top: 15px;
 
 				&:hover {
-					background: #fff;
-					color: $color_29;
+					background:#4A565F;
+					color: $color_4;
 				}
 			}
 		}
@@ -9021,8 +9021,8 @@ li.agent-details__property-list-item {
 
 .select2-container--default .select2-results__option--selected::before,
 .select2-results li:hover:before {
-	background-color: #49555e;
-	border-color: #49555e;
+	background-color:$background-color_9;
+	border-color: $border-color_2;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
@@ -13867,11 +13867,12 @@ input:focus {
 }
 
 .property_pricing .price_value {
-	font-size: 24px;
+	font-size: 23px;
 	vertical-align: middle;
 	padding: 0px 6px;
 	position: relative;
 	bottom: 1px;
+	font-weight: bold;
 }
 
 .property_det-btn {

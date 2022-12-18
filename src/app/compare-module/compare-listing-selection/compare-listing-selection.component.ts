@@ -49,7 +49,7 @@ export class CompareListingSelectionComponent implements OnInit {
   fb = '../../../assets/images/icons/fb-share.svg'
   share = '../../../assets/images/icons/share-1.png'
   emailhome = '../../../assets/images/icons/email-home.png'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',

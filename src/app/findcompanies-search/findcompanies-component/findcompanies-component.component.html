@@ -2,7 +2,7 @@
     <form>
         <div ngClass="flex-row">
             <div ngClass="flex-column flex-column-14">
-                <div ngClass="block-wrapper" *ngIf="searchList.length > 0">
+                <div ngClass="block-wrapper" >
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
                         <mat-label>Search</mat-label>
                         <mat-chip-list #chipList aria-label="Search selection">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div ngClass="flex-column flex-column-15">
-                <button (click)="proceedCompanySearch()" ngClass="search-btn"><img
+                <button type="submit" (click)="proceedCompanySearch()" ngClass="search-btn"><img
                         src="assets/images/search.svg"></button>
             </div>
         </div>

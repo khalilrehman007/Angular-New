@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   notification = '../../../assets/images/icons/Notification.svg'
   signinicn = '../../../assets/images/icons/User.svg'
   signupicn = '../../../assets/images/icons/User-plus.svg'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
   flagsvg = ''
