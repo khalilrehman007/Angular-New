@@ -93,6 +93,7 @@
                                                         <h4>{{list.propertyPrice | number}} {{list.currency}} <small
                                                                 *ngIf="list.rentType != ''">/ {{list.rentType}}</small>
                                                         </h4>
+                                                        <p style="margin-bottom: 0px !important;margin-top: 6px !important;">{{list.propertyType?.typeDescription}}</p>
                                                     </div>
                                                     <div ngClass="property-action-hdr">
                                                         <button ngClass="ov-verified-btn"><img src="{{ovverified}}">
@@ -142,7 +143,6 @@
                                                 <div ngClass="topkey-highlights cursor-pointer" [routerLink]="['/property/detail']"
                                                 [queryParams]="{id: list.id}">
                                                     <h5>{{list.propertyTitle}}</h5>
-                                                    <p style="margin-bottom: 0px !important;margin-top: 6px !important;">{{list.propertyType?.typeDescription}}</p>
                                                     <div style="margin-top: 10px !important;" ngClass="property-details-highlights">
                                                         <span *ngIf="list.propertyType?.hasListingBed" ngClass="bed">
                                                             <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds

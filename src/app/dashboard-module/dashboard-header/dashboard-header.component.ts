@@ -19,7 +19,7 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 export class DashboardHeaderComponent implements OnInit {
   downloadreport = '../../../assets/images/icons/download-svg.svg'
   togglesvg = '../../../assets/images/icons/toggle.svg'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
   flagsvg = '../../../assets/images/aed-fg.svg'

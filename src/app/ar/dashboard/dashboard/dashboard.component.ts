@@ -1040,7 +1040,9 @@ blogs: any;
   TransferPopup(TransferModal:any) {
     this.modalService.open(TransferModal, { centered: true });
   }
-
+  UpdatedSuccessfully(UpdatedContentPhone: any) {
+    this.modalService.open(UpdatedContentPhone, { centered: true });
+  }
   buyCount: any;
   rentCount: any;
   allCount: any;

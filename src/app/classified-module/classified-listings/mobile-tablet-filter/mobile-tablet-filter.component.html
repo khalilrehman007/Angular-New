@@ -1,1 +1,457 @@
-<p>mobile-tablet-filter works!</p>
+
+  <form>
+    <div class="properties-file-container-shadow">
+    <div class="properties-file-container">
+    <div class="row align-items-center">
+        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+          <div class="select-design select2-design">
+            <select class="select2">
+              <option value="Dubai">City</option>
+              <option value="UAE">Dubai</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+            <div class="select-design select2-design">
+              <select class="select2">
+                <option value="Dubai">Category</option>
+                <option value="UAE">All Categories</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+            <div class="select-design select2-design">
+              <select class="select2">
+                <option value="Dubai">Type</option>
+                <option value="UAE">Acer</option>
+                <option value="UAE">Apple</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper">
+              <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                  <button ngClass="drop-down_btn" (click)="clickEvent()">Price (AED)</button>
+                  <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                      <h4 ngClass="drop_label">Price Range</h4>
+                      <div ngClass="rental-type-tabs-sec">
+                          <div ngClass="price-range_sec">
+                              <div ngClass="extra-controls form-inline">
+                                  <div ngClass="form-group">
+                                      <input type="number" formControlName="PriceStart"
+                                          placeholder="100,000">
+                                      <input type="number" formControlName="PriceEnd"
+                                          placeholder="Any">
+                                  </div>
+                              </div>
+                              <div ngClass="range-slider">
+                                  <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+                                  </ngx-slider>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
+              </div>
+          </div>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper">
+                <mat-form-field class="example-full-width input-design-2 input-design-2-bg" appearance="fill">
+                  <input type="text"
+                         placeholder="Neighborhood"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="AgentSearchControl"
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of AgentfilteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper more-filter_btn-wrapper">
+              <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
+          </div>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-6 col-sm-12">
+            <div class="d-flex clear-search-flex">
+            <div ngClass="block-wrapper">
+              <button ngClass="clear-btn-link">Clear</button>
+          </div>
+            <div ngClass="block-wrapper">
+              <button ngClass="search-btn-link"><img src="assets/images/search.svg"></button>
+          </div>
+          </div>
+          </div>
+    </div>
+    </div>
+    </div>
+  </form>
+  <div ngClass="more_filters-modal">
+    <ng-template #content let-modal>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body more-filter-form-design">
+            <div ngClass="row">
+                <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                    <div ngClass="form_heading mb-4">
+                        <h4 ngClass="h4-design">More Filters</h4>
+                    </div>
+                </div>
+                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-3">
+                        <label class="h6-design">Model</label>
+                        <div class="checkbox-flex-box autoflex-layout">
+                            <div class="checkbox-design position-relative">
+                                <input type="radio" id="Liquid Jade 2" name="phonemodel" value="">
+                                <button class="checkbox-btn">Liquid Jade 2</button>
+                            </div>
+                            <div class="checkbox-design position-relative">
+                              <input type="radio" id="Liquid Jade 2" name="Age" value="">
+                              <button class="checkbox-btn">Liquid Jade 3</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="radio" id="Liquid Jade 2" name="Age" value="">
+                            <button class="checkbox-btn">Liquid Jade 4</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Liquid Jade 2" name="Age" value="">
+                          <button class="checkbox-btn">Liquid Jade 5</button>
+                      </div>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-4">
+                        <label class="h6-design">Color</label>
+                        <div class="checkbox-flex-box autoflex-layout">
+                            <div class="checkbox-design-colors position-relative black">
+                                <input type="radio" id="Black" name="colors" value="Black">
+                                <button class="checkbox-btn">Black</button>
+                            </div>
+                            <div class="checkbox-design-colors position-relative Blue">
+                              <input type="radio" id="Blue" name="colors" value="Blue">
+                              <button class="checkbox-btn">Blue</button>
+                          </div>
+                          <div class="checkbox-design-colors position-relative Brown">
+                            <input type="radio" id="Brown" name="colors" value="Brown">
+                            <button class="checkbox-btn">Brown</button>
+                        </div>
+                        <div class="checkbox-design-colors position-relative Burgundy">
+                          <input type="radio" id="Burgundy" name="colors" value="Burgundy">
+                          <button class="checkbox-btn">Burgundy</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Gold">
+                        <input type="radio" id="Gold" name="colors" value="Gold">
+                        <button class="checkbox-btn">Gold</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Grey">
+                        <input type="radio" id="Grey" name="colors" value="Grey">
+                        <button class="checkbox-btn">Grey</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Orange">
+                        <input type="radio" id="Orange" name="colors" value="Orange">
+                        <button class="checkbox-btn">Orange</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Green">
+                        <input type="radio" id="Green" name="colors" value="Green">
+                        <button class="checkbox-btn">Green</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Purple">
+                        <input type="radio" id="Purple" name="colors" value="Purple">
+                        <button class="checkbox-btn">Purple</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Red">
+                        <input type="radio" id="Red" name="colors" value="Red">
+                        <button class="checkbox-btn">Red</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Silver">
+                        <input type="radio" id="Silver" name="colors" value="Silver">
+                        <button class="checkbox-btn">Silver</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Beige">
+                        <input type="radio" id="Beige" name="colors" value="Beige">
+                        <button class="checkbox-btn">Beige</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Tan">
+                        <input type="radio" id="Tan" name="colors" value="Tan">
+                        <button class="checkbox-btn">Tan</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Teal">
+                        <input type="radio" id="Teal" name="colors" value="Teal">
+                        <button class="checkbox-btn">Teal</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative White">
+                        <input type="radio" id="White" name="colors" value="White">
+                        <button class="checkbox-btn">White</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Yellow">
+                        <input type="radio" id="Yellow" name="colors" value="Yellow">
+                        <button class="checkbox-btn">Yellow</button>
+                      </div>
+                      <div class="checkbox-design-colors position-relative Other-Color">
+                        <input type="radio" id="Other-Color" name="colors" value="Other Color">
+                        <button class="checkbox-btn">Other Color</button>
+                      </div>
+                        </div>
+                    </div>
+                  </div> 
+              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                <div ngClass="block-wrapper mb-3">
+                    <label class="h6-design">Condition</label>
+                    <div class="checkbox-flex-box autoflex-layout">
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="New" name="condition" value="New">
+                            <button class="checkbox-btn">New</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Pre Owned" name="condition" value="Pre Owned">
+                          <button class="checkbox-btn">Pre Owned</button>
+                      </div>
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="scrap" name="Usage" value="scrap">
+                        <button class="checkbox-btn">Scrap</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+            <div ngClass="block-wrapper mb-4">
+                <label class="h6-design">Warranty</label>
+                <div class="checkbox-flex-box autoflex-layout">
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Yes" name="warrenty" value="Yes">
+                        <button class="checkbox-btn">Yes</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                      <input type="radio" id="No" name="warrenty" value="No">
+                      <button class="checkbox-btn">No</button>
+                  </div>
+                  <div class="checkbox-design position-relative">
+                    <input type="radio" id="do-not-apply" name="warrenty" value="do-not-apply">
+                    <button class="checkbox-btn">Does Not Apply</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+          <div ngClass="block-wrapper mb-4">
+              <label class="h6-design">Age</label>
+              <div class="checkbox-flex-box autoflex-layout">
+                  <div class="checkbox-design position-relative">
+                      <input type="checkbox" id="age" name="age" value="age">
+                      <button class="checkbox-btn">Brand New</button>
+                  </div>
+                  <div class="checkbox-design position-relative">
+                    <input type="checkbox" id="1 Year" name="age" value="1 Year">
+                    <button class="checkbox-btn">1 Year</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="checkbox" id="2 Year" name="age" value="2 Year">
+                  <button class="checkbox-btn">2 Year</button>
+              </div>
+              </div>
+          </div>
+      </div>
+      <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Memory (RAM)</label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="memory" name="memory" value="memory">
+                    <button class="checkbox-btn">1 GB or less</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="memory" name="memory" value="memory">
+                  <button class="checkbox-btn">2 GB</button>
+              </div>
+              <div class="checkbox-design position-relative">
+                <input type="radio" id="Service-History" name="memory" value="Service History">
+                <button class="checkbox-btn">3 GB</button>
+            </div>
+            <div class="checkbox-design position-relative">
+              <input type="radio" id="No-Accidents" name="memory" value="No Accidents">
+              <button class="checkbox-btn">4 GB</button>
+          </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Damages on Device</label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="yes" name="yes" value="yes">
+                    <button class="checkbox-btn">Yes</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="no" name="no" value="no">
+                  <button class="checkbox-btn">No</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Damage Details</label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="damage01" name="damage01" value="damage01">
+                    <button class="checkbox-btn">Cracked or Broken Screen</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="damage02" name="damage02" value="damage02">
+                  <button class="checkbox-btn">Unable to Turn On</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Percentage of Battery Health
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="batteryHealth" name="batteryHealth" value="batteryHealth">
+                    <button class="checkbox-btn">Below 85%</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="batteryHealth02" name="batteryHealth02" value="batteryHealth02">
+                  <button class="checkbox-btn">Above 85%</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Version
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="version01" name="version01" value="version01">
+                    <button class="checkbox-btn">US</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="version02" name="version02" value="version02">
+                  <button class="checkbox-btn">UAE</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Accompaniments
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="accomaniments" name="accomaniments" value="accomaniments">
+                    <button class="checkbox-btn">Box</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="Accompaniments02" name="Accompaniments02" value="Accompaniments02">
+                  <button class="checkbox-btn">Charger</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Grade
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="grade01" name="grade01" value="grade01">
+                    <button class="checkbox-btn">A</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="grade02" name="grade02" value="grade02">
+                  <button class="checkbox-btn">B</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Storage Capacity
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="sc" name="sc" value="sc">
+                    <button class="checkbox-btn">32 GB</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="sc01" name="sc01" value="sc01">
+                  <button class="checkbox-btn">64 GB</button>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+        <div ngClass="block-wrapper mb-4">
+            <label class="h6-design">Carrier Lock
+            </label>
+            <div class="checkbox-flex-box autoflex-layout">
+                <div class="checkbox-design position-relative">
+                    <input type="radio" id="carrierlock" name="carrierlock" value="carrierlock">
+                    <button class="checkbox-btn">Yes</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="carrierlock01" name="carrierlock01" value="carrierlock01">
+                  <button class="checkbox-btn">No</button>
+              </div>
+            </div>
+        </div>
+    </div>  
+            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+              <div ngClass="block-wrapper mb-4">
+                  <label class="h6-design">Ads posted</label>
+                  <div class="checkbox-flex-box autoflex-layout">
+                      <div class="checkbox-design position-relative">
+                          <input type="radio" id="any-time" name="Ads-posted" value="any-time">
+                          <button class="checkbox-btn">Any Time</button>
+                      </div>
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="Today" name="Ads-posted" value="Today">
+                        <button class="checkbox-btn">Today</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                      <input type="radio" id="Light-Usage" name="Ads-posted" value="Light-Usage">
+                      <button class="checkbox-btn">Within 3 days</button>
+                  </div>
+                  <div class="checkbox-design position-relative">
+                    <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                    <button class="checkbox-btn">Within 1 Week</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                  <button class="checkbox-btn">Within 2 Week</button>
+              </div>
+              <div class="checkbox-design position-relative">
+                <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                <button class="checkbox-btn">Within 3 Week</button>
+            </div>
+                  </div>
+              </div>
+          </div>
+          <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+            <div ngClass="block-wrapper mb-4">
+              <label>Other Filters</label>
+              <div class="mat-checkbox-list">
+                <mat-checkbox class="example-margin">Show ads in English only</mat-checkbox>
+                <mat-checkbox class="example-margin">Show ads with photos only</mat-checkbox>
+                <mat-checkbox class="example-margin">Show ads by</mat-checkbox>
+                <mat-checkbox class="example-margin">Ads with video only</mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div ngClass="col-xl-12 col-lg-12 col-sm-12 text-right">
+            <button class="show-results">Show Results</button>
+          </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

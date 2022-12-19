@@ -65,8 +65,15 @@
                     <ngb-carousel [showNavigationArrows]="false">
                         <ng-template ngbSlide *ngFor="let event of homebanners">
                             {{event.id}}
-                            <div ngClass="home-slider_img">
+                            <div ngClass="home-slider_img" *ngIf="event.type!='video'">
                                 <img [src]="event.img" alt="Random slide">
+                            </div>
+                            <div ngClass="home-slider_img" *ngIf="event.type=='video'">
+                                <div style="background-color: black">
+                                <video class="video-style" [muted]="true" loop id="video1" autoplay>
+                                    <source [src]="event.img" type="video/mp4">
+                                  </video>
+                                  </div>
                             </div>
                             <div ngClass="home-slider_cntnt">
                                 <h2>{{event.title}}</h2>
