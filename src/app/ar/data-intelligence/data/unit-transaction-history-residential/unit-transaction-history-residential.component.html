@@ -8,46 +8,46 @@
         </div>
         <div class="dashboard-data-main-contents">
           <div class="di-inner-header">
-            <h4>تاريخ معاملات الوحدة - السكنية</h4>
+            <h4>Unit Transaction History - Residential</h4>
           </div>
           <form>
             <div class="dashboard-dat-filter-box">
               <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
-                    <label>مدينة</label>
+                    <label>City</label>
                     <select class="select2 city-select unit-number-select">
-                      <option *ngFor="let item of citiesData" value="{{item.id}}">{{item.nameAr}}</option>
+                      <option *ngFor="let item of citiesData" value="{{item.id}}">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
-                    <label>المنطقة</label>
+                    <label>District</label>
                     <select class="select2 district-select unit-number-select">
-                      <option *ngFor="let item of districtData" value="{{item.id}}">{{item.nameAr}}</option>
+                      <option *ngFor="let item of districtData" value="{{item.id}}">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
-                    <label>نوع الملكية</label>
+                    <label>Property Type</label>
                     <select class="select2 property-type-select unit-number-select">
-                      <option *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescriptionAr}}</option>
+                      <option *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescription}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
-                    <label>المشاريع</label>
+                    <label>Project</label>
                     <select class="select2 project-select unit-number-select">
-                      <option *ngFor="let item of projectsData" value="{{item.id}}">{{item.nameAr}}</option>
+                      <option *ngFor="let item of projectsData" value="{{item.id}}">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
-                    <label>رقم الوحدة</label>
+                    <label>Unit Number</label>
                     <select class="select2 unit-select unit-number-select">
                       <option *ngFor="let item of unitsData" value="{{item}}">{{item}}</option>
                     </select>
@@ -58,69 +58,69 @@
           </form>
           <div class="mt-3 unit-description-box-wrapper" *ngIf="transactionData != '' && transactionData.unitDetail != null">
             <div class="di-heading">
-              <h2>تفاصيل الوحدة</h2>
+              <h2>UNIT DETAILS</h2>
             </div>
             <div class="unit-description-details">
               <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label">الموقع</h5>
+                    <h5 class="unit-value-label">Location</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.district != null ?
                       transactionData.unitDetail.district.name : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label"> اسم الخاصية</h5>
+                    <h5 class="unit-value-label">Property Name</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.project != null ?
-                      transactionData.unitDetail.project.nameAr : "N/A"}}</button>
+                      transactionData.unitDetail.project.name : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label"> رقم الوحدة</h5>
+                    <h5 class="unit-value-label">Unit Number</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.unit != null ?
                       transactionData.unitDetail.unit : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label"> غرف نوم</h5>
+                    <h5 class="unit-value-label">Bedrooms</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.bedRoom != null ?
                       transactionData.unitDetail.bedRoom : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label"> أرضية</h5>
+                    <h5 class="unit-value-label">Floor</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.floor != null ?
                       transactionData.unitDetail.floor : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label">الحجم <span class="sqft-ex">({{countryData.unitType}})</span></h5>
+                    <h5 class="unit-value-label">Size <span class="sqft-ex">({{countryData.unitType}})</span></h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.sizeSqft != null ?
                       transactionData.unitDetail.sizeSqft : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label"> موقف سيارات</h5>
+                    <h5 class="unit-value-label">Parking</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.parking != null ?
                       transactionData.unitDetail.parking : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label">شرفة <span class="sqft-ex">({{countryData.unitType}})</span></h5>
+                    <h5 class="unit-value-label">Balcony <span class="sqft-ex">({{countryData.unitType}})</span></h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.balconyAreaSqft != null ?
                       transactionData.unitDetail.balconyAreaSqft : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
-                    <h5 class="unit-value-label">مساحة الارض <span class="sqft-ex">({{countryData.unitType}})</span></h5>
+                    <h5 class="unit-value-label">Land Size <span class="sqft-ex">({{countryData.unitType}})</span></h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.landSizeSqft != null ?
                       transactionData.unitDetail.landSizeSqft : "N/A"}}</button>
                   </div>
@@ -130,27 +130,27 @@
           </div>
           <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.saleTransactions.length > 0">
             <div class="di-heading">
-              <h2> معاملات البيع</h2>
+              <h2>SALES TRANSACTIONS</h2>
             </div>
             <div class="dash-table-box-layout">
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>نوع</th>
-                      <th>النوع الفرعي</th>
-                      <th>تسلسل المبيعات</th>
-                      <th>تاريخ</th>
-                      <th>مقدار ({{countryData.currency}})</th>
+                      <th>Type</th>
+                      <th>Sub Type</th>
+                      <th>Sales Sequence</th>
+                      <th>Date</th>
+                      <th>Amount ({{countryData.currency}})</th>
                       <th>{{countryData.currency}} / {{countryData.unitType}}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr
                       *ngFor="let item of transactionData.saleTransactions | paginate: { itemsPerPage: salesItemsPerPage, currentPage: salesPage, totalItems:salestotalLength }">
-                      <td>{{item.transactionType && item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
-                      <td>{{item.transactionSubType && item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
-                      <td>{{item.transactionSequence && item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
+                      <td>{{item.transactionSequence != null ? item.transactionSequence.name : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                       <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
@@ -159,7 +159,7 @@
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>مواد لكل صفحة</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
                         <mat-select [disableOptionCentering]="true" [(value)]="salesPageNumbers"
@@ -179,25 +179,25 @@
           </div>
           <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.rentTransactions.length > 0">
             <div class="di-heading">
-              <h2>معاملات الإيجار</h2>
+              <h2>RENT TRANSACTIONS</h2>
             </div>
             <div class="dash-table-box-layout">
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>إصدار</th>
-                      <th>تاريخ</th>
-                      <th>تاريخ الصفقة</th>
-                      <th>تاريخ الانتهاء</th>
-                      <th>المبلغ السنوي</th>
+                      <th>Version</th>
+                      <th>Date</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Annual Amount</th>
                       <th>{{countryData.currency}} / {{countryData.unitType}} / Year</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr
                       *ngFor="let item of transactionData.rentTransactions | paginate: { itemsPerPage: rentItemsPerPage, currentPage: rentPage, totalItems:renttotalLength }">
-                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.endDate != null ? item.endDate.split("T")[0] : "N/A"}}</td>
@@ -208,7 +208,7 @@
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>مواد لكل صفحة</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
                         <mat-select [disableOptionCentering]="true" [(value)]="rentPageNumbers" (selectionChange)="getRentItems($event)">
@@ -227,24 +227,24 @@
           </div>
           <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.mortgageTransactions.length > 0">
             <div class="di-heading">
-              <h2> معاملات الرهن العقاري</h2>
+              <h2>MORTGAGE TRANSACTIONS</h2>
             </div>
             <div class="dash-table-box-layout">
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>نوع</th>
-                      <th>النوع الفرعي</th>
-                      <th>تاريخ</th>
-                      <th>مقدار ({{countryData.currency}})</th>
+                      <th>Type</th>
+                      <th>Sub Type</th>
+                      <th>Date</th>
+                      <th>Amount ({{countryData.currency}})</th>
                       <th>{{countryData.currency}} / {{countryData.unitType}}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of transactionData.mortgageTransactions | paginate: { itemsPerPage: mortageItemsPerPage, currentPage: mortagePage, totalItems:mortagetotalLength }">
-                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
-                      <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                       <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
@@ -253,7 +253,7 @@
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>مواد لكل صفحة</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
                         <mat-select [disableOptionCentering]="true" [(value)]="mortagePageNumbers" (selectionChange)="getMortageItems($event)">

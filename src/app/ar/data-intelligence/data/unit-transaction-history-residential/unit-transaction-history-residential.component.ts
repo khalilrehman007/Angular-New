@@ -60,12 +60,8 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-<<<<<<< HEAD
-    this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
-=======
     console.log(this.countryData);
     this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
->>>>>>> cdcb0793bfb3f96dfef8846078377aef52b0d32f
       this.citiesData = result.data;
       this.selectedCity = this.citiesData[0].id;
       this.loadDistrict(this.citiesData[0].id);
@@ -164,12 +160,13 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       this.transactionData = result.data;
       this.salestotalLength = this.transactionData.saleTransactions;
       this.renttotalLength = this.transactionData.rentTransactions;
+      console.log(this.transactionData);
     })
   }
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    $(".unit-number-select").select2({ placeholder: "رقم الوحدة" });
+    $(".unit-number-select").select2({ placeholder: "Unit Numbers" });
     $(".city-select").on("change", () => {
       this.loadDistrict($(".city-select").val());
     })
