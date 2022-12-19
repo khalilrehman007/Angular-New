@@ -382,7 +382,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         this.selectedSalesSequence.push(item.id);
       }
     })
-    this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
+    this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
       this.citiesData = result.data;
       let a = setInterval(() => {
         if (this.filteredcommunity.length > 0) {
@@ -464,7 +464,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     }
     this.communityfield = [];
     for (let i = 0; i < temp.length; i++) {
-      this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
+      this.service.LoadDistrict(temp[i]).subscribe((result: any) => {
         for (let item of result.data) {
           this.communityfield.push(item);
         }

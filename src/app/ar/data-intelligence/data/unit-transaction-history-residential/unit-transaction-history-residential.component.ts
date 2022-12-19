@@ -60,7 +60,12 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
+<<<<<<< HEAD
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
+=======
+    console.log(this.countryData);
+    this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
+>>>>>>> cdcb0793bfb3f96dfef8846078377aef52b0d32f
       this.citiesData = result.data;
       this.selectedCity = this.citiesData[0].id;
       this.loadDistrict(this.citiesData[0].id);
@@ -137,7 +142,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
     })
   }
   loadDistrict(e: any) {
-    this.service.FindDistricts({ "CityId": e, "Locations": [] }).subscribe((result: any) => {
+    this.service.LoadDistrict(e).subscribe((result: any) => {
       this.districtData = result.data;
       if (this.districtData.length == 0) {
         this.selectedDistrict = "";

@@ -221,8 +221,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   // Phone number List
 
 
-  changePreferredCountries() {
-    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
-  }
+  // changePreferredCountries() {
+  //   this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+  // }
 
 }
