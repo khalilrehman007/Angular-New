@@ -292,7 +292,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   onListTypeSelect(id: any) {
     this.api.PropertyListingType(id).subscribe((result:any) => {
       this.listingConditions = result.data;
-      console.log(this.listingConditions);
     })
     this.listingTypeId = 0;
     setTimeout(() => {
@@ -355,7 +354,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getPropertyType(e: any) {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
-    console.log(this.selectedPropertyType);
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
     this.loadFurnishingType();
@@ -482,7 +480,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     let temp:any = this.SubmitForm.value.propertyDescription?.length;
     if(temp <= 320) {
       this.descLength = 320 - temp;
-      console.log(this.SubmitForm.value.propertyDescription?.length);
     } else {
       this.SubmitForm.patchValue({
         propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 320)

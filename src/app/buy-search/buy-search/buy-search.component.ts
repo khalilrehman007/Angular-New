@@ -540,7 +540,6 @@ export class BuySearchComponent implements OnInit {
     // Add our fruit
     if (value) {
       this.Keywords.push({ name: value });
-      console.log(this.Keywords);
       
     }
 

@@ -58,7 +58,6 @@ export class OtpComponent implements OnInit {
 
     if (this.code == this.otp) {
       this.auth.ProceedSignUp(this.verificationData).subscribe((result: any) => {
-        console.log(result.message);
         if (result.message == "You are successfully logged in") {
           let responsedata: any = result;
           if (responsedata.data !== undefined) {

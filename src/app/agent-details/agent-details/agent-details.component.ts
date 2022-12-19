@@ -178,7 +178,6 @@ export class AgentDetailsComponent implements OnInit {
   messageError: any = '';
   leadProceedStore() {
     if (this.agentContact.invalid) {
-      console.log('dede')
       if (this.agentContact.value.name == '') {
         this.nameError = "Name required"
       } else {

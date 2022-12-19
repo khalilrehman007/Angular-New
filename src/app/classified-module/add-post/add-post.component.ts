@@ -78,7 +78,6 @@ export class AddPostComponent implements OnInit {
     })
     this.service.ClassifiedCategories().subscribe((result: any) => {
       this.classifiedCategories = result.data;
-      console.log(this.classifiedCategories)
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
       if (result.message == "Points Transaction has been fetched successfully") {

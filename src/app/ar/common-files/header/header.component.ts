@@ -679,7 +679,6 @@ overnextIdx(): number {
       for(let i = 0; i < temp.length; i++) {
         url += "/" + temp[i];
       }
-      console.log(url);
       this.route.navigate([url]);
     } else {
       let temp = this.route.url.split("?")[0].split("/");

@@ -90,7 +90,6 @@ export class PropertyDetailsComponent implements OnInit {
       this.showMap = true;
       this.oldData = localStorage.getItem("valuationData");
       this.oldData = JSON.parse(this.oldData);
-      console.log(this.oldData);
       this.propertyDetails.patchValue({
         titleDeed: this.oldData.TitleDeedNo,
         muncipality: this.oldData.MunicipalityNo,
@@ -205,7 +204,6 @@ export class PropertyDetailsComponent implements OnInit {
     let temp = this.country.filter(function (c: any) {
       return c.value == e
     });
-    console.log(temp);
     this.countryName = temp[0].viewValue;
     localStorage.setItem("currency", temp[0].currency)
     localStorage.setItem("currencyAr", temp[0].currencyAr)

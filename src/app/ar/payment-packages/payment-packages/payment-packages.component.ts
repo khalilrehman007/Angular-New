@@ -108,7 +108,6 @@ export class PaymentPackagesComponent implements OnInit {
       this.scroll = true;
       return;
     } else {
-      console.log(this.selectedPackageByPoints)
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
       this.router.navigate(["/ar/add-property/listingproperty"]);
       

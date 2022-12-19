@@ -13,7 +13,6 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
   goToValuation(e:any) {
-    console.log(e);
     localStorage.setItem("valuationFromFooter", e);
     this.router.navigate(["/ar/valuation/property-detail"]);
   }

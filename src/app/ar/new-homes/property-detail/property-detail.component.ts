@@ -502,7 +502,6 @@ export class PropertyDetailComponent implements OnInit {
     });
   }
   getPropertyInfo() {
-    console.log(this.propertyDetailData)
     this.propertyinfo = [
       {
         show: true,

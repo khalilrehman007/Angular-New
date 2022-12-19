@@ -366,7 +366,6 @@ export class CompareListingSelectionComponent implements OnInit {
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
-      console.log(response)
       this.totalRecord = response.data.totalRecord;
       setTimeout(() => {
         // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
@@ -429,20 +428,16 @@ export class CompareListingSelectionComponent implements OnInit {
     } else{
       this.clickedProperty = propertyData;
     }
-    // console.log(propertyData);
   }
   
   sendPropertyData(){
-    // console.log("abc");
         
     if (this.clickedProperty == "" ){
         alert("Please Select a Property"); 
       } else {
        let temp: any = localStorage.getItem("compareIndex");
-        // console.log(temp);
         if(temp == "1"){
           localStorage.setItem("clickProprtyOne", JSON.stringify(this.clickedProperty))
-          console.log(this.clickedProperty)
         } else if(temp == "2"){
           localStorage.setItem("clickProprtyTwo", JSON.stringify(this.clickedProperty))
         } else if(temp == "3"){
