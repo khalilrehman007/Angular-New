@@ -21,7 +21,6 @@ export class ThankYouComponent implements OnInit {
           if(this.userData.ProfessionalTypeId == item.id)
           this.userType = item.name;
         }
-        console.log(this.userType)
       })
     }
   }

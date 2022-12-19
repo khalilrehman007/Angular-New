@@ -259,7 +259,6 @@ console.log("unit",hasBed)
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
-    console.log(this.propertyData);
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -350,7 +349,6 @@ console.log("unit",hasBed)
   }
   getPermit(e: any) {
     this.permitData = e.value;
-    console.log(this.permitData)
   }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {
@@ -597,7 +595,6 @@ console.log("unit",hasBed)
       },
       dataType: "json",
       success: (res) => {
-        console.log(res);
         if(res.canPerformValuation) {
           this.formData.id = res.data.id;
           localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
@@ -619,7 +616,6 @@ console.log("unit",hasBed)
         }
       },
       error: (err) => {
-        console.log(err);
       }
     });
   }

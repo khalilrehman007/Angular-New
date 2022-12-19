@@ -60,7 +60,6 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-    console.log(this.countryData);
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
       this.selectedCity = this.citiesData[0].id;
@@ -160,7 +159,6 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       this.transactionData = result.data;
       this.salestotalLength = this.transactionData.saleTransactions;
       this.renttotalLength = this.transactionData.rentTransactions;
-      console.log(this.transactionData);
     })
   }
   ngOnInit(): void {

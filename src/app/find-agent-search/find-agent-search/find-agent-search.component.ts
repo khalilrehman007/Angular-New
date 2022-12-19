@@ -265,7 +265,6 @@ export class FindAgentSearchComponent implements OnInit, AfterViewInit {
   }
 
   proceedSearch() {
-    // console.log('dededed')
     // if(this.LanguageId.length < 1){
     //   this.LanguageId = this.getUrllanguageIds;
     // }
@@ -281,9 +280,6 @@ export class FindAgentSearchComponent implements OnInit, AfterViewInit {
 
 
     // let params :any = {queryParams:{LanguageId:JSON.stringify(this.LanguageId),ExpertInId:this.ExpertInId}};
-
-    // console.log(this.fruits)
-    // console.log(this.locationOnSearchData)
 
     // let getLocationId :any = []
     // this.DistrictsId.forEach((element, i) => {
@@ -313,7 +309,6 @@ export class FindAgentSearchComponent implements OnInit, AfterViewInit {
       "CurrentPage": "1"
     };
 
-    console.log(agentObject)
 
     let params: any = {
       queryParams:

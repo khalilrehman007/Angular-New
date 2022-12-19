@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   callLogin() {
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleAuthUser: any) => {
-        console.log(googleAuthUser.getAuthResponse());
         //Print profile details in the console logs
         let profile = googleAuthUser.getBasicProfile();
         let temp: any = "";
