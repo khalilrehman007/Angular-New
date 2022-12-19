@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsModule } from '../alerts/alerts.module';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     NgbModule,
     AlertsModule,
     MatSlideToggleModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    NgxIntlTelInputModule
   ]
 })
 export class DashboardModule { }
