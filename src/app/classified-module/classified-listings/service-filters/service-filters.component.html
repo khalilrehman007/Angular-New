@@ -1,1 +1,134 @@
-<p>service-filters works!</p>
+
+  <form>
+    <div class="properties-file-container-shadow">
+    <div class="properties-file-container">
+    <div class="row align-items-center">
+        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+          <div class="select-design select2-design">
+            <select class="select2">
+              <option value="Dubai">City</option>
+              <option value="UAE">Dubai</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12">
+            <div class="select-design select2-design">
+              <select class="select2">
+                <option value="Dubai">Category</option>
+                <option value="UAE">All Categories</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper">
+                <mat-form-field class="example-full-width input-design-2 input-design-2-bg" appearance="fill">
+                  <input type="text"
+                         placeholder="Neighborhood"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="AgentSearchControl"
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of AgentfilteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper">
+                <mat-form-field class="example-full-width input-design-2 input-design-2-bg" appearance="fill">
+                  <input type="number"
+                         placeholder="Keyboard"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="AgentSearchControl"
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of AgentfilteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-6 col-sm-12">
+            <div ngClass="block-wrapper more-filter_btn-wrapper">
+              <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
+          </div>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-6 col-sm-12">
+            <div class="d-flex clear-search-flex">
+            <div ngClass="block-wrapper">
+              <button ngClass="clear-btn-link">Clear</button>
+          </div>
+            <div ngClass="block-wrapper">
+              <button ngClass="search-btn-link"><img src="assets/images/search.svg"></button>
+          </div>
+          </div>
+          </div>
+    </div>
+    </div>
+    </div>
+  </form>
+  <div ngClass="more_filters-modal">
+    <ng-template #content let-modal>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body more-filter-form-design">
+            <div ngClass="row">
+                <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                    <div ngClass="form_heading mb-4">
+                        <h4 ngClass="h4-design">More Filters</h4>
+                    </div>
+                </div>
+            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+              <div ngClass="block-wrapper mb-4">
+                  <label class="h6-design">Ads posted</label>
+                  <div class="checkbox-flex-box autoflex-layout">
+                      <div class="checkbox-design position-relative">
+                          <input type="radio" id="any-time" name="Ads-posted" value="any-time">
+                          <button class="checkbox-btn">Any Time</button>
+                      </div>
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="Today" name="Ads-posted" value="Today">
+                        <button class="checkbox-btn">Today</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                      <input type="radio" id="Light-Usage" name="Ads-posted" value="Light-Usage">
+                      <button class="checkbox-btn">Within 3 days</button>
+                  </div>
+                  <div class="checkbox-design position-relative">
+                    <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                    <button class="checkbox-btn">Within 1 Week</button>
+                </div>
+                <div class="checkbox-design position-relative">
+                  <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                  <button class="checkbox-btn">Within 2 Week</button>
+              </div>
+              <div class="checkbox-design position-relative">
+                <input type="radio" id="Normal-Usage" name="Ads-posted" value="Normal-Usage">
+                <button class="checkbox-btn">Within 3 Week</button>
+            </div>
+                  </div>
+              </div>
+          </div>
+          <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+            <div ngClass="block-wrapper mb-4">
+              <label>Other Filters</label>
+              <div class="mat-checkbox-list">
+                <mat-checkbox class="example-margin">Show ads in English only</mat-checkbox>
+                <mat-checkbox class="example-margin">Show ads with photos only</mat-checkbox>
+                <mat-checkbox class="example-margin">Show ads by</mat-checkbox>
+                <mat-checkbox class="example-margin">Ads with video only</mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div ngClass="col-xl-12 col-lg-12 col-sm-12 text-right">
+            <button class="show-results">Show Results</button>
+          </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

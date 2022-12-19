@@ -29,7 +29,6 @@ export class AboutusComponent implements OnInit {
     })
     this.api.TeamMembers().subscribe((result: any) => {
       this.team = result.data;
-      console.log(this.team);
     })
   }
 

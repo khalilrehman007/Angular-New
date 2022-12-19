@@ -63,7 +63,6 @@ export class CompareListingsComponent implements OnInit {
       });
       this.service.PropertyListingDetailComparison(temp[2].id).subscribe((response: any) => {
         this.propertyDetails.push(response.data);
-        console.log(this.propertyDetails)
       });
     }
     if (!localStorage.getItem("user")){
@@ -77,7 +76,6 @@ export class CompareListingsComponent implements OnInit {
     el.scrollIntoView();
   }
   removeProperty(e: any) {
-    console.log(e);
     let temp: any = [];
     temp = this.propertyDetails.filter((item: any) => item.id != e);
     this.propertyDetails = temp;

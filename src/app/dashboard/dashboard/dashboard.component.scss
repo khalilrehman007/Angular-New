@@ -1,14 +1,14 @@
 $color_1: #4A4A4A;
 $color_2: var(--text-color);
 $color_3: #000;
-$color_4: #595ad4;
+$color_4: #645BD1;
 $color_5: #192024;
 $color_6: #333;
 $color_7: #000929;
 $color_8: #99a4ac;
 $color_9: #fff;
 $color_10: #000000;
-$btncolor: #0B26AD;
+$btncolor: #645BD1;
 
 .user-info-sec {
     position: relative;
@@ -121,14 +121,18 @@ $btncolor: #0B26AD;
 
     .btn-primary {
         display: inline-block;
-        background: $btncolor;
-        border-color: $btncolor;
+        background: #645BD1;
+        border-color: #645BD1;
         color: #fff;
         text-decoration: none;
         font-size: 16px;
         padding: 15px 45px;
         border-radius: 8px;
         font-weight: 600;
+    }
+    .btn-primary:hover{
+        background: #4A565F;
+        border-color: #4A565F;
     }
 }
 
@@ -1340,4 +1344,23 @@ $btncolor: #0B26AD;
     display: block;
     width: 100%;
     cursor: pointer;
+}
+.update_btn-design {
+    margin-top: 15px;
+}
+.update-phone-btn {
+    padding: 10px 16px;
+    border: 0.5px solid #645bd1;
+    border-radius: 8px;
+    color: #645bd1;
+    height: 100%;
+    background: transparent;
+}
+.update-phone-btn:hover {
+    background-color: #4A565F;
+    color: #fff;
+    border-color: #4A565F;
+}
+.alert_box-design {
+    background-color: transparent !important;
 }

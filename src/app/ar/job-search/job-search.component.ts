@@ -183,11 +183,6 @@ export class JobSearchComponent implements OnInit {
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
 
-    // console.log(PropertyTypeIds,'PropertyTypeIds')
-    // console.log(this.propertyCategory,'CategoryId')
-    // console.log(this.data.rentalTypeId,'rentalTypeId')
-    // console.log(this.SubmitForm.value)
-
     let params: any = {
       queryParams: {
         type: 'Rent', PropertyListingTypeId: 1, PropertyCategoryId: this.propertyCategory, RentTypeId: this.data.rentalTypeId,
@@ -197,13 +192,8 @@ export class JobSearchComponent implements OnInit {
       }
     };
 
-
-    // console.log(params)
-
     this.route.navigate(['/property/search'], params)
   }
-
-
 
   @ViewChild('SearchInput') SearchInput: any;
   add(event: MatChipInputEvent): void {

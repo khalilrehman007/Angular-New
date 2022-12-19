@@ -43,7 +43,7 @@ export class ShortTermRentComponent implements OnInit,AfterViewInit {
   fb = '../../../assets/images/icons/fb-share.svg'
   share = '../../../assets/images/icons/share-1.png'
   emailhome = '../../../assets/images/icons/email-home.png'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',
@@ -163,7 +163,6 @@ export class ShortTermRentComponent implements OnInit,AfterViewInit {
           FurnishingTypeId: this.FurnishingTypeId, MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea,
           PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords
         }
-        console.log(params);
         this.LoadPropertyCategories();
         this.loadListingProperty(params);
         this.LoadPropertySortBy();

@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
   fb = '../../../assets/images/icons/fb-share.svg'
   share = '../../../assets/images/icons/share-1.png'
   emailhome = '../../../assets/images/icons/email-home.png'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',
@@ -446,13 +446,12 @@ export class SearchComponent implements OnInit,AfterViewInit {
             whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
             userEmail:userEmail,userWhatsAppNumber:userWhatsAppNumber,
             userPhoneNumber:userPhoneNumber
-
           }
         );
         this.shareURL=this.shareURLTemp
       })
       this.searchListing = tempData;
-      this.currency = response.data.propertyListings[0].country.currency;
+      this.currency = response.data?.propertyListings[0]?.country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
       this.showLoader=false;
     },
@@ -460,7 +459,6 @@ export class SearchComponent implements OnInit,AfterViewInit {
       this.showLoader=false;
     }
     );
-
   }
 
   modelPropertyPictures: any = []

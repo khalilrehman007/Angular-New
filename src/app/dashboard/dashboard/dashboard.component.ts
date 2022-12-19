@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -57,10 +58,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
+  preferredCountries: CountryISO[] = [CountryISO.UnitedArabEmirates, CountryISO.SaudiArabia, CountryISO.Bahrain, CountryISO.Qatar, CountryISO.Oman, CountryISO.Kuwait];
+  SearchCountryField = SearchCountryField;
+  seletedCountry:any = '';
+  PhoneNumberFormat = PhoneNumberFormat;
   loggedInUser: any = localStorage.getItem('user')
   agentDocumentTypes: any = [];
   companyDocumentTypes: any = [];
   companiesList: any = [];
+  firstSelectedArea:any='';
   user: any;
   greet: any;
   currentField: any;
@@ -272,9 +278,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
-    this.getAgentAndCompanyProfile();
     this.service.UserProfile(this.userId).subscribe((result: any) => {
       this.userData = result.data;
+      console.log(this.userData);
       if (result.result == 1) {
         let genderId: any = this.userData.gender == "Male" ? 1 : 2;
         this.detailForm.patchValue({
@@ -427,8 +433,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        
         this.LoadBlogs();
         this.getDistricts()
+        setTimeout(() => {
+          this.getAgentAndCompanyProfile();
+        }, 200);
         clearInterval(a);
       }
     }, 100);
@@ -711,6 +721,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     })
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
+    })
+    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x=>{
+      console.log(x);
+      if(x!=undefined && x?.length>0){
+        x.sort((a: any, b: any) => (a> b) ? 1 : -1)
+        let district = this.districts.find((y: any) => {
+          return y.id === x[0]
+        })
+        this.firstSelectedArea=district?.name;
+      }
     })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
@@ -1693,6 +1713,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.agentDetails.agentAreas.forEach((x: any) => {
             tempAreas.push(x.districtId)
           })
+          tempAreas.sort((a: any, b: any) => (a > b) ? 1 : -1)
+          console.log(tempAreas)
           this.ExpertInName = this.agentDetails.expertIn;
           this.agentDetailForm.patchValue({
             agentAboutMe: this.agentDetails.aboutMe,
@@ -2125,6 +2147,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   openVerticallyCentered(sharecontent: any) {
     this.modalService.open(sharecontent, { centered: true });
+  }
+  UpdatedSuccessfully(UpdatedContentPhone: any) {
+    this.modalService.open(UpdatedContentPhone, { centered: true });
   }
   deleteListing(e: any) {
     this.deleteID = e;

@@ -6,7 +6,7 @@
 :root {
 	--body-color: #fff;
 	--sidebar-color: #fff;
-	--primary-color: #595ad4 !important;
+	--primary-color: #645BD1 !important;
 	--primary-color-light: #888888;
 	--toggle-color: #ddd;
 	--text-color: #4a4a4a;
@@ -121,7 +121,7 @@ $color_53: #A8A8A8;
 $color_54: #5A5A5A;
 $color_55: green;
 $color_56: #c1bdbd;
-$font-family_1: 'dubai';
+$font-family_1: 'Brandon';
 $background-color_1: var(--body-color);
 $background-color_2: transparent;
 $background-color_3: #fff;
@@ -130,7 +130,7 @@ $background-color_5: #F0F3F5;
 $background-color_6: #f5f7fe;
 $background-color_7: #000;
 $background-color_8: #D3DBFF;
-$background-color_9: #595ad4;
+$background-color_9: #645BD1;
 $background-color_10: var(--light-blue);
 $background-color_11: var(--primary-color-light);
 $background-color_12: #6C30A6;
@@ -146,7 +146,7 @@ $background-color_21: #333;
 $background-color_22: green;
 $background-color_23: #ffebbf;
 $border-color_1: #D3DBFF;
-$border-color_2: #595ad4;
+$border-color_2: #645BD1;
 $border-color_3: #2DB57D;
 $border-color_4: #4A565F;
 $border-color_5: #E5E7EB;
@@ -593,13 +593,13 @@ textarea {
 .green-btn {
 	padding: 13px 32px;
 	color: $color_4;
-	background: #4a565f;
+	background: #645BD1;
 	font-size: 14px;
 	border-radius: 8px;
 	display: inline-block;
 
 	&:hover {
-		background: #000 !important;
+		background: #4a565f !important;
 		color: $color_5 !important;
 	}
 }
@@ -1473,8 +1473,8 @@ input[type=number] {
 		&:checked {
 			+ {
 				.checkbox-btn {
-					border-color: #4A565F;
-					background: #4A565F;
+					border-color: #645BD1;
+					background: #645BD1;
 					color: #fff;
 					opacity: 1;
 
@@ -1494,8 +1494,8 @@ input[type=number] {
 		&:hover {
 			+ {
 				.checkbox-btn {
-					border-color: #4A565F;
-					background: #4A565F;
+					border-color: #645BD1;
+					background: #645BD1;
 					color: #fff;
 					opacity: 1;
 
@@ -3006,7 +3006,7 @@ input[type=number] {
 }
 
 .search-btn {
-	background: #4a565f;
+	background: #645BD1;
 	border: none;
 	width: 100%;
 	height: 98%;
@@ -3016,7 +3016,7 @@ input[type=number] {
 	justify-content: center;
 
 	&:hover {
-		background: #3c51bd;
+		background: #4a565f;
 	}
 }
 
@@ -3694,15 +3694,29 @@ input[type=number] {
 				}
 			}
 		}
+		.nav-link:hover{
+			background-color: #645BD1;
+			color: white;
+			svg {
+				width: 16px;
+				margin-right: 4px;
+				position: relative;
+				bottom: 2px;
+
+				path {
+					stroke: #feffff;
+				}
+			}
+		}
 
 		.nav-link.active {
-			color: $color_29 !important;
-			background-color: $background-color_1;
+			background-color: #645BD1;
+			color: white;
 			border: 0.5px solid #d1d0d0;
 
 			svg {
 				path {
-					stroke: var(--primary-color) !important;
+					stroke: #feffff;
 				}
 			}
 		}
@@ -3935,7 +3949,7 @@ input[type=number] {
 	margin-top: 2rem;
 
 	.custom-btn-primary {
-		background: $btncolor;
+		background: #645BD1;
 		color: $color_4;
 		text-decoration: none;
 		border: 0.5px solid var(--primary-color);
@@ -3945,7 +3959,7 @@ input[type=number] {
 		font-weight: 500;
 
 		&:hover {
-			background: #3c51bd;
+			background: #4a565f;
 		}
 	}
 }
@@ -4429,7 +4443,7 @@ img {
 .property-name_detals {
 	h4 {
 		color: #000000;
-		font-size: 32px;
+		font-size: 24px;
 		margin-bottom: 5px;
 		font-weight: 700;
 	}
@@ -4645,6 +4659,10 @@ img {
 		color: #000929;
 		font-size: 14px;
 	}
+	h5 {
+		color: #000929;
+		font-size: 16px;
+	}
 }
 
 .property-details-highlights {
@@ -4715,6 +4733,15 @@ img {
 		margin-bottom: 10px;
 		letter-spacing: 1.5px;
 	}
+	h5 {
+		color: #0f2ead;
+		font-size: 16px;
+		font-weight: 400;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		letter-spacing: 1.5px;
+		font-family: 'Dubai';
+	}
 
 	p {
 		margin-bottom: 0px;
@@ -4777,7 +4804,7 @@ img {
 
 	h6 {
 		color: $color_10;
-		font-size: 15px;
+		font-size: 14px;
 		font-weight: 300;
 		letter-spacing: 0.5px;
 	}
@@ -7113,8 +7140,8 @@ img {
 				}
 
 				&:hover {
-					background-color: $background-color_16;
-					border-color: $border-color_6;
+					background-color: $background-color_9;
+					border-color: $border-color_2;
 
 					.mat-tab-label-content {
 						color: $color_5;
@@ -7123,8 +7150,8 @@ img {
 			}
 
 			.mat-tab-label.mat-tab-label-active {
-				background-color: $background-color_16;
-				border-color: $border-color_6;
+				background-color: $background-color_9;
+				border-color: $border-color_2;
 
 				.mat-tab-label-content {
 					color: $color_5;
@@ -7544,7 +7571,7 @@ img {
 	.navbar-nav {
 		.nav-link.blue-bordered-btn {
 			&:hover {
-				background: #4A565F;
+				background: #645BD1;
 			}
 		}
 	}
@@ -7639,10 +7666,10 @@ li.agent-details__property-list-item {
 			}
 
 			a {
-				background: $btncolor;
+				background: $background-color_9;
 				color: $color_4;
 				text-decoration: none;
-				border: 0.5px solid $btncolor;
+				border: 0.5px solid $border-color_4;
 				padding: 9px 15px;
 				border-radius: 5px;
 				font-size: 14px;
@@ -7652,8 +7679,8 @@ li.agent-details__property-list-item {
 				margin-top: 15px;
 
 				&:hover {
-					background: #fff;
-					color: $color_29;
+					background:#4A565F;
+					color: $color_4;
 				}
 			}
 		}
@@ -7971,7 +7998,7 @@ li.agent-details__property-list-item {
 	}
 
 	.inner-banner-sec {
-		background-color: $background-color_17;
+		background-color: #645BD1;
 		padding-bottom: 40px;
 
 		.sell-rent-property-left {
@@ -8994,8 +9021,8 @@ li.agent-details__property-list-item {
 
 .select2-container--default .select2-results__option--selected::before,
 .select2-results li:hover:before {
-	background-color: #49555e;
-	border-color: #49555e;
+	background-color:$background-color_9;
+	border-color: $border-color_2;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
@@ -12081,9 +12108,9 @@ p:empty {
 }
 
 .form_tabs>.nav.nav-tabs .nav-link.active {
-	background-color: #4a565f;
+	background-color: #645BD1;
 	color: #fff;
-	border-color: #4a565f;
+	border-color: #645BD1;
 }
 
 .country-code-select-design .iti {
@@ -13775,18 +13802,21 @@ input:focus {
 	margin-right: 7px;
 	position: relative;
 	bottom: 1px;
+	opacity: 0.7;
 }
 
 .property-amenties-details .bath svg {
 	margin-right: 5px;
 	position: relative;
 	bottom: 2px;
+	opacity: 0.7;
 }
 
 .property-amenties-details .area svg {
 	margin-right: 5px;
 	position: relative;
 	bottom: 1px;
+	opacity: 0.7;
 }
 
 .property-amenties-details>span:not(:last-child) {
@@ -13813,6 +13843,7 @@ input:focus {
 	margin-right: 5px;
 	position: relative;
 	bottom: 2px;
+	opacity: 0.7;
 }
 
 .property_pricing .currency_type,
@@ -13836,11 +13867,12 @@ input:focus {
 }
 
 .property_pricing .price_value {
-	font-size: 24px;
+	font-size: 23px;
 	vertical-align: middle;
 	padding: 0px 6px;
 	position: relative;
 	bottom: 1px;
+	font-weight: bold;
 }
 
 .property_det-btn {
@@ -14408,4 +14440,30 @@ input:focus {
 	width: 250px;
 	height: 200px;
 	object-fit: contain;
+}
+.example-additional-selection {
+	opacity: 0.75;
+	font-size: 0.75em;
+  }
+  h2, h4{
+	font-family:'Dubai' !important;
+  }
+  .property_footer-details{
+	margin-bottom: 10px;
+  }
+  .input-design-2-bg .mat-form-field-flex {
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+}
+.input-design-2-bg .mat-form-field-flex input::placeholder {
+    color: #000;
+}
+.listing-type-cateogry {
+    font-size: 15px;
+}
+.listing-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+	line-height: 22px;
 }

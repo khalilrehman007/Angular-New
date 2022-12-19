@@ -325,7 +325,6 @@ export class RentSearchComponent implements OnInit {
     }
     this.service.LoadSearchListing(params).subscribe((response: any) => {
       this.totalRecord = response.data.totalRecord;
-      console.log(response.data);
     })
   }
   clearSearch() {

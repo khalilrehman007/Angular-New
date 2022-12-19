@@ -144,7 +144,6 @@ export class EditListInfoComponent implements OnInit {
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
-      console.log(this.data);
       if (localStorage.getItem("listingData")) {
         temp = localStorage.getItem("listingData");
         this.data = JSON.parse(temp);
@@ -182,7 +181,6 @@ export class EditListInfoComponent implements OnInit {
           this.propertyType = result.data;
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
-          console.log(this.selectedPropertyType)
           this.propertyTypeCheck = true;
           if (this.selectedPropertyType.hasTotalFloor) {
             this.SubmitForm.patchValue({
@@ -692,7 +690,6 @@ export class EditListInfoComponent implements OnInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])

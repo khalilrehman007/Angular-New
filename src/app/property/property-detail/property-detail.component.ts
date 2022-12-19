@@ -15,6 +15,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DecimalPipe } from '@angular/common';
 import 'hammerjs';
+import { MapStyle } from 'src/app/shared/map.retro.style';
 
 
 declare const google: any;
@@ -357,6 +358,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           zoom: 16,
           disableDefaultUI: true,
         });
+        //this.map.setOptions({ styles: MapStyle.retro});
         let marker = new google.maps.Marker({
           position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
           map: this.map,
@@ -460,6 +462,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.rentAvgPriceSqft = (jsonParsDate.propertyListing.rentAvgPriceSqft == undefined || jsonParsDate.propertyListing.rentAvgPriceSqft == null) ? 0 : jsonParsDate.propertyListing.rentAvgPriceSqft;
           this.propertyDetailData.saleAvgPriceSqft = (jsonParsDate.propertyListing.saleAvgPriceSqft == undefined || jsonParsDate.propertyListing.saleAvgPriceSqft == null) ? 0 : jsonParsDate.propertyListing.saleAvgPriceSqft;
           this.propertyDetailData.averageSize = (jsonParsDate.propertyListing.averageSize == undefined || jsonParsDate.propertyListing.averageSize == null) ? 0 : jsonParsDate.propertyListing.averageSize;
+          this.propertyDetailData.propertyListingLocatedNears = (jsonParsDate.propertyListing.propertyListingLocatedNears == undefined || jsonParsDate.propertyListing.propertyListingLocatedNears == null) ? [] : jsonParsDate.propertyListing.propertyListingLocatedNears;
           this.propertyDetailData.location = jsonParsDate.propertyListing.district.name + ", " + jsonParsDate.propertyListing.city.name;
           this.propertyDetailData.city = jsonParsDate.propertyListing.city.name;
           this.propertyDetailData.activeListingCount = jsonParsDate.activeListingCount;

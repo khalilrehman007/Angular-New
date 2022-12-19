@@ -38,7 +38,6 @@ export class CompanyDetailsComponent implements OnInit {
   DisplayCompany(){
     this.service.DisplayCompany({"companyId": this.id, "SortedBy": this.sortedById}).subscribe((result: any) => {
       this.companyDetails = result.data;
-      // console.log(this.companyDetails)
     })
   }
 

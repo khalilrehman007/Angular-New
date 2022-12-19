@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   notification = '../../../assets/images/icons/Notification.svg'
   signinicn = '../../../assets/images/icons/User.svg'
   signupicn = '../../../assets/images/icons/User-plus.svg'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
   flagsvg = ''
@@ -679,7 +679,6 @@ overnextIdx(): number {
       for(let i = 0; i < temp.length; i++) {
         url += "/" + temp[i];
       }
-      console.log(url);
       this.route.navigate([url]);
     } else {
       let temp = this.route.url.split("?")[0].split("/");

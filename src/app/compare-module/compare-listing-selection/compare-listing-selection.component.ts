@@ -49,7 +49,7 @@ export class CompareListingSelectionComponent implements OnInit {
   fb = '../../../assets/images/icons/fb-share.svg'
   share = '../../../assets/images/icons/share-1.png'
   emailhome = '../../../assets/images/icons/email-home.png'
-  logo = '../../../assets/images/logo.svg'
+  logo = '../../../assets/images/logo.png'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',
@@ -428,20 +428,15 @@ export class CompareListingSelectionComponent implements OnInit {
     } else{
       this.clickedProperty = propertyData;
     }
-    // console.log(propertyData);
   }
   
   sendPropertyData(){
-    // console.log("abc");
-        
     if (this.clickedProperty == "" ){
         alert("Please Select a Property"); 
       } else {
        let temp: any = localStorage.getItem("compareIndex");
-        // console.log(temp);
         if(temp == "1"){
           localStorage.setItem("clickProprtyOne", JSON.stringify(this.clickedProperty))
-          console.log(this.clickedProperty)
         } else if(temp == "2"){
           localStorage.setItem("clickProprtyTwo", JSON.stringify(this.clickedProperty))
         } else if(temp == "3"){

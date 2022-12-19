@@ -194,11 +194,6 @@ export class CommunitySearchComponentComponent implements OnInit, AfterViewInit 
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
 
-    // console.log(PropertyTypeIds,'PropertyTypeIds')
-    // console.log(this.propertyCategory,'CategoryId')
-    // console.log(this.data.rentalTypeId,'rentalTypeId')
-    // console.log(this.SubmitForm.value)
-
     let params: any = {
       queryParams: {
         type: 'Rent', PropertyListingTypeId: 1, PropertyCategoryId: this.propertyCategory, RentTypeId: this.data.rentalTypeId,
@@ -207,9 +202,6 @@ export class CommunitySearchComponentComponent implements OnInit, AfterViewInit 
         , Bedrooms: '', Bathrooms: '', CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId), DistrictsValue: JSON.stringify(this.SearchKeyword)
       }
     };
-
-
-    // console.log(params)
 
     this.route.navigate(['/classified'], params)
   }

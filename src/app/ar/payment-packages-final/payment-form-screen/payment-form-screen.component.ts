@@ -41,7 +41,6 @@ export class PaymentFormScreenComponent implements OnInit {
     }
     this.seletedPackage = localStorage.getItem("seletedPackage");
     this.seletedPackage = JSON.parse(this.seletedPackage);
-    console.log(this.seletedPackage);
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getPoints();
     this.service.GetPoints(1).subscribe((result: any) => {
@@ -123,7 +122,6 @@ export class PaymentFormScreenComponent implements OnInit {
       this.showError = true;
       return;
     } else if (this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
-      console.log(this.cardForm.value.cardName);
       this.error = "الرجاء ادخال اسم حامل البطاقة";
       this.showError = true;
     }
