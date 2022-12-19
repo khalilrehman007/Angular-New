@@ -524,4 +524,7 @@ export class AppService {
   GetClassifiedLookUpsByCategory(category: any) {
     return this.http.get(this.apiurl + 'GetClassifiedLookUpsByCategory/?category=' + category);
   }
+  ClassifiedSubCategories(id: any) {
+    return this.http.get(this.apiurl + 'ClassifiedSubCategories/' + id);
+  }
 }
