@@ -442,7 +442,6 @@ export class PropertyDocumentsComponent implements OnInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     console.clear();
-    console.log(this.formData);
     $.ajax({
       url: `${environment.apiUrl}api/AddValuation`,
       method: "post",
@@ -454,7 +453,6 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        console.log(res);
         if (res.message == "Valuation Request Submitted Successfully.Data Found For Valuation") {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
@@ -465,7 +463,6 @@ export class PropertyDocumentsComponent implements OnInit {
           let temp:any = {};
           temp.reportNumberCode = this.valuationResponse.reportNumberCode;
           temp.emailAddress = this.valuationResponse.emailAddress;
-          console.log(this.valuationResponse);
           localStorage.setItem("valuationResponse", JSON.stringify(temp));
           this.showPayment = true;
           this.status3 = !this.status3;
@@ -474,14 +471,12 @@ export class PropertyDocumentsComponent implements OnInit {
           this.showLoader = false;
           $(window).scrollTop(0);
         } else {
-          console.log(res);
           this.showLoader = false;
           this.error = "Valuation Request not Submitted. Please Try Again";
           this.showError = true;
         }
       },
       error: (err) => {
-        console.log(err);
       }
     });
   }
@@ -663,7 +658,6 @@ export class PropertyDocumentsComponent implements OnInit {
     if(this.reportForm.value.referralCode?.length == 8) {
       this.service.VerifyReferralCode("OVRC-" + this.reportForm.value.referralCode).subscribe((result:any) => {
         if(result.message == "You have verified the referral code") {
-          console.log(result);
           this.formData.ValauationReferralCode = {"ReferralCode": this.reportForm.value.referralCode,"UserId" :"", "ReferralCodeUserId":result.data}
         }
       })

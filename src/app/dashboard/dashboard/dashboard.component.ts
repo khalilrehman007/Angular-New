@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -57,6 +58,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
+  preferredCountries: CountryISO[] = [CountryISO.UnitedArabEmirates, CountryISO.SaudiArabia, CountryISO.Bahrain, CountryISO.Qatar, CountryISO.Oman, CountryISO.Kuwait];
+  SearchCountryField = SearchCountryField;
+  seletedCountry:any = '';
+  PhoneNumberFormat = PhoneNumberFormat;
   loggedInUser: any = localStorage.getItem('user')
   agentDocumentTypes: any = [];
   companyDocumentTypes: any = [];
@@ -275,6 +280,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getWishlisting();
     this.service.UserProfile(this.userId).subscribe((result: any) => {
       this.userData = result.data;
+      console.log(this.userData);
       if (result.result == 1) {
         let genderId: any = this.userData.gender == "Male" ? 1 : 2;
         this.detailForm.patchValue({
@@ -427,6 +433,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        
         this.LoadBlogs();
         this.getDistricts()
         setTimeout(() => {

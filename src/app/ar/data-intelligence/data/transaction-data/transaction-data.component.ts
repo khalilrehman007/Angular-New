@@ -168,9 +168,8 @@ export class TransactionDataComponent implements OnInit {
     this.startDate = temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
     this.endDate = this.currentDate.getMonth() + 1 + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-    console.log(this.countryData);
     
-    this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
+    this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
       this.citiesData = result.data;
       this.selectedCity.push(this.citiesData[0].id);
       this.loadDistrict();
@@ -265,7 +264,7 @@ export class TransactionDataComponent implements OnInit {
     }
     this.communityfield = [];
     for (let i = 0; i < temp.length; i++) {
-      this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
+      this.service.LoadDistrict(temp[i]).subscribe((result: any) => {
         for (let item of result.data) {
           this.communityfield.push(item);
         }

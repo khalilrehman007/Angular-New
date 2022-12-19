@@ -96,7 +96,6 @@ export class PaymentPackagesComponent implements OnInit, AfterViewInit {
       key: 'pk_test_51KdqxdBjsMxFtgBeSKmSXVjwG6yqKIUT89jWGFrZcON2gxqhtfhH6EFSHYVdrqPAU4UxEsIlAUEhnmPAlkvxMkzK0009RlNxWJ',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken);
         alert('Stripe token generated!');
       },
     });
@@ -118,7 +117,6 @@ export class PaymentPackagesComponent implements OnInit, AfterViewInit {
           key: 'pk_test_51KdqxdBjsMxFtgBeSKmSXVjwG6yqKIUT89jWGFrZcON2gxqhtfhH6EFSHYVdrqPAU4UxEsIlAUEhnmPAlkvxMkzK0009RlNxWJ',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken);
             alert('Payment has been successfull!');
           },
         });
@@ -165,7 +163,6 @@ export class PaymentPackagesComponent implements OnInit, AfterViewInit {
       this.scroll = true;
       return;
     } else {
-      console.log(this.selectedPackageByPoints)
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
       if(localStorage.getItem("listingComingFrom") == "media") {
         this.router.navigate(["/add-property/listpropertymedia"]);

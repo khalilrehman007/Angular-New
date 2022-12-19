@@ -60,7 +60,6 @@ export class ComparepageComponent implements OnInit {
       this.route.navigate(['/login'])
     }
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
-      // console.log(result.data)
       if (result.data.appartments != null){
         this.popularLisitng.push(result.data.appartments)
       }
@@ -76,7 +75,6 @@ export class ComparepageComponent implements OnInit {
       if (result.data.villas != null){
         this.popularLisitng.push(result.data.villas)
       }
-      // console.log(this.popularLisitng)
     })
 
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "1" }).subscribe((response: any) => {

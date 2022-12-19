@@ -240,8 +240,6 @@ export class PropertyTypesComponent implements OnInit {
     else{
       $("#bRooms-"+id).show();
     }
-console.log("unit",e,id)
-console.log("unit",hasBed)
   }
   valuationPurpose(e: any) {
     let temp: any = this.formData.PropertyCategoryId
@@ -254,7 +252,6 @@ console.log("unit",hasBed)
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
-    console.log(this.propertyData);
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -345,7 +342,6 @@ console.log("unit",hasBed)
   }
   getPermit(e: any) {
     this.permitData = e.value;
-    console.log(this.permitData)
   }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {

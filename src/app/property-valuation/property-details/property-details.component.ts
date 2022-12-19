@@ -409,7 +409,6 @@ export class PropertyDetailsComponent implements OnInit {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
     localStorage.setItem("address", address);
-    console.log(address);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",

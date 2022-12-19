@@ -269,7 +269,6 @@ export class DetailsComponent implements OnInit {
             }
           },
           error: (err) => {
-            console.log(err);
           }
         });
       });

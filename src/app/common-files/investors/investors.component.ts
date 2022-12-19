@@ -19,7 +19,6 @@ export class InvestorsComponent implements OnInit {
     $(window).scrollTop(0);
     this.api.TeamMembers().subscribe((result: any) => {
       this.team = result.data;
-      console.log(this.team);
     })
     this.api.TeamMemberBanner().subscribe((result:any)=> {
       this.title = result.data.pageCaptionHelight;

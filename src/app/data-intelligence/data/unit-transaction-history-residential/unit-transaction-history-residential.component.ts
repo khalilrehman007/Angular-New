@@ -60,93 +60,95 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-    console.log(this.countryData);
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
-      this.citiesData = result.data;
-      this.selectedCity = this.citiesData[0].id;
-      this.loadDistrict(this.citiesData[0].id);
-      let interval = setInterval(() => {
-        if (this.districtData.length > 0) {
-          this.selectedDistrict = this.districtData[0].id;
-          this.loadProject(this.districtData[0].id);
-          clearInterval(interval);
-        }
-      }, 100)
-      let interval2 = setInterval(() => {
-        if (this.projectsData.length > 0) {
-          this.selectedProject = this.projectsData[0].id;
-          this.loadUnits(this.projectsData[0].id)
-          clearInterval(interval2);
-        }
-      }, 100)
-      let interval3 = setInterval(() => {
-        if (this.unitsData.length > 0) {
-          this.unitNumber = this.unitsData[0];
-          this.loadData();
-          clearInterval(interval3);
-        }
-      }, 100)
-      this.loadType();
-    })
-  }
-  salesPageChanged(e: any) {
-    this.salesPage = e;
-  }
-  rentPageChanged(e: any) {
-    this.rentPage = e;
-  }
-  mortagePageChanged(e: any) {
-    this.mortagePage = e;
-  }
-  getSalesItems(e: any) {
-    this.salesItemsPerPage = e.value;
-  }
-  getRentItems(e: any) {
-    this.rentItemsPerPage = e.value;
-  }
-  getMortageItems(e: any) {
-    this.mortageItemsPerPage = e.value;
-  }
-  loadUnits(e: any) {
-    this.service.GetUnitsByProjectId(e).subscribe((result: any) => {
-      this.unitsData = result.data;
-      if (this.unitsData.length == 0) {
-        this.unitNumber = "";
-      }
-    })
-  }
-  loadProject(e: any) {
-    this.service.GetProjects({ "DistrictIds": [e] }).subscribe((result: any) => {
-      this.projectsData = result.data;
-      if (this.projectsData.length == 0) {
-        this.selectedProject = "";
-      }
-    })
-  }
-  loadType() {
-    this.service.LoadType(1).subscribe((result: any) => {
-      for (let item of result.data) {
-        this.propertyType.push(item)
-      }
-      this.selectedType = this.propertyType[0].id
-      this.service.LoadType(2).subscribe((result: any) => {
-        for (let item of result.data) {
-          this.propertyType.push(item)
-        }
-        this.selectedType = this.propertyType[0].id;
+      console.log(this.countryData);
+      this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
+        this.citiesData = result.data;
+        this.selectedCity = this.citiesData[0].id;
+        this.loadDistrict(this.citiesData[0].id);
+        let interval = setInterval(() => {
+          if (this.districtData.length > 0) {
+            this.selectedDistrict = this.districtData[0].id;
+            this.loadProject(this.districtData[0].id);
+            clearInterval(interval);
+          }
+        }, 100)
+        let interval2 = setInterval(() => {
+          if (this.projectsData.length > 0) {
+            this.selectedProject = this.projectsData[0].id;
+            this.loadUnits(this.projectsData[0].id)
+            clearInterval(interval2);
+          }
+        }, 100)
+        let interval3 = setInterval(() => {
+          if (this.unitsData.length > 0) {
+            this.unitNumber = this.unitsData[0];
+            this.loadData();
+            clearInterval(interval3);
+          }
+        }, 100)
+        this.loadType();
       })
     })
   }
+  salesPageChanged(e: any) {
+      this.salesPage = e;
+    }
+  rentPageChanged(e: any) {
+      this.rentPage = e;
+    }
+  mortagePageChanged(e: any) {
+      this.mortagePage = e;
+    }
+  getSalesItems(e: any) {
+      this.salesItemsPerPage = e.value;
+    }
+  getRentItems(e: any) {
+      this.rentItemsPerPage = e.value;
+    }
+  getMortageItems(e: any) {
+      this.mortageItemsPerPage = e.value;
+    }
+  loadUnits(e: any) {
+      this.service.GetUnitsByProjectId(e).subscribe((result: any) => {
+        this.unitsData = result.data;
+        if (this.unitsData.length == 0) {
+          this.unitNumber = "";
+        }
+      })
+    }
+  loadProject(e: any) {
+      this.service.GetProjects({ "DistrictIds": [e] }).subscribe((result: any) => {
+        this.projectsData = result.data;
+        if (this.projectsData.length == 0) {
+          this.selectedProject = "";
+        }
+      })
+    }
+  loadType() {
+      this.service.LoadType(1).subscribe((result: any) => {
+        for (let item of result.data) {
+          this.propertyType.push(item)
+        }
+        this.selectedType = this.propertyType[0].id
+        this.service.LoadType(2).subscribe((result: any) => {
+          for (let item of result.data) {
+            this.propertyType.push(item)
+          }
+          this.selectedType = this.propertyType[0].id;
+        })
+      })
+    }
   loadDistrict(e: any) {
-    this.service.FindDistricts({ "CityId": e, "Locations": [] }).subscribe((result: any) => {
-      this.districtData = result.data;
-      if (this.districtData.length == 0) {
-        this.selectedDistrict = "";
-      }
-    })
-  }
+      this.service.LoadDistrict(e).subscribe((result: any) => {
+        this.districtData = result.data;
+        if (this.districtData.length == 0) {
+          this.selectedDistrict = "";
+        }
+      })
+    }
   loadData() {
-    if (this.selectedCity == "" || this.selectedDistrict == "" || this.selectedProject == "" || this.unitNumber == "") {
+      if(this.selectedCity == "" || this.selectedDistrict == "" || this.selectedProject == "" || this.unitNumber == "") {
       return;
     }
     let temp: any = {};
@@ -160,7 +162,6 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       this.transactionData = result.data;
       this.salestotalLength = this.transactionData.saleTransactions;
       this.renttotalLength = this.transactionData.rentTransactions;
-      console.log(this.transactionData);
     })
   }
   ngOnInit(): void {
