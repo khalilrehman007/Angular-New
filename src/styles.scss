@@ -7670,13 +7670,15 @@ li.agent-details__property-list-item {
 				color: $color_4;
 				text-decoration: none;
 				border: 0.5px solid $border-color_4;
-				padding: 9px 15px;
+				padding: 5px 15px;
 				border-radius: 5px;
-				font-size: 14px;
-				font-weight: 500;
+				font-size: 23px;
+				font-weight: 600;
 				text-align: center;
-				max-width: 150px;
+				max-width: 210px;
 				margin-top: 15px;
+				font-family: 'Dubai' !important;
+				letter-spacing: 1px;
 
 				&:hover {
 					background:#4A565F;
@@ -8898,7 +8900,7 @@ li.agent-details__property-list-item {
 .mat_indicators-counts {
 	background-color: #eeecec;
 	color: #000;
-	width: 20px;
+	width: 60px;
 	height: 20px;
 	display: inline-flex;
 	align-items: center;
@@ -8929,7 +8931,7 @@ li.agent-details__property-list-item {
 
 .text-mat-length {
 	display: inline-block;
-	width: 50px;
+	width: 85px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -14451,4 +14453,18 @@ input:focus {
   .property_footer-details{
 	margin-bottom: 10px;
   }
-  
+  .country-code-select-design-dashboard .iti {
+	width: 100%;
+}
+
+.country-code-select-design-dashboard .iti input {
+	background: #fff;
+	border: 0.5px solid #D3DBFF;
+	border-radius: 8px !important;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 14px;
+	color: rgba(0, 22, 25, 0.7);
+	font-weight: 400;
+}

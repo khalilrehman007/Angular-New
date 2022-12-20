@@ -625,8 +625,10 @@
                                                                     <p class="agent-details__property-list-item-date">
                                                                         Listed on
                                                                         {{viewList.requestedDateFormat}}</p>
-                                                                    <div class="property-uploader-img" *ngIf="viewList.companyLogoImage!=''">
-                                                                        <img class="company-Logo-style" [src]="viewList.companyLogoImage" alt="">
+                                                                    <div class="property-uploader-img"
+                                                                        *ngIf="viewList.companyLogoImage!=''">
+                                                                        <img class="company-Logo-style"
+                                                                            [src]="viewList.companyLogoImage" alt="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -747,9 +749,7 @@
                                                         *ngFor=" let viewList of activityViewData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:activityViewData.length }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img
-                                                                    [src]="viewList.mainImage"
-                                                                    alt=""
+                                                                <img [src]="viewList.mainImage" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
@@ -831,8 +831,10 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2" *ngIf="viewList.companyLogoImage!=''">
-                                                                        <img class="company-Logo-style" [src]="viewList.companyLogoImage" alt="">
+                                                                    <div class="col-md-2"
+                                                                        *ngIf="viewList.companyLogoImage!=''">
+                                                                        <img class="company-Logo-style"
+                                                                            [src]="viewList.companyLogoImage" alt="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -953,7 +955,7 @@
                                     <div class="agent-details__tabs shortlisted-tabs_list">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
-                                                <ul class="agent-details__property-list"> 
+                                                <ul class="agent-details__property-list">
                                                     <li class="compare-action-pro-list"
                                                         *ngFor="let wishData of wishlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:wishlistingData.length }">
                                                         <div
@@ -974,7 +976,8 @@
                                                                             </a>
                                                                         </div>
                                                                         <div class="col-5 text-end">
-                                                                            <h4 class="sub-bold-text">{{wishData.propertyTitle}}
+                                                                            <h4 class="sub-bold-text">
+                                                                                {{wishData.propertyTitle}}
                                                                             </h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
@@ -1027,8 +1030,10 @@
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
-                                                                        <div class="col-md-2" *ngIf="wishData.companyLogoImage!=''">
-                                                                            <img class="company-Logo-style" [src]="wishData.companyLogoImage"
+                                                                        <div class="col-md-2"
+                                                                            *ngIf="wishData.companyLogoImage!=''">
+                                                                            <img class="company-Logo-style"
+                                                                                [src]="wishData.companyLogoImage"
                                                                                 alt="">
                                                                         </div>
                                                                     </div>
@@ -1151,8 +1156,11 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2" *ngIf="enquiredData.companyLogoImage!=''">
-                                                                        <img class="company-Logo-style" [src]="enquiredData.companyLogoImage" alt="">
+                                                                    <div class="col-md-2"
+                                                                        *ngIf="enquiredData.companyLogoImage!=''">
+                                                                        <img class="company-Logo-style"
+                                                                            [src]="enquiredData.companyLogoImage"
+                                                                            alt="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2364,30 +2372,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Phone Number</label>
-                                                                        <div ngClass="position-relative select-form input-design-2" >
-                                                                            <ngx-intl-tel-input
-                                                                            [cssClass]="'custom'"
-                                                                            [preferredCountries]="preferredCountries"
-                                                                            [enableAutoCountrySelect]="true"
-                                                                            [enablePlaceholder]="true"
-                                                                            [searchCountryFlag]="true"
-                                                                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                                                                            [selectFirstCountry]="false"
-                                                                            [selectedCountryISO]="seletedCountry"
-                                                                            [maxLength]="15"
-                                                                            [phoneValidation]="true"
-                                                                            [separateDialCode]="false"
-                                                                            [numberFormat]="PhoneNumberFormat.National"
-                                                                            name="phone"
-                                                                            formControlName="PhoneNumber"
-                                                                          >
-                                                                          </ngx-intl-tel-input>
+                                                                        <div class="phoneNumber-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                            class="full-width select-form input-design-2">
+                                                                            <mat-label>Enter Phone Number (+---) </mat-label>
+                                                                            <input matInput
+                                                                                formControlName="phoneNumber" required>
+                                                                        </mat-form-field>
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Country</label>
@@ -2611,10 +2608,16 @@
                                                                                     required>
                                                                                     <mat-select-trigger>
                                                                                         {{firstSelectedArea || ''}}
-                                                                                        <span *ngIf="(agentDetailForm.controls['areas']?.value?.length || 0) > 1" class="example-additional-selection">
-                                                                                          (+{{(agentDetailForm.controls['areas'].value?.length || 0) - 1}} {{agentDetailForm.controls['areas'].value?.length === 2 ? 'other' : 'others'}})
+                                                                                        <span
+                                                                                            *ngIf="(agentDetailForm.controls['areas']?.value?.length || 0) > 1"
+                                                                                            class="example-additional-selection">
+                                                                                            (+{{(agentDetailForm.controls['areas'].value?.length
+                                                                                            || 0) - 1}}
+                                                                                            {{agentDetailForm.controls['areas'].value?.length
+                                                                                            === 2 ? 'other' :
+                                                                                            'others'}})
                                                                                         </span>
-                                                                                      </mat-select-trigger>
+                                                                                    </mat-select-trigger>
                                                                                     <mat-option>
                                                                                         <ngx-mat-select-search
                                                                                             [formControl]="areaFilterCtrl"

@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <div ngClass="property-gallery-main-sec">
@@ -67,7 +67,11 @@
                             </button>
                             <div ngClass="pro-contact-details">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="share-btn" id="dropdownBasic2" ngbDropdownToggle><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 24c0-9.6 5.7-18.2 14.5-22s19-2 26 4.6l144 136c4.8 4.5 7.5 10.8 7.5 17.4s-2.7 12.9-7.5 17.4l-144 136c-7 6.6-17.2 8.4-26 4.6s-14.5-12.5-14.5-22V224H352 337.5c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8h-2.5c-2.4 0-4.8-.4-7.1-1.4C242.8 374.8 160 333.4 160 240c0-79.5 64.5-144 144-144h80V24zM0 144C0 99.8 35.8 64 80 64H96c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16H368c8.8 0 16-7.2 16-16V416c0-17.7 14.3-32 32-32s32 14.3 32 32v16c0 44.2-35.8 80-80 80H80c-44.2 0-80-35.8-80-80V144z"/></svg> Share</button>
+                                    <button ngClass="share-btn" id="dropdownBasic2" ngbDropdownToggle><svg
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path
+                                                d="M384 24c0-9.6 5.7-18.2 14.5-22s19-2 26 4.6l144 136c4.8 4.5 7.5 10.8 7.5 17.4s-2.7 12.9-7.5 17.4l-144 136c-7 6.6-17.2 8.4-26 4.6s-14.5-12.5-14.5-22V224H352 337.5c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8h-2.5c-2.4 0-4.8-.4-7.1-1.4C242.8 374.8 160 333.4 160 240c0-79.5 64.5-144 144-144h80V24zM0 144C0 99.8 35.8 64 80 64H96c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16H368c8.8 0 16-7.2 16-16V416c0-17.7 14.3-32 32-32s32 14.3 32 32v16c0 44.2-35.8 80-80 80H80c-44.2 0-80-35.8-80-80V144z" />
+                                        </svg> Share</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                         <h5>Share with:</h5>
                                         <button ngbDropdownItem><a target="_blank" [href]="facebookShareUrl"
@@ -94,7 +98,8 @@
                                         (click)="scroll(propertyInfo)">Property Info</a></li>
                                 <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="Amenities()"><a
                                         (click)="scroll(amentieScroll)">Amenities</a></li>
-                                <li *ngIf="allData != '' && allData.detailsChart.chart.length > 0" [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
+                                <li *ngIf="allData != '' && allData.detailsChart.chart.length > 0"
+                                    [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
                                         (click)="scroll(priceScroll)">Price Trends</a></li>
                                 <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
                                         (click)="scroll(locationScroll)">Location</a></li>
@@ -133,9 +138,18 @@
                             </div> -->
                             <div ngClass="description-block-design">
                                 <h4>Property Description</h4>
-                                <p>{{showMore==false ? propertyDetailData.propertyDescription : propertyDetailData.propertyDescription | slice:0:300}}<span *ngIf="showMore">...</span>
+                                <p>{{showMore==false ? propertyDetailData.propertyDescription :
+                                    propertyDetailData.propertyDescription | slice:0:300}}<span
+                                        *ngIf="showMore">...</span>
                                 </p>
                                 <a (click)="showMore = !showMore">{{ showMore ? 'Show more': 'Show less' }}</a>
+                                <div style="margin-top: 10px;"
+                                    *ngIf="propertyDetailData.propertyOffer?.length>0">
+                                    <h4>
+                                        Property Offers</h4>
+                                    <p>
+                                        {{propertyDetailData.propertyOffer}}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="Pro-perty_info mt-4" #propertyInfo>
@@ -155,8 +169,9 @@
                                             [ngClass]="pro.value == '' ? 'd-none' : ''">
                                             <div ngClass="property_info-text" *ngIf="pro.show">
                                                 <p>{{pro.label}}</p>
-                                                <h6>{{pro.label == 'Bedroom' && pro.value == 0 ? "Studio": pro.value}}
+                                                <h6 *ngIf="pro.isLink==false">{{pro.label == 'Bedroom' && pro.value == 0 ? "Studio": pro.value}}
                                                 </h6>
+                                                <a *ngIf="pro.isLink==true" [href]="pro.value" target="_blank">Link</a>
                                             </div>
                                         </div>
                                     </div>
@@ -189,7 +204,8 @@
                                     <h6>Rental Price Trends</h6>
                                 </div>
                                 <div ngClass="price_trend-texts">
-                                    <p>The Recent Rent Price Trends for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}}.
+                                    <p>The Recent Rent Price Trends for {{propertyDetailData.propertyType}} in
+                                        {{propertyDetailData.location}}.
                                         <!-- <span ngClass="">
                                             <mat-icon>trending_up</mat-icon>
                                         </span> 40% -->
@@ -204,17 +220,31 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="like-dislike-box-wrap position-relative">
-                                                <h4>This Property costs <strong *ngIf="propertyDetailData.priceChangePercentage>0">{{propertyDetailData.priceChangePercentage}}% more</strong>
-                                                    <strong *ngIf="propertyDetailData.priceChangePercentage<0">{{propertyDetailData.priceChangePercentage}}% less</strong>
+                                                <h4>This Property costs <strong
+                                                        *ngIf="propertyDetailData.priceChangePercentage>0">{{propertyDetailData.priceChangePercentage}}%
+                                                        more</strong>
+                                                    <strong
+                                                        *ngIf="propertyDetailData.priceChangePercentage<0">{{propertyDetailData.priceChangePercentage}}%
+                                                        less</strong>
                                                     than the average
                                                 </h4>
-                                                <p *ngIf="propertyDetailData.propertyListingTypeId==2">Average sq.ft rent for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.rentAvgPriceSqft | number}}  {{propertyDetailData.currency}}/{{propertyDetailData.rentType}}</p>
-                                                <p *ngIf="propertyDetailData.propertyListingTypeId==1">Average sq.ft sale for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.rentAvgPriceSqft | number}}  {{propertyDetailData.currency}}</p>
-                                               
-                                                <span *ngIf="propertyDetailData.priceChangePercentage>0" ngClass="dislike-icon">
+                                                <p *ngIf="propertyDetailData.propertyListingTypeId==2">Average sq.ft
+                                                    rent for {{propertyDetailData.propertyType}} in
+                                                    {{propertyDetailData.location}} is
+                                                    {{propertyDetailData.rentAvgPriceSqft | number}}
+                                                    {{propertyDetailData.currency}}/{{propertyDetailData.rentType}}</p>
+                                                <p *ngIf="propertyDetailData.propertyListingTypeId==1">Average sq.ft
+                                                    sale for {{propertyDetailData.propertyType}} in
+                                                    {{propertyDetailData.location}} is
+                                                    {{propertyDetailData.rentAvgPriceSqft | number}}
+                                                    {{propertyDetailData.currency}}</p>
+
+                                                <span *ngIf="propertyDetailData.priceChangePercentage>0"
+                                                    ngClass="dislike-icon">
                                                     <mat-icon>thumb_down</mat-icon>
                                                 </span>
-                                                <span *ngIf="propertyDetailData.priceChangePercentage<0" ngClass="like-icon">
+                                                <span *ngIf="propertyDetailData.priceChangePercentage<0"
+                                                    ngClass="like-icon">
                                                     <mat-icon>thumb_up</mat-icon>
                                                 </span>
                                                 <span ngClass="home_icon">
@@ -224,14 +254,22 @@
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="like-dislike-box-wrap position-relative">
-                                                <h4>This Property is <strong *ngIf="propertyDetailData.sizeChangePercentage>0">{{propertyDetailData.sizeChangePercentage}}% bigger</strong>
-                                                    <strong *ngIf="propertyDetailData.sizeChangePercentage<0">{{propertyDetailData.sizeChangePercentage}}% smaller</strong> than the average
+                                                <h4>This Property is <strong
+                                                        *ngIf="propertyDetailData.sizeChangePercentage>0">{{propertyDetailData.sizeChangePercentage}}%
+                                                        bigger</strong>
+                                                    <strong
+                                                        *ngIf="propertyDetailData.sizeChangePercentage<0">{{propertyDetailData.sizeChangePercentage}}%
+                                                        smaller</strong> than the average
                                                 </h4>
-                                                <p>Average Size for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.averageSize | number}}  sqft.</p>
-                                                <span *ngIf="propertyDetailData.sizeChangePercentage<0" ngClass="dislike-icon">
+                                                <p>Average Size for {{propertyDetailData.propertyType}} in
+                                                    {{propertyDetailData.location}} is {{propertyDetailData.averageSize
+                                                    | number}} sqft.</p>
+                                                <span *ngIf="propertyDetailData.sizeChangePercentage<0"
+                                                    ngClass="dislike-icon">
                                                     <mat-icon>thumb_down</mat-icon>
                                                 </span>
-                                                <span *ngIf="propertyDetailData.sizeChangePercentage>0" ngClass="like-icon">
+                                                <span *ngIf="propertyDetailData.sizeChangePercentage>0"
+                                                    ngClass="like-icon">
                                                     <mat-icon>thumb_up</mat-icon>
                                                 </span>
                                                 <span ngClass="home_icon">
@@ -253,9 +291,11 @@
                                 <h6>Location</h6>
                             </div>
                             <div #propertyDetails__map class="property-details__map"></div>
-                            <div *ngIf="propertyDetailData?.propertyListingLocatedNears?.length>0" ngClass="description-block-design">
+                            <div *ngIf="propertyDetailData?.propertyListingLocatedNears?.length>0"
+                                ngClass="description-block-design">
                                 <h5>Located Near</h5>
-                                <span class="compare-page-span" *ngFor="let x of propertyDetailData.propertyListingLocatedNears">{{x.locatedNear.name}}</span>
+                                <span class="compare-page-span"
+                                    *ngFor="let x of propertyDetailData.propertyListingLocatedNears">{{x.locatedNear.name}}</span>
                             </div>
                         </div>
                     </div>
@@ -281,8 +321,10 @@
                                     </p>
                                     <p ngClass="rera"> RERA# {{this.propertyDetailData.reraNo}}</p>
                                     <p ngClass="permit">Permit# {{this.propertyDetailData.permitNo}}</p>
-                                    <a routerLink="/agent-details/{{propertyDetailData.angentId}}" ngClass="properties-listed-no"
-                                        *ngIf="propertyDetailData.angentId!=0">{{propertyDetailData.activeListingCount | number}} - Active Properties Listed</a>
+                                    <a routerLink="/agent-details/{{propertyDetailData.angentId}}"
+                                        ngClass="properties-listed-no"
+                                        *ngIf="propertyDetailData.angentId!=0">{{propertyDetailData.activeListingCount |
+                                        number}} - Active Properties Listed</a>
                                 </div>
                             </div>
                             <div ngClass="contact-propertier-form">

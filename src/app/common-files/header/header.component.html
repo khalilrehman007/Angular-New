@@ -448,14 +448,14 @@
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
                                     [routerLink]="['/property/search']"
-                                    [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
+                                    [queryParams]="{Type:'Buy',PropertyListingTypeId: 2}">
                                     Buy
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
                                 <a [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
                                     [routerLink]="['/property/search']"
-                                    [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
+                                    [queryParams]="{Type:'Rent',PropertyListingTypeId: 1}">
                                     Rent
                                 </a>
                             </li>
@@ -487,7 +487,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header ">
+                            <!-- <li ngClass="nav-item hover-block-header ">
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic3"
                                         ngbDropdownToggle>New Homes</button>
@@ -497,7 +497,7 @@
                                                 Dubai</a></button>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li ngClass="nav-item classified">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/compare']">
                                     Compare 

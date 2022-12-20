@@ -4,7 +4,7 @@
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <app-propertyfilter [totalRecord]="totalRecord"
+                    <app-propertyfilter
                         (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
                 </div>
             </div>

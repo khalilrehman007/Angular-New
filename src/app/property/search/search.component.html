@@ -4,7 +4,7 @@
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <app-propertyfilter [totalRecord]="totalRecord"
+                    <app-propertyfilter
                         (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
                 </div>
             </div>
@@ -293,7 +293,7 @@
                     <a routerLink=""><img src="{{logo}}"></a>
                 </div>
                 <div ngClass="alert-logo-content">
-                    <h5>Sign up to get Ovaluate's newsletter and get to know about exclusive property listings and offers!  {{user?.professionalTypeId}}</h5>
+                    <h5>Sign up to get Ovaluate's newsletter and get to know about exclusive property listings and offers!</h5>
                     <div ngClass="alert_form-box">
                         <form>
                             <div ngClass="form-group input-design-3">

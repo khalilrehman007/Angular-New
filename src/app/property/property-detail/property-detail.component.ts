@@ -450,6 +450,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
           this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
           this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
+          this.propertyDetailData.propertyOffer = (jsonParsDate.propertyListing.propertyOffer !== undefined) ? jsonParsDate.propertyListing.propertyOffer.trim() : ''
+          this.propertyDetailData.tourUrl = (jsonParsDate.propertyListing.tourUrl !== undefined && jsonParsDate.propertyListing.tourUrl!==null) ? jsonParsDate.propertyListing.tourUrl.trim() : (jsonParsDate.propertyListing.youtubeUrl !== undefined && jsonParsDate.propertyListing.youtubeUrl!==null) ? jsonParsDate.propertyListing.youtubeUrl.trim():''
           this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
           this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
           this.propertyDetailData.occupancyStatus = occupancyStatus;
@@ -546,116 +548,145 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         show: true,
         label: 'Listed on',
         value: this.propertyDetailData.requestedDateFormat,
+        isLink:false
       },
       {
         show: true,
         label: 'OV-Verified On',
         value: this.propertyDetailData.requestedDateFormat,
+        isLink:false
       },
       {
         show: true,
         label: 'Property Category',
         value: this.propertyDetailData.buildingType,
+        isLink:false
       },
       {
         show: true,
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingBed,
         label: 'Bedroom',
         value: this.propertyDetailData.bedrooms,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingBath,
         label: 'Bathroom',
         value: this.propertyDetailData.bathrooms,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingFurnishing,
         label: 'Furnishing Type',
         value: this.propertyDetailData.furnishingType,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingFitting,
         label: 'Fitting Type',
         value: this.propertyDetailData.fittingType,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingParking,
         label: 'Available Parking',
         value: this.propertyDetailData.parkings==null || this.propertyDetailData.parkings==undefined || this.propertyDetailData.parkings==0?"N/A":this.propertyDetailData.parkings,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingUnitNumber,
         label: 'No Of Units',
         value: this.propertyDetailData.unitNo,
+        isLink:false
       },
       {
         label: 'Carpet Area',
         show: this.propertyValidationData.hasListingCarpetArea,
         value: this.decimalPipe.transform(this.propertyDetailData.carpetArea),
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingPlotSize,
         label: this.propertyValidationData.sizeLabel,
         value: this.decimalPipe.transform(this.propertyDetailData.plotSize),
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingBuildUpArea,
         label: 'Build-up Area',
         value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
+        isLink:false
       },
       {
         show: this.propertyDetailData.propertyListingTypeId == 2 && this.propertyValidationData.hasListingOccupancyStatus ? true : false,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingCompletionStatus ? true : false,
         label: 'Completion Status',
         value: this.propertyDetailData.completionStatus,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingTransactionType ? true : false,
         label: 'Transaction Type',
         value: this.propertyDetailData.transactionType,
+        isLink:false
       },
       {
         show: this.propertyValidationData.hasListingDeveloper ? true : false,
         label: 'Developer',
         value: this.propertyDetailData.propertyDeveloper,
+        isLink:false
       },
       {
         show: true,
         label: 'Price',
         value: this.decimalPipe.transform(this.propertyDetailData.propertyPrice) + ' ' + this.propertyDetailData.currency,
+        isLink:false
       },
       {
         show: this.propertyDetailData.propertyListingTypeId == 2 ? true : false,
         label: 'Rent Type',
         value: this.propertyDetailData.rentType,
+        isLink:false
       },
       {
         show: this.propertyDetailData.securityDeposit,
         label: 'Security Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.securityDepositPrice) + ' ' + this.propertyDetailData.currency,
+        isLink:false
       },
       {
         show: this.propertyDetailData.brokerageCharge,
         label: 'Brokerage Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
+        isLink:false
       },
       {
         show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
         label: 'Rent Start Date',
         value: this.datePipe.transform(this.propertyDetailData.startDate,'mediumDate'),
+        isLink:false
       },
       {
         show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
         label: 'Rent End Date',
         value: this.datePipe.transform(this.propertyDetailData.endDate,'mediumDate'),
+        isLink:false
+      },
+      {
+        show: this.propertyDetailData.tourUrl.trim()!==''?true:false,
+        label: 'Video Tour Link',
+        value: this.propertyDetailData.tourUrl,
+        isLink:true
       }
     ]
 

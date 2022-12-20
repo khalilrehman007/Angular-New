@@ -12,7 +12,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -58,10 +57,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
-  preferredCountries: CountryISO[] = [CountryISO.UnitedArabEmirates, CountryISO.SaudiArabia, CountryISO.Bahrain, CountryISO.Qatar, CountryISO.Oman, CountryISO.Kuwait];
-  SearchCountryField = SearchCountryField;
-  seletedCountry:any = '';
-  PhoneNumberFormat = PhoneNumberFormat;
   loggedInUser: any = localStorage.getItem('user')
   agentDocumentTypes: any = [];
   companyDocumentTypes: any = [];
@@ -71,6 +66,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   greet: any;
   currentField: any;
   country: any = [];
+  countriesList: any = [];
   city: any = [];
   Nationality: any = [];
   countryId: number = -1;
@@ -175,6 +171,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     countryId: new FormControl(null, Validators.required),
     cityId: new FormControl(null, Validators.required),
     location: new FormControl(null, Validators.required),
+    phoneNumber: new FormControl(null, [Validators.required,Validators.pattern("^[+][0-9]*$")]),
+
   });
   agentDetailForm = new FormGroup({
     agentBrnNo: new FormControl(null),
@@ -278,69 +276,83 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
-    this.service.UserProfile(this.userId).subscribe((result: any) => {
-      this.userData = result.data;
-      console.log(this.userData);
-      if (result.result == 1) {
-        let genderId: any = this.userData.gender == "Male" ? 1 : 2;
-        this.detailForm.patchValue({
-          id: this.userData.id,
-          address: this.userData.address,
-          countryId: this.userData.countryId,
-          firstName: this.userData.firstName,
-          lastName: this.userData.lastName,
-          gender: genderId,
-          dateOfBirth: this.userData.dateOfBirth,
-          cityId: this.userData.cityId,
-          location: this.userData.location
-        })
-      }
-      this.professionalType = this.userData.professionalTypeId;
-      if (this.professionalType == null) {
-        this.professionalType = 0;
-      }
-      localStorage.setItem("user", JSON.stringify(this.userData));
-      if (this.userData.gender == "Male") {
-        this.getGender(1)
-      } else if (this.userData.gender == "Female") {
-        this.getGender(2)
-      }
-      if (this.userData.imageUrl == null) {
-        this.proAvatar = '../../assets/images/user.png';
-      } else {
-        this.proAvatar = this.baseUrl + this.userData.imageUrl;
-      }
-      this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
-        if (result.data.length > 0) {
-          this.leadSummary = result.data;
-          for (let i = 0; i < this.leadSummary.length; i++) {
-            if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
-              this.leadsResidentialSummary.push(this.leadSummary[i]);
-            } else {
-              this.leadsCommercialSummary.push(this.leadSummary[i])
-            }
-          }
-        } else {
-          this.leadSummary = "temp";
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        this.countriesList=temp.data;
+        console.log(this.countriesList)
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
         }
-        setTimeout(() => {
-          if (this.url[2] == "wallet") {
-            $(".dashboard-tabs .wallet-btn").click();
-          } else if (this.url[2] == "my-listing") {
-            $(".dashboard-tabs .my-listing-btn").click();
-          } else if (this.url[2] == "my-valuation") {
-            $(".dashboard-tabs .my-valuation-btn").click();
+        this.filteredCountries.next(this.country)
+      }
+    });
+      this.service.UserProfile(this.userId).subscribe((result: any) => {
+        this.userData = result.data;
+        console.log(this.userData);
+        if (result.result == 1) {
+   
+          let genderId: any = this.userData.gender == "Male" ? 1 : 2;
+          this.detailForm.patchValue({
+            id: this.userData.id,
+            address: this.userData.address,
+            countryId: this.userData.countryId,
+            firstName: this.userData.firstName,
+            lastName: this.userData.lastName,
+            gender: genderId,
+            dateOfBirth: this.userData.dateOfBirth,
+            cityId: this.userData.cityId,
+            location: this.userData.location,
+            phoneNumber:this.userData.phoneNumber
+          })
+        }
+        this.professionalType = this.userData.professionalTypeId;
+        if (this.professionalType == null) {
+          this.professionalType = 0;
+        }
+        localStorage.setItem("user", JSON.stringify(this.userData));
+        if (this.userData.gender == "Male") {
+          this.getGender(1)
+        } else if (this.userData.gender == "Female") {
+          this.getGender(2)
+        }
+        if (this.userData.imageUrl == null) {
+          this.proAvatar = '../../assets/images/user.png';
+        } else {
+          this.proAvatar = this.baseUrl + this.userData.imageUrl;
+        }
+        this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
+          if (result.data.length > 0) {
+            this.leadSummary = result.data;
+            for (let i = 0; i < this.leadSummary.length; i++) {
+              if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+                this.leadsResidentialSummary.push(this.leadSummary[i]);
+              } else {
+                this.leadsCommercialSummary.push(this.leadSummary[i])
+              }
+            }
+          } else {
+            this.leadSummary = "temp";
           }
-        }, 500);
-        this.showLoader = false;
-      })
-      this.service.MyPackages(this.userData.id).subscribe((result: any) => {
-        this.myPackages = result.data;
-      })
-      this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
-        this.activitySavedSearch = result.data;
-      })
-    })
+          setTimeout(() => {
+            if (this.url[2] == "wallet") {
+              $(".dashboard-tabs .wallet-btn").click();
+            } else if (this.url[2] == "my-listing") {
+              $(".dashboard-tabs .my-listing-btn").click();
+            } else if (this.url[2] == "my-valuation") {
+              $(".dashboard-tabs .my-valuation-btn").click();
+            }
+          }, 500);
+          this.showLoader = false;
+        })
+        this.service.MyPackages(this.userData.id).subscribe((result: any) => {
+          this.myPackages = result.data;
+        })
+        this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
+          this.activitySavedSearch = result.data;
+        })
+      });
+    
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -348,15 +360,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.buy = temp.data[1].name;
       }
     });
-    this.service.LoadCountries().subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "Country list fetched successfully") {
-        for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
-        }
-        this.filteredCountries.next(this.country)
-      }
-    });
+   
     this.service.LoadDashboardData(this.user.id).subscribe(e => {
       let temp: any = e;
       let jsonData: any = JSON.stringify(temp.data)
@@ -516,6 +520,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     else if (this.detailForm.get('dateOfBirth')?.hasError('required')) {
       this.currentField = ".dob-input";
       this.error = "Select Date of Birth";
+      this.showError = true;
+      return;
+    }
+    else if (this.detailForm.get('phoneNumber')?.hasError('required')) {
+      this.currentField = ".phoneNumber-input";
+      this.error = "Enter Phone Number";
+      this.showError = true;
+      return;
+    }
+    else if (this.detailForm.get('phoneNumber')?.hasError('pattern')) {
+      this.currentField = ".phoneNumber-input";
+      this.error = "Enter Phone Number in correct format";
       this.showError = true;
       return;
     }
@@ -917,16 +933,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  loadCountriesData() {
-    this.service.LoadCountries().subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "Country list fetched successfully") {
-        for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
-        }
-      }
-    });
-  }
+  // loadCountriesData() {
+  //   this.service.LoadCountries().subscribe(e => {
+  //     let temp: any = e;
+  //     if (temp.message == "Country list fetched successfully") {
+  //       for (let country of temp.data) {
+  //         this.country.push({ viewValue: country.name, value: country.id });
+  //       }
+  //     }
+  //   });
+  // }
 
   onCountrySelect(e: any) {
     this.countryId = e;
