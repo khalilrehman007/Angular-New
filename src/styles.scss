@@ -14453,18 +14453,24 @@ input:focus {
   .property_footer-details{
 	margin-bottom: 10px;
   }
-  .country-code-select-design-dashboard .iti {
-	width: 100%;
+  .input-design-2-bg .mat-form-field-flex {
+    background-color: whitesmoke;
+    border-color: whitesmoke;
 }
-
-.country-code-select-design-dashboard .iti input {
-	background: #fff;
-	border: 0.5px solid #D3DBFF;
-	border-radius: 8px !important;
-	width: 100%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 14px;
-	color: rgba(0, 22, 25, 0.7);
-	font-weight: 400;
+.input-design-2-bg .mat-form-field-flex input::placeholder {
+    color: #000;
+}
+.listing-type-cateogry {
+    font-size: 15px;
+}
+.listing-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+	line-height: 22px;
+}
+.btn-disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: 0.4;
 }

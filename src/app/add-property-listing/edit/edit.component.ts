@@ -140,7 +140,6 @@ export class EditComponent implements OnInit {
       this.propertyData.PropertyFeatures.push({"PropertyFeatureId": this.listingData.propertyFeatures[i].propertyFeatureId});
     }
 
-    // console.log(this.propertyData);
   }
   setData() {
     this.SubmitForm.patchValue({

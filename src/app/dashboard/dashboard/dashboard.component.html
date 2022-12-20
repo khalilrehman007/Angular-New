@@ -87,13 +87,13 @@
                             data-bs-target="#pills-activities" type="button" role="tab" aria-controls="pills-activities"
                             aria-selected="false">My Activities</button>
                     </li>
-                    <li class="nav-item" role="presentation" *ngIf=" professionalType == 2 || professionalType == 3">
+                    <li class="nav-item" role="presentation" *ngIf=" professionalType == 1 || professionalType == 2">
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false">My
                             Leads</button>
                     </li>
-                    <li class="nav-item" role="presentation" *ngIf="professionalType == 2 || professionalType == 3">
+                    <li class="nav-item" role="presentation" *ngIf="professionalType == 1 || professionalType == 2">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false">My
@@ -155,7 +155,7 @@
                 <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
                     aria-labelledby="pills-dashboard-tab">
 
-                    <div class="free-proplisting" *ngIf=" professionalType == 2 || professionalType == 3">
+                    <div class="free-proplisting" *ngIf=" professionalType == 1 || professionalType == 2">
                         <div class="first-title">
                             <h3 class="title">FREE Property Listing</h3>
                             <p>Sell or Rent Your Home</p>
@@ -172,7 +172,7 @@
 
                     <div class="statictics-wrap">
                         <div class="row">
-                            <div class="col-md-6" *ngIf=" professionalType == 2 || professionalType == 3">
+                            <div class="col-md-6" *ngIf=" professionalType == 1 || professionalType == 2">
                                 <div class="card">
                                     <div class="content-area">
                                         <h4 class="title">Listings Summary</h4>
@@ -220,7 +220,7 @@
 
 
                     <div class="card mt-5"
-                        *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
+                        *ngIf="professionalType == 1 || professionalType == 2">
                         <section
                             ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
                             <div ngClass="section-title">
@@ -3112,6 +3112,24 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
+                                                                        <div class="update_phone-no-title">
+                                                                            <h3 class="sub-title">Update Phone Number
+                                                                            </h3>
+                                                                        </div>
+                                                                        <div class="update_phone-no-inputd">
+                                                                            <mat-form-field class="full-width input-design-2"
+                                                                            appearance="fill">
+                                                                            <input matInput type="text" formControlName="BuildingName"
+                                                                                placeholder="Update Phone Number">
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                        <div class="update_btn-design">
+                                                                            <button class="update-phone-btn" (click)="UpdatedSuccessfully(UpdatedContentPhone)">Update</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
                                                                                 <h3 class="sub-title">Push Notification
@@ -5477,4 +5495,35 @@
         </div>
     </ng-template>
 </div>
+
+
+<div ngClass="gallery-modal-design">
+    <ng-template #UpdatedContentPhone let-modal>
+        <button type="button" class="btn-close share-close-modal" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body share-modal-design">
+            <div class="alert_box-design email-submission-alert active">
+                <div ngClass="alert-message-wrap position-relative">
+                    <div class="d-flex">
+                    <div class="msg-img">
+                        <img src="/assets/images/phon-no-updated.svg">
+                    </div>
+                    <div class="message-block-design">
+                    <h2>Success!</h2>
+                    <p>Your Phone Number Is Updated succesfully</p>
+                    <button ngClass="ok-btn" (click)="modal.dismiss('Cross click')">Ok</button>
+                    </div>
+                    </div>
+                    <div class="close-icon">
+                        <button class="close" (click)="modal.dismiss('Cross click')"><mat-icon>close</mat-icon></button>
+                    </div>
+                    <div class="logo-top-left">
+                        <img src="/assets/images/logo.png">
+                    </div>
+                </div>
+              </div>
+        </div>
+    </ng-template>
+</div>
+
 <app-confirmationbox [message]="confirmMessage" (confirmResponse)="confirmResponse($event)" *ngIf="showConfirm">

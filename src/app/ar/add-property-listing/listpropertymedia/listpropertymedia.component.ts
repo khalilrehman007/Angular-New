@@ -64,7 +64,6 @@ export class ListpropertymediaComponent implements OnInit {
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
     this.packageData = localStorage.getItem('seletedPackage');
     this.packageData = JSON.parse(this.packageData);
-    console.log(this.packageData)
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
@@ -155,7 +154,6 @@ export class ListpropertymediaComponent implements OnInit {
         extension = extension[extension.length - 1];
         this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
       }
-      console.log(this.imageData);
       if (this.selectedFiles && this.selectedFiles[0]) {
         const numberOfFiles = this.selectedFiles.length;
         for (let i = 0; i < numberOfFiles; i++) {
@@ -266,7 +264,6 @@ export class ListpropertymediaComponent implements OnInit {
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
-    console.log(this.data);
     $.ajax({
       url: `${environment.apiUrl}api/AddPropertyListing`,
       method: "post",

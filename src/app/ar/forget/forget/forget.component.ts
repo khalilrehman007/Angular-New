@@ -46,7 +46,6 @@ export class ForgetComponent implements OnInit {
     if (this.forgot.invalid){
       return;
     }
-    // console.log(JSON.stringify(this.forgot.value, null, 2));
     if (this.forgot.valid) {
       this.service.ProceedForgot(this.forgot.value).subscribe(result => {
         if (result != null) {

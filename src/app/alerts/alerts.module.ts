@@ -7,6 +7,7 @@ import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { EmailSubmissionComponent } from './email-submission/email-submission.component';
+import { PropertyUserAlertComponent } from './property-user-alert/property-user-alert.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EmailSubmissionComponent } from './email-submission/email-submission.co
     ErroralertComponent,
     ConfirmationboxComponent,
     SuccessAlertComponent,
-    EmailSubmissionComponent
+    EmailSubmissionComponent,
+    PropertyUserAlertComponent
   ],
   imports: [
     CommonModule,

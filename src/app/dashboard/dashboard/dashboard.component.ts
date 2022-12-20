@@ -2164,6 +2164,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   openVerticallyCentered(sharecontent: any) {
     this.modalService.open(sharecontent, { centered: true });
   }
+  UpdatedSuccessfully(UpdatedContentPhone: any) {
+    this.modalService.open(UpdatedContentPhone, { centered: true });
+  }
   deleteListing(e: any) {
     this.deleteID = e;
     this.confirmMessage = "Are you sure you want to delete this property? This action cannot be undone.";

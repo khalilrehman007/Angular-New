@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
@@ -67,6 +67,12 @@ export class AddPostComponent implements OnInit {
   selectedPackageName: any = [];
   districtName: any;
   classifiedCategories: any = [];
+  selectedCategory: any = "";
+  selectedOptions: any = [];
+  startBinding:boolean = false;
+
+  showSubCategories: boolean = false;
+  classifiedSubCategories: any = [];
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
     if (!localStorage.getItem("user")) {
@@ -76,9 +82,10 @@ export class AddPostComponent implements OnInit {
     this.service.PropertyListingPackages(1).subscribe((result: any) => {
       this.packagesType = result.data;
     })
+    this.showLoader = true;
     this.service.ClassifiedCategories().subscribe((result: any) => {
       this.classifiedCategories = result.data;
-      console.log(this.classifiedCategories)
+      this.showLoader = false;
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
       if (result.message == "Points Transaction has been fetched successfully") {
@@ -320,7 +327,9 @@ export class AddPostComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    $('.select2').select2();
+    $('.select2').select2({
+      tags: true
+    });
     this.getLocation();
     if (this.oldData == "") {
       $('.select2').select2();
@@ -412,7 +421,7 @@ export class AddPostComponent implements OnInit {
           map: this.map,
           draggable: true,
         });
-        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+        google.maps.event.addListener(this.marker, 'dragend', (e: any) => {
           this.geocodePosition(this.marker.getPosition());
         });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
@@ -490,5 +499,94 @@ export class AddPostComponent implements OnInit {
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);
     }
+  }
+  categorySelect(index: any, id: any, name: any) {
+    if(index == 0) {
+      this.selectedOptions = this.selectedOptions.slice(0, index + 1)
+      $(".select-boxes-wrapper").html("");
+    }
+    this.showLoader = true;
+    let found: boolean = false;
+    for (let item of this.selectedOptions) {
+      if (item.index == index) {
+        item.value = id;
+        item.name = name;
+        found = true;
+        this.addSelect(index, id);
+        break;
+      }
+    }
+    if (!found) {
+      this.selectedOptions.push({ "index": this.selectedOptions.length + 0, "value": id, "name": name });
+      found = false;
+      this.addSelect(-1, id);
+    }
+  }
+  addSelect(index: any, id: any) {
+    let temp: any = "";
+    this.service.ClassifiedSubCategories(id).subscribe((result: any) => {
+      this.showLoader = false;
+      if (result.data.length > 0) {
+
+        let length: any = $(".select-boxes-wrapper .select-boxes").length;
+        let label: any = "";
+        for (let item of this.selectedOptions) {
+          label += item.name + " - ";
+        }
+        label = label.slice(0, -2);
+        if (index == -1 || $(".select-boxes-" + index).length == 0) {
+          $(".select-boxes-wrapper").append($(".sample-select").html());
+          $(".select-boxes-wrapper .select-boxes:last-child").addClass("select-boxes-" + length).attr("data-index", length);;
+          $(".select-boxes-" + length + " select").addClass("select-index-" + length).addClass("select2").attr("data-index", length);
+          $(".select-boxes-" + length + " .select-boxes-label").text("Choose " + label + " Category");
+          this.bindEvents();
+          $('.select2').select2({
+            tags: true
+          });
+          this.startBinding = true;
+          for (let item of result.data) {
+            var newState = new Option(item.name, item.id, false, false);
+            $(".select-boxes-" + length + " .select-index-" + length).append(newState).trigger('change');
+          }
+          this.startBinding = false;
+        } else {
+          $(".select-boxes-" + index + " .select-index-" + index).html(temp);
+          for (let item of result.data) {
+            var newState = new Option(item.name, item.id, false, false);
+            $(".select-boxes-" + index + " .select-index-" + index).append(newState).trigger('change');
+          }
+          $(".select-boxes-" + index + " .select-boxes-label").text("Choose " + label + " Category");
+        }
+      } else {
+        this.startBinding = true;
+        this.selectedOptions = this.selectedOptions.slice(0, index + 1)
+        $(".select-boxes-wrapper .select-boxes").each(function() {
+          if($(this).data("index") > index - 1 && index != -1) {
+            $(this).html("").remove();
+          }
+        })
+        this.startBinding = false;
+      }
+    })
+  }
+  bindEvents() {
+    $(".category-select").off();
+    $(".category-select").on("change", (e) => {
+      if(!this.startBinding) {
+        let index = $(e.currentTarget).data("index") + 1;
+        let value = $(e.currentTarget).val();
+        let name = $(e.currentTarget).find("option:selected").text();
+        if(value == "-1") {
+          this.selectedOptions = this.selectedOptions.slice(0, index)
+          $(".select-boxes-wrapper .select-boxes").each(function() {
+            if($(this).data("index") > index - 1) {
+              $(this).html("").remove();
+            }
+          })
+        } else {
+          this.categorySelect(index, value, name)
+        }
+      }
+    });
   }
 }

@@ -7,7 +7,7 @@ import { CommonFilesModule } from '../common-files/common-files.module';
 import { MotorModuleModule } from '../motor-module/motor-module.module';
 import { ServiceSearchModuleModule } from '../service-search-module/service-search-module.module';
 import { CommunitySearchModuleModule } from '../community-search-module/community-search-module.module';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AllSearchComponent } from '../all-search/all-search.component';
 import { JobSearchComponent } from '../job-search/job-search.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,11 +15,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 import { MatCardModule } from '@angular/material/card';
-import {NgChartsModule} from "ng2-charts";
+import { NgChartsModule } from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
@@ -56,7 +56,8 @@ import { MotorsFiltersComponent } from './classified-listings/motors-filters/mot
 import { ServiceFiltersComponent } from './classified-listings/service-filters/service-filters.component';
 import { SportsFiltersComponent } from './classified-listings/sports-filters/sports-filters.component';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LoaderModule } from '../loader/loader.module';
 
 
 
@@ -122,7 +123,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NgbModule,
     BreadcrumbsModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    LoaderModule
   ],
   exports: [
     ClassifiedHomeComponent,

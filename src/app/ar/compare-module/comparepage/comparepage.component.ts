@@ -59,7 +59,6 @@ export class ComparepageComponent implements OnInit {
       this.route.navigate(['/ar/login'])
     }
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
-      // console.log(result.data)
       if (result.data.appartments != null){
         this.popularLisitng.push(result.data.appartments)
       }
@@ -75,12 +74,10 @@ export class ComparepageComponent implements OnInit {
       if (result.data.villas != null){
         this.popularLisitng.push(result.data.villas)
       }
-      // console.log(this.popularLisitng)
     })
 
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.featurePorperty1 = response.data;
-      // console.log(this.featurePorperty1)
     });
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.featurePorperty2 = response.data;
@@ -161,7 +158,6 @@ export class ComparepageComponent implements OnInit {
     localStorage.setItem("compareIndex", compare)
     if(this.viewPropertyOne == "") {
       this.route.navigate(['/ar/compare/selection'])
-      console.log(this.viewPropertyOne)
     } else if(this.viewPropertyOne.rentType == "") {
       this.route.navigate(['/ar/compare/selection'], { queryParams: {type:"Buy",PropertyListingTypeId:2} })
     } else if (this.viewPropertyOne.rentType == "Short Term ") {

@@ -166,7 +166,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    $(".unit-number-select").select2({ placeholder: "رقم الوحدة" });
+    $(".unit-number-select").select2({ placeholder: "Unit Numbers" });
     $(".city-select").on("change", () => {
       this.loadDistrict($(".city-select").val());
     })

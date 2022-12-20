@@ -149,7 +149,6 @@ export class ViewmapComponent implements OnInit {
   }
   childToParentDataLoad(data: any) {
     let response: any = data
-    console.log(response)
     this.type = response.type
     this.PropertyCategoryId = response.PropertyCategoryId
     this.Bedrooms = response.Bedrooms
@@ -347,7 +346,6 @@ export class ViewmapComponent implements OnInit {
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
-    // console.log(params)
     this.loadListingProperty(params);
   }
   PropertySortBy: any = []
@@ -392,7 +390,6 @@ export class ViewmapComponent implements OnInit {
   }
   wishlistStatus: any;
   AddToFavorite(id: any, status: any) {
-    console.log(this.userId);
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])

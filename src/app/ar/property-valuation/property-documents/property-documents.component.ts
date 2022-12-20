@@ -286,8 +286,6 @@ export class PropertyDocumentsComponent implements OnInit {
         a.push(temp);
       }
       this.data.push(a);
-      console.log(result.data)
-      console.log(a)
     });
   }
   Nextshow() {
@@ -418,7 +416,6 @@ export class PropertyDocumentsComponent implements OnInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     console.clear();
-    console.log(this.formData);
     $.ajax({
       url: "https://beta.ovaluate.com/api/AddValuation",
       method: "post",
@@ -448,11 +445,9 @@ export class PropertyDocumentsComponent implements OnInit {
           this.showLoader = false;
           $(window).scrollTop(0);
         } else {
-          console.log(res);
         }
       },
       error: (err) => {
-        console.log(err);
       }
     });
   }
@@ -633,7 +628,6 @@ export class PropertyDocumentsComponent implements OnInit {
     if(this.reportForm.value.referralCode?.length == 8) {
       this.service.VerifyReferralCode("OVRC-" + this.reportForm.value.referralCode).subscribe((result:any) => {
         if(result.message == "You have verified the referral code") {
-          console.log(result);
           this.formData.ValauationReferralCode = {"ReferralCode": this.reportForm.value.referralCode,"UserId" :"", "ReferralCodeUserId":result.data}
         }
       })
@@ -642,7 +636,6 @@ export class PropertyDocumentsComponent implements OnInit {
   constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
-    console.log(this.userData);
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
     this.formData.InspectionRequired = false;

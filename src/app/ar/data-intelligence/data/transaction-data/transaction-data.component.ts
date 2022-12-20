@@ -168,7 +168,6 @@ export class TransactionDataComponent implements OnInit {
     this.startDate = temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
     this.endDate = this.currentDate.getMonth() + 1 + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-    console.log(this.countryData);
     
     this.service.LoadCities(this.countryData.id).subscribe((result: any) => {
       this.citiesData = result.data;

@@ -18,7 +18,6 @@ export class JobsWantedFormComponent implements OnInit {
   }
    handleChange(a: any) {
       this.file = a.target.files[0].name;
-      console.log(a.target.files);
   }
 }
 
