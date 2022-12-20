@@ -48,6 +48,10 @@ export class SellrentComponent implements OnInit {
   subHead: any;
   title: any;
   text: any;
+  professionalType: any;
+  userId: any;
+  userData: any = "";
+  
 
   howitworks: any = [];
   faqsec: any = [];
@@ -60,25 +64,32 @@ export class SellrentComponent implements OnInit {
     localStorage.removeItem("address");
     localStorage.removeItem("lat");
     $(window).scrollTop(0);
-    this.api.HowWorkOvaluate().subscribe((result: any) => {
-      this.heading = result.data.pageCaptionHelight;
-      this.subHead = result.data.pageCaptionText;
-      this.howitworks = result.data.howWorkOvaluateDetails;
+    this.api.UserProfile(this.userId).subscribe((result: any) => {
+      this.userData = result.data;
+      this.professionalType = this.userData.professionalTypeId;
+      if (this.professionalType == null) {
+        this.professionalType = 0;
+      }
     })
-    this.api.FAQ().subscribe((result: any) => {
-      this.title = result.data.pageCaptionHelight;
-      this.text = result.data.pageCaptionText;
-      $(".faq__text").append(this.text);
-      this.faqsec = result.data.faqDetails;
-      setTimeout(function () {
-        $(".faq__accordion-text").each(function (e) {
-          $(this).html($(this).text());
-        })
-      }, 100);
-    })
-  }
+      this.api.HowWorkOvaluate().subscribe((result: any) => {
+        this.heading = result.data.pageCaptionHelight;
+        this.subHead = result.data.pageCaptionText;
+        this.howitworks = result.data.howWorkOvaluateDetails;
+      })
+      this.api.FAQ().subscribe((result: any) => {
+        this.title = result.data.pageCaptionHelight;
+        this.text = result.data.pageCaptionText;
+        $(".faq__text").append(this.text);
+        this.faqsec = result.data.faqDetails;
+        setTimeout(function () {
+          $(".faq__accordion-text").each(function (e) {
+            $(this).html($(this).text());
+          })
+        }, 100);
+      })
+    }
 
   ngOnInit(): void {
-  }
+    }
 
 }

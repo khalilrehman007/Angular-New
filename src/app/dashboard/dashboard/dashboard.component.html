@@ -87,13 +87,13 @@
                             data-bs-target="#pills-activities" type="button" role="tab" aria-controls="pills-activities"
                             aria-selected="false">My Activities</button>
                     </li>
-                    <li class="nav-item" role="presentation" *ngIf=" professionalType == 2 || professionalType == 3">
+                    <li class="nav-item" role="presentation" *ngIf=" professionalType == 1 || professionalType == 2">
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false">My
                             Leads</button>
                     </li>
-                    <li class="nav-item" role="presentation" *ngIf="professionalType == 2 || professionalType == 3">
+                    <li class="nav-item" role="presentation" *ngIf="professionalType == 1 || professionalType == 2">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false">My
@@ -155,7 +155,7 @@
                 <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
                     aria-labelledby="pills-dashboard-tab">
 
-                    <div class="free-proplisting" *ngIf=" professionalType == 2 || professionalType == 3">
+                    <div class="free-proplisting" *ngIf=" professionalType == 1 || professionalType == 2">
                         <div class="first-title">
                             <h3 class="title">FREE Property Listing</h3>
                             <p>Sell or Rent Your Home</p>
@@ -172,7 +172,7 @@
 
                     <div class="statictics-wrap">
                         <div class="row">
-                            <div class="col-md-6" *ngIf=" professionalType == 2 || professionalType == 3">
+                            <div class="col-md-6" *ngIf=" professionalType == 1 || professionalType == 2">
                                 <div class="card">
                                     <div class="content-area">
                                         <h4 class="title">Listings Summary</h4>
@@ -220,7 +220,7 @@
 
 
                     <div class="card mt-5"
-                        *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
+                        *ngIf="professionalType == 1 || professionalType == 2">
                         <section
                             ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
                             <div ngClass="section-title">
