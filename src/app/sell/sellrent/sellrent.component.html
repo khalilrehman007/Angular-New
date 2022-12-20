@@ -16,7 +16,7 @@
                                 <li>Connect, Manage & Showcase property yourself.</li>
                                 <li>Negotiate directly without any mediator.</li>
                             </ul>
-                            <div ngClass="custom-2btn">
+                            <div ngClass="custom-2btn" *ngIf="professionalType == 1 || professionalType == 2">
                                 <!-- <a routerLink="/payment-packages">List Your Property Now!</a> -->
                                 <a routerLink="/add-property">List Your Property Now!</a>
                             </div>
