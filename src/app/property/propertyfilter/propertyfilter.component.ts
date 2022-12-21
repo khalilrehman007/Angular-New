@@ -131,7 +131,16 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.service.clearSearch.subscribe(x=>{
       if(x==true){
-        this.clearAllSearch();
+        const promise=new Promise((resolve,reject)=>{
+          if (this.cookie.get("countryData")) {
+            this.countryData = JSON.parse(this.cookie.get("countryData"));
+          }
+          resolve(true);
+        })
+          promise.then(()=>{
+            this.clearAllSearch();
+          })
+          
       }
     })
   }
@@ -553,7 +562,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.Locations = [];
     this.route.navigate(
       ['/property/search'],
-      { queryParams: {Type:this.type,PropertyListingTypeId:this.PropertyListingTypeId,CountryId:this.CountryId} }
+      { queryParams: {Type:this.type,PropertyListingTypeId:this.PropertyListingTypeId,CountryId:this.countryData?.id} }
     );
   }
   proceedSearch() {

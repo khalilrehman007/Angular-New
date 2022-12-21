@@ -4,8 +4,7 @@
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <app-propertyfilter
-                        (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
+                    <app-propertyfilter></app-propertyfilter>
                 </div>
             </div>
             <div [ngClass]="'container_map-view'">
@@ -33,11 +32,11 @@
                             </div>
                             <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                                 <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
-                                    <div (click)="allSearch()" class="checkbox-design position-relative">
+                                    <!-- <div (click)="allSearch()" class="checkbox-design position-relative">
                                         <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
                                         <button class="checkbox-btn">All</button>
-                                    </div>
-                                    <div ngClass="block-wrapper">
+                                    </div> -->
+                                    <!-- <div ngClass="block-wrapper">
                                         <mat-form-field appearance="fill" class="select-design">
                                             <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
                                             <mat-select [disableOptionCentering]="true"  (selectionChange)="videoSorting($event)">
@@ -45,7 +44,7 @@
                                                     {{item.name}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
-                                    </div>
+                                    </div> -->
                                     <!--                  <div ngClass="block-wrapper">-->
                                     <!--                    <mat-form-field appearance="fill" class="select-design">-->
                                     <!--                      <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>-->

@@ -692,7 +692,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
   selectCountry(e:any,index:any) {
-    console.log(e);
     this.flagsvg = this.flags[index]
     this.clickEvent2();
     delete e.city;
@@ -701,12 +700,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let time = Date.now() + ((3600 * 1000) * 24);
     expire.setTime(time);
     this.cookie.set("countryData", JSON.stringify(e), expire, "/");
-    if(this.route.url.includes('/ar')){
-      this.route.navigate(["/ar"]);
-    }
-    else{
-      this.route.navigate(["/"]);
-    }
-    //location.reload();
+    location.reload();
   }
 }

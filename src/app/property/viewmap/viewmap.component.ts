@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
 import { MapStyle } from 'src/app/shared/map.retro.style';
+import { CookieService } from 'ngx-cookie-service';
 declare const google: any;
 
 @Component({
@@ -15,7 +16,7 @@ declare const google: any;
   templateUrl: './viewmap.component.html',
   styleUrls: ['./viewmap.component.scss']
 })
-export class ViewmapComponent implements OnInit {
+export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
   videotiour = '../../../assets/images/icons/video-tour.svg'
   lsitedby = '../../../assets/images/icons/listed-by.svg'
   ovverified = '../../../assets/images/icons/ov-verified.svg'
@@ -31,7 +32,7 @@ export class ViewmapComponent implements OnInit {
   page: number = 1;
   totalRecord: any = 0;
   baseUrl = environment.apiUrl;
-
+  filterParams: any = {};
   @ViewChild('mapView') mapElement: any;
 
  
@@ -71,6 +72,7 @@ export class ViewmapComponent implements OnInit {
   ]
   propertyDetailsParams: any;
   type: any;
+  countryData: any = {};
   PropertyCategoryId: any;
   RentTypeId: any;
   PropertyListingTypeId: any;
@@ -97,45 +99,8 @@ export class ViewmapComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   selectedPropertyTypeName: any;
-  constructor(private decimalPipe: DecimalPipe,private currentLocation: Location,private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router,private modalService: NgbModal) {
+  constructor(private decimalPipe: DecimalPipe,private cookie: CookieService,private currentLocation: Location,private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router,private modalService: NgbModal) {
     $(window).scrollTop(0);
-    this.totalRecord = this.activeRoute.snapshot.queryParamMap.get('totalRecord');
-    this.selectedPropertyTypeName = this.activeRoute.snapshot.queryParamMap.get('selectedPropertyTypeName');
-    this.type = this.activeRoute.snapshot.queryParamMap.get('type');
-    this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-    let PropertyTypeIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
-    this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
-    this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
-    this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
-    this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
-    let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
-    let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
-    let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
-    let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
-    let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
-    let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    let cityID: any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
-    let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
-    this.Bedrooms = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
-    this.Bathrooms = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
-    if (PropertyFeatureIds == null) {
-      PropertyFeatureIds = []
-    } else {
-      PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
-    }
-    this.PropertyFeatureIds = PropertyFeatureIds
-    this.KeyWords = JSON.parse(KeyWords)
-    this.MinCarpetArea = MinCarpetArea
-    this.MaxCarpetArea = MaxCarpetArea
-    this.FurnishingTypeId = FurnishingTypeId
-    this.DistrictsId = JSON.parse(DistrictsId)
-    this.DistrictsValue = JSON.parse(DistrictsValue)
-    let propertyParams: any = localStorage.getItem('listingForMap');
-    this.propertyDetailsParams = JSON.parse(propertyParams)
-    this.loadListingProperty(this.propertyDetailsParams)
     this.service.VideoTour().subscribe((result: any) => {
       this.videoTour = result.data;
     })
@@ -147,29 +112,6 @@ export class ViewmapComponent implements OnInit {
     }
     this.userId = userId;
   }
-  childToParentDataLoad(data: any) {
-    let response: any = data
-    this.type = response.type
-    this.PropertyCategoryId = response.PropertyCategoryId
-    this.Bedrooms = response.Bedrooms
-    this.Bathrooms = response.Bathrooms
-    this.RentTypeId = response.RentTypeId
-    this.PropertyListingTypeId = response.PropertyListingTypeId
-    this.PropertyTypeIds = response.PropertyTypeIds
-    this.PropertyAddress = response.PropertyAddress
-    this.PriceStart = response.PriceStart
-    this.PriceEnd = response.PriceEnd
-    this.page = response.CurrentPage
-    this.KeyWords = response.KeyWords
-    this.PropertyFeatureIds = response.PropertyFeatureIds
-    this.MinCarpetArea = response.MinCarpetArea
-    this.MaxCarpetArea = response.MaxCarpetArea
-    this.FurnishingTypeId = response.FurnishingTypeId
-    this.videoTourSorting = response.videoTourSorting
-
-    this.selectedPropertyTypeName = null
-    this.loadListingProperty(data);
-  }
   getUser() {
     this.user = localStorage.getItem('user');
     if (this.user != '') {
@@ -177,11 +119,91 @@ export class ViewmapComponent implements OnInit {
     }
     return this.user;
   }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        clearInterval(a);
+      }
+    })
+  }
+  ngOnInit(): void {
+    this.service.searchParams.subscribe(params => {
+      this.filterParams = {};
+      if (params.Type !== undefined && params.Type !== null) {
+        this.type = params.Type;
+        this.service.activeTab.next(params.Type.toLowerCase());
+      }
+      if (params.PropertyListingTypeId !== undefined && params.PropertyListingTypeId !== null) {
+        this.filterParams.PropertyListingTypeId = params.PropertyListingTypeId;
+      }
+      if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
+        this.filterParams.Bedrooms = params.Bedrooms;
+      }
+      if (params.CountryId !== undefined && params.CountryId !== null) {
+        this.filterParams.CountryId = params.CountryId;
+      }
+      if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
+        this.filterParams.Bathrooms = params.Bathrooms;
+      }
+      if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
+        this.filterParams.RentTypeId = params.RentTypeId;
+      }
+      if (params.PropertyCategoryId !== undefined && params.PropertyCategoryId !== null) {
+        this.filterParams.PropertyCategoryId = params.PropertyCategoryId;
+      }
+      if (params.PriceStart !== undefined && params.PriceStart !== null) {
+        this.filterParams.PriceStart = params.PriceStart;
+      }
+      if (params.PriceEnd !== undefined && params.PriceEnd !== null) {
+        this.filterParams.PriceEnd = params.PriceEnd;
+      }
+      if (params.ProfessionalTypeId !== undefined && params.ProfessionalTypeId !== null) {
+        this.filterParams.ProfessionalTypeId = params.ProfessionalTypeId;
+      }
+      if (params.FurnishingTypeId !== undefined && params.FurnishingTypeId !== null) {
+        this.filterParams.FurnishingTypeId = params.FurnishingTypeId;
+      }
+      if (params.MinCarpetArea !== undefined && params.MinCarpetArea !== null) {
+        this.filterParams.MinCarpetArea = params.MinCarpetArea;
+      }
+      if (params.MaxCarpetArea !== undefined && params.MaxCarpetArea !== null) {
+        this.filterParams.MaxCarpetArea = params.MaxCarpetArea;
+      }
+      if (params.KeyWords !== undefined && params.KeyWords !== null) {
+        this.filterParams.KeyWords = JSON.parse(params.KeyWords);
+      }
+      if (params.PropertyTypeIds !== undefined && params.PropertyTypeIds !== null) {
+
+        this.filterParams.PropertyTypeIds = JSON.parse(params.PropertyTypeIds);
+      }
+      if (params.PropertyFeatureIds !== undefined && params.PropertyFeatureIds !== null) {
+        this.filterParams.propertyFeatureIds = JSON.parse(params.PropertyFeatureIds);
+      }
+      if (params.CityIds !== undefined && params.CityIds !== null) {
+        this.filterParams.CityIds = JSON.parse(params.CityIds);
+
+      }
+      if (params.DistrictIds !== undefined && params.DistrictIds !== null) {
+        this.filterParams.DistrictIds = JSON.parse(params.DistrictIds);
+      }
+      if (this.filterParams.propertyCategoryId == 1) {
+        this.selectedPropertyTypeName = 'Residential';
+      }
+      else if (this.filterParams.propertyCategoryId == 2) {
+        this.selectedPropertyTypeName = 'Commercial';
+      }
+      this.loadListingProperty(this.filterParams);
+    })
+  }
   searchListing: any = [];
   loadListingProperty(data: any) {
+    if (this.user !== null && this.user !== undefined) {
+      data.UserId = this.user.id;
+    }
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
-      console.log("resss",response);
+      console.log("map view",response);
       this.totalRecord = response.data.totalRecord;
       response.data.propertyListings.forEach((element:any, i:any) => {
         let rentTypeName = ''
@@ -221,25 +243,13 @@ export class ViewmapComponent implements OnInit {
 
     });
   }
-  ngOnInit(): void {
-  }
-  ngAfterViewInit(): void {
-  }
+
   pageChanged(value: any) {
     this.page = value;
-    // let params: any = {
-    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,"videoTour": this.videoTourSorting,
-    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-    //   "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
-    // }
-    let params: any = {
-      MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
-      FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
-    }
-    this.loadListingProperty(params);
+    this.page = value;
+    this.filterParams.CurrentPage=this.page;
+
+    this.loadListingProperty(this.filterParams);
   }
   initMap(e: any, zoom: any) {
     let centerPosition:any;
@@ -334,19 +344,8 @@ export class ViewmapComponent implements OnInit {
   }
   sortedBy(event:any) {
     this.sortedById = event.value
-    // let params: any = {
-    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
-    //   "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
-    // }
-    let params: any = {
-      MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
-      FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
-    }
-    this.loadListingProperty(params);
+    this.filterParams.SortedBy=this.sortedById;
+    this.loadListingProperty(this.filterParams);
   }
   PropertySortBy: any = []
   LoadPropertySortBy() {
@@ -358,35 +357,7 @@ export class ViewmapComponent implements OnInit {
     });
   }
   allSearch() {
-    this.type                 = ''
-    this.PropertyCategoryId   = ''
-    this.RentTypeId           = ''
-    this.PropertyListingTypeId =''
-    this.PropertyAddress       = ''
-    this.PriceStart            = 10
-    this.PriceEnd              = 50000000
-    this.Bedrooms              = ''
-    this.Bathrooms             =''
-    this.MinCarpetArea         =''
-    this.MaxCarpetArea        =''
-    this.FurnishingTypeId     =''
-    this.KeyWords             = []
-    this.PropertyTypeIds        = []
-    this.PropertyFeatureIds   = []
-
-    let params: any = {
-      type: '', "PropertyTypeIds": "[]", "PropertyAddress": '', "RentTypeId": '',
-      "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
-      "PropertyListingTypeId": '', CurrentPage: 1
-    }
-    let object: any = {
-      type: '', "PropertyTypeIds": [], "PropertyAddress": '', "RentTypeId": '',
-      "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
-      "PropertyListingTypeId": '', CurrentPage: 1
-    }
-
-    this.route.navigate(['/property/mapview'], { queryParams: params })
-    this.loadListingProperty(object);
+    this.service.clearSearch.next(true);
   }
   wishlistStatus: any;
   AddToFavorite(id: any, status: any) {
@@ -422,5 +393,8 @@ export class ViewmapComponent implements OnInit {
   }
   openVerticallyCentered(sharemodal: any) {
     this.modalService.open(sharemodal, { centered: true });
+  }
+  ngOnDestroy(): void {
+    this.service.activeTab.next('')
   }
 }
