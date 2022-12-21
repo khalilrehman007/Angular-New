@@ -4,8 +4,7 @@
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <app-propertyfilter
-                        (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
+                    <app-propertyfilter></app-propertyfilter>
                 </div>
             </div>
             <div [ngClass]="'container_1280px'">
@@ -269,7 +268,7 @@
                                 <div class="dropdown-menu" [ngClass]="status2 ? 'notshow' : 'show'">
                                     <button class="dropdown-item"
                                         *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
-                                        (click)="onTrendClick(1,i)">{{item.detail}}</button>
+                                        (click)="onTrendClick(item)">{{item.detail}}</button>
                                 </div>
                             </div>
                         </div>

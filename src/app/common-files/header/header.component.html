@@ -448,14 +448,14 @@
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
                                     [routerLink]="['/property/search']"
-                                    [queryParams]="{Type:'Buy',PropertyListingTypeId: 2}">
+                                    [queryParams]="{Type:'Buy',PropertyListingTypeId: 2,CountryId:currentCountry?.id}">
                                     Buy
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
                                 <a [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
                                     [routerLink]="['/property/search']"
-                                    [queryParams]="{Type:'Rent',PropertyListingTypeId: 1}">
+                                    [queryParams]="{Type:'Rent',PropertyListingTypeId: 1,CountryId:currentCountry?.id}">
                                     Rent
                                 </a>
                             </li>

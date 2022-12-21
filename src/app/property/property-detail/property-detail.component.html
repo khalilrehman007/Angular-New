@@ -301,8 +301,8 @@
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <!-- [ngClass]="scrollfix?'scrollsticky':'noscroll'" -->
-                        <div class="property-owner-details" *ngIf="propertyDetailData.companyLogoImage!=''">
-                            <div ngClass="property-listed-by">
+                        <div class="property-owner-details" >
+                            <div ngClass="property-listed-by" *ngIf="propertyDetailData.companyLogoImage!=''">
                                 <h4>Property Listed by</h4>
                                 <img class="company-Logo-style" [src]="propertyDetailData.companyLogoImage">
                             </div>

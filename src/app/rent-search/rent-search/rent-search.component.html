@@ -72,7 +72,8 @@
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
                                         <div>
-                                            <input type="checkbox" (click)="getPropertyType(item.id)">
+                                            <input *ngIf="PropertyTypeResidentialIds.indexOf(item.id)==-1" type="checkbox" (click)="getPropertyType(item.id)">
+                                            <input  *ngIf="PropertyTypeResidentialIds.indexOf(item.id)>=0" type="checkbox" (click)="getPropertyType(item.id)" checked>
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
@@ -87,7 +88,8 @@
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
                                         <div>
-                                            <input type="checkbox" (click)="getPropertyCommercialType(item.id)">
+                                            <input *ngIf="PropertyTypeCommercialIds.indexOf(item.id)==-1" type="checkbox" (click)="getPropertyCommercialType(item.id)">
+                                            <input *ngIf="PropertyTypeCommercialIds.indexOf(item.id)>=0" type="checkbox" (click)="getPropertyCommercialType(item.id)" checked>
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
@@ -207,13 +209,16 @@
                                     <h5 ngClass="h5-design">Rental Type</h5>
                                 </div> 
                             </div>
-                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" (selectedIndex)="selectedRentType"
-                                (selectedTabChange)="changeRentalType($event)">
-                                <mat-tab  label="All">
-                                </mat-tab>
-                                <mat-tab *ngFor="let item of rentType" label={{item.name}}>
-                                </mat-tab>
-                            </mat-tab-group>
+                            <div class="inneR-border-wrap">
+                                <div class="checkbox-flex-box autoflex-layout">
+                                    <div (click)="changeRentalType(item.id)" class="checkbox-design position-relative"
+                                        *ngFor="let item of rentType">
+                                        <input *ngIf="item.id!=selectedRentType" type="checkbox">
+                                        <input *ngIf="item.id==selectedRentType" type="checkbox" checked>
+                                        <button class="checkbox-btn">{{item.name}}</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
@@ -332,7 +337,8 @@
                                                     <div (click)="propertyFeatureChange(data.id)"
                                                         class="checkbox-design position-relative"
                                                         *ngFor="let data of propertyListingFeatures">
-                                                        <input type="checkbox" name="Amenities" value="Central A/C">
+                                                        <input *ngIf="propertyFeatureIds.indexOf(data.id)==-1" type="checkbox">
+                                                        <input *ngIf="propertyFeatureIds.indexOf(data.id)>=0" type="checkbox" checked>
                                                         <button class="checkbox-btn">{{data.featureName}}</button>
                                                     </div>
                                                 </div>

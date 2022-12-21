@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -157,7 +157,6 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
   LoadCitiesData(id: any) {
     this.service.LoadCities(id).subscribe({
       next: ((resp: any) => {
-        console.log("cities", resp);
         if (resp.result == 1) {
           resp.data.forEach((x: any) => {
             this.allLocations.push({ 'value': x.name, 'type': 'city' })
@@ -217,7 +216,7 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
       }
     })
     if (checkExists == false) {
-      this.Locations.push(event.option.viewValue);
+      this.Locations.push(event.option.value);
     }
     this.locationInput.nativeElement.value = '';
     this.locationCtrl.setValue(null);
@@ -236,16 +235,19 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
     let district = this.locationOnSearchData.find((y: any) => {
       return y.value === loc
     })
-    const districtIndex = this.DistrictsIds.indexOf(district.id);
-    const cityIndex = this.CityIds.indexOf(district.id);
+    if (district.type === 'city') {
+      const cityIndex = this.CityIds.indexOf(district.id);
+      if (cityIndex >= 0) {
+        this.CityIds.splice(cityIndex, 1);
+      }
+    }
+    if (district.type === 'area') {
+      const districtIndex = this.DistrictsIds.indexOf(district.id);
+      if (districtIndex >= 0) {
+        this.DistrictsIds.splice(districtIndex, 1);
+      }
+    }
     const index = this.Locations.indexOf(loc);
-
-    if (districtIndex >= 0) {
-      this.DistrictsIds.splice(index, 1);
-    }
-    if (cityIndex >= 0) {
-      this.CityIds.splice(index, 1);
-    }
     if (index >= 0) {
       this.Locations.splice(index, 1);
     }
@@ -278,15 +280,11 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
   }
   //Change Rent Type Value
   changeRentalType(e: any) {
-    if (e.tab.textLabel == 'All') {
-      this.selectedRentType = ''
+    if(e==this.selectedRentType){
+      this.selectedRentType='';
     }
-    else {
-      for (let i = 0; i < this.rentType.length; i++) {
-        if (this.rentType[i].name == e.tab.textLabel) {
-          this.selectedRentType = this.rentType[i].id;
-        }
-      }
+    else{
+      this.selectedRentType=e;
     }
   }
   //Close Property Type DropDown
@@ -399,31 +397,16 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
     });
   }
   proceedSearch() {
+    this.service.activeTab.next('rent');
     if (this.PropertyCategoryId == 1) {
       this.PropertyTypeCommercialIds = [];
     }
     else {
       this.PropertyTypeResidentialIds = [];
     }
-    console.log("Listing Type", this.PropertyListingTypeId);
-    console.log("Selected Rent Type", this.selectedRentType);
-    console.log("District Ids", this.DistrictsIds);
-    console.log("City Ids", this.CityIds);
-    console.log("Property Category", this.PropertyCategoryId);
-    console.log("Property Residential Type Ids", this.PropertyTypeResidentialIds);
-    console.log("Property Commercial Type Ids", this.PropertyTypeCommercialIds);
-    console.log("BedRooms", this.Bedrooms);
-    console.log("BathRooms", this.Bathrooms);
-    console.log("PriceStart", this.SubmitForm.controls.PriceStart.value);
-    console.log("PriceEnd", this.SubmitForm.controls.PriceEnd.value);
-    console.log("Posted By", this.postedById);
-    console.log("FurnishingType", this.furnishedType);
-    console.log("Min Area", this.SubmitForm.controls.minCarpet.value);
-    console.log("Max Area", this.SubmitForm.controls.maxCarpet.value);
-    console.log("Property Features Ids", this.propertyFeatureIds);
-    console.log("KeyWords", this.KeyWords);
+    
     let formData: any = {};
-    formData.Type = "Rent";
+    formData.Type = this.type;
     formData.CountryId = this.countryData.id;
     formData.PropertyListingTypeId = this.PropertyListingTypeId;
     if (this.Bedrooms !== "" && this.Bedrooms !== undefined) {
@@ -459,10 +442,10 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
     if (this.KeyWords.length > 0) {
       formData.KeyWords = JSON.stringify(this.KeyWords);
     }
-    if (this.PropertyTypeCommercialIds > 0) {
+    if (this.PropertyTypeCommercialIds.length > 0) {
       formData.PropertyTypeIds = JSON.stringify(this.PropertyTypeCommercialIds);
     }
-    else {
+    else if(this.PropertyTypeResidentialIds.length>0) {
       formData.PropertyTypeIds = JSON.stringify(this.PropertyTypeResidentialIds);
     }
     if (this.propertyFeatureIds.length > 0) {
@@ -479,20 +462,5 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
       ['/property/search'],
       { queryParams: formData }
     );
-  }
-  clearSearch() {
-    this.type = ''
-    this.PropertyCategoryId = ''
-    this.PropertyListingTypeId = ''
-    this.Bedrooms = ''
-    this.Bathrooms = ''
-    this.selectedRentType = ''
-    this.minCarpet = ''
-    this.maxCarpet = ''
-    this.furnishedType = ''
-    this.propertyFeatureIds = []
-    this.PropertyTypeIds = []
-    this.PropertyTypeResidentialIds = []
-    this.PropertyTypeCommercialIds = []
   }
 }

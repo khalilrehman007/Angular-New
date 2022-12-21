@@ -1,4 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { identifierName } from '@angular/compiler';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -20,6 +21,7 @@ export interface KeywordString {
 export class PropertyfilterComponent implements OnInit, AfterViewInit {
   type: any = "";
   user: any;
+  CountryId:any='';
   PropertyCategoryId: any = '';
   PropertyListingTypeId: any = 1;
   PropertyListingTypes: any = [];
@@ -49,6 +51,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   propertyTypeCommercial: any;
   propertyTypeResdential: any;
   PropertyTypeIds: any;
+  furnishedType: any = '';
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   @ViewChild('locationInput') locationInput: any;
   propertyFeatureIds: any = [];
@@ -69,7 +72,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.status2 = !this.status2;
   }
   constructor(private cookie: CookieService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
-
+    this.clearSearch();
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
     this.getUser();
@@ -80,13 +83,16 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.activeRoute.queryParams.subscribe((params: any) => {
       if (params.Type == 'Buy') {
         this.PropertyListingTypeId = 2;
-        this.type = 'Buy'
+        this.type = 'Buy';
+        this.CountryId=params.CountryId;
         this.LoadPropertyListingTypes();
       } else if (params.Type == 'Rent') {
         this.PropertyListingTypeId = 1;
         this.type = 'Rent';
+        this.CountryId=params.CountryId;
         this.LoadPropertyListingTypes();
       }
+      this.service.searchParams.next(params);
       this.SetParamsData(params);
     });
 
@@ -123,105 +129,86 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit(): void {
+    this.service.clearSearch.subscribe(x=>{
+      if(x==true){
+        this.clearAllSearch();
+      }
+    })
   }
   //Set Parameters data
   SetParamsData(params: any) {
-    console.log(params)
     if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
       this.Bedrooms = params.Bedrooms;
     }
     if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
       this.Bathrooms = params.Bathrooms;
     }
-    if(params.RentTypeId!==undefined && params.RentTypeId!==null){
-      this.selectedRentType=params.RentTypeId;
+    if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
+      this.selectedRentType = params.RentTypeId;
     }
-    if(params.PropertyCategoryId!==undefined && params.PropertyCategoryId!==null){
-      this.PropertyCategoryId=params.PropertyCategoryId;
+    if (params.PropertyCategoryId !== undefined && params.PropertyCategoryId !== null) {
+      this.PropertyCategoryId = params.PropertyCategoryId;
     }
-    if(params.PriceStart!==undefined && params.PriceStart!==null){
+    if (params.PriceStart !== undefined && params.PriceStart !== null) {
       this.SubmitForm.controls.PriceStart.patchValue(params.PriceStart);
     }
-    if(params.PriceEnd!==undefined && params.PriceEnd!==null){
+    if (params.PriceEnd !== undefined && params.PriceEnd !== null) {
       this.SubmitForm.controls.PriceEnd.patchValue(params.PriceEnd);
     }
-    if(params.ProfessionalTypeId!==undefined && params.ProfessionalTypeId!==null){
-      this.postedById=parseInt(params.ProfessionalTypeId);
-      console.log(this.postedById);
+    if (params.ProfessionalTypeId !== undefined && params.ProfessionalTypeId !== null) {
+      this.postedById = parseInt(params.ProfessionalTypeId);
     }
-    if(params.FurnishingTypeId!==undefined && params.FurnishingTypeId!==null){
-      this.furnishedType=params.FurnishingTypeId;
+    if (params.FurnishingTypeId !== undefined && params.FurnishingTypeId !== null) {
+      this.furnishedType = params.FurnishingTypeId;
     }
-    if(params.MinCarpetArea!==undefined && params.MinCarpetArea!==null){
+    if (params.MinCarpetArea !== undefined && params.MinCarpetArea !== null) {
       this.SubmitForm.controls.minCarpet.patchValue(params.MinCarpetArea);
       this.minCarpet = params.MinCarpetArea;
     }
-    if(params.MaxCarpetArea!==undefined && params.MaxCarpetArea!==null){
+    if (params.MaxCarpetArea !== undefined && params.MaxCarpetArea !== null) {
       this.SubmitForm.controls.maxCarpet.patchValue(params.MaxCarpetArea);
-      this.maxCarpet=params.MaxCarpetArea;
+      this.maxCarpet = params.MaxCarpetArea;
     }
-    if(params.KeyWords!==undefined && params.KeyWords!==null){
-     this.KeyWords=JSON.parse(params.KeyWords);
+    if (params.KeyWords !== undefined && params.KeyWords !== null) {
+      this.KeyWords = JSON.parse(params.KeyWords);
     }
-    if(params.KeyWords!==undefined && params.KeyWords!==null){
-     this.KeyWords=JSON.parse(params.KeyWords);
-    }
-    if(params.PropertyTypeIds!==undefined && params.PropertyTypeIds!==null){
-      if(this.PropertyCategoryId==1){
-        this.PropertyTypeResidentialIds=JSON.parse(params.PropertyTypeIds);
+    if (params.PropertyTypeIds !== undefined && params.PropertyTypeIds !== null) {
+      if (this.PropertyCategoryId == 1) {
+        this.PropertyTypeResidentialIds = JSON.parse(params.PropertyTypeIds);
       }
-      else{
-        this.PropertyTypeCommercialIds=JSON.parse(params.PropertyTypeIds);
+      else {
+        this.PropertyTypeCommercialIds = JSON.parse(params.PropertyTypeIds);
       }
     }
-    if(params.PropertyFeatureIds!==undefined && params.PropertyFeatureIds!==null){
-     this.propertyFeatureIds=JSON.parse(params.PropertyFeatureIds);
+    if (params.PropertyFeatureIds !== undefined && params.PropertyFeatureIds !== null) {
+      this.propertyFeatureIds = JSON.parse(params.PropertyFeatureIds);
     }
-    if(params.CityIds!==undefined && params.CityIds!==null){
-     this.CityIds=JSON.parse(params.CityIds);
-    
+    if (params.CityIds !== undefined && params.CityIds !== null) {
+      this.CityIds = JSON.parse(params.CityIds);
+
     }
-    if(params.DistrictIds!==undefined && params.DistrictIds!==null){
-     this.DistrictsIds=JSON.parse(params.DistrictIds);
-    
+    if (params.DistrictIds !== undefined && params.DistrictIds !== null) {
+      this.DistrictsIds = JSON.parse(params.DistrictIds);
+
     }
-    console.log("Listing Type", this.PropertyListingTypeId);
-    console.log("Selected Rent Type", this.selectedRentType);
-    console.log("District Ids", this.DistrictsIds);
-    console.log("City Ids", this.CityIds);
-    console.log("Property Category", this.PropertyCategoryId);
-    console.log("Property Residential Type Ids", this.PropertyTypeResidentialIds);
-    console.log("Property Commercial Type Ids", this.PropertyTypeCommercialIds);
-    console.log("BedRooms", this.Bedrooms);
-    console.log("BathRooms", this.Bathrooms);
-    console.log("PriceStart", this.SubmitForm.controls.PriceStart.value);
-    console.log("PriceEnd", this.SubmitForm.controls.PriceEnd.value);
-    console.log("Posted By", this.postedById);
-    console.log("FurnishingType", this.furnishedType);
-    console.log("Min Area", this.SubmitForm.controls.minCarpet.value);
-    console.log("Max Area", this.SubmitForm.controls.maxCarpet.value);
-    console.log("Property Features Ids", this.propertyFeatureIds);
-    console.log("KeyWords", this.KeyWords);
   }
-  LoadLocationFormParameters(type:any){
-    if(type=='city'){
-      this.CityIds.forEach((x:any)=>{
-        console.log(x)
-        let data:any = this.locationOnSearchData.find((y: any) => {
-          return y.id === x && y.type===type
+  LoadLocationFormParameters(type: any) {
+    if (type == 'city') {
+      this.CityIds.forEach((x: any) => {
+        let data: any = this.locationOnSearchData.find((y: any) => {
+          return y.id === x && y.type === type
         })
-        console.log(data)
-        if(data!==undefined && data!==null){
+        if (data !== undefined && data !== null) {
           this.Locations.push(data.value);
         }
       })
     }
-    else{
-      this.DistrictsIds.forEach((x:any)=>{
-        let data:any = this.locationOnSearchData.find((y: any) => {
-          return y.id === x && y.type===type
+    else {
+      this.DistrictsIds.forEach((x: any) => {
+        let data: any = this.locationOnSearchData.find((y: any) => {
+          return y.id === x && y.type === type
         })
-        if(data!==undefined && data!==null){
+        if (data !== undefined && data !== null) {
           this.Locations.push(data.value);
         }
       })
@@ -243,23 +230,10 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
         clearInterval(a);
       }
       if (this.countryData !== undefined) {
-        var promise = new Promise(() => {
         this.LoadCitiesData(this.countryData.id);
         setTimeout(() => {
           this.getLoaction({ "Searching": "", "CountryId": this.countryData?.id });
         }, 500);
-      });
-      console.log(promise)
-      promise.then(()=>{
-      
-        if(this.CityIds.length>0){
-          this.LoadLocationFormParameters('city');
-        }
-        if(this.DistrictsIds.length>0){
-          this.LoadLocationFormParameters('area');
-        }
-        console.log(this.Locations)
-      })
       }
     }, 100);
 
@@ -268,7 +242,6 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   LoadPropertyListingTypes() {
     this.PropertyListingTypes = [];
     this.service.LoadPropertyListingTypes().subscribe(e => {
-      console.log(this.type)
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
         for (let list of temp.data) {
@@ -283,9 +256,17 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   getLoaction(data: any) {
     this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data => {
       let response: any = data;
-      response.data.locationAutoComplete.forEach((element: any, i: any) => {
-        this.allLocations.push({ 'value': element.item2, 'city': element.item3, 'type': 'area' });
-        this.locationOnSearchData.push({ 'id': element.item1, 'value': element.item2, 'type': 'area' })
+      var promise = new Promise((resolve, reject) => {
+        response.data.locationAutoComplete.forEach((element: any, i: any) => {
+          this.allLocations.push({ 'value': element.item2, 'city': element.item3, 'type': 'area' });
+          this.locationOnSearchData.push({ 'id': element.item1, 'value': element.item2, 'type': 'area' })
+        })
+        resolve(true);
+      })
+      promise.then(() => {
+        if (this.DistrictsIds.length > 0) {
+          this.LoadLocationFormParameters('area');
+        }
       })
     });
   }
@@ -293,16 +274,23 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   LoadCitiesData(id: any) {
     this.service.LoadCities(id).subscribe({
       next: ((resp: any) => {
-        console.log("cities", resp);
         if (resp.result == 1) {
-          resp.data.forEach((x: any) => {
-            this.allLocations.push({ 'value': x.name, 'type': 'city' })
-            this.locationOnSearchData.push({ 'id': x.id, 'value': x.name, 'type': 'city' })
+          var promise = new Promise((resolve, reject) => {
+            resp.data.forEach((x: any) => {
+              this.allLocations.push({ 'value': x.name, 'type': 'city' })
+              this.locationOnSearchData.push({ 'id': x.id, 'value': x.name, 'type': 'city' })
+            })
+            resolve(true);
+          })
+          promise.then(() => {
+            if (this.CityIds.length > 0) {
+              this.LoadLocationFormParameters('city');
+            }
           })
         }
       })
     })
-   
+
   }
   //Fetch Properties Categories From Database
   CategoriesTypes() {
@@ -364,7 +352,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
       }
     })
     if (checkExists == false) {
-      this.Locations.push(event.option.viewValue);
+      this.Locations.push(event.option.value);
     }
     this.locationInput.nativeElement.value = '';
     this.locationCtrl.setValue(null);
@@ -383,16 +371,19 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     let district = this.locationOnSearchData.find((y: any) => {
       return y.value === loc
     })
-    const districtIndex = this.DistrictsIds.indexOf(district.id);
-    const cityIndex = this.CityIds.indexOf(district.id);
+    if (district.type === 'city') {
+      const cityIndex = this.CityIds.indexOf(district.id);
+      if (cityIndex >= 0) {
+        this.CityIds.splice(cityIndex, 1);
+      }
+    }
+    if (district.type === 'area') {
+      const districtIndex = this.DistrictsIds.indexOf(district.id);
+      if (districtIndex >= 0) {
+        this.DistrictsIds.splice(districtIndex, 1);
+      }
+    }
     const index = this.Locations.indexOf(loc);
-
-    if (districtIndex >= 0) {
-      this.DistrictsIds.splice(index, 1);
-    }
-    if (cityIndex >= 0) {
-      this.CityIds.splice(index, 1);
-    }
     if (index >= 0) {
       this.Locations.splice(index, 1);
     }
@@ -425,15 +416,11 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   }
   //Change Rent Type Value
   changeRentalType(e: any) {
-    if (e.tab.textLabel == 'All') {
-      this.selectedRentType = ''
+    if(e==this.selectedRentType){
+      this.selectedRentType='';
     }
-    else {
-      for (let i = 0; i < this.rentType.length; i++) {
-        if (this.rentType[i].name == e.tab.textLabel) {
-          this.selectedRentType = this.rentType[i].id;
-        }
-      }
+    else{
+      this.selectedRentType=e;
     }
   }
   //Close Property Type DropDown
@@ -507,7 +494,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.SubmitForm.controls.maxCarpet.setValue(this.maxCarpet);
     this.modalService.open(content, { centered: true });
   }
-  furnishedType: any = '';
+
   furnishedTypeChange(data: any) {
     if (data == this.furnishedType) {
       this.furnishedType = '';
@@ -537,9 +524,102 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     }
   }
   clearSearch() {
-
+    this.Bedrooms = null; this.Bathrooms = null; this.selectedRentType = '';
+    this.PropertyCategoryId = '';
+    this.SubmitForm.reset();
+    this.postedById = '';
+    this.furnishedType = '';
+    this.KeyWords = [];
+    this.PropertyTypeCommercialIds = [];
+    this.PropertyTypeResidentialIds = [];
+    this.propertyFeatureIds = [];
+    this.CityIds = [];
+    this.DistrictsIds = [];
+    this.Locations = [];
+    
+  }
+  clearAllSearch() {
+    this.Bedrooms = null; this.Bathrooms = null; this.selectedRentType = '';
+    this.PropertyCategoryId = '';
+    this.SubmitForm.reset();
+    this.postedById = '';
+    this.furnishedType = '';
+    this.KeyWords = [];
+    this.PropertyTypeCommercialIds = [];
+    this.PropertyTypeResidentialIds = [];
+    this.propertyFeatureIds = [];
+    this.CityIds = [];
+    this.DistrictsIds = [];
+    this.Locations = [];
+    this.route.navigate(
+      ['/property/search'],
+      { queryParams: {Type:this.type,PropertyListingTypeId:this.PropertyListingTypeId,CountryId:this.CountryId} }
+    );
   }
   proceedSearch() {
-
+    if (this.PropertyCategoryId == 1) {
+      this.PropertyTypeCommercialIds = [];
+    }
+    else {
+      this.PropertyTypeResidentialIds = [];
+    }
+    let formData: any = {};
+    formData.CountryId = this.countryData.id;
+    formData.PropertyListingTypeId = this.PropertyListingTypeId;
+    if (this.Bedrooms !== "" && this.Bedrooms !== undefined) {
+      formData.Bedrooms = this.Bedrooms;
+    }
+    if (this.Bathrooms !== "" && this.Bathrooms !== undefined) {
+      formData.Bathrooms = this.Bathrooms;
+    }
+    if (this.selectedRentType !== '') {
+      formData.RentTypeId = this.selectedRentType;
+    }
+    if (this.PropertyCategoryId !== '') {
+      formData.PropertyCategoryId = this.PropertyCategoryId;
+    }
+    if (this.SubmitForm.controls.PriceStart.value !== '') {
+      formData.PriceStart = this.SubmitForm.controls.PriceStart.value;
+    }
+    if (this.SubmitForm.controls.PriceEnd.value !== '') {
+      formData.PriceEnd = this.SubmitForm.controls.PriceEnd.value;
+    }
+    if (this.postedById !== '') {
+      formData.ProfessionalTypeId = this.postedById;
+    }
+    if (this.furnishedType !== '') {
+      formData.FurnishingTypeId = this.furnishedType;
+    }
+    if (this.SubmitForm.controls.minCarpet.value !== '') {
+      formData.MinCarpetArea = this.SubmitForm.controls.minCarpet.value;
+    }
+    if (this.SubmitForm.controls.maxCarpet.value !== '') {
+      formData.MaxCarpetArea = this.SubmitForm.controls.maxCarpet.value;
+    }
+    if (this.KeyWords.length > 0) {
+      formData.KeyWords = JSON.stringify(this.KeyWords);
+    }
+    if (this.PropertyTypeCommercialIds > 0) {
+      formData.PropertyTypeIds = JSON.stringify(this.PropertyTypeCommercialIds);
+    }
+    else {
+      if (this.PropertyTypeResidentialIds.length > 0) {
+        formData.PropertyTypeIds = JSON.stringify(this.PropertyTypeResidentialIds);
+      }
+    }
+    if (this.propertyFeatureIds.length > 0) {
+      formData.PropertyFeatureIds = JSON.stringify(this.propertyFeatureIds);
+    }
+    if (this.CityIds.length > 0) {
+      formData.CityIds = JSON.stringify(this.CityIds);
+    }
+    if (this.DistrictsIds.length > 0) {
+      formData.DistrictIds = JSON.stringify(this.DistrictsIds);
+    }
+    this.service.searchParams.next(formData);
+    this.route.navigate(
+      ['/property/search'],
+      { queryParams: formData }
+    );
   }
 }

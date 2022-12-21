@@ -93,6 +93,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       if (this.countryData == "") {
         this.countryData = temp[0];
       }
+      console.log("cookie country",this.countryData)
       let expire = new Date();
       let time = Date.now() + ((3600 * 1000) * 24);
       expire.setTime(time);
