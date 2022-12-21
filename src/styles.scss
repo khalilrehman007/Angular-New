@@ -14472,3 +14472,34 @@ input:focus {
     filter: grayscale(1);
     opacity: 0.4;
 }
+  .main-imagesContent-slide .carousel-control-prev, .main-imagesContent-slide .carousel-control-next {
+    width: auto;
+    padding: 0px 30px;
+    opacity: 1;
+}
+.main-imagesContent-slide .carousel-control-prev .carousel-control-prev-icon, .main-imagesContent-slide .carousel-control-next .carousel-control-next-icon {
+  background-color: #595ad6;
+  border-radius: 50%;
+  opacity: 1 !important;
+  width: 40px;
+  height: 40px;
+  background-size: 20px;
+}
+.main-imagesContent-slide .carousel-control-prev .carousel-control-prev-icon:hover, .main-imagesContent-slide .carousel-control-next .carousel-control-next-icon:hover {
+  background-color: #4A565F;
+}
+.project-slider .owl-item {
+    padding: 0px 5px;
+}
+.project-slider .owl-carousel.owl-drag .owl-stage {
+    display: flex;
+}
+.project-slider .owl-carousel.owl-drag .owl-stage .item {
+    height: 100%;
+}
+.wizard-steps .mat-step-optional {
+	display: none;
+  }
+  .mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover:not([aria-disabled]), .mat-step-header:hover[aria-disabled=false] {
+    background-color: transparent !important;
+}

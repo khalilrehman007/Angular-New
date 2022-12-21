@@ -32,6 +32,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectFilterComponent } from './project-filter/project-filter.component';
 import { DetailsComponent } from './details/details.component';
 import { NgChartsModule } from "ng2-charts";
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { NgChartsModule } from "ng2-charts";
     NgxSliderModule,
     NgxGalleryModule,
     HttpClientModule,
+    MatStepperModule,
     MatDatepickerModule,
     NgChartsModule,
     MatNativeDateModule,
