@@ -276,9 +276,9 @@ export class ClassifiedHomeComponent implements OnInit {
     if(user==null || user == undefined){
       user=localStorage.getItem("user");
       user=JSON.parse(user)
-      this.isDisabled = user?.professionalTypeId == 2 ? true : false;
+      this.isDisabled = user?.professionalTypeId ? true : false;
     }else{
-      this.isDisabled = user?.ProfessionalTypeId == 2 ? true : false;
+      this.isDisabled = user?.ProfessionalTypeId ? true : false;
     }
   }
   openVerticallyCentered(content: any) {

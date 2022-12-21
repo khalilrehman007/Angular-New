@@ -13,520 +13,385 @@
         <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
           <app-breadcrumbs></app-breadcrumbs>
         </div>
-        <div ngClass="explore-word-sec" *ngIf="selectedCountry">
-          <!-- <div ngClass="d-flex justify-content-spacebw mb-4">
-            <div ngClass="hp-design">
-              <h4>Ultra Luxury Projects</h4>
-              <p>When it comes to finding out about new projects, which are almost nearing completion or ready to occupy new developments and off-plan projects, which have been just launched, or those under-construction in Dubai, our ‘Home Finder section’ is just what you need. Home to Dubai’s comprehensive list of real estate projects every project listing provides in-depth details starting from artistic, live images and video gallery, fact sheet, location map, frequently asked questions (FAQs), and more on sub communities within the projects, their features and nearby places. Our aim to provide as much information as possible to help you understand thoroughly as you progress with your home buying and investments.</p>
-              <p>Use our search tool to select your preferences in order to view the best properties available. Or give us a call for immediate service at <a href="#"> 800-326- 800.</a>
-              </p>
-            </div>
-          </div> -->
-          <!-- <div ngClass="explore-locations-block-designs">
-            <div ngClass="hp-design mb-4">
-              <h4>{{selectedCountry.viewValue}}</h4>
-            </div>
-            <div ngClass="explore-locations-lists">
-              <div class="row" *ngIf="cityData.length > 0">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData"
-                  [ngClass]="checkCity(item.name) ? 'd-none' : ''">
-                  <div ngClass="loc-div-block position-relative">
-                    <div ngClass="loc-img-design">
-                      <img src="{{baseUrl}}{{item.cityDocument.fileUrl}}">
-                    </div>
-                    <div ngClass="loc-img-cntnt">
-                      <div ngClass="d-flex justify-content-spacebw align-items-center">
-                        <div ngClass="hp-design white">
-                          <h4 ngClass="city-name">{{item.name}}</h4>
-                          <p ngClass="country-name">{{item.country.name}}</p>
-                        </div>
-                        <div ngClass="explore-link">
-                          <a routerLink="/explore/city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
-                        </div>
+        <div class="main-project-scores-content">
+          <div class="project-scoresBox-section">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-sm-6 col-lg-4 col-md-6 p-3">
+                          <div class="card h-100 scoresBox-card border-0">
+                              <div class="card-body p-0">
+                                  <div class="scoreBox-img">
+                                      <img src="/assets/images/projectScores/score-box-img-3.png" alt="Project Scores image">
+                                  </div>
+  
+                                  <div class="scoresBox-information position-relative">
+                                      <div class="popular-box d-flex align-items-center justify-content-center">
+                                          <img src="/assets/images/projectScores/popular.png" alt="Popular image">
+                                          <span>المحبوب</span>
+                                      </div>
+                                      <h2>مدينة جميرا ليفينج (MJL)</h2>
+                                      <div class="location-b d-flex align-itmes-start">
+                                          <img src="/assets/images/projectScores/location.png" alt="Location">
+                                          <span>دبى، الامارات العربية المتحدة</span>
+                                      </div>
+                                      <div class="main-progress-circle">
+                                          <div class="row">
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>10</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>قيمة المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>8</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-sec">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>المدرة للدخل</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>5</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-thid">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>تطبيق رأس المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>9</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-four">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>إجمالي</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                    </div>
+  
+                      <div class="col-sm-6 col-lg-4 col-md-6 p-3">
+                          <div class="card h-100 scoresBox-card border-0">
+                              <div class="card-body p-0">
+                                  <div class="scoreBox-img">
+                                      <img src="/assets/images/projectScores/score-box-img-2.png" alt="Project Scores image">
+                                  </div>
+  
+                                  <div class="scoresBox-information position-relative">
+                                      <div class="popular-box d-flex align-items-center justify-content-center">
+                                          <img src="/assets/images/projectScores/popular.png" alt="Popular image">
+                                          <span>المحبوب</span>
+                                      </div>
+                                      <h2>مدينة جميرا ليفينج (MJL)</h2>
+                                      <div class="location-b d-flex align-itmes-start">
+                                          <img src="/assets/images/projectScores/location.png" alt="Location">
+                                          <span>دبى، الامارات العربية المتحدة</span>
+                                      </div>
+                                      <div class="main-progress-circle">
+                                          <div class="row">
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>10</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>قيمة المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>8</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-sec">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>المدرة للدخل</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>5</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-thid">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>تطبيق رأس المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>9</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-four">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>إجمالي</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 col-lg-4 col-md-6 p-3">
+                          <div class="card h-100 scoresBox-card border-0">
+                              <div class="card-body p-0">
+                                  <div class="scoreBox-img">
+                                      <img src="/assets/images/projectScores/score-box-img-1.png" alt="Project Scores image">
+                                  </div>
+  
+                                  <div class="scoresBox-information position-relative">
+                                      <div class="popular-box d-flex align-items-center justify-content-center">
+                                          <img src="/assets/images/projectScores/popular.png" alt="Popular image">
+                                          <span>المحبوب</span>
+                                      </div>
+                                      <h2>مدينة جميرا ليفينج (MJL)</h2>
+                                      <div class="location-b d-flex align-itmes-start">
+                                          <img src="/assets/images/projectScores/location.png" alt="Location">
+                                          <span>دبى، الامارات العربية المتحدة</span>
+                                      </div>
+                                      <div class="main-progress-circle">
+                                          <div class="row">
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>10</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>قيمة المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>8</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-sec">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>المدرة للدخل</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>5</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-thid">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>تطبيق رأس المال</span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 col-md-4 col-xl-3">
+                                                  <div class="circles-small">
+                                                      <div class="circle-small">
+                                                          <div class="text">
+                                                              <span>9</span>
+                                                          </div>
+                                                          <svg viewBox="0 0 110 100" class="cir-four">
+                                                              <linearGradient id="gradient" x1="0" y1="0" x2="0"
+                                                                  y2="100%">
+                                                                  <stop offset="0%" stop-color="#56c4fb"></stop>
+                                                                  <stop offset="100%" stop-color="#0baeff"></stop>
+                                                              </linearGradient>
+                                                              <path class="white" d="M30,90 A40,40 0 1,1 80,90"
+                                                                  fill="none"></path>
+                                                              <path class="backgroundColor" fill="none" class="blue"
+                                                                  d="M30,90 A40,40 0 1,1 80,90"></path>
+  
+                                                          </svg>
+                                                          <span class="svg-text">من اصل 10</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="bottom-label">
+                                                      <span>إجمالي</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
-            </div>
-          </div> -->
-          <!-- <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
-            <div ngClass="hp-design hp-explore-spacing">
-              <h4>Explore {{selectedCountry.viewValue}}</h4>
-              <p>{{selectedCountry.desc}}.</p>
-            </div>
-          </div> -->
-        </div>
-
-              
-      <div class="row">
-          <div class="col-md-6 col-sm-12">              
-          <div>
-            <div ngClass="properties-list-block-design">
-                  <div class="project-scr-card">
-                    <div class="pro-imf">
-                      <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
-                    </div>
-                    <div class="score-dtls">
-                      <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
-                      <p><img src="{{homelocationsvg}}"> دبي - الإمارات العربية المتحدة</p>
-                      <div class="row">
-                        <div class="col-xl-6 col-md-6 col-sm-12">
-                          <div class="text-center">
-                          <!-- You can now use it in app.component.html -->
-                          <circle-progress
-                          [percent]="100"
-                          [radius]="65"
-                          [space]="-7"
-                          [outerStrokeWidth]="7"
-                          [innerStrokeWidth]="7"
-                          [backgroundPadding]="0"
-                          [backgroundColor]="'#ffffff'"
-                          [title]= "'10/10'"
-                          [showSubtitle]= "false"
-                          [showUnits]= "false"
-                          [outerStrokeColor]="'#6A8DA6'"
-                          [innerStrokeColor]="'#fff'"
-                          [titleColor]="'#8C8988'"
-                          [animation]="true"
-                          [titleFontSize]="'22'"
-                          [titleFontWeight]="'500'"
-                          [animationDuration]="300"
-                          ></circle-progress>
-                          <p class="lbl-name">قيمة المال</p>
-                        </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6 col-sm-12">
-                          <div class="text-center">
-                          <!-- You can now use it in app.component.html -->
-                          <circle-progress
-                          [percent]="100"
-                          [radius]="65"
-                          [space]="-7"
-                          [outerStrokeWidth]="7"
-                          [innerStrokeWidth]="7"
-                          [backgroundPadding]="0"
-                          [backgroundColor]="'#ffffff'"
-                          [title]= "'10/10'"
-                          [showSubtitle]= "false"
-                          [showUnits]= "false"
-                          [outerStrokeColor]="'#6A8DA6'"
-                          [innerStrokeColor]="'#fff'"
-                          [titleColor]="'#8C8988'"
-                          [animation]="true"
-                          [titleFontSize]="'22'"
-                          [titleFontWeight]="'500'"
-                          [animationDuration]="300"
-                          ></circle-progress>
-                          <p class="lbl-name">المدرة للدخل</p>
-                        </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6 col-sm-12">
-                          <div class="text-center">
-                          <!-- You can now use it in app.component.html -->
-                          <circle-progress
-                          [percent]="100"
-                          [radius]="65"
-                          [space]="-7"
-                          [outerStrokeWidth]="7"
-                          [innerStrokeWidth]="7"
-                          [backgroundPadding]="0"
-                          [backgroundColor]="'#ffffff'"
-                          [title]= "'10/10'"
-                          [showSubtitle]= "false"
-                          [showUnits]= "false"
-                          [outerStrokeColor]="'#6A8DA6'"
-                          [innerStrokeColor]="'#fff'"
-                          [titleColor]="'#8C8988'"
-                          [animation]="true"
-                          [titleFontSize]="'22'"
-                          [titleFontWeight]="'500'"
-                          [animationDuration]="300"
-                          ></circle-progress>
-                          <p class="lbl-name">زيادة رأس المال</p>
-                        </div>
-                        </div>
-                        <div class="col-xl-6 col-md-6 col-sm-12">
-                          <div class="text-center">
-                          <!-- You can now use it in app.component.html -->
-                          <circle-progress
-                          [percent]="100"
-                          [radius]="65"
-                          [space]="-7"
-                          [outerStrokeWidth]="7"
-                          [innerStrokeWidth]="7"
-                          [backgroundPadding]="0"
-                          [backgroundColor]="'#ffffff'"
-                          [title]= "'10/10'"
-                          [showSubtitle]= "false"
-                          [showUnits]= "false"
-                          [outerStrokeColor]="'#6A8DA6'"
-                          [innerStrokeColor]="'#fff'"
-                          [titleColor]="'#8C8988'"
-                          [animation]="true"
-                          [titleFontSize]="'22'"
-                          [titleFontWeight]="'500'"
-                          [animationDuration]="300"
-                          ></circle-progress>
-                          <p class="lbl-name">عموما</p>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="col-md-6 col-sm-12">              
-            <div>
-              <div ngClass="properties-list-block-design">
-                    <div class="project-scr-card">
-                      <div class="pro-imf">
-                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
-                      </div>
-                      <div class="score-dtls">
-                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
-                        <p><img src="{{homelocationsvg}}"> دبي - الإمارات العربية المتحدة</p>
-                        <div class="row">
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">قيمة المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">المدرة للدخل</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">زيادة رأس المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">عموما</p>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          </div>
-          <div class="col-md-6 col-sm-12">              
-            <div>
-              <div ngClass="properties-list-block-design">
-                    <div class="project-scr-card">
-                      <div class="pro-imf">
-                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
-                      </div>
-                      <div class="score-dtls">
-                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
-                        <p><img src="{{homelocationsvg}}"> دبي - الإمارات العربية المتحدة</p>
-                        <div class="row">
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">قيمة المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">المدرة للدخل</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">زيادة رأس المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">عموما</p>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          </div>
-          <div class="col-md-6 col-sm-12">              
-            <div>
-              <div ngClass="properties-list-block-design">
-                    <div class="project-scr-card">
-                      <div class="pro-imf">
-                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
-                      </div>
-                      <div class="score-dtls">
-                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
-                        <p><img src="{{homelocationsvg}}"> دبي - الإمارات العربية المتحدة</p>
-                        <div class="row">
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">قيمة المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">المدرة للدخل</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">زيادة رأس المال</p>
-                          </div>
-                          </div>
-                          <div class="col-xl-6 col-md-6 col-sm-12">
-                            <div class="text-center">
-                            <!-- You can now use it in app.component.html -->
-                            <circle-progress
-                            [percent]="100"
-                            [radius]="65"
-                            [space]="-7"
-                            [outerStrokeWidth]="7"
-                            [innerStrokeWidth]="7"
-                            [backgroundPadding]="0"
-                            [backgroundColor]="'#ffffff'"
-                            [title]= "'10/10'"
-                            [showSubtitle]= "false"
-                            [showUnits]= "false"
-                            [outerStrokeColor]="'#6A8DA6'"
-                            [innerStrokeColor]="'#fff'"
-                            [titleColor]="'#8C8988'"
-                            [animation]="true"
-                            [titleFontSize]="'22'"
-                            [titleFontWeight]="'500'"
-                            [animationDuration]="300"
-                            ></circle-progress>
-                            <p class="lbl-name">عموما</p>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
           </div>
       </div>
       </div>
