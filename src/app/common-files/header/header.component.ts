@@ -351,11 +351,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    $(".language-select").on("change", () => {
-      // if ($(".language-select").val() == "Arabic") {
-      //   this.route.navigate(["/ar"])
-      // }
-    })
+  this.service.activeTab.subscribe(x=>{
+    if(x!==''){
+      this.checkActiveTab(x);
+    }
+  })
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -692,6 +692,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
   selectCountry(e:any,index:any) {
+    console.log(e);
     this.flagsvg = this.flags[index]
     this.clickEvent2();
     delete e.city;
@@ -700,6 +701,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let time = Date.now() + ((3600 * 1000) * 24);
     expire.setTime(time);
     this.cookie.set("countryData", JSON.stringify(e), expire, "/");
-    location.reload();
+    if(this.route.url.includes('/ar')){
+      this.route.navigate(["/ar"]);
+    }
+    else{
+      this.route.navigate(["/"]);
+    }
+    //location.reload();
   }
 }

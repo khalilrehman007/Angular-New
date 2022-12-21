@@ -32,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    
   ],
   exports: [
     RentSearchComponent

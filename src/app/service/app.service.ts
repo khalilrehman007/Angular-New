@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
+  public searchParams=new BehaviorSubject<any>({});
+  public activeTab=new BehaviorSubject<string>('');
+  public clearSearch=new BehaviorSubject<boolean>(false);
   apiurl = `${environment.apiUrl}api/`;
   id = 0;
   token: any = localStorage.getItem('token');

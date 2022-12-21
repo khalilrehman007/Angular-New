@@ -4,40 +4,44 @@
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Type</mat-label>
-                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedRentType" (selectionChange)="changeType($event)" [disableOptionCentering]="true">
-                        <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
+                    <mat-select [disableOptionCentering]="true"  [(value)]="PropertyListingTypeId" (selectionChange)="changeListingType($event)" [disableOptionCentering]="true">
+                        <mat-option *ngFor="let option of PropertyListingTypes" [value]="option.id">{{ option.name }}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="example-chip-list input-design searh_input-design mat-inner-chip-design" appearance="fill">
-                    <mat-label>Locations...</mat-label>
-                    <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-label>City, district or community...</mat-label>
+                    <mat-chip-list #chipList aria-label="Location selection">
                         <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
-                                <span ngClass="text-mat-length">{{fruit}}</span>
+                            <mat-chip *ngFor="let loc of Locations" (removed)="removeLocation(loc)">
+                                <span ngClass="text-mat-length" [title]="loc">{{loc}}</span>
                                 <button matChipRemove>
                                     <mat-icon>cancel</mat-icon>
                                 </button>
                             </mat-chip>
                             </div>
-                        <input placeholder="Add Location.." #fruitInput [formControl]="fruitCtrl"
+                        <input [placeholder]="Locations.length > 0?'':'Search Location..'" #locationInput [formControl]="locationCtrl"
                             [matAutocomplete]="auto1" [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addLocation($event)">
                     </mat-chip-list>
                     <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event)">
                         <div ngClass="mat-chip-inner-container">
-                        <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
-                            {{fruit}}
+                        <mat-chip *ngFor="let loc of Locations" (removed)="removeLocation(loc)">
+                            {{loc}}
                             <button matChipRemove>
                                 <mat-icon>cancel</mat-icon>
                             </button>
                         </mat-chip>
                         </div>
-                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                            {{fruit}}
+                        <mat-option *ngFor="let loc of filteredLocations | async" [value]="loc.value">
+                            <img src="../../../assets/images/MapPin.svg" /> {{loc.value}}<span *ngIf="loc.city!=null && loc.city!=undefined">,&nbsp;{{loc.city}}</span>
                         </mat-option>
                     </mat-autocomplete>
-                    <span ngClass="mat_indicators-counts" *ngIf="fruits.length > 0">{{fruits.length}}</span>
+                    <span ngClass="mat_indicators-counts" *ngIf="Locations.length > 1"> (+{{(Locations.length
+                        || 0) - 1}}
+                        {{Locations.length
+                        === 2 ? 'other' :
+                        'others'}})</span>
                 </mat-form-field>
             </div>
         </div>
@@ -68,7 +72,8 @@
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
                                         <div>
-                                            <input type="checkbox" (click)="getPropertyType(item.id)">
+                                            <input *ngIf="PropertyTypeResidentialIds.indexOf(item.id)==-1" type="checkbox" (click)="getPropertyType(item.id)">
+                                            <input  *ngIf="PropertyTypeResidentialIds.indexOf(item.id)>=0" type="checkbox" (click)="getPropertyType(item.id)" checked>
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
@@ -83,7 +88,8 @@
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
                                         <div>
-                                            <input type="checkbox" (click)="getPropertyCommercialType(item.id)">
+                                            <input *ngIf="PropertyTypeCommercialIds.indexOf(item.id)==-1" type="checkbox" (click)="getPropertyCommercialType(item.id)">
+                                            <input *ngIf="PropertyTypeCommercialIds.indexOf(item.id)>=0" type="checkbox" (click)="getPropertyCommercialType(item.id)" checked>
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
@@ -103,7 +109,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Beds</mat-label>
-                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBeds" (selectionChange)="beds($event)">
+                    <mat-select [disableOptionCentering]="true" (selectionChange)="beds($event)">
                         <mat-option value="">
                             0 (Studio)
                         </mat-option>
@@ -135,7 +141,7 @@
                             9
                         </mat-option>
                         <mat-option value="10">
-                            10
+                            10+
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -145,7 +151,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Baths</mat-label>
-                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBaths" (selectionChange)="baths($event)">
+                    <mat-select [disableOptionCentering]="true" (selectionChange)="baths($event)">
                         <mat-option value="">
                             0
                         </mat-option>
@@ -177,7 +183,7 @@
                             9
                         </mat-option>
                         <mat-option value="10">
-                            10
+                            10+
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -194,24 +200,25 @@
                                 <div ngClass="extra-controls form-inline">
                                     <div ngClass="form-group">
                                         <input type="number" formControlName="PriceStart"
-                                            placeholder="100,000">
+                                            placeholder="0">
                                         <input type="number" formControlName="PriceEnd"
                                             placeholder="Any">
                                     </div>
                                 </div>
-                                <div ngClass="range-slider">
-                                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
-                                    </ngx-slider>
-                                </div>
                                 <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId != 2">
                                     <h5 ngClass="h5-design">Rental Type</h5>
+                                </div> 
+                            </div>
+                            <div class="inneR-border-wrap">
+                                <div class="checkbox-flex-box autoflex-layout">
+                                    <div (click)="changeRentalType(item.id)" class="checkbox-design position-relative"
+                                        *ngFor="let item of rentType">
+                                        <input *ngIf="item.id!=selectedRentType" type="checkbox">
+                                        <input *ngIf="item.id==selectedRentType" type="checkbox" checked>
+                                        <button class="checkbox-btn">{{item.name}}</button>
+                                    </div>
                                 </div>
                             </div>
-                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="selectedTabIndex"
-                                (selectedTabChange)="getRentalType($event)">
-                                <mat-tab *ngFor="let item of rentType" label={{item.name}}>
-                                </mat-tab>
-                            </mat-tab-group>
                         </div>
                     </div>
                     <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
@@ -223,7 +230,7 @@
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Posted by</mat-label>
                     <mat-select [disableOptionCentering]="true"  (selectionChange)="postedBy($event)">
-                        <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.name}}</mat-option>
+                        <mat-option  *ngFor="let data of postedByOption" [value]="data.id">{{data.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -291,7 +298,7 @@
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-2">
-                                    <label class="h6-design">Property Area (sqft)</label>
+                                    <label class="h6-design">Property Area {{countryData.unitType}}</label>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="block-wrapper mb-2">
@@ -301,7 +308,7 @@
                                                             (keyup)="minCarpetAreaChange(minCarpet.value)" #minCarpet
                                                             matInput type="number" placeholder="Min. Area">
                                                     </mat-form-field>
-                                                    <p ngClass="input-overlay-layer">sqft.</p>
+                                                    <p ngClass="input-overlay-layer">{{countryData.unitType}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -330,7 +337,8 @@
                                                     <div (click)="propertyFeatureChange(data.id)"
                                                         class="checkbox-design position-relative"
                                                         *ngFor="let data of propertyListingFeatures">
-                                                        <input type="checkbox" name="Amenities" value="Central A/C">
+                                                        <input *ngIf="propertyFeatureIds.indexOf(data.id)==-1" type="checkbox">
+                                                        <input *ngIf="propertyFeatureIds.indexOf(data.id)>=0" type="checkbox" checked>
                                                         <button class="checkbox-btn">{{data.featureName}}</button>
                                                     </div>
                                                 </div>
@@ -339,31 +347,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <!-- <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper keywords_design-input">
                                     <label class="h6-design">Keywords</label>
                                     <mat-form-field class="example-chip-list" appearance="fill">
                                         <mat-label>Add Keywords</mat-label>
                                         <mat-chip-list #chipList aria-label="Keyword selection">
-                                            <mat-chip *ngFor="let KeywordName of Keywords"
-                                                (removed)="remove(KeywordName)">
-                                                {{KeywordName.name}}
+                                            <mat-chip *ngFor="let KeywordName of KeyWords"
+                                                (removed)="removeKeyword(KeywordName)">
+                                                {{KeywordName}}
                                                 <button matChipRemove>
                                                     <mat-icon>cancel</mat-icon>
                                                 </button>
                                             </mat-chip>
                                             <input placeholder="Keywords..." [matChipInputFor]="chipList"
                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                                [matChipInputAddOnBlur]="addOnBlur"
-                                                (matChipInputTokenEnd)="add($event)">
+                                                [matChipInputAddOnBlur]="true"
+                                                (matChipInputTokenEnd)="addKeywords($event)">
                                         </mat-chip-list>
                                     </mat-form-field>
                                 </div>
-                            </div>
+                            </div> -->
                             <div ngClass="text-right totel_properties-btn mt-5">
                                 <!--                <app-loader></app-loader>-->
-                                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Total
-                                    Properties Count <span ngClass="count_properties">({{count.length}})</span></button>
+                                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Search</button>
                             </div>
                         </div>
                     </div>

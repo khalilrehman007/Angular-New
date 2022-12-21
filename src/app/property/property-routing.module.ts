@@ -7,7 +7,7 @@ import { ShortTermRentComponent } from './short-term-rent/short-term-rent.compon
 
 const routes: Routes = [
   { path: "search", component: SearchComponent },
-  { path: "search/:type", component: SearchComponent },
+  { path: "search/:Type", component: SearchComponent },
   { path: "detail", component: PropertyDetailComponent },
   { path: "mapview", component: ViewmapComponent },
   { path: "short-term-rent", component: ShortTermRentComponent }
