@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectFilterComponent } from './project-filter/project-filter.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ProjectFilterComponent } from './project-filter/project-filter.componen
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatStepperModule,
     // Specify ng-circle-progress as an import
     NgCircleProgressModule.forRoot({
       // set defaults here
