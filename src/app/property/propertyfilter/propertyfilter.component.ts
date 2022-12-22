@@ -21,7 +21,7 @@ export interface KeywordString {
 export class PropertyfilterComponent implements OnInit, AfterViewInit {
   type: any = "";
   user: any;
-  CountryId:any='';
+  CountryId: any = '';
   PropertyCategoryId: any = '';
   PropertyListingTypeId: any = 1;
   PropertyListingTypes: any = [];
@@ -84,12 +84,12 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
       if (params.Type == 'Buy') {
         this.PropertyListingTypeId = 2;
         this.type = 'Buy';
-        this.CountryId=params.CountryId;
+        this.CountryId = params.CountryId;
         this.LoadPropertyListingTypes();
       } else if (params.Type == 'Rent') {
         this.PropertyListingTypeId = 1;
         this.type = 'Rent';
-        this.CountryId=params.CountryId;
+        this.CountryId = params.CountryId;
         this.LoadPropertyListingTypes();
       }
       this.service.searchParams.next(params);
@@ -129,18 +129,18 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit(): void {
-    this.service.clearSearch.subscribe(x=>{
-      if(x==true){
-        const promise=new Promise((resolve,reject)=>{
+    this.service.clearSearch.subscribe(x => {
+      if (x == true) {
+        const promise = new Promise((resolve, reject) => {
           if (this.cookie.get("countryData")) {
             this.countryData = JSON.parse(this.cookie.get("countryData"));
           }
           resolve(true);
         })
-          promise.then(()=>{
-            this.clearAllSearch();
-          })
-          
+        promise.then(() => {
+          this.clearAllSearch();
+        })
+
       }
     })
   }
@@ -425,11 +425,11 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   }
   //Change Rent Type Value
   changeRentalType(e: any) {
-    if(e==this.selectedRentType){
-      this.selectedRentType='';
+    if (e == this.selectedRentType) {
+      this.selectedRentType = '';
     }
-    else{
-      this.selectedRentType=e;
+    else {
+      this.selectedRentType = e;
     }
   }
   //Close Property Type DropDown
@@ -545,7 +545,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.CityIds = [];
     this.DistrictsIds = [];
     this.Locations = [];
-    
+
   }
   clearAllSearch() {
     this.Bedrooms = null; this.Bathrooms = null; this.selectedRentType = '';
@@ -560,10 +560,25 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     this.CityIds = [];
     this.DistrictsIds = [];
     this.Locations = [];
-    this.route.navigate(
-      ['/property/search'],
-      { queryParams: {Type:this.type,PropertyListingTypeId:this.PropertyListingTypeId,CountryId:this.countryData?.id} }
-    );
+    if (this.route.url.includes('/mapview')) {
+      this.route.navigate(
+        ['/property/mapview'],
+        { queryParams: { Type: this.type, PropertyListingTypeId: this.PropertyListingTypeId, CountryId: this.countryData?.id } }
+      );
+    }
+    else if (this.route.url.includes('/short-term-rent')) {
+      this.route.navigate(
+        ['/property/short-term-rent'],
+        { queryParams: { Type: this.type, PropertyListingTypeId: this.PropertyListingTypeId, CountryId: this.countryData?.id } }
+      );
+    }
+    else {
+      this.route.navigate(
+        ['/property/search'],
+        { queryParams: { Type: this.type, PropertyListingTypeId: this.PropertyListingTypeId, CountryId: this.countryData?.id } }
+      );
+    }
+
   }
   proceedSearch() {
     if (this.PropertyCategoryId == 1) {
@@ -573,6 +588,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
       this.PropertyTypeResidentialIds = [];
     }
     let formData: any = {};
+    formData.Type=this.type;
     formData.CountryId = this.countryData.id;
     formData.PropertyListingTypeId = this.PropertyListingTypeId;
     if (this.Bedrooms !== "" && this.Bedrooms !== undefined) {
@@ -626,9 +642,23 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
       formData.DistrictIds = JSON.stringify(this.DistrictsIds);
     }
     this.service.searchParams.next(formData);
+    if (this.route.url.includes('/mapview')) {
+      this.route.navigate(
+        ['/property/mapview'],
+        { queryParams: formData }
+      );
+    }
+    else if (this.route.url.includes('/short-term-rent')) {
+      this.route.navigate(
+        ['/property/short-term-rent'],
+        { queryParams: formData }
+      );
+    }
+    else{
     this.route.navigate(
       ['/property/search'],
       { queryParams: formData }
     );
+    }
   }
 }

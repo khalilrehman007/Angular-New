@@ -338,6 +338,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
         );
       })
       this.findAgent = tempData;
+      
     })
   }
   companiesListData(data: any) {

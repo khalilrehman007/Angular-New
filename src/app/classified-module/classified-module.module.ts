@@ -59,6 +59,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from '../loader/loader.module';
 import { AlertsModule } from '../alerts/alerts.module';
+import { AllListingFilterComponent } from './classified-listings/all-listing-filter/all-listing-filter.component';
+import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
 
 
 
@@ -99,7 +101,9 @@ import { AlertsModule } from '../alerts/alerts.module';
     MobileTabletFilterComponent,
     MotorsFiltersComponent,
     ServiceFiltersComponent,
-    SportsFiltersComponent
+    SportsFiltersComponent,
+    AllListingFilterComponent,
+    AllListingsComponent
   ],
   imports: [
     CommonModule,

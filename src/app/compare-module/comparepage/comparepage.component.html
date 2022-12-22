@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div add-compare-div-first">
                             <button class="select-compare-btn" *ngIf="viewPropertyOne == ''"><span
-                                    class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select</span></button>
+                                    class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select a property</span></button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyOne != ''">
                                 <button ngClass="delete-property" (click)="removeProperty()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
@@ -41,8 +41,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div add-compare-div-second">
                             <button class="select-compare-btn" *ngIf="viewPropertyTwo == ''"><span
-                                    class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select the same detail
-                                    by selecting different area</span> </button>
+                                    class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select a property</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyTwo != ''">
                                 <button ngClass="delete-property" (click)="removePropertyTwo()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
@@ -68,8 +67,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div add-compare-div-third">
                             <button class="select-compare-btn" *ngIf="viewPropertyThree == ''"><span
-                                    class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select the same detail
-                                    by selecting different area</span> </button>
+                                    class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select a property</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyThree != ''">
                                 <button ngClass="delete-property" (click)="removePropertyThree()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
