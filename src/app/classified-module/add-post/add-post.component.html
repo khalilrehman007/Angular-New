@@ -201,7 +201,7 @@
                     </div> -->
                     <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <a class="save-continue-btn cursor-pointer" routerLink="/classified/car-ad-details">Next</a>
+                            <a class="save-continue-btn cursor-pointer" [ngClass]="isDisabled ? 'btn-disabled' : ''" routerLink="/classified/car-ad-details">Next</a>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">
