@@ -700,6 +700,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let time = Date.now() + ((3600 * 1000) * 24);
     expire.setTime(time);
     this.cookie.set("countryData", JSON.stringify(e), expire, "/");
-    location.reload();
+    if(this.route.url.includes('/ar')){
+      location.href='/ar'
+    }
+    else{
+      location.href='/'
+    }
+  
   }
 }

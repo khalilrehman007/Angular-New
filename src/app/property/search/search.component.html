@@ -23,10 +23,10 @@
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
-                                <!-- <div (click)="allSearch()" class="checkbox-design position-relative">
+                                <div (click)="allSearch()" class="checkbox-design position-relative">
                                     <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
                                     <button class="checkbox-btn">All</button>
-                                </div> -->
+                                </div>
                                 <!-- <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
                                         <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
@@ -66,8 +66,7 @@
                                 <div ngClass="properties-list-block-design">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                            <div ngClass="properties-list_slider"
-                                                >
+                                            <div ngClass="properties-list_slider">
                                                 <!-- <ngb-carousel>
                                                     <ng-template ngbSlide *ngFor="let event of list.documents">
                                                         <img [src]="baseUrl+event.fileUrl"
@@ -92,10 +91,10 @@
                                                         <h4>{{list.propertyPrice | number}} {{list.currency}} <small
                                                                 *ngIf="list.rentType != ''">/ {{list.rentType}}</small>
                                                         </h4>
-                                                        <p style="margin-bottom: 0px !important;margin-top: 6px !important;">{{list.propertyType?.typeDescription}}</p>
+                                                        <p>{{list.propertyType?.typeDescription}}</p>
                                                     </div>
                                                     <div ngClass="property-action-hdr">
-                                                        <button ngClass="ov-verified-btn"><img src="{{ovverified}}">
+                                                        <button ngClass="ov-verified-btn">
                                                             {{list.propertyCode}}</button>
                                                         <div ngClass="pro-contact-details">
                                                             <div ngbDropdown class="d-inline-block">

@@ -33,9 +33,9 @@ export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
   totalRecord: any = 0;
   baseUrl = environment.apiUrl;
   filterParams: any = {};
+  rawFilterParams: any = {};
+  showLoader:boolean=false;
   @ViewChild('mapView') mapElement: any;
-
- 
   dynamicSlides1 = [
     {
       id: 'slide1',
@@ -130,6 +130,8 @@ export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
   ngOnInit(): void {
     this.service.searchParams.subscribe(params => {
       this.filterParams = {};
+      this.rawFilterParams = {};
+      this.rawFilterParams=params;
       if (params.Type !== undefined && params.Type !== null) {
         this.type = params.Type;
         this.service.activeTab.next(params.Type.toLowerCase());
@@ -201,47 +203,54 @@ export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
     if (this.user !== null && this.user !== undefined) {
       data.UserId = this.user.id;
     }
+    this.showLoader=true;
     let tempData: Array<Object> = []
-    this.service.LoadSearchListing(data).subscribe((response: any) => {
-      console.log("map view",response);
-      this.totalRecord = response.data.totalRecord;
-      response.data.propertyListings.forEach((element:any, i:any) => {
-        let rentTypeName = ''
-        if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+    this.service.LoadSearchListing(data).subscribe(
+      {
+        next:(response: any) => {
+          this.totalRecord = response.data.totalRecord;
+          response.data.propertyListings.forEach((element:any, i:any) => {
+            let rentTypeName = ''
+            if (element.rentType != null) {
+              rentTypeName = element.rentType.name
+            }
+            let documents: any = 'assets/images/placeholder.png'
+            if (element.documents != undefined && element.documents.length > 0) {
+              documents = this.baseUrl + element.documents[0].fileUrl
+            }
+            let userImage = '../assets/images/user.png'
+            let fullName = ''
+            let userId = ''
+            if (element.user != null && element.user !== undefined) {
+              userImage = this.baseUrl + element.user.imageUrl
+              fullName = element.user.fullName
+              userId = element.user.id
+            }
+            tempData.push(
+              {
+                buildupArea: element.buildupArea, plotSize:element.plotSize, companyName: element.companyName, propertyLat: element.propertyLat, propertyLong: element.propertyLong,
+                id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
+                StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
+                documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
+                propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress,
+                buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+                unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
+                requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+                requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
+                expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, 
+                propertyCode: element.propertyCode,unitType:element.country.unitType,package:element.package
+              }
+            );
+          })
+          this.searchListing = tempData;
+          this.initMap(null, 10);
+          this.showLoader=false;
+        },
+        error:(err:any)=>{
+          this.showLoader=false;
         }
-        let documents: any = 'assets/images/placeholder.png'
-        if (element.documents != undefined && element.documents.length > 0) {
-          documents = this.baseUrl + element.documents[0].fileUrl
-        }
-        let userImage = '../assets/images/user.png'
-        let fullName = ''
-        let userId = ''
-        if (element.user != null && element.user !== undefined) {
-          userImage = this.baseUrl + element.user.imageUrl
-          fullName = element.user.fullName
-          userId = element.user.id
-        }
-        tempData.push(
-          {
-            buildupArea: element.buildupArea, plotSize:element.plotSize, companyName: element.companyName, propertyLat: element.propertyLat, propertyLong: element.propertyLong,
-            id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
-            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
-            documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
-            unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, 
-            propertyCode: element.propertyCode,unitType:element.country.unitType,package:element.package
-          }
-        );
-      })
-      this.searchListing = tempData;
-      this.initMap(null, 10);
-
-    });
+      }
+    );
   }
 
   pageChanged(value: any) {
@@ -324,7 +333,10 @@ export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
     );
   }
   LocationBack(){
-    this.currentLocation.back();
+    this.route.navigate(
+      ['/property/search'],
+      { queryParams: this.rawFilterParams }
+    );
   }
   videoSorting(event: any) {
     this.videoTourSorting = event.value
@@ -369,25 +381,19 @@ export class ViewmapComponent implements OnInit,AfterViewInit,OnDestroy {
       this.notifyService.showError('You not having access', "");
       this.route.navigate(['login']);
     }
-    let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
-    }
-    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
-      let responsedata: any = data
-      if (responsedata.message == "Favorite is Removed successfully") {
-        this.wishlistStatus = "Favorite is Removed successfully"
-        this.notifyService.showSuccess('Favorite is Removed successfully', "");
-        setTimeout(() => {
-          this.loadListingProperty(params);
-        }, 1000);
-      } else {
-        this.wishlistStatus = "Favorite is added successfully"
-        this.notifyService.showSuccess('Favorite is added successfully', "");
-        setTimeout(() => {
-          this.loadListingProperty(params);
-        }, 1000);
+    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe({
+      next:(resp:any) => {
+        if (resp.result==1) {
+          this.wishlistStatus = "Favorite is Removed successfully"
+          this.notifyService.showSuccess('Favorite is Removed successfully', "");
+        } else {
+          this.wishlistStatus = "Favorite is added successfully"
+          this.notifyService.showSuccess('Favorite is added successfully', "");
+        }
+        this.loadListingProperty(this.filterParams);
+      },
+      error:(err:any)=>{
+
       }
     });
   }
