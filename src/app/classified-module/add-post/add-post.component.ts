@@ -512,15 +512,14 @@ export class AddPostComponent implements OnInit {
         item.value = id;
         item.name = name;
         found = true;
-        this.addSelect(index, id);
         break;
       }
     }
     if (!found) {
       this.selectedOptions.push({ "index": this.selectedOptions.length + 0, "value": id, "name": name });
       found = false;
-      this.addSelect(-1, id);
     }
+    this.addSelect(index, id);
   }
   addSelect(index: any, id: any) {
     let temp: any = "";
@@ -562,6 +561,7 @@ export class AddPostComponent implements OnInit {
         this.selectedOptions = this.selectedOptions.slice(0, index + 1)
         $(".select-boxes-wrapper .select-boxes").each(function() {
           if($(this).data("index") > index - 1 && index != -1) {
+            $(this).html("");
             $(this).html("").remove();
           }
         })

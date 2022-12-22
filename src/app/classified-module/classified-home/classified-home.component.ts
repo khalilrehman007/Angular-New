@@ -271,7 +271,7 @@ export class ClassifiedHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let user: any = localStorage.getItem("signupData");
+    let user: any = localStorage.getItem("user");
     user=JSON.parse(user);
     if(user==null || user == undefined){
       user=localStorage.getItem("user");
