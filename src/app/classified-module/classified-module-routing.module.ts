@@ -29,6 +29,7 @@ import { SportsListingComponent } from './classified-listings/sports-listing/spo
 import { MobileTabletListingComponent } from './classified-listings/mobile-tablet-listing/mobile-tablet-listing.component';
 import { ServicesListingComponent } from './classified-listings/services-listing/services-listing.component';
 import { MotorsListingComponent } from './classified-listings/motors-listing/motors-listing.component';
+import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -59,7 +60,8 @@ const routes: Routes = [
   { path: "sports-equipment-listings", component: SportsListingComponent },
   { path: "phone-tablet-listings", component: MobileTabletListingComponent },
   { path: "service-listing", component: ServicesListingComponent },
-  { path: "motor-listings", component: MotorsListingComponent }
+  { path: "motor-listings", component: MotorsListingComponent },
+  { path: "all-listings", component: AllListingsComponent }
 ];
 
 @NgModule({

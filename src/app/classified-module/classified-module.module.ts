@@ -58,6 +58,8 @@ import { SportsFiltersComponent } from './classified-listings/sports-filters/spo
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from '../loader/loader.module';
+import { AllListingFilterComponent } from './classified-listings/all-listing-filter/all-listing-filter.component';
+import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
 
 
 
@@ -98,7 +100,9 @@ import { LoaderModule } from '../loader/loader.module';
     MobileTabletFilterComponent,
     MotorsFiltersComponent,
     ServiceFiltersComponent,
-    SportsFiltersComponent
+    SportsFiltersComponent,
+    AllListingFilterComponent,
+    AllListingsComponent
   ],
   imports: [
     CommonModule,
