@@ -58,6 +58,7 @@ import { SportsFiltersComponent } from './classified-listings/sports-filters/spo
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from '../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
 
 
 
@@ -124,7 +125,8 @@ import { LoaderModule } from '../loader/loader.module';
     BreadcrumbsModule,
     MatSelectModule,
     MatCheckboxModule,
-    LoaderModule
+    LoaderModule,
+    AlertsModule
   ],
   exports: [
     ClassifiedHomeComponent,

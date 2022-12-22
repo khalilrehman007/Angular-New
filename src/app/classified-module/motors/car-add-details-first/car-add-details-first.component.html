@@ -34,7 +34,8 @@
                                         <label>Make & Model </label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select Make & Model </option>
-                                            <option class="country-item">Porsche Carrera 911</option>
+                                            <option class="country-item" *ngFor="let item of MakeAndModel"
+                                                value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -45,7 +46,8 @@
                                         <label>Trim</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select Trim</option>
-                                            <option class="country-item">Standard</option>
+                                            <option class="country-item" *ngFor="let item of Trim" value="{{item.id}}">
+                                                {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -56,34 +58,21 @@
                                         <label>Regional Spec</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select Regional Spec</option>
-                                            <option class="country-item">GCC Spec</option>
+                                            <option class="country-item" *ngFor="let item of RegionalSpec"
+                                                value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Trim</label>
-                                        <select class="select2 country-select">
-                                            <option value="0"> Select Trim</option>
-                                            <option class="country-item">Standard</option>
-                                        </select>
-                                    </div>
+                                    <label>Year</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Enter Years" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Year</label>
-                                        <select class="select2 country-select">
-                                            <option value="0"> Select Year</option>
-                                            <option class="country-item">2010</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design full-width-select2">
                                         <label>Is your car insured in UAE?</label>
@@ -97,29 +86,26 @@
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <label>Kilometers</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Totel Kilometers"
-                                                lang="en" />
-                                        </mat-form-field>
+                                    <label>Kilometers</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Enter Total Kilometers" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <label>Price</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Price"
-                                                lang="en" />
-                                        </mat-form-field>
+                                    <label>Price</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="Enter Price" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <label>Phone Number</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Phone Number"
-                                                lang="en" />
-                                        </mat-form-field>
+                                    <label>Phone Number</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="Enter Phone Number" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +115,8 @@
                             <a class="back-btn cursor-pointer" routerLink="/classified/ad-post">Back</a>
                         </mat-card-actions>
                         <mat-card-actions>
-                            <a class="save-continue-btn cursor-pointer" routerLink="/classified/car-ad-submission">Next</a>
+                            <a class="save-continue-btn cursor-pointer"
+                                routerLink="/classified/car-ad-submission">Next</a>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">
@@ -139,5 +126,5 @@
             </div>
         </div>
     </section>
-<app-footer></app-footer>
+    <app-footer></app-footer>
 </section>

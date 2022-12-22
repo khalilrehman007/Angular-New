@@ -131,12 +131,7 @@
                                         <label>Fuel Type</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select Fuel Type</option>
-                                            <option>Petrol</option>
-                                            <option>Diesel</option>
-                                            <option>LPG/Autogas</option>
-                                            <option>Hydrogen</option>
-                                            <option>Electric</option>
-                                            <option>Hybrid</option>
+                                            <option *ngFor="let item of FuelType" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -147,14 +142,7 @@
                                         <label>Body Condition</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select Body Condition</option>
-                                            <option>Convertible</option>
-                                            <option>Coupe</option>
-                                            <option>Hatchback</option>
-                                            <option>SUV</option>
-                                            <option>Sedan</option>
-                                            <option>Truck</option>
-                                            <option>Van/Minivan</option>
-                                            <option>Station wagon</option>
+                                            <option *ngFor="let item of BodyCondition" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -165,7 +153,7 @@
                                         <label>Mechanical Condition</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option class="country-item">Standard</option>
+                                            <option *ngFor="let item of MechanicalCondition" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -176,9 +164,7 @@
                                         <label>Color</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>white</option>
-                                            <option>Black</option>
-                                            <option>Red</option>
+                                            <option *ngFor="let item of Color" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -189,7 +175,7 @@
                                         <label>Warranty</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>10 Years</option>
+                                            <option *ngFor="let item of Warranty" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -200,9 +186,7 @@
                                         <label>Doors</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>2</option>
-                                            <option>4</option>
-                                            <option>6</option>
+                                            <option *ngFor="let item of Doors" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -213,9 +197,7 @@
                                         <label>No. Of Cylinders</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>2</option>
-                                            <option>4</option>
-                                            <option>6</option>
+                                            <option *ngFor="let item of Cylinders" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -226,8 +208,7 @@
                                         <label>Transmission Type</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>Automatic</option>
-                                            <option>Manual</option>
+                                            <option *ngFor="let item of TransmissionType" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -238,7 +219,7 @@
                                         <label>Body Type</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>SUV</option>
+                                            <option *ngFor="let item of BodyType" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -249,7 +230,7 @@
                                         <label>Horsepower</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>1000 Horsepower</option>
+                                            <option *ngFor="let item of HorsePower" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -260,42 +241,19 @@
                                         <label>Steering Side</label>
                                         <select class="select2 country-select">
                                             <option value="0"> Select</option>
-                                            <option>Left hand side</option>
-                                            <option>Right hand side</option>
+                                            <option *ngFor="let item of SteeringSide" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <label>Extras</label>
-                                    <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                                        <button ngClass="drop-down_btn" (click)="clickEvent2()">Specialties</button>
-                                        <div class="cstm_dropdown-menu" [ngClass]="status2 ? 'active' : 'notactive'">
-                                            <ul ngClass="list-unstyled residentails-unit-list">
-                                                <li ngClass="d-flex position-relative">
-                                                    <div>
-                                                        <input checked type="radio" name="ExpertIn"
-                                                            value="English">
-                                                        <span ngClass="property_sel"></span>
-                                                    </div>
-                                                    <div ngClass="proprty_name">
-                                                        <p>Climate Control</p>
-                                                    </div>
-                                                </li>
-                                                <li ngClass="d-flex position-relative">
-                                                    <div>
-                                                        <input checked type="radio" name="ExpertIn"
-                                                            value="English">
-                                                        <span ngClass="property_sel"></span>
-                                                    </div>
-                                                    <div ngClass="proprty_name">
-                                                        <p>Climate Control</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Extras</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option *ngFor="let item of CarExtraFeature" value="{{item.id}}">{{item.name}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

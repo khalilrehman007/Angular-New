@@ -100,7 +100,6 @@ export class AddPostComponent implements OnInit {
       bounds: [],
       strictBounds: true,
     };
-    this.loadOldData();
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -110,76 +109,6 @@ export class AddPostComponent implements OnInit {
     } else {
       return false
     }
-  }
-  loadOldData() {
-    if (localStorage.getItem("propertyData")) {
-      this.showMap = true;
-      this.oldData = localStorage.getItem("propertyData");
-      this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.patchValue({
-        address: this.oldData.PropertyAddress
-      })
-      let a: any = setInterval(() => {
-        if (this.country.length > 0) {
-          $(".country-item-" + this.oldData.CountryId).attr("selected", "selected");
-          $(".country-select").select2();
-          clearInterval(a);
-        }
-      }, 100)
-      this.countryId = this.oldData.CountryId;
-      this.cityId = this.oldData.CityId;
-      this.districtId = this.oldData.DistrictId
-      this.service.LoadCities(this.countryId).subscribe(e => {
-        let temp: any = e;
-        if (temp.message == "City list fetched successfully") {
-          for (let city of temp.data) {
-            this.city.push({ viewValue: city.name, value: city.id });
-          }
-          let interval: any = setInterval(() => {
-            if (this.country.length > 0) {
-              $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
-              $(".city-select").select2();
-              clearInterval(interval);
-            }
-          }, 100)
-          let id = this.cityId;
-          let a = this.city.filter(function (c: any) {
-            return c.value == id;
-          });
-          this.service.LoadDistrict(this.cityId).subscribe(e => {
-            let temp: any = e;
-            if (temp.message == "District list fetched successfully") {
-              for (let district of temp.data) {
-                this.district.push({ viewValue: district.name, value: district.id });
-              }
-              this.showLoader = false;
-              let interval: any = setInterval(() => {
-                if (this.country.length > 0) {
-                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
-                  $(".district-select").select2();
-                  $(".country-select").on("change", () => {
-                    this.onCountrySelect($(".country-select").val());
-                  });
-                  $(".city-select").on("change", () => {
-                    this.onCitySelect($(".city-select").val());
-                  });
-                  $(".district-select").on("change", () => {
-                    this.onDistrictSelect($(".district-select").val());
-                  });
-                  clearInterval(interval);
-                }
-              }, 100);
-            }
-          });
-        }
-      });
-    }
-  }
-  changeInfo() {
-    $("#searchLocation").focus();
-    let temp: any = $("#searchLocation").offset();
-    temp = temp.top;
-    $(window).scrollTop(temp - 200);
   }
   loadCountriesData() {
     this.showLoader = true;
@@ -301,27 +230,13 @@ export class AddPostComponent implements OnInit {
       this.showError = true;
       return;
     }
-
-    let tempPackage: any = localStorage.getItem("seletedPackage");
-    tempPackage = JSON.parse(tempPackage);
-    this.data.PackageId = tempPackage.id;
-    this.data.CountryId = this.countryId;
-    this.data.CityId = this.cityId;
-    this.data.DistrictId = this.districtId;
-    let temp: any = document.getElementById("searchLocation");
-    this.data.PropertyAddress = temp.value;
-    this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
-    this.data.PropertyLat = localStorage.getItem("lat");
-    this.data.PropertyLong = localStorage.getItem("lng");
-    localStorage.setItem('propertyData', JSON.stringify(this.data))
-    this.route.navigate(['/add-property/listpropertyinfo'])
+    this.route.navigate(["/classified/car-ad-details"]);
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
   }
