@@ -55,7 +55,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.residentialLabel = this.Rent;
     this.showLoader = true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
-      console.log(response.data);
       this.SetResidentialSlideData(response.data);
       this.showLoader = false;
     }, err => {
