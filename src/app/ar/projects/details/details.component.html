@@ -1,432 +1,1099 @@
 <app-header></app-header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
-    <section [ngClass]="'property-listing-inner-wrapper'">
-        <div [ngClass]="'container_1280px'">
-            <div ngClass="property-details-header">
-                <div ngClass="d-flex justify-content-spacebw">
-                    <div ngClass="black-text-breadcrumb">
-                        <app-breadcrumbs></app-breadcrumbs>
-                        <a class="back-to-text cursor-pointer" (click)="goBack()">
-                            <mat-icon>keyboard_arrow_left</mat-icon> Back to Search
-                        </a>
-                    </div>
-                    <div ngClass="last-updated-details">
-                        <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
-                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
-                    </div>
-                </div>
-            </div>
-            <div ngClass="property-price-buttons-sec">
-                <div ngClass="row">
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice | number}}
-                                {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyDetailData.rentType}}</small></h4>
-                            <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice | number}}
-                                    {{propertyDetailData.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice | number}} {{propertyDetailData.currency}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-5 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-name_detals">
-                            <h4>{{propertyDetailData.buildingName}}</h4>
-                            <div ngClass="property-addresss">
-                                <p><img src="{{homelocationsvg}}"> {{propertyDetailData.propertyAddress}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-action_detals text-right">
-                            <div ngClass="pro-contact-details">
-                                <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
-                                            src="{{dots}}"></button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                        <h5>Share with:</h5>
-                                        <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
-                                                ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
-                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsApp</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
-                                                ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
-                                (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
-                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                                Lisitng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div ngClass="property-gallery-main-sec">
-                <div ngClass="property-gallery-main-slider">
-                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-                </div>
-            </div>
-            <div ngClass="property-tabs-content">
-                <div ngClass="row">
-                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                        <div ngClass="blogs-link-list">
-                            <ul ngClass="list-unstyled d-flex justify-content-start">
-                                <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
-                                        (click)="scroll(keyHighligh)">Key Highlights</a></li>
-                                <li [ngClass]="status1 ? 'tactive' : 'thide'" (click)="PropertyInfo()"><a
-                                        (click)="scroll(propertyInfo)">Property Info</a></li>
-                                <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="Amenities()"><a
-                                        (click)="scroll(amentieScroll)">Amenities</a></li>
-                                <li [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
-                                        (click)="scroll(priceScroll)">Price Trends</a></li>
-                                <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
-                                        (click)="scroll(locationScroll)">Location</a></li>
-                            </ul>
-                        </div>
-                        <div class="key_highlight mt-5" #keyHighligh>
-                            <div ngClass="tabs-heading-div">
-                                <h5>Key Highlights</h5>
-                            </div>
-                            <div ngClass="topkey-highlights">
-                                <h6>{{propertyDetailData.typeDescription}}</h6>
-                                <div ngClass="property-details-highlights">
-                                    <span ngClass="bed" *ngIf="propertyDetailData.bedrooms != 0">
-                                        <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
-                                    </span>
-                                    <span ngClass="bath" *ngIf="propertyDetailData.bathrooms != 0">
-                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
-                                    </span>
-                                    <span ngClass="area">
-                                        <img src="{{squaremetersvg}}"
-                                            alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
-                                    </span>
-                                    <span ngClass="furnishing">
-                                        <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
-                                    </span>
-                                </div>
-                            </div>
-                            <div ngClass="key-tags">
-                                <span *ngFor="let data of propertyDetailData.propertyFeatures">
-                                    {{data.propertyFeature.featureName}}
-                                </span>
-                            </div>
-                            <div ngClass="description-block-design">
-                                <h4>Property Description</h4>
-                                <p>{{propertyDetailData.propertyDescription}}</p>
-                            </div>
-                        </div>
-                        <div class="Pro-perty_info mt-5" #propertyInfo>
-                            <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
-                                <div ngClass="tabs-heading-div">
-                                    <h5>Property Info</h5>
-                                </div>
-                                <div ngClass="ov-verified">
-                                    <p><img src="{{ovverified}}"> OV-Verified</p>
-                                </div>
-                            </div>
-                            <div ngClass="property_infor-div-sec">
-                                <div ngClass="property_info-row">
-                                    <div ngClass="row">
-                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
-                                            *ngFor="let pro of propertyinfo">
-                                            <div ngClass="property_info-text" *ngIf="pro.show">
-                                                <p>{{pro.label}}</p>
-                                                <h6>{{pro.value}}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="amenties_properties-wrapper mt-5" #amentieScroll>
-                            <div ngClass="tabs-heading-div">
-                                <h5>Amenities</h5>
-                            </div>
-                            <div ngClass="amenties_infor-div-sec">
-                                <div ngClass="amenties_info-row">
-                                    <div ngClass="row">
-                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
-                                            *ngFor="let amenities of propertyDetailData.propertyFeatures">
-                                            <div ngClass="amenties_info-text">
-                                                <img height="40px" width="40px"
-                                                    src="{{baseUrl+amenities.propertyFeature.document.fileUrl}}">
-                                                <p>{{amenities.propertyFeature.featureName}}</p>
-                                                <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="price-trens_wrapper-wrapper mt-5" #priceScroll>
-                            <div ngClass="tabs-heading-div">
-                                <h5>Rental Price Trends</h5>
-                            </div>
-                            <div ngClass="price_trend-texts">
-                                <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass="">
-                                        <mat-icon>trending_up</mat-icon>
-                                    </span> 40%</p>
-                            </div>
-                            <!-- <div ngClass="price-chart-trends">
-                                <canvas baseChart width="400" height="400" [type]="'line'"
-                                        [data]="lineChartData" [options]="lineChartOptions" [legend]="false">
-                                </canvas>
-                            </div> -->
-                            <div ngClass="property_like-dislikes">
-                                <div ngClass="row">
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                        <div ngClass="like-dislike-box-wrap position-relative">
-                                            <h4><strong>This Property cost 186% more</strong> then the average
-                                            </h4>
-                                            <p>Average Rent is <strong>280, 00 AED/year</strong></p>
-                                            <span ngClass="dislike-icon">
-                                                <mat-icon>thumb_down</mat-icon>
-                                            </span>
-                                            <span ngClass="home_icon">
-                                                <mat-icon>home</mat-icon>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                        <div ngClass="like-dislike-box-wrap position-relative">
-                                            <h4><strong>This Property is 24% bigger</strong> then the average
-                                            </h4>
-                                            <p>Average Size is <strong>2,047 sqft</strong></p>
-                                            <span ngClass="like-icon">
-                                                <mat-icon>thumb_up</mat-icon>
-                                            </span>
-                                            <span ngClass="home_icon">
-                                                <mat-icon>home</mat-icon>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div ngClass="col-sm-12">
-                                        <p ngClass="price-trent_desc-info">The data displayed is based on the
-                                            average price and size of all listing that were live in the Ovaluate
-                                            in Dubai</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="locarions_wrapper mt-5" #locationScroll>
-                            <div ngClass="tabs-heading-div">
-                                <h5>Location</h5>
-                            </div>
-                            <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px;">
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-owner-details">
-                            <div ngClass="property-listed-by">
-                                <h4>Property Listed by</h4>
-                                <img src="{{propertylistedbrand}}">
-                            </div>
-                            <div ngClass="property-listed-by-details d-flex">
-                                <div ngClass="property-listedby-img position-relative">
-                                    <div ngClass="white-circle-outline">
-                                        <img src="{{propertyDetailData.userImageUrl}}">
-                                    </div>
-                                    <button ngClass="agent-or-owner-btn">Agent</button>
-                                </div>
-                                <div ngClass="property-listedby-cntnt">
-                                    <h5 ngClass="propertier-name">{{propertyDetailData.userfullName}}</h5>
-                                    <p ngClass="propertier-type">Sales Director</p>
-                                    <p ngClass="properties-name">
-                                        Better Homes Properties
-                                    </p>
-                                    <p ngClass="rera"> RERA# 11899</p>
-                                    <p ngClass="permit">Permit# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
-                                        *ngIf="userData != ''">47 - Active Properties Listed</a>
-                                </div>
-                            </div>
-                            <div ngClass="contact-propertier-form">
-                                <form [formGroup]="SubmitForm">
-                                    <div ngClass="form-grouph input-design white-input-design">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Name</mat-label>
-                                            <input type="text" formControlName="name" matInput
-                                                placeholder="Name">
-                                        </mat-form-field>
-                                        <p style="color: red" *ngIf="nameError !=''">{{nameError}}</p>
-                                    </div>
-                                    <div ngClass="form-grouph input-design white-input-design">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Email</mat-label>
-                                            <input type="email" formControlName="email" matInput
-                                                placeholder="Email">
-                                        </mat-form-field>
-                                        <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
-                                    </div>
+    <div class="tilal-ghaf-villas-section">
+		<div class="container">
+			<h1 class="main-title">Tilal Al Ghaf Villas Dubai for sale by Majid Al Futtaim.</h1>
+		</div>
+		<div class="hiro-bg-section">
+			<img src="/assets/images/projectDetails/hiro-bg-img.jpg" alt="Background images">
+		</div>
+		<!-- -Starting price-- -->
+		<div class="startingPrice-section">
+			<div class="container">
+				<h2 class="subTitle">
+					Starting price <br>
+					AED 1.4M
+				</h2>
+				<div class="row">
+					<div class="col-lg-8 col-md-7 col-sm-8">
+						<div class="starting-text-box d-flex align-items-center flex-wrap">
+							<div class="price-inner-box">
+								<svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM224 32c52.94 0 96 43.06 96 96c0 52.93-43.06 96-96 96S128 180.9 128 128C128 75.06 171.1 32 224 32zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM413.3 480H34.66C33.2 480 32 478.8 32 477.3C32 399.4 95.4 336 173.3 336h101.3C352.6 336 416 399.4 416 477.3C416 478.8 414.8 480 413.3 480z"></path></svg>
+								<div class="highlight-option">
+									<h5>Majid Al Futtaim</h5>
+									<span class="label">Developer</span>
+								</div>
+							</div>
+							<div class="price-inner-box">
+								<svg class="svg-inline--fa fa-key" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M344 144C344 130.7 354.7 120 368 120C381.3 120 392 130.7 392 144C392 157.3 381.3 168 368 168C354.7 168 344 157.3 344 144zM336 352C326.5 352 317.2 351.3 308.1 349.8L280.1 376.1C276.5 381.5 270.4 384 264 384H224V424C224 437.3 213.3 448 200 448H160V488C160 501.3 149.3 512 136 512H24C10.75 512 0 501.3 0 488V392C0 385.6 2.529 379.5 7.029 375L164.9 217.2C161.7 203.1 160 190.2 160 176C160 78.8 238.8 0 336 0C433.2 0 512 78.8 512 176C512 273.2 433.2 352 336 352zM336 320C415.5 320 480 255.5 480 176C480 96.47 415.5 32 336 32C256.5 32 192 96.47 192 176C192 187.7 193.4 198.1 195.1 209.7L200.1 227.2L32 395.3V480H128V416H192V352H260.7L297 315.6L313.2 318.2C320.6 319.4 328.2 320 336 320V320z"></path></svg>
+								<div class="highlight-option">
+									<h5>Q3-2021</h5>
+									<span class="label">Completion date</span>
+								</div>
+							</div>
+							<div class="price-inner-box">
+								<svg class="svg-inline--fa fa-gem" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M509.1 198.8l-112-160C394.1 34.55 389.2 32 384 32H127.1C122.8 32 117.9 34.55 114.9 38.83l-112 160c-4.344 6.203-3.75 14.59 1.406 20.11l240 256C247.4 478.2 251.6 480 256 480s8.635-1.828 11.67-5.062l240-256C512.9 213.4 513.4 205 509.1 198.8zM383.4 75.13L465.3 192h-170.9L383.4 75.13zM256 189.6L160.3 64h191.4L256 189.6zM128.6 75.13L217.6 192H46.73L128.6 75.13zM256 440.6L52.93 224h406.1L256 440.6z"></path></svg>
+								<div class="highlight-option">
+									<h5>Luxury</h5>
+									<span class="label">Lifestyle</span>
+								</div>
+							</div>
+							<div class="price-inner-box">
+								<svg class="svg-inline--fa fa-calendar-circle-user" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="calendar-circle-user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M112 0C120.8 0 128 7.164 128 16V64H320V16C320 7.164 327.2 0 336 0C344.8 0 352 7.164 352 16V64H384C419.3 64 448 92.65 448 128V192H32V448C32 465.7 46.33 480 64 480H296.2C306.3 492.1 317.9 502.9 330.8 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H96V16C96 7.164 103.2 0 112 0zM384 96H64C46.33 96 32 110.3 32 128V160H416V128C416 110.3 401.7 96 384 96zM488 344C488 374.9 462.9 400 432 400C401.1 400 376 374.9 376 344C376 313.1 401.1 288 432 288C462.9 288 488 313.1 488 344zM432 320C418.7 320 408 330.7 408 344C408 357.3 418.7 368 432 368C445.3 368 456 357.3 456 344C456 330.7 445.3 320 432 320zM288 368C288 288.5 352.5 224 432 224C511.5 224 576 288.5 576 368C576 447.5 511.5 512 432 512C352.5 512 288 447.5 288 368zM432 480C454.1 480 474.7 473.6 491.1 462.6C484.1 453.5 472.6 448 460.2 448H403.8C391.4 448 379.9 453.5 372 462.6C389.3 473.6 409.9 480 432 480H432zM460.2 416C482.1 416 502.4 425.6 516.3 441.8C533.5 422.1 544 396.2 544 368C544 306.1 493.9 256 432 256C370.1 256 320 306.1 320 368C320 396.2 330.5 422.1 347.7 441.8C361.6 425.6 381.9 416 403.8 416H460.2z"></path></svg>
+								<div class="highlight-option">
+									<h5>Freehold </h5>
+									<span class="label">Title type</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-5 col-sm-4">
+						<div class="brochure-img position-relative">
+							<img src="/assets/images/projectDetails/brochure.png" alt="Brochure image">
+							<div class="brochure-button">
+								<a href="javascript:void(0);"><svg class="svg-inline--fa fa-download" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z"></path></svg></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        		<!-- ---Tilal Al Ghaf Villas location-- -->
+		<div class="tilal-al-ghaf-villas-location">
+			<div class="container">
+				<a href="javascript:void(0);">
+					<h2 class="subTitle color">
+						Tilal Al Ghaf Villas <br>
+						Location.
+					</h2>
+				</a>
+				<div class="map-boxs">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57841.094732691534!2d55.21756!3d25.031752!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe1865a15562a0f75!2sDubai%20Sports%20City!5e0!3m2!1sen!2sus!4v1671194690297!5m2!1sen!2sus"
+						style="border:0;" allowfullscreen="" loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</div>
+		</div>
+		<!-- ---Tilal Al Ghaf Villas-Payment plans.- -->
+		<div class="tilal-al-ghaf-villas-payment">
+			<div class="container">
+				<h2 class="subTitle ">
+					Tilal Al Ghaf Villas<br>
+					Payment plans.
+				</h2>
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-4">
+						<div class="t-card">
+							<div class="t-card-body">
+								<div class="t-card-icons">
+									<svg class="svg-inline--fa fa-power-off" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="power-off" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M272 272C272 280.8 264.8 288 256 288C247.2 288 240 280.8 240 272V16C240 7.164 247.2 0 256 0C264.8 0 272 7.164 272 16V272zM56 256C56 366.5 145.5 456 256 456C366.5 456 456 366.5 456 256C456 178.6 412.1 111.5 347.7 78.21C339.9 74.16 336.8 64.5 340.8 56.65C344.9 48.8 354.6 45.73 362.4 49.79C436.1 88.34 488 166.2 488 256C488 384.1 384.1 488 256 488C127.9 488 24 384.1 24 256C24 166.2 75.03 88.34 149.6 49.79C157.4 45.73 167.1 48.8 171.2 56.65C175.2 64.5 172.1 74.16 164.3 78.21C99.94 111.5 56 178.6 56 256V256z"></path></svg>
+								</div>
+								<div class="t-card-title">
+									<h4>10%</h4>
+									<span class="d-block">First Installment</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-4">
+						<div class="t-card">
+							<div class="t-card-body">
+								<div class="t-card-icons">
+									<svg class="svg-inline--fa fa-gear" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="gear" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M168 255.1C168 207.4 207.4 167.1 256 167.1C304.6 167.1 344 207.4 344 255.1C344 304.6 304.6 344 256 344C207.4 344 168 304.6 168 255.1zM256 199.1C225.1 199.1 200 225.1 200 255.1C200 286.9 225.1 311.1 256 311.1C286.9 311.1 312 286.9 312 255.1C312 225.1 286.9 199.1 256 199.1zM65.67 230.6L25.34 193.8C14.22 183.7 11.66 167.2 19.18 154.2L49.42 101.8C56.94 88.78 72.51 82.75 86.84 87.32L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L194.5 25.16C197.7 10.47 210.7 0 225.8 0H286.2C301.3 0 314.3 10.47 317.5 25.16L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L425.2 87.32C439.5 82.75 455.1 88.78 462.6 101.8L492.8 154.2C500.3 167.2 497.8 183.7 486.7 193.8L446.3 230.6C447.4 238.9 448 247.4 448 255.1C448 264.6 447.4 273.1 446.3 281.4L486.7 318.2C497.8 328.3 500.3 344.8 492.8 357.8L462.6 410.2C455.1 423.2 439.5 429.2 425.2 424.7L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L317.5 486.8C314.3 501.5 301.3 512 286.2 512H225.8C210.7 512 197.7 501.5 194.5 486.8L182.8 433.6C167 427 152.2 418.4 138.8 408.1L86.84 424.7C72.51 429.2 56.94 423.2 49.42 410.2L19.18 357.8C11.66 344.8 14.22 328.3 25.34 318.2L65.67 281.4C64.57 273.1 64 264.6 64 255.1C64 247.4 64.57 238.9 65.67 230.6V230.6zM158.4 129.2L145.1 139.5L77.13 117.8L46.89 170.2L99.58 218.2L97.39 234.8C96.47 241.7 96 248.8 96 255.1C96 263.2 96.47 270.3 97.39 277.2L99.58 293.8L46.89 341.8L77.13 394.2L145.1 372.5L158.4 382.8C169.5 391.4 181.9 398.6 195 403.1L210.5 410.4L225.8 480H286.2L301.5 410.4L316.1 403.1C330.1 398.6 342.5 391.4 353.6 382.8L366.9 372.5L434.9 394.2L465.1 341.8L412.4 293.8L414.6 277.2C415.5 270.3 416 263.2 416 256C416 248.8 415.5 241.7 414.6 234.8L412.4 218.2L465.1 170.2L434.9 117.8L366.9 139.5L353.6 129.2C342.5 120.6 330.1 113.4 316.1 108L301.5 101.6L286.2 32H225.8L210.5 101.6L195 108C181.9 113.4 169.5 120.6 158.4 129.2H158.4z"></path></svg>
+								</div>
+								<div class="t-card-title">
+									<h4>45%</h4>
+									<span class="d-block">Under Construction</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-4">
+						<div class="t-card">
+							<div class="t-card-body">
+								<div class="t-card-icons">
+									<svg class="svg-inline--fa fa-key" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M344 144C344 130.7 354.7 120 368 120C381.3 120 392 130.7 392 144C392 157.3 381.3 168 368 168C354.7 168 344 157.3 344 144zM336 352C326.5 352 317.2 351.3 308.1 349.8L280.1 376.1C276.5 381.5 270.4 384 264 384H224V424C224 437.3 213.3 448 200 448H160V488C160 501.3 149.3 512 136 512H24C10.75 512 0 501.3 0 488V392C0 385.6 2.529 379.5 7.029 375L164.9 217.2C161.7 203.1 160 190.2 160 176C160 78.8 238.8 0 336 0C433.2 0 512 78.8 512 176C512 273.2 433.2 352 336 352zM336 320C415.5 320 480 255.5 480 176C480 96.47 415.5 32 336 32C256.5 32 192 96.47 192 176C192 187.7 193.4 198.1 195.1 209.7L200.1 227.2L32 395.3V480H128V416H192V352H260.7L297 315.6L313.2 318.2C320.6 319.4 328.2 320 336 320V320z"></path></svg>
+								</div>
+								<div class="t-card-title">
+									<h4>5%</h4>
+									<span class="d-block">On Handover</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-12">
+						<div class="t-card">
+							<div class="t-card-body">
+								<div class="t-card-icons">
+									<svg class="svg-inline--fa fa-handshake" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="handshake" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M640 400c0 8.844-7.156 16-16 16H576c-20.83 0-38.43-13.42-45.05-32h-31.68c-1.695 4.467-3.529 8.932-6.689 12.84l-9.094 11.25c-14 17.34-38.19 21.88-57.41 11.97l-20.27 24.97c-18.03 21.97-50.47 25.25-72.31 7.406l-6.094-5.281c-11.14 9-25.12 14.88-40.23 16.44C284.5 463.9 281.8 464 279.1 464c-17.58 0-34.48-6-48.33-17.25L149.5 384H109.1C102.4 402.6 84.83 416 64 416H32c-8.844 0-16-7.156-16-16S23.16 384 32 384l32-.0606c8.828 0 16-7.127 16-15.94V160h-64C7.156 160 0 152.8 0 144S7.156 128 16 128h114.9c33.55-33.2 76.95-55.11 122.8-61.77c8.781-1.391 16.86 4.781 18.12 13.53C273.1 88.5 267 96.63 258.3 97.89C217.4 103.8 178.7 124.1 149.3 154.9L144.6 159.8L112 160v192h48.39l90.3 69.69c9.625 7.781 21.22 11.25 33.2 10.06c11.88-1.219 22.56-7 30.09-16.28l10.55-10.53l12.62 8.312L354.1 428c7.844 6.406 20.09 5.094 26.89-3.188l40-49.25l17.56 14.72c5.953 4.719 15.09 3.844 20.03-2.312l9.094-11.25c4.953-6.125 4.016-15.19-2.109-20.19l-108.5-88.11c-6.859-5.578-7.891-15.66-2.328-22.52c5.547-6.844 15.62-7.906 22.52-2.328l108.5 88.14c6.725 5.471 10.75 12.67 13.52 20.28H528V160h-32.31l-4.703-4.797C454.1 117.6 404.7 96 355.6 96h-8.172c-3.562 0-6.953 1.359-9.766 3.922L244.4 187.2C234.3 196.9 235.8 211.1 243.1 219.2C245.6 221.9 251.9 226.1 259.2 226.5c5.125 .0938 10.11-1.609 14.62-5.703l.6406 .7031C282.7 212.4 302.5 194 350.1 149.8c6.469-5.984 16.58-5.656 22.61 .8281c6.016 6.469 5.641 16.59-.8281 22.61L295.4 244.4C285.3 253.6 273.1 258.5 260.2 258.5c-.8594 0-1.719-.0313-2.594-.0625C240.5 257.6 226.6 248.7 219.4 240.6c-19.7-21.69-18.88-54.53 1.734-75.39L221.5 164.8l94.47-88.34C324.8 68.36 335.9 64 347.4 64h8.172c55.52 0 111 23.25 153.4 64H624C632.8 128 640 135.2 640 144S632.8 160 624 160h-64v208c0 8.812 7.17 16.01 15.1 16.01L624 384C632.8 384 640 391.2 640 400z"></path></svg>
+								</div>
+								<div class="t-card-title">
+									<h4>40%</h4>
+									<span class="d-block">Post Handover</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tilal-al-wrapper d-flex align-items-center justify-content-between">
+					<div class="t-mediaList-item d-flex align-items-center ">
+						<div class="t-MediaList-icon d-flex align-items-center justify-content-center">
+							<svg class="svg-inline--fa fa-circle-dollar" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-dollar" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M272 143C285.5 144 298.6 147.7 311.6 151.3C313.2 151.7 314.7 152.1 316.2 152.6C324.8 154.9 329.8 163.8 327.4 172.3C325.1 180.8 316.2 185.8 307.7 183.4C305.3 182.8 302.9 182.1 300.5 181.4C292.1 179.2 285.4 176.1 277.7 175.8C258.5 173 241 175.5 228.4 180.9C215.5 186.5 209.8 194 208.6 200.4C206.8 210.1 210.7 216.9 218.8 222.1C229.5 228.9 245.3 233.4 264.7 238.9L264.9 238.1C282.7 244 303.8 250 319.3 260.6C338.3 273.7 347 294.5 342.9 317.2C338.9 338.8 323.9 353.2 305 360.8C295.1 364.8 283.9 367.1 272 367.8L272 392C272 400.8 264.8 408 256 408C247.2 408 240 400.8 240 392L240 366.1C231.9 364.9 218.2 360.9 207.6 357.7C200.7 355.6 193.8 353.4 186.1 351.2C178.6 348.4 174 339.4 176.8 330.1C179.6 322.6 188.6 318 197 320.8C203.6 322.1 210.3 325.1 216.9 327.1C228.2 330.5 239.6 333.7 245 334.5C264.8 337.5 281.5 335.8 293.1 331.2C304.2 326.7 309.8 319.9 311.4 311.4C313.3 300.9 309.9 293 301.2 287C289.2 278.8 274.4 274.8 260.2 270.9C257.9 270.2 255.6 269.6 253.3 268.1C236.2 264.1 216.3 258.5 201.6 249C193.5 243.9 185.9 236.9 181.1 227.4C176.2 217.6 174.9 206.6 177.1 194.6C180.9 173.9 197.2 159.5 215.7 151.5C223.2 148.3 231.3 145.9 239.1 144.5V120C239.1 111.2 247.2 104 255.1 104C264.8 104 272 111.2 272 120V143zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+							<div class="sub-icons">
+								<svg class="svg-inline--fa fa-circle-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z"></path></svg>
+							</div>
+						</div>
+						<div class="t-mediaList-title">
+							<span>No commission</span>
+						</div>
+					</div>
+					<div class="t-mediaList-item d-flex align-items-center ">
+						<div class="t-MediaList-icon d-flex align-items-center justify-content-center">
+							<svg class="svg-inline--fa fa-thumbs-up" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M88 192h-48C17.94 192 0 209.9 0 232v208C0 462.1 17.94 480 40 480h48C110.1 480 128 462.1 128 440v-208C128 209.9 110.1 192 88 192zM96 440C96 444.4 92.41 448 88 448h-48C35.59 448 32 444.4 32 440v-208C32 227.6 35.59 224 40 224h48C92.41 224 96 227.6 96 232V440zM512 221.5C512 187.6 484.4 160 450.5 160h-102.5c11.98-27.06 18.83-53.48 18.83-67.33C366.9 62.84 343.6 32 304.9 32c-41.22 0-50.7 29.11-59.12 54.81C218.1 171.1 160 184.8 160 208C160 217.1 167.5 224 176 224C180.1 224 184.2 222.4 187.3 219.3c52.68-53.04 67.02-56.11 88.81-122.5C285.3 68.95 288.2 64 304.9 64c20.66 0 29.94 16.77 29.94 28.67c0 10.09-8.891 43.95-26.62 75.48c-1.366 2.432-2.046 5.131-2.046 7.83C306.2 185.5 314 192 322.2 192h128.3C466.8 192 480 205.2 480 221.5c0 15.33-12.08 28.16-27.48 29.2c-8.462 .5813-14.91 7.649-14.91 15.96c0 12.19 12.06 12.86 12.06 30.63c0 14.14-10.11 26.3-24.03 28.89c-5.778 1.082-13.06 6.417-13.06 15.75c0 8.886 6.765 10.72 6.765 23.56c0 31.02-31.51 22.12-31.51 43.05c0 3.526 1.185 5.13 1.185 10.01C389 434.8 375.8 448 359.5 448H303.9c-82.01 0-108.3-64.02-127.9-64.02c-8.873 0-16 7.193-16 15.96C159.1 416.3 224.6 480 303.9 480h55.63c33.91 0 61.5-27.58 61.5-61.47c18.55-10.86 30.33-31 30.33-53.06c0-4.797-.5938-9.594-1.734-14.27c19.31-10.52 32.06-30.97 32.06-53.94c0-7.219-1.281-14.31-3.75-20.98C498.2 266.2 512 245.3 512 221.5z"></path></svg>
+							<div class="sub-icons">
+								<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM371.8 211.8C382.7 200.9 382.7 183.1 371.8 172.2C360.9 161.3 343.1 161.3 332.2 172.2L224 280.4L179.8 236.2C168.9 225.3 151.1 225.3 140.2 236.2C129.3 247.1 129.3 264.9 140.2 275.8L204.2 339.8C215.1 350.7 232.9 350.7 243.8 339.8L371.8 211.8z"></path></svg>
+							</div>
+						</div>
+						<div class="t-mediaList-title">
+							<span>Direct sales</span>
+						</div>
+					</div>
+					<div class="t-mediaList-item d-flex align-items-center ">
+						<div class="t-MediaList-icon d-flex align-items-center justify-content-center">
+							<svg class="svg-inline--fa fa-shield" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="shield" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M231 7.838C247 1.065 265.1 1.066 281 7.84L457.7 82.79C479.7 92.12 496.2 113.8 496 139.1C495.5 239.2 454.7 420.7 282.4 503.2C265.7 511.1 246.3 511.1 229.6 503.2C57.26 420.7 16.49 239.2 16 139.1C15.87 113.8 32.32 92.12 54.3 82.79L231 7.838zM268.5 37.3C260.5 33.91 251.5 33.91 243.5 37.3L66.79 112.3C55.51 117 47.94 127.7 48 139.8C48.46 233.8 87.33 399.6 243.4 474.3C251.4 478.1 260.6 478.1 268.6 474.3C424.7 399.6 463.6 233.8 464 139.8C464.1 127.7 456.5 117 445.2 112.3L268.5 37.3z"></path></svg>
+							<div class="sub-icons">
+								<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM371.8 211.8C382.7 200.9 382.7 183.1 371.8 172.2C360.9 161.3 343.1 161.3 332.2 172.2L224 280.4L179.8 236.2C168.9 225.3 151.1 225.3 140.2 236.2C129.3 247.1 129.3 264.9 140.2 275.8L204.2 339.8C215.1 350.7 232.9 350.7 243.8 339.8L371.8 211.8z"></path></svg>
+							</div>
+						</div>
+						<div class="t-mediaList-title">
+							<span>Trusted & simple</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        		<!-- ---wizard- -->
+		<div class="wizard-section-steps">
+			<div class="container">
+				<div class="wizard-steps">
+					<mat-stepper labelPosition="bottom" #stepper>
+						<mat-step [stepControl]="firstFormGroup">
+						  <form [formGroup]="firstFormGroup">
+							<ng-template matStepLabel></ng-template>
+							<div class="step-box">
+							<h3>I am interested to</h3>
+							<div class="d-flex align-items-center justify-content-between wizard-data-info">
+								<div class="main-interested-box">
+									<input type="radio" name="intersetedCheck" checked>
+									<div class="interested-box">
+										<svg class="svg-inline--fa fa-house-person-leave" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="house-person-leave" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M340.7 107.3c6.477-6.479 6.186-17.07-.6406-23.18L250.5 4.031c-6-5.25-15-5.25-21 0l-223.1 196c-6.625 5.875-7.375 15.88-1.5 22.62c5.75 6.625 15.88 7.25 22.5 1.5l37.5-32.88l.0098 176.7c0 26.51 21.49 48 47.1 48l176.1 .0156c8.814 0 15.96-7.145 15.96-15.96s-7.146-16.04-15.96-16.04H111.1c-8.836 0-16-7.162-15.1-16L95.1 163.4l143.1-126.1l78.73 70.66C325 113.6 334.7 113.3 340.7 107.3zM181.3 160c-11.88 0-21.38 9.625-21.38 21.38v85.25c0 11.75 9.625 21.38 21.38 21.38h85.25c11.75 0 21.38-9.5 21.38-21.38V181.4c0-11.88-9.625-21.38-21.38-21.38H181.3zM255.1 256h-64v-64h64V256zM437.5 352.1c-8.281-3.031-17.47 1.188-20.55 9.484l-21.87 59.41l-69.75 62.19c-6.607 5.875-7.186 15.98-1.297 22.58C327.2 510.2 331.6 512 336 512c3.797 0 7.594-1.344 10.64-4.062l72.73-64.84c1.969-1.734 3.469-3.938 4.375-6.406l23.27-63.16C450.1 365.2 445.8 356 437.5 352.1zM633.6 275.2L575.1 232V201.6c0-31.64-23.62-58.89-54.95-63.36l-46.37-6.625c-18.78-2.656-37.94-.3594-55.5 6.656l-26.72 10.69c-23.8 9.516-41.7 30.03-47.91 54.89l-8.062 32.25c-2.156 8.562 3.062 17.25 11.64 19.39c8.5 2.078 17.23-3.062 19.39-11.64l8.062-32.25c3.734-14.91 14.48-27.22 28.75-32.92l26.72-10.69c4.969-1.988 10.21-3.051 15.45-3.963l-20.16 80.54c-7.484 30.03 3.188 62.02 27.2 81.52l79.12 64.23c2.797 2.266 4.75 5.453 5.531 8.953l22.17 100.2C562 506.9 568.6 512 575.1 512c1.141 0 2.312-.125 3.469-.375c8.641-1.906 14.08-10.45 12.17-19.08l-22.17-100.2c-2.344-10.55-8.25-20.09-16.62-26.88l-79.11-64.23c-14.41-11.7-20.81-30.91-16.33-48.92l21.93-87.7l37.19 5.312c15.67 2.234 27.48 15.84 27.48 31.67V240c0 5.031 2.375 9.781 6.406 12.8l63.1 48C617.3 302.1 620.6 304 623.1 304c4.875 0 9.672-2.203 12.81-6.406C642.1 290.5 640.7 280.5 633.6 275.2zM535.1 112c30.88 0 56-25.12 56-56S566.9 0 535.1 0S480 25.12 480 56S505.1 112 535.1 112zM535.1 32c13.23 0 24 10.77 24 24s-10.77 24-24 24s-24-10.77-24-24S522.8 32 535.1 32z"></path></svg>
+									</div>
+									<span class="d-block">Buy</span>
+								</div>
+								<div class="main-interested-box">
+									<input type="radio" name="intersetedCheck">
+									<div class="interested-box">
+										<svg class="svg-inline--fa fa-house" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M570.6 244C577.2 249.8 577.8 259.1 571.1 266.6C566.2 273.2 556 273.8 549.4 267.1L512 234.1V432C512 476.2 476.2 512 432 512H144C99.82 512 64 476.2 64 432V234.1L26.59 267.1C19.96 273.8 9.849 273.2 4.003 266.6C-1.844 259.1-1.212 249.8 5.414 244L277.4 4.002C283.5-1.334 292.5-1.334 298.6 4.002L570.6 244zM144 480H208V320C208 302.3 222.3 288 240 288H336C353.7 288 368 302.3 368 320V480H432C458.5 480 480 458.5 480 432V206.7L288 37.34L96 206.7V432C96 458.5 117.5 480 144 480zM240 480H336V320H240V480z"></path></svg>
+									</div>
+									<span class="d-block">Sell</span>
+								</div>
+								<div class="main-interested-box">
+									<input type="radio" name="intersetedCheck">
+									<div class="interested-box">
+										<svg class="svg-inline--fa fa-key" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M344 144C344 130.7 354.7 120 368 120C381.3 120 392 130.7 392 144C392 157.3 381.3 168 368 168C354.7 168 344 157.3 344 144zM336 352C326.5 352 317.2 351.3 308.1 349.8L280.1 376.1C276.5 381.5 270.4 384 264 384H224V424C224 437.3 213.3 448 200 448H160V488C160 501.3 149.3 512 136 512H24C10.75 512 0 501.3 0 488V392C0 385.6 2.529 379.5 7.029 375L164.9 217.2C161.7 203.1 160 190.2 160 176C160 78.8 238.8 0 336 0C433.2 0 512 78.8 512 176C512 273.2 433.2 352 336 352zM336 320C415.5 320 480 255.5 480 176C480 96.47 415.5 32 336 32C256.5 32 192 96.47 192 176C192 187.7 193.4 198.1 195.1 209.7L200.1 227.2L32 395.3V480H128V416H192V352H260.7L297 315.6L313.2 318.2C320.6 319.4 328.2 320 336 320V320z"></path></svg>
+									</div>
+									<span class="d-block">Rent</span>
+								</div>
+							</div>
+							<div class="d-flex justify-content-center w-100 wizard-button">
+							  <button mat-button matStepperNext class="next">Continue <svg class="svg-inline--fa fa-share" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="share" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M176 224h275.8l-158.1-131.7c-6.781-5.656-7.688-15.75-2.031-22.53c5.688-6.812 15.78-7.687 22.53-2.031l192 159.1C509.9 230.8 512 235.2 512 239.1c0 4.75-2.094 9.253-5.75 12.28l-192 159.1c-3 2.5-6.625 3.719-10.25 3.719c-4.562 0-9.125-1.969-12.28-5.75c-5.656-6.781-4.75-16.87 2.031-22.53l158.1-131.7H176c-79.41 0-144 64.59-144 143.1v31.1C32 440.8 24.84 448 16 448S0 440.8 0 432v-31.1C0 302.1 78.97 224 176 224z"></path></svg></button>
+							</div>
+							</div>
+						  </form>
+						</mat-step>
+						<mat-step [stepControl]="secondFormGroup" optional>
+						  <form [formGroup]="secondFormGroup">
+							<ng-template matStepLabel></ng-template>
+							<div class="step-box">
+							<h3>I am looking for</h3>
+							<div class="d-flex align-items-center wizard-data-info w-100 justify-content-center flex-column">
+									<div class="d-flex align-items-center  w-100 justify-content-center">
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor" checked>
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-loveseat" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="loveseat" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 224c-35.35 0-64 28.65-64 64H128c0-35.35-28.65-64-64-64S0 252.7 0 288v160c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32h256c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32V288C512 252.7 483.3 224 448 224zM96 448H32V288c0-17.64 14.36-32 32-32s32 14.36 32 32V448zM384 416H128v-96h256V416zM480 448h-64V288c0-17.64 14.36-32 32-32s32 14.36 32 32V448zM80 192C88.84 192 96 184.8 96 176v-32C96 99.88 131.9 64 176 64h160C380.1 64 416 99.88 416 144v32C416 184.8 423.2 192 432 192S448 184.8 448 176v-32C448 82.25 397.8 32 336 32h-160C114.3 32 64 82.25 64 144v32C64 184.8 71.16 192 80 192z"></path></svg>
+											<span class="d-block">Studio</span>
+											</div>
+										</div>
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor">
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+											<span class="d-block">1 Bed</span>
+											</div>
+										</div>
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor">
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+											<span class="d-block">2 Bed</span>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex align-items-center w-100 justify-content-center">
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor">
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-loveseat" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="loveseat" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 224c-35.35 0-64 28.65-64 64H128c0-35.35-28.65-64-64-64S0 252.7 0 288v160c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32h256c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32V288C512 252.7 483.3 224 448 224zM96 448H32V288c0-17.64 14.36-32 32-32s32 14.36 32 32V448zM384 416H128v-96h256V416zM480 448h-64V288c0-17.64 14.36-32 32-32s32 14.36 32 32V448zM80 192C88.84 192 96 184.8 96 176v-32C96 99.88 131.9 64 176 64h160C380.1 64 416 99.88 416 144v32C416 184.8 423.2 192 432 192S448 184.8 448 176v-32C448 82.25 397.8 32 336 32h-160C114.3 32 64 82.25 64 144v32C64 184.8 71.16 192 80 192z"></path></svg>
+											<span class="d-block">3 Bed</span>
+											</div>
+										</div>
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor">
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+											<span class="d-block">4 Bed</span>
+											</div>
+										</div>
+										<div class="main-looking-box-wrap">
+											<input type="radio" name="lookingfor">
+											<div class="main-looking-box">
+											<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+											<span class="d-block">5+ Bed</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							<div class="d-flex justify-content-center w-100 wizard-button">
+							  <button mat-button matStepperNext class="next">Continue <svg class="svg-inline--fa fa-share" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="share" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M176 224h275.8l-158.1-131.7c-6.781-5.656-7.688-15.75-2.031-22.53c5.688-6.812 15.78-7.687 22.53-2.031l192 159.1C509.9 230.8 512 235.2 512 239.1c0 4.75-2.094 9.253-5.75 12.28l-192 159.1c-3 2.5-6.625 3.719-10.25 3.719c-4.562 0-9.125-1.969-12.28-5.75c-5.656-6.781-4.75-16.87 2.031-22.53l158.1-131.7H176c-79.41 0-144 64.59-144 143.1v31.1C32 440.8 24.84 448 16 448S0 440.8 0 432v-31.1C0 302.1 78.97 224 176 224z"></path></svg></button>
+							</div>
+							</div>
+						  </form>
+						</mat-step>
+						<mat-step [stepControl]="thirdFormGroup" optional>
+							<form [formGroup]="thirdFormGroup">
+							  <ng-template matStepLabel></ng-template>
+							  <div class="step-box">
+							  <h3>Price range (AED)</h3>
+							  <div class="d-flex align-items-center wizard-data-info w-100">
+								<div class="price-range w-50 position-relative ms-4">
+									<div class="d-flex align-items-center">
+										<svg class="svg-inline--fa fa-arrow-down-wide-short" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="arrow-down-wide-short" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M368 432h-64c-8.844 0-15.1 7.156-15.1 16S295.2 464 304 464h64c8.844 0 16-7.156 16-16S376.8 432 368 432zM432 304h-128c-8.844 0-15.1 7.156-15.1 16S295.2 336 304 336h128c8.844 0 16-7.156 16-16S440.8 304 432 304zM496 176h-192c-8.844 0-15.1 7.156-15.1 16S295.2 208 304 208h192C504.8 208 512 200.8 512 192S504.8 176 496 176zM560 48h-256c-8.844 0-15.1 7.156-15.1 16S295.2 80 304 80h256C568.8 80 576 72.84 576 64S568.8 48 560 48zM224 352c-4.094 0-8.188 1.562-11.31 4.688L144 425.4V48C144 39.16 136.8 32 128 32S112 39.16 112 48v377.4l-68.69-68.69c-6.25-6.25-16.38-6.25-22.62 0s-6.25 16.38 0 22.62l96 96c6.25 6.25 16.38 6.25 22.62 0l96-96c6.25-6.25 6.25-16.38 0-22.62C232.2 353.6 228.1 352 224 352z"></path></svg>
+										<label for="">Min price</label>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Min price" class="wizard-input">
+										<span class="close-btn"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M315.3 411.3c-6.253 6.253-16.37 6.253-22.63 0L160 278.6l-132.7 132.7c-6.253 6.253-16.37 6.253-22.63 0c-6.253-6.253-6.253-16.37 0-22.63L137.4 256L4.69 123.3c-6.253-6.253-6.253-16.37 0-22.63c6.253-6.253 16.37-6.253 22.63 0L160 233.4l132.7-132.7c6.253-6.253 16.37-6.253 22.63 0c6.253 6.253 6.253 16.37 0 22.63L182.6 256l132.7 132.7C321.6 394.9 321.6 405.1 315.3 411.3z"></path></svg></span>
+									</div>
+								</div>
+								<div class="price-range w-50 position-relative">
+									<div class="d-flex align-items-center">
+										<svg class="svg-inline--fa fa-arrow-up-short-wide" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="arrow-up-short-wide" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M304 336h192c8.844 0 16-7.156 16-16s-7.156-16-16-16h-192c-8.844 0-15.1 7.156-15.1 16S295.2 336 304 336zM304 208h128C440.8 208 448 200.8 448 192s-7.156-16-16-16h-128c-8.844 0-15.1 7.156-15.1 16S295.2 208 304 208zM304 80h64c8.844 0 16-7.156 16-16S376.8 48 368 48h-64c-8.844 0-15.1 7.156-15.1 16S295.2 80 304 80zM560 432h-256c-8.844 0-15.1 7.156-15.1 16S295.2 464 304 464h256c8.844 0 16-7.156 16-16S568.8 432 560 432zM139.3 36.69c-6.25-6.25-16.38-6.25-22.62 0l-96 96c-6.25 6.25-6.25 16.38 0 22.62s16.38 6.25 22.62 0L112 86.63V464c0 8.844 7.157 16 16 16S144 472.8 144 464V86.63l68.69 68.69C215.8 158.4 219.9 160 224 160s8.188-1.562 11.31-4.688c6.25-6.25 6.25-16.38 0-22.62L139.3 36.69z"></path></svg>
+										<label for="">Max price</label>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Max price" class="wizard-input">
+										<span class="close-btn"><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M315.3 411.3c-6.253 6.253-16.37 6.253-22.63 0L160 278.6l-132.7 132.7c-6.253 6.253-16.37 6.253-22.63 0c-6.253-6.253-6.253-16.37 0-22.63L137.4 256L4.69 123.3c-6.253-6.253-6.253-16.37 0-22.63c6.253-6.253 16.37-6.253 22.63 0L160 233.4l132.7-132.7c6.253-6.253 16.37-6.253 22.63 0c6.253 6.253 6.253 16.37 0 22.63L182.6 256l132.7 132.7C321.6 394.9 321.6 405.1 315.3 411.3z"></path></svg></span>
+									</div>
+								</div>
+							</div>
+							  <div class="d-flex justify-content-center w-100 wizard-button">
+								<button mat-button matStepperNext class="next">Continue <svg class="svg-inline--fa fa-share" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="share" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M176 224h275.8l-158.1-131.7c-6.781-5.656-7.688-15.75-2.031-22.53c5.688-6.812 15.78-7.687 22.53-2.031l192 159.1C509.9 230.8 512 235.2 512 239.1c0 4.75-2.094 9.253-5.75 12.28l-192 159.1c-3 2.5-6.625 3.719-10.25 3.719c-4.562 0-9.125-1.969-12.28-5.75c-5.656-6.781-4.75-16.87 2.031-22.53l158.1-131.7H176c-79.41 0-144 64.59-144 143.1v31.1C32 440.8 24.84 448 16 448S0 440.8 0 432v-31.1C0 302.1 78.97 224 176 224z"></path></svg></button>
+							  </div>
+							  </div>
+							</form>
+						  </mat-step>
+						<mat-step>
+							<form [formGroup]="thirdFormGroup">
+								<ng-template matStepLabel></ng-template>
+								<div class="step-box">
+								<h3>Amazing, give us a way to contact you</h3>
+								<div class="d-flex align-items-center wizard-data-info mt-3 mb-3 w-100 flex-column ">
+									<div class="amazing-block w-100">
+										<div class="price-range w-100 position-relative ">
+											<div class="position-relative">
+												<input type="name" placeholder="Name" class="wizard-input mt-0" required>
+												<span class="icons"><svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path></svg></span>
+											</div>
+										</div>
+										<div class="price-range w-100 position-relative ">
+											<div class="position-relative">
+												<input type="email" placeholder="Email" class="wizard-input" required>
+												<span class="icons"><svg class="svg-inline--fa fa-envelope" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 64C490.5 64 512 85.49 512 112C512 127.1 504.9 141.3 492.8 150.4L275.2 313.6C263.8 322.1 248.2 322.1 236.8 313.6L19.2 150.4C7.113 141.3 0 127.1 0 112C0 85.49 21.49 64 48 64H464zM217.6 339.2C240.4 356.3 271.6 356.3 294.4 339.2L512 176V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V176L217.6 339.2z"></path></svg></span>
+											</div>
+										</div>
+										<div class="price-range w-100 position-relative ">
+											<div class="position-relative">
+												<input type="number" placeholder="Number" class="wizard-input" required>
+												<span class="icons"><svg class="svg-inline--fa fa-phone-volume" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-volume" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M284.6 181.9c-10.28-8.344-25.41-6.875-33.75 3.406C242.4 195.6 243.9 210.7 254.2 219.1c11.31 9.25 17.81 22.69 17.81 36.87c0 14.19-6.5 27.62-17.81 36.87c-10.28 8.406-11.78 23.53-3.375 33.78c4.719 5.812 11.62 8.812 18.56 8.812c5.344 0 10.75-1.781 15.19-5.406c22.53-18.44 35.44-45.4 35.44-74.05S307.1 200.4 284.6 181.9zM345.1 107.1c-10.22-8.344-25.34-6.907-33.78 3.343c-8.406 10.25-6.906 25.37 3.344 33.78c33.88 27.78 53.31 68.18 53.31 110.9s-19.44 83.09-53.31 110.9c-10.25 8.406-11.75 23.53-3.344 33.78c4.75 5.781 11.62 8.781 18.56 8.781c5.375 0 10.75-1.781 15.22-5.438C390.2 367.1 416 313.1 416 255.1S390.2 144.9 345.1 107.1zM406.4 33.15c-10.22-8.344-25.34-6.875-33.78 3.344c-8.406 10.25-6.906 25.37 3.344 33.78C431.9 116.1 464 183.8 464 255.1s-32.09 139.9-88.06 185.7c-10.25 8.406-11.75 23.53-3.344 33.78c4.75 5.781 11.62 8.781 18.56 8.781c5.375 0 10.75-1.781 15.22-5.438C473.5 423.8 512 342.6 512 255.1S473.5 88.15 406.4 33.15zM151.3 174.6C161.1 175.6 172.1 169.5 176 159.6l33.75-84.38C214 64.35 209.1 51.1 200.2 45.86l-67.47-42.17C123.2-2.289 110.9-.8945 102.9 7.08C-34.32 144.3-34.31 367.7 102.9 504.9c7.982 7.984 20.22 9.379 29.75 3.402l67.48-42.19c9.775-6.104 13.9-18.47 9.598-29.3L176 352.5c-3.945-9.963-14.14-16.11-24.73-14.97l-53.24 5.314C78.89 286.7 78.89 225.4 98.06 169.3L151.3 174.6z"></path></svg></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="d-flex justify-content-center w-100 wizard-button">
+								  <button mat-button class="next"><svg class="svg-inline--fa fa-circle-check me-1 ms-0" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg> Submit</button>
+								</div>
+								</div>
+							  </form>
+						</mat-step>
+					  </mat-stepper>
+				</div>
+			</div>
+		</div>
+		<!-- ---Main-imagesContent-slider -->
+		<div ngClass="main-imagesContent-slide">
+			<ngb-carousel>
+				<ng-template ngbSlide>
+					<div class="img-box-slider">
+						<img src="assets/images/projectDetails/slider-img1.jpg" class="d-block w-100" alt="slider image">
+					</div>
+				</ng-template>
+				<ng-template ngbSlide>
+					<div class="img-box-slider">
+						<img src="assets/images/projectDetails/slider-img2.jpg" class="d-block w-100" alt="slider image">
+					</div>
+				</ng-template>
+				<ng-template ngbSlide>
+					<div class="img-box-slider">
+						<img src="assets/images/projectDetails/slider-img3.jpg" class="d-block w-100" alt="slider image">
+					</div>
+				</ng-template>
+				<ng-template ngbSlide>
+					<div class="img-box-slider">
+						<img src="assets/images/projectDetails/slider-img4.jpg" class="d-block w-100" alt="slider image">
+					</div>
+				</ng-template>
+			</ngb-carousel>
+		</div>
+        	<!-- --Get another opinion.- -->
+		<div class="get-another-opinion-section">
+			<div class="container">
+				<div class="inner-get-another-opinion">
+					<h2 class="subTitle ">
+						Get another opinion, <br>
+						share Tilal Al Ghaf Villas now.
+					</h2>
+					<div class="d-flex align-items-center justify-content-between flex-wrap content-link">
+						<div class="d-flex align-items-center left-link-box">
+							<div class="share-pre-text d-flex align-items-center">
+								<svg class="svg-inline--fa fa-share" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="share" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M176 224h275.8l-158.1-131.7c-6.781-5.656-7.688-15.75-2.031-22.53c5.688-6.812 15.78-7.687 22.53-2.031l192 159.1C509.9 230.8 512 235.2 512 239.1c0 4.75-2.094 9.253-5.75 12.28l-192 159.1c-3 2.5-6.625 3.719-10.25 3.719c-4.562 0-9.125-1.969-12.28-5.75c-5.656-6.781-4.75-16.87 2.031-22.53l158.1-131.7H176c-79.41 0-144 64.59-144 143.1v31.1C32 440.8 24.84 448 16 448S0 440.8 0 432v-31.1C0 302.1 78.97 224 176 224z"></path></svg>
+								<span>Share</span>
+							</div>
+							<input type="text" id="share-copy-link"
+								value="https://famproperties.com/tilal-al-ghaf-dubai/tilal-al-ghaf-residences"
+								name="share-copy-link">
+							<div class="share-post-text ">
+								<a href="javascript:void(0);" class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-copy" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M272 416C263.2 416 256 423.2 256 432V448c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32V192c0-17.67 14.33-32 32-32h112C184.8 160 192 152.8 192 144C192 135.2 184.8 128 176 128H63.99c-35.35 0-64 28.65-64 64l.0098 256C0 483.3 28.65 512 64 512h160c35.35 0 64-28.65 64-64v-16C288 423.2 280.8 416 272 416zM502.6 86.63l-77.25-77.25C419.4 3.371 411.2 0 402.7 0H288C252.7 0 224 28.65 224 64v256c0 35.35 28.65 64 64 64h160c35.35 0 64-28.65 64-64V109.3C512 100.8 508.6 92.63 502.6 86.63zM416 45.25L466.7 96H416V45.25zM480 320c0 17.67-14.33 32-32 32h-160c-17.67 0-32-14.33-32-32V64c0-17.67 14.33-32 32-32h96l.0026 64c0 17.67 14.33 32 32 32H480V320z"></path></svg>
+									<span>Copy</span>
+								</a>
+							</div>
+						</div>
+						<div class="brack-span">
+							<span class="d-block">OR</span>
+						</div>
+						<div class="link-social d-flex align-items-center justify-content-between">
+							<ul class="d-flex align-items-center">
+								<li><a href="javascript:void(0);"><svg class="svg-inline--fa fa-facebook-f" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"></path></svg></a></li>
+								<li><a href="javascript:void(0);"><svg class="svg-inline--fa fa-linkedin-in" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M100.3 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.6 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.3 61.9 111.3 142.3V448z"></path></svg></a></li>
+								<li><a href="javascript:void(0);"><svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.4 151.7c.325 4.548 .325 9.097 .325 13.65 0 138.7-105.6 298.6-298.6 298.6-59.45 0-114.7-17.22-161.1-47.11 8.447 .974 16.57 1.299 25.34 1.299 49.06 0 94.21-16.57 130.3-44.83-46.13-.975-84.79-31.19-98.11-72.77 6.498 .974 12.99 1.624 19.82 1.624 9.421 0 18.84-1.3 27.61-3.573-48.08-9.747-84.14-51.98-84.14-102.1v-1.299c13.97 7.797 30.21 12.67 47.43 13.32-28.26-18.84-46.78-51.01-46.78-87.39 0-19.49 5.197-37.36 14.29-52.95 51.65 63.67 129.3 105.3 216.4 109.8-1.624-7.797-2.599-15.92-2.599-24.04 0-57.83 46.78-104.9 104.9-104.9 30.21 0 57.5 12.67 76.67 33.14 23.72-4.548 46.46-13.32 66.6-25.34-7.798 24.37-24.37 44.83-46.13 57.83 21.12-2.273 41.58-8.122 60.43-16.24-14.29 20.79-32.16 39.31-52.63 54.25z"></path></svg></a></li>
+								<li><a href="javascript:void(0);"><svg class="svg-inline--fa fa-whatsapp" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="whatsapp" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="amenities-content">
+					<h2 class="subTitle ">
+						Amenities
+					</h2>
+					<div class="row">
+						<!-- ---1-- -->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>BBQ area</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Basketball court</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Central A/C</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Community center</span>
+								</div>
+							</div>
+						</div>
+						<!-- ---2 -->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Gym</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Beach access</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>CCTV cameras</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Covered Parking</span>
+								</div>
+							</div>
+						</div>
+						<!-- ---3-->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Cycling tracks</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Children play area</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Jogging tracks</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Landmark view</span>
+								</div>
+							</div>
+						</div>
+						<!-- ---4-->
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Mosque / prayer room</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Pets allowed</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Security</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Shared pool</span>
+								</div>
+							</div>
+						</div>
+						<!-- ---4-->
+						<div class="col-lg-3 col-md-4  col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Mini mart</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Supermarket nearby</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Tennis court</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Valet parking</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="amenities-card">
+								<div class="d-flex align-items-center">
+									<svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M235.3 331.3C229.1 337.6 218.9 337.6 212.7 331.3L148.7 267.3C142.4 261.1 142.4 250.9 148.7 244.7C154.9 238.4 165.1 238.4 171.3 244.7L224 297.4L340.7 180.7C346.9 174.4 357.1 174.4 363.3 180.7C369.6 186.9 369.6 197.1 363.3 203.3L235.3 331.3zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 32C132.3 32 32 132.3 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 132.3 379.7 32 256 32z"></path></svg>
+									<span>Available Networked</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ---Available sizes.- -->
+		<div class="available-sizes-section">
+			<div class="container">
+				<h2 class="subTitle ">
+					Available sizes
+				</h2>
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="available-card">
+							<div class="bed-icon">
+								<span class="d-block">3</span>
+								<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+							</div>
+							<label>2,152 -2,175 Sqft</label>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="available-card">
+							<div class="bed-icon">
+								<span class="d-block">4</span>
+								<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+							</div>
+							<label>2,354 - 5,825 Sqft</label>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="available-card">
+							<div class="bed-icon">
+								<span class="d-block">5</span>
+								<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+							</div>
+							<label>4,477 - 17,950 Sqft</label>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="available-card">
+							<div class="bed-icon">
+								<span class="d-block">6</span>
+								<svg class="svg-inline--fa fa-bed-front" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="bed-front" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M480 240.4V96c0-35.3-28.72-64-64-64H96C60.72 32 32 60.7 32 96v144.4C12.69 255 0 277.1 0 304v160C0 472.8 7.156 480 16 480S32 472.8 32 464V416h448v48c0 8.844 7.156 16 16 16s16-7.156 16-16v-160C512 277.1 499.3 255 480 240.4zM432 224h-160V192c0-17.64 14.34-32 32-32H416c17.66 0 32 14.36 32 32v33.62C442.8 224.6 437.5 224 432 224zM96 64h320c17.66 0 32 14.36 32 32v40.9C438.5 131.4 427.7 128 416 128h-112c-19.2 0-36.26 8.678-48 22.12C244.3 136.7 227.2 128 208 128H96C84.29 128 73.45 131.4 64 136.9V96C64 78.36 78.34 64 96 64zM64 192c0-17.64 14.34-32 32-32h112c17.66 0 32 14.36 32 32v32h-160C74.52 224 69.17 224.6 64 225.6V192zM480 384H32V304C32 277.5 53.53 256 80 256h352C458.5 256 480 277.5 480 304V384z"></path></svg>
+							</div>
+							<label>6,515 - 13,885 Sqft</label>
+						</div>
+					</div>
+				</div>
+				<div class="view-floor-plan-link">
+					<a href="javascript:void(0);">
+						<svg class="svg-inline--fa fa-table-cells" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="table-cells" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 60.65 28.65 32 64 32H448C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96zM352 160H480V96C480 78.33 465.7 64 448 64H352V160zM320 64H192V160H320V64zM160 64H64C46.33 64 32 78.33 32 96V160H160V64zM32 192V320H160V192H32zM32 352V416C32 433.7 46.33 448 64 448H160V352H32zM192 448H320V352H192V448zM352 448H448C465.7 448 480 433.7 480 416V352H352V448zM480 320V192H352V320H480zM320 320V192H192V320H320z"></path></svg>
+						<span>View all floor plans</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- ---Tilal Al Ghaf Villas Overview- -->
+		<div class="tilal-villas-overview-section">
+			<div class="container">
+				<h2 class="subTitle ">
+					Tilal Al Ghaf Villas <br>
+					Overview.
+				</h2>
+				<div class="inner-villas-overview">
+					<div class="row">
+						<div class="col-md-7 col-sm-7">
+							<p>
+								A development by Majid Al Futtaim, Tilal Al Ghaf Residences will feature a unique blend
+								of a modern and nature-inspired neighbourhood situated in the heart of Tilal Al Ghaf,
+								Dubai. The upcoming community boasts sustainable initiatives through its development
+								offering luxury villas, beach homes, and a stunning green environment.
+								<br>
+								<br>
+								Tilal Al Ghaf is a mixed-use development that will feature private residences, retail,
+								and recreation centres as well as numerous exciting lifestyle offerings. To stay true to
+								its initiatives, the location will also feature electric vehicles, bikes, as well as the
+								use of solar-powered technology in order to create an environment-friendly community.
+								<br>
+								<br>
+								Aside from its modern design residences, the community will highlight an exceptional
+								outdoor setup positioned in an ideal location perfect for all types of residents. This
+								project will focus on providing its residents with a relaxing ambience and nature-driven
+								neighbourhood featuring areas with water metering, recycling, and smart street lighting.
+								<br>
+								<br>
+								The community will be the home to spectacular family-friendly amenities including the
+								Hive Park, an outdoor space with a lush green landscape ideal for family get-together
+								and relaxation. Residents can also access the Hive Beach, a crystal clear lagoon lined
+								with white sand suitable for any beach-related activities. There are also dedicated
+								facilities for walking and cycling as well as an outdoor gym.
+								<br>
+								<br>
+								Furthermore, the community will be divided into four stunning neighbourhoods with
+								each has distinct characteristics yet all will provide the ultimate living experience
+								for its residents. Tilal Al Ghaf Residences is close to the Jumeirah Golf Estates and
+								Dubai Studio City
+								<br>
+								<br>
+								A forward-thinking city deserves a forward-thinking community. A neighbourhood that puts
+								mind, body, soul and the human connection at its heart, while enriching lives through a
+								deep sense of belonging. A community that will grow with Dubai and is built on a
+								tradition that understands that life, work, and play have one thing in common: you.
+								Welcome to Tilal Al Ghaf.
+								<br>
+								<br>
+								Elan offers the perfect lifestyle for the modern family. With high-quality three and
+								four-bedroom duplex townhouses, nature-inspired outdoors and resort-style amenities
+								including swimming pools, community and fitness centres.
+							</p>
+							<p>
+								<strong>Hive Beach</strong>
+								<br>
+								<br>
+								Wellness by the water
+								<br>
+								<br>
+								Along with sunbathing and water activities, residents will be able to enjoy
+								purpose-built barbeque areas, an outdoor gym and a range of beach-friendly sporting
+								activities, such as beach volleyball on soft white sand.
+							</p>
+							<ul>
+								<li>Beach access</li>
+								<li>Water sports activities</li>
+								<li>Outdoor gym</li>
+							</ul>
+							<p>
+								<strong>Club Hive</strong>
+								<br>
+								<br>
 
-
-                                    <div ngClass="form-grouph input-design white-input-design">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Phone No.</mat-label>
-                                            <input matInput type="number" (input)="checkLength()"
-                                                formControlName="phone" required ngModel  placeholder="Phone Number">
-                                            <!-- <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel> -->
-                                        </mat-form-field>
-                                        <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
-                                    </div>
-
-
-
-                                    <div ngClass="form-grouph textarea-design white-input-design">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Message</mat-label>
-                                            <textarea matInput formControlName="message"
-                                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
-                                        </mat-form-field>
-                                        <p style="color: red" *ngIf="messageError !=''">{{messageError}}</p>
-                                    </div>
-                                    <div ngClass="form-grouph submit-design submit-design-email-send">
-                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send
-                                            Email</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div ngClass="contact-list-details">
-                                <div ngClass="row">
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a ngClass="call_btn" (click)="loadChat()"><img src="{{call}}"> Call
-                                            Landlord</a>
-                                    </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a href="https://web.whatsapp.com/" target="_blank" ngClass="whatsapp_btn"><img
-                                                    src="{{whatsapp}}"> Whats APP </a>
-                                    </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a ngClass="chat_btn" (click)="loadChat()"><img src="{{chat}}"> Chat with
-                                            Landlord</a>
-                                    </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a ngClass="videocall_btn" (click)="loadChat()"><img src="{{videocall}}"> Video
-                                            Call</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+								Exercise your humanity
+								<br><br>
+								Wellness is vital to a healthy individual, and a healthy individual to a vibrant
+								community. Club Hive exists to accomplish both conditions simultaneously.
+							</p>
+							<ul>
+								<li>Beach access</li>
+								<li>Swimming pools</li>
+								<li>Basketball courts</li>
+								<li>Tennis courts</li>
+								<li>Yoga</li>
+								<li>Meditation</li>
+								<li>Pilates</li>
+								<li>Soccer</li>
+								<li>Netball</li>
+							</ul>
+							<p>
+								<strong>Hive Park</strong>
+								<br>Nature where it belongs
+								<br><br>
+								Uninterrupted green space and rolling hills along with the immediate contact with
+								nature, the open space allows for immediate contact with each other, and an organic
+								environment for social exchange to take place.
+							</p>
+							<p>
+								<strong>Smart sustainability inside out</strong>
+								<br><br>
+								Tilal Al Ghaf, like all Majid Al Futtaim’s communities, has been planned with the future
+								in mind. So, we have created a progressive sustainability plan that will keep evolving.
+								The goal is a smaller carbon footprint for each resident and the entire community.
+							</p>
+						</div>
+						<div class="col-md-5 col-sm-5">
+							<div>
+								<img src="/assets/images/projectDetails/tilal-villas-overview-img.jpg"
+									alt="Tilal Al Ghaf Villas Overview image">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ---TNearby schools- -->
+		<div class="nearby-schools-section">
+			<div class="container">
+				<h2 class="subTitle ">
+					Nearby Landmark
+				</h2>
+				<div class="nearby-schools-slider">
+					<owl-carousel-o [options]="landmarksOptions" ngClass="project-slider">
+						<ng-container>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>GEMS World Academy</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b> Internatio</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Very good</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Sunmarke School</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b> UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Very good</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>International School of Creative Science</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b> UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Very good</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Kent College Dubai</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b> UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Not inspected</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Dwight School LLC</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b>International </span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>First Inspectio</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Fairgreen International School</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b>International </span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>First Inspectio</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Arcadia High School</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b>UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Not inspected </span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>Brighton College Dubai</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b>UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>First Inspectio</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template carouselSlide>
+								<div class="item">
+									<div class="card">
+										<div class="card-header">
+											<h3>GEMS Al Barsha National School</h3>
+										</div>
+										<div class="card-body">
+											<div class="d-flex align-items-center mb-5rem">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-book-open" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M540.9 56.77c-45.95-16.66-90.23-24.09-129.1-24.75C351.1 32.96 309.1 49.47 288 59.74C266.9 49.47 223.9 32.94 164.8 32C124.8 31.95 80.4 40.35 35.1 56.77C14.18 64.33 0 84.41 0 106.7v302.9c0 14.66 6.875 28.06 18.89 36.8c11.81 8.531 26.64 10.98 40.73 6.781c118.9-36.34 209.3 19.05 214.3 22.19C277.8 477.6 281.2 480 287.1 480c6.52 0 10.12-2.373 14.07-4.578c10.78-6.688 98.3-57.66 214.3-22.27c14.11 4.25 28.86 1.75 40.75-6.812C569.1 437.6 576 424.2 576 409.6V106.7C576 84.42 561.8 64.35 540.9 56.77zM272 438.1c-24.95-12.03-71.01-29.37-130.5-29.37c-27.83 0-58.5 3.812-91.19 13.77c-4.406 1.344-9 .5938-12.69-2.047C34.02 417.8 32 413.1 32 409.6V106.7c0-8.859 5.562-16.83 13.86-19.83C87.66 71.7 127.9 63.95 164.5 64C216.3 64.81 254.2 79.26 272 87.66V438.1zM544 409.6c0 4.375-2.016 8.234-5.594 10.84c-3.766 2.703-8.297 3.422-12.69 2.125C424.1 391.6 341.3 420.4 304 438.3V87.66C321.8 79.26 359.7 64.81 411.4 64c35.31-.0625 76.34 7.484 118.8 22.88C538.4 89.88 544 97.84 544 106.7V409.6z"></path></svg>
+												</div>
+												<div>
+													<span><b>Curriculum: </b>UK</span>
+												</div>
+											</div>
+											<div class="d-flex align-items-center">
+												<div class="d-flex align-items-center justify-content-center book-box">
+													<svg class="svg-inline--fa fa-star-half-stroke" aria-hidden="true" focusable="false" data-prefix="far" data-icon="star-half-stroke" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8zM287.1 384.7C291.9 384.7 295.7 385.6 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.1 79.09L287.1 384.7z"></path></svg>
+												</div>
+												<div>
+													<span><b>Rating: </b>Not inspected </span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ng-template>
+						</ng-container>
+					</owl-carousel-o>
+				</div>
+			</div>
+		</div>
+		<!-- ---Buildings -->
+		<div class="buildings-section">
+			<div class="container">
+				<div class="buildings-top-imageBox">
+					<img src="/assets/images/projectDetails/hiro-bg-img.jpg" alt="image">
+				</div>
+				<div class="buildings-content-link">
+					<h2 class="subTitle ">
+						Buildings
+					</h2>
+					<div class="row">
+						<!-- ---1 ---->
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Lanai Island - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Alaya Gargen - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Aura 3 - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<!-- ---2 ---->
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Elysian Mansions - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Alaya - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);"> Aura Gardens - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<!-- ---3 ---->
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Harmony III - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Aura - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Harmony II - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<!-- ---3 ---->
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Tilal Al Ghaf Residences - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Elan - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Serenity - Tilal Al Ghaf</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="link-box card h-100">
+								<a href="javascript:void(0);">Harmony - Tilal Al Ghaf</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
         </div>
-    </section>
-    <section ngClass="similer-properties-sec" #NearLsiting>
-        <div [ngClass]="'container_1220px'">
-            <div ngClass="section-custom-title-left">
-                <h4>Similar properties in the same area</h4>
-                <p *ngIf="similarPropertyDetails.length < 1">No similar properties....</p>
-            </div>
-            <div ngClass="row">
-                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
-                    <div ngClass="property-item position-relative">
-                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
-                        <div ngClass="brand-logo">
-                            <img src="{{slide.src}}" alt="">
-                        </div>
-                        <button
-                            [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
-                            (click)="AddToFavorite(slide.id,slide.favorite)">
-                            <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div ngClass="property-info">
-                            <span ngClass="property-pricing"><span>{{ slide.price | number}} {{ slide.currency }}</span> /
-                                <span>{{slide.rentType}}</span></span>
-                            <span ngClass="property-name">{{slide.buildingName}}</span>
-                            <p ngClass="property-location">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/></svg>
-                                {{slide.propertyAddress}} </p>
-                            <div ngClass="property-details">
-                                <span ngClass="bed">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
-                                    {{slide.bedrooms}} Beds
-                                </span>
-                                <span ngClass="bath">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z"/></svg>
-                                    {{slide.bathrooms}} Bath
-                                </span>
-                                <span ngClass="area">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.83148 15.5437L3.45631 10.1685C2.8479 9.56011 2.8479 8.43989 3.45631 7.83148L8.83148 2.45631C9.43989 1.8479 10.5601 1.8479 11.1685 2.45631L16.5437 7.83148C17.1521 8.43989 17.1521 9.56011 16.5437 10.1685L11.1685 15.5437C10.5601 16.1521 9.43989 16.1521 8.83148 15.5437Z" fill="#616161" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M2 13.1719L6.36371 17.5356" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M13.6367 17.5356L18.0004 13.1719" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg> 
-                                    {{slide.carpetArea}} sqft
-                                </span>
-                            </div>
-                        </div>
-                        <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
-                            ngClass="linK_overlay"></a>
-                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<div ngClass="gallery-modal-design">
-    <ng-template #content let-modal>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        <div class="modal-body gallery-design">
-            <div ngClass="property-price-buttons-sec">
-                <div ngClass="row">
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice | number}} {{propertyDetailData.currency}}
-                                <small>/{{propertyDetailData.rentType}}</small>
-                            </h4>
-                            <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice| number}}
-                                    {{propertyDetailData.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice | number}} {{propertyDetailData.currency}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                        <div ngClass="property-name_detals">
-                            <h4>{{propertyDetailData.buildingName}}</h4>
-                            <div ngClass="property-addresss">
-                                <p><img src="{{homeLoc}}"> {{propertyDetailData.propertyAddress}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
-                        <div ngClass="property-action_detals text-right">
-                            <button ngClass="contact-seller-btn" routerLink="/agent-details/{{userData.id}}"
-                                (click)="modal.dismiss('Cross click')">Contact Seller</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ngb-carousel *ngIf="documentCheck" [showNavigationIndicators]="false">
-                <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
-                    <img [src]="baseUrl+event.fileUrl" alt="Random slide">
-                </ng-template>
-            </ngb-carousel>
-            <ngb-carousel *ngIf="documentCheck == false" [showNavigationIndicators]="false">
-                <ng-template ngbSlide>
-                    <img src="{{thumb1}}" alt="Random slide">
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </ng-template>
-</div>
 <app-footer></app-footer>
 </section>
