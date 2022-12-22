@@ -59,6 +59,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     },
   ]
   filterParams: any = {};
+  rawFilterParams: any = {};
   selectedPropertyTypeName: any = '';
   showRecentTransactions: boolean = false;
   showPriceRange: boolean = false;
@@ -137,6 +138,77 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
+  ngOnInit(): void {
+    this.service.searchParams.subscribe(params => {
+      this.filterParams = {};
+      this.rawFilterParams={};
+      this.rawFilterParams=params;
+      if (params.Type !== undefined && params.Type !== null) {
+        this.type = params.Type;
+        this.service.activeTab.next(params.Type.toLowerCase());
+      }
+      if (params.PropertyListingTypeId !== undefined && params.PropertyListingTypeId !== null) {
+        this.filterParams.PropertyListingTypeId = params.PropertyListingTypeId;
+      }
+      if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
+        this.filterParams.Bedrooms = params.Bedrooms;
+      }
+      if (params.CountryId !== undefined && params.CountryId !== null) {
+        this.filterParams.CountryId = params.CountryId;
+      }
+      if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
+        this.filterParams.Bathrooms = params.Bathrooms;
+      }
+      if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
+        this.filterParams.RentTypeId = params.RentTypeId;
+      }
+      if (params.PropertyCategoryId !== undefined && params.PropertyCategoryId !== null) {
+        this.filterParams.PropertyCategoryId = params.PropertyCategoryId;
+      }
+      if (params.PriceStart !== undefined && params.PriceStart !== null) {
+        this.filterParams.PriceStart = params.PriceStart;
+      }
+      if (params.PriceEnd !== undefined && params.PriceEnd !== null) {
+        this.filterParams.PriceEnd = params.PriceEnd;
+      }
+      if (params.ProfessionalTypeId !== undefined && params.ProfessionalTypeId !== null) {
+        this.filterParams.ProfessionalTypeId = params.ProfessionalTypeId;
+      }
+      if (params.FurnishingTypeId !== undefined && params.FurnishingTypeId !== null) {
+        this.filterParams.FurnishingTypeId = params.FurnishingTypeId;
+      }
+      if (params.MinCarpetArea !== undefined && params.MinCarpetArea !== null) {
+        this.filterParams.MinCarpetArea = params.MinCarpetArea;
+      }
+      if (params.MaxCarpetArea !== undefined && params.MaxCarpetArea !== null) {
+        this.filterParams.MaxCarpetArea = params.MaxCarpetArea;
+      }
+      if (params.KeyWords !== undefined && params.KeyWords !== null) {
+        this.filterParams.KeyWords = JSON.parse(params.KeyWords);
+      }
+      if (params.PropertyTypeIds !== undefined && params.PropertyTypeIds !== null) {
+
+        this.filterParams.PropertyTypeIds = JSON.parse(params.PropertyTypeIds);
+      }
+      if (params.PropertyFeatureIds !== undefined && params.PropertyFeatureIds !== null) {
+        this.filterParams.propertyFeatureIds = JSON.parse(params.PropertyFeatureIds);
+      }
+      if (params.CityIds !== undefined && params.CityIds !== null) {
+        this.filterParams.CityIds = JSON.parse(params.CityIds);
+
+      }
+      if (params.DistrictIds !== undefined && params.DistrictIds !== null) {
+        this.filterParams.DistrictIds = JSON.parse(params.DistrictIds);
+      }
+      if (this.filterParams.propertyCategoryId == 1) {
+        this.selectedPropertyTypeName = 'Residential';
+      }
+      else if (this.filterParams.propertyCategoryId == 2) {
+        this.selectedPropertyTypeName = 'Commercial';
+      }
+      this.loadListingProperty(this.filterParams);
+    })
+  }
   onTrendClick(data: any) {
     let params: any = {}
     if (data.propertyListingTypeId !== null && data.propertyListingTypeId !== undefined) {
@@ -197,15 +269,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   pageChanged(value: any) {
 
     this.page = value;
-    let params: any = {
-      MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
-      FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
-    }
+    this.filterParams.CurrentPage=this.page;
 
-    this.loadListingProperty(params);
+    this.loadListingProperty(this.filterParams);
 
     window.scroll({
       top: 0,
@@ -216,15 +282,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   sortedBy(event: any) {
     this.sortedById = event.value
-    let params: any = {
-      MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
-      FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
-    }
-
-    this.loadListingProperty(params);
+    this.filterParams.SortedBy=this.sortedById;
+    this.loadListingProperty(this.filterParams);
   }
 
   videoSorting(event: any) {
@@ -347,75 +406,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.modalService.open(content, { centered: true });
   }
 
-  ngOnInit(): void {
-    this.service.searchParams.subscribe(params => {
-      this.filterParams = {};
-      if (params.Type !== undefined && params.Type !== null) {
-        this.type = params.Type;
-        this.service.activeTab.next(params.Type.toLowerCase());
-      }
-      if (params.PropertyListingTypeId !== undefined && params.PropertyListingTypeId !== null) {
-        this.filterParams.PropertyListingTypeId = params.PropertyListingTypeId;
-      }
-      if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
-        this.filterParams.Bedrooms = params.Bedrooms;
-      }
-      if (params.CountryId !== undefined && params.CountryId !== null) {
-        this.filterParams.CountryId = params.CountryId;
-      }
-      if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
-        this.filterParams.Bathrooms = params.Bathrooms;
-      }
-      if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
-        this.filterParams.RentTypeId = params.RentTypeId;
-      }
-      if (params.PropertyCategoryId !== undefined && params.PropertyCategoryId !== null) {
-        this.filterParams.PropertyCategoryId = params.PropertyCategoryId;
-      }
-      if (params.PriceStart !== undefined && params.PriceStart !== null) {
-        this.filterParams.PriceStart = params.PriceStart;
-      }
-      if (params.PriceEnd !== undefined && params.PriceEnd !== null) {
-        this.filterParams.PriceEnd = params.PriceEnd;
-      }
-      if (params.ProfessionalTypeId !== undefined && params.ProfessionalTypeId !== null) {
-        this.filterParams.ProfessionalTypeId = params.ProfessionalTypeId;
-      }
-      if (params.FurnishingTypeId !== undefined && params.FurnishingTypeId !== null) {
-        this.filterParams.FurnishingTypeId = params.FurnishingTypeId;
-      }
-      if (params.MinCarpetArea !== undefined && params.MinCarpetArea !== null) {
-        this.filterParams.MinCarpetArea = params.MinCarpetArea;
-      }
-      if (params.MaxCarpetArea !== undefined && params.MaxCarpetArea !== null) {
-        this.filterParams.MaxCarpetArea = params.MaxCarpetArea;
-      }
-      if (params.KeyWords !== undefined && params.KeyWords !== null) {
-        this.filterParams.KeyWords = JSON.parse(params.KeyWords);
-      }
-      if (params.PropertyTypeIds !== undefined && params.PropertyTypeIds !== null) {
 
-        this.filterParams.PropertyTypeIds = JSON.parse(params.PropertyTypeIds);
-      }
-      if (params.PropertyFeatureIds !== undefined && params.PropertyFeatureIds !== null) {
-        this.filterParams.propertyFeatureIds = JSON.parse(params.PropertyFeatureIds);
-      }
-      if (params.CityIds !== undefined && params.CityIds !== null) {
-        this.filterParams.CityIds = JSON.parse(params.CityIds);
-
-      }
-      if (params.DistrictIds !== undefined && params.DistrictIds !== null) {
-        this.filterParams.DistrictIds = JSON.parse(params.DistrictIds);
-      }
-      if (this.filterParams.propertyCategoryId == 1) {
-        this.selectedPropertyTypeName = 'Residential';
-      }
-      else if (this.filterParams.propertyCategoryId == 2) {
-        this.selectedPropertyTypeName = 'Commercial';
-      }
-      this.loadListingProperty(this.filterParams);
-    })
-  }
 
   wishlistStatus: any;
   AddToFavorite(id: any, status: any) {
@@ -461,19 +452,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   viewMap() {
-
-    let PropertyTypeIdsParams: any = JSON.stringify(this.PropertyTypeIds);
-    let params: any = {
-      type: this.type, "PropertyTypeIds": PropertyTypeIdsParams, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.PriceStart, PriceEnd: this.PriceEnd, totalRecord: this.totalRecord,
-      Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms, selectedPropertyTypeName: this.selectedPropertyTypeName,
-      "PropertyListingTypeId": this.PropertyListingTypeId, CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId),
-      DistrictsValue: JSON.stringify(this.DistrictsValue), KeyWords: this.KeyWordsParams, PropertyFeatureIds: JSON.stringify(this.PropertyFeatureIds),
-      MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, FurnishingTypeId: this.FurnishingTypeId
-    }
-
-    this.route.navigate(['/property/mapview'], { queryParams: params })
-
+    this.route.navigate(['/property/mapview'], { queryParams: this.rawFilterParams })
   }
   status2: boolean = false;
   clickEvent2() {
