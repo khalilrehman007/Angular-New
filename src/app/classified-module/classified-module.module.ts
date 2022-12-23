@@ -64,6 +64,9 @@ import { AllListingsComponent } from './classified-listings/all-listings/all-lis
 import { JobsFilterComponent } from './classified-listings/jobs-filter/jobs-filter.component';
 import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-listing.component';
 import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
+import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
+import { CommunityFilterComponent } from './classified-listings/community-filter/community-filter.component';
+import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
 
 
 
@@ -109,7 +112,10 @@ import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-det
     AllListingsComponent,
     JobsFilterComponent,
     JobsListingComponent,
-    JobsDetailsComponent
+    JobsDetailsComponent,
+    CommunityLsitingsComponent,
+    CommunityFilterComponent,
+    CommunityDetailsComponent
   ],
   imports: [
     CommonModule,

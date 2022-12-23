@@ -1,0 +1,398 @@
+$color_1: #595ad4;
+$background-color_1: transparent;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #eef1f3 inset !important;
+	padding-right: 0px !important;
+}
+.property-filter-wrap {
+	.block-item.seven-block {
+		width: 5%;
+	}
+	.block-item.eight-block {
+		width: 4%;
+	}
+}
+.block-wrapper .cstm_dropdown-menu {
+    min-width: 300px;
+}
+.clear-btn {
+	border:0.25px solid #595ad4;
+	background-color: $background-color_1;
+	font-size: 16px;
+	color: $color_1;
+	padding: 10px 12px;
+	border-radius: 8px;
+	width: 100%;
+}
+.property-filter-wrap .block-wrapper .search-btn {
+    height: 47px;
+}
+.mat-checkbox-list {
+    margin-top: 10px;
+}
+.show-results {
+    background: #595ad4;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+.show-results:hover {
+    background-color: #4a565f;
+}
+
+.searc-input-combination .mat-form-field:last-child {
+    width: 100%;
+}
+@media (max-width: 1199px) and (min-width: 575px){
+	.property-filter-wrap {
+		flex-wrap: wrap;
+		.block-item.block-item-4{
+			width: 49%;
+			margin-bottom: 10px;
+		}
+		.block-item.seven-block {
+			width: 49%;
+			margin-bottom: 10px;
+		}
+		.block-item.eight-block {
+			width: 49%;
+			margin-bottom: 10px;
+		}
+	}
+}
+@media (max-width: 574px){
+	.property-filter-wrap {
+		flex-wrap: wrap;
+		.block-item.block-item-4{
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		.block-item.seven-block {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		.block-item.eight-block {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	}
+	.drodown_with-img > .drop-down_btn {
+		background-position: 98%  !important;
+	}
+}
+.more-filter-button {
+    background: whitesmoke;
+    border: none;
+    font-size: 13px;
+    font-weight: 300;
+    color: #3e4861;
+    border-radius: 8px;
+    padding: 14px 10px;
+    height: 100%;
+	width: 100%;
+}
+.property-filter-wrap .dropdown-design-2 .drop-down_btn {
+    padding: 13px 15px;
+}
+.totel_properties-btn button {
+    background: #595ad4;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+.totel_properties-btn button:hover{
+	background: #4a565f;
+}
+.availity-sec-design {
+    padding-bottom: 20px;
+}
+.property-filter-wrap .block-item-4 {
+    width: 22%;
+}
+.properties-file-container>.row>div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.properties-file-container-shadow {
+    padding-bottom: 15px;
+}
+.properties-file-container-shadow .block-wrapper {
+    height: 100%;
+}
+.checkbox-btn-with-icon .checkbox-btn {
+    width: auto;
+    min-width: 100px;
+}
+.checkbox-btn-with-icon .checkbox-btn svg {
+    display: block;
+    margin: 0 auto;
+}
+.checkbox-design input:hover + .checkbox-btn svg path,.checkbox-design input:checked + .checkbox-btn svg path {
+    fill: #fff;
+}
+.checkbox-design.checkbox-btn-with-icon {
+    min-width: initial !important;
+}
+.checkbox-design-colors .checkbox-btn {
+    color: #4A565F;
+    font-size: 14px;
+    font-weight: 400;
+    border: 0.5px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 9px 10px 9px 28px;
+    background: transparent;
+    display: block;
+    position: relative;
+    width: 100%;
+}
+.checkbox-design-colors input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    cursor: pointer;
+    opacity: 0;
+}
+.checkbox-design-colors .checkbox-btn::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.checkbox-design-colors.black .checkbox-btn::before {
+    background-color: #3e4861;
+}
+.checkbox-design-colors.black input:hover+.checkbox-btn,.checkbox-design-colors.black input:checked+.checkbox-btn {
+    background-color: #3e4861;
+    color: #fff;
+}
+.checkbox-design-colors.black input:hover+.checkbox-btn::before,.checkbox-design-colors.black input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Blue .checkbox-btn::before {
+    background-color: blue;
+}
+.checkbox-design-colors.Blue input:hover+.checkbox-btn,.checkbox-design-colors.Blue input:checked+.checkbox-btn {
+    background-color: blue;
+    color: #fff;
+}
+.checkbox-design-colors.Blue input:hover+.checkbox-btn::before,.checkbox-design-colors.Blue input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Brown .checkbox-btn::before {
+    background-color: brown;
+}
+.checkbox-design-colors.Brown input:hover+.checkbox-btn,.checkbox-design-colors.Brown input:checked+.checkbox-btn {
+    background-color: brown;
+    color: #fff;
+}
+.checkbox-design-colors.Brown input:hover+.checkbox-btn::before,.checkbox-design-colors.Brown input:checked+.checkbox-btn::before  {
+    background-color: #fff;
+}
+
+.checkbox-design-colors.Burgundy .checkbox-btn::before {
+    background-color: #900020;
+}
+.checkbox-design-colors.Burgundy input:hover+.checkbox-btn,.checkbox-design-colors.Burgundy input:checked+.checkbox-btn {
+    background-color: #900020;
+    color: #fff;
+}
+.checkbox-design-colors.Burgundy input:hover+.checkbox-btn::before,.checkbox-design-colors.Burgundy input:checked+.checkbox-btn::before  {
+    background-color: #fff;
+}
+
+
+.checkbox-design-colors.Gold .checkbox-btn::before {
+    background: linear-gradient(135deg, rgb(212, 148, 2) 9.38%, rgba(255, 225, 155, 0.337) 49.66%, rgb(255, 191, 45) 87.5%);
+}
+.checkbox-design-colors.Gold input:hover+.checkbox-btn,.checkbox-design-colors.Gold input:checked+.checkbox-btn {
+    background: linear-gradient(135deg, rgb(212, 148, 2) 9.38%, rgba(255, 225, 155, 0.337) 49.66%, rgb(255, 191, 45) 87.5%);
+	color: #3e4861;
+}
+.checkbox-design-colors.Gold input:hover+.checkbox-btn::before,.checkbox-design-colors.Gold input:checked+.checkbox-btn::before {
+    background: #3e4861;
+}
+.checkbox-design-colors.Grey .checkbox-btn::before {
+    background-color: grey;
+}
+.checkbox-design-colors.Grey input:hover+.checkbox-btn,.checkbox-design-colors.Grey input:checked+.checkbox-btn  {
+    background-color: grey;
+    color: #fff;
+}
+.checkbox-design-colors.Grey input:hover+.checkbox-btn::before,.checkbox-design-colors.Grey input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Orange .checkbox-btn::before {
+    background-color: orange;
+}
+.checkbox-design-colors.Orange input:hover+.checkbox-btn,.checkbox-design-colors.Orange input:checked+.checkbox-btn {
+    background-color: orange;
+    color: #fff;
+}
+.checkbox-design-colors.Orange input:hover+.checkbox-btn::before,.checkbox-design-colors.Orange input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Green .checkbox-btn::before {
+    background-color: green;
+}
+.checkbox-design-colors.Green input:hover+.checkbox-btn,.checkbox-design-colors.Green input:checked+.checkbox-btn {
+    background-color: green;
+    color: #fff;
+}
+.checkbox-design-colors.Green input:hover+.checkbox-btn::before,.checkbox-design-colors.Green input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Purple .checkbox-btn::before {
+    background-color: purple;
+}
+.checkbox-design-colors.Purple input:hover+.checkbox-btn {
+    background-color: purple;
+	color: #fff;
+}
+.checkbox-design-colors.Purple input:checked+.checkbox-btn {
+    background-color: purple;
+    color: #fff;
+}
+.checkbox-design-colors.Purple input:hover+.checkbox-btn::before,.checkbox-design-colors.Purple input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Red .checkbox-btn::before {
+    background-color: red;
+}
+.checkbox-design-colors.Red input:hover+.checkbox-btn {
+    background-color: red;
+	color: #fff;
+}
+.checkbox-design-colors.Red input:checked+.checkbox-btn {
+    background-color: red;
+    color: #fff;
+}
+.checkbox-design-colors.Red input:hover+.checkbox-btn::before,.checkbox-design-colors.Red input:checked+.checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.Silver .checkbox-btn::before {
+   background: linear-gradient(140.01deg, rgb(163, 166, 170) 3.13%, rgb(241, 241, 241) 50.34%, rgb(203, 204, 204) 92.87%);
+}
+.checkbox-design-colors.Silver input:hover+.checkbox-btn,.checkbox-design-colors.Silver input:checked+.checkbox-btn {
+   background: silver;
+color: #3e4861;
+}
+.checkbox-design-colors.Silver input:hover+.checkbox-btn::before,.checkbox-design-colors.Silver input:checked+.checkbox-btn::before {
+    background: #3e4861;
+}
+.checkbox-design-colors.Beige .checkbox-btn::before {
+    background-color: #f5f5dc;
+}
+.checkbox-design-colors.Beige input:hover+.checkbox-btn,.checkbox-design-colors.Beige input:checked+.checkbox-btn {
+    background-color: #f5f5dc;
+    color: #fff;
+}
+.checkbox-design-colors.Beige input:hover+.checkbox-btn::before,.checkbox-design-colors.Beige input:checked+.checkbox-btn::before  {
+    background-color: #e1e110;
+}
+.checkbox-design-colors.Beige .checkbox-btn::before {
+    background-color: #f5f5dc;
+}
+.checkbox-design-colors.Beige input:hover+.checkbox-btn,.checkbox-design-colors.Beige input:checked+.checkbox-btn {
+    background-color: #f5f5dc;
+    color: #e1e110;
+}
+.checkbox-design-colors.Beige input:hover+.checkbox-btn::before,.checkbox-design-colors.Beige input:checked+.checkbox-btn::before  {
+    background-color: #e1e110;
+}
+.checkbox-design-colors.Tan .checkbox-btn::before {
+    background-color: #d2b48c;
+}
+.checkbox-design-colors.Tan input:hover+.checkbox-btn,.checkbox-design-colors.Tan input:checked+.checkbox-btn {
+    background-color: #d2b48c;
+    color: #fff;
+}
+.checkbox-design-colors.Tan input:hover+.checkbox-btn::before,.checkbox-design-colors.Tan input:checked+.checkbox-btn::before  {
+    background-color: #fff;
+}
+.checkbox-design-colors.Teal .checkbox-btn::before {
+    background-color: #008080;
+}
+.checkbox-design-colors.Teal input:hover+.checkbox-btn,.checkbox-design-colors.Teal input:checked+.checkbox-btn {
+    background-color: #008080;
+    color: #fff;
+}
+.checkbox-design-colors.Teal input:hover+.checkbox-btn::before,.checkbox-design-colors.Teal input:checked+.checkbox-btn::before  {
+    background-color: #fff;
+}
+.checkbox-design-colors.White .checkbox-btn::before {
+    background-color: #fff;
+}
+.checkbox-design-colors.White input:hover+.checkbox-btn,.checkbox-design-colors.White input:checked+.checkbox-btn {
+    background-color: #fff;
+    color: #3e4861;
+}
+.checkbox-design-colors.White input:hover+.checkbox-btn::before,.checkbox-design-colors.White input:checked+.checkbox-btn::before  {
+    background-color: #3e4861;
+}
+.checkbox-design-colors.Yellow .checkbox-btn::before {
+    background-color: #ffb202;
+}
+.checkbox-design-colors.Yellow input:hover+.checkbox-btn,.checkbox-design-colors.Yellow input:checked+.checkbox-btn {
+    background-color: #ffb202;
+    color: #fff;
+}
+.checkbox-design-colors.Yellow input:hover+.checkbox-btn::before,.checkbox-design-colors.Yellow input:checked+.checkbox-btn::before  {
+    background-color: #fff;
+}
+.checkbox-design-colors.Other-Color .checkbox-btn{
+	padding: 9px 10px 9px 10px;
+}
+.checkbox-design-colors.Other-Color .checkbox-btn::before {
+    display: none;
+}
+.checkbox-design-colors.Other-Color input:hover+.checkbox-btn,.checkbox-design-colors.Other-Color input:checked+.checkbox-btn {
+    background-color: #4a565f;
+    color: #fff;
+}
+.clear-btn-link {
+    background: transparent;
+    border: none;
+    padding: 10px 4px;
+    margin-right: 10px;
+}
+.search-btn-link {
+    background: #0f2ead;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+.search-btn-link img {
+    width: 15px;
+}
+.clear-search-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+@media (max-width: 1200px){
+	.more-filter-form-design {
+		width: 100% !important;
+		max-width: 95%;
+		margin: 0 auto;
+	}
+	.scnd-block .block-wrapper .cstm_dropdown-menu {
+		left: 0;
+	}
+}

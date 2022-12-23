@@ -32,6 +32,8 @@ import { MotorsListingComponent } from './classified-listings/motors-listing/mot
 import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
 import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-listing.component';
 import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
+import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
+import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -65,7 +67,9 @@ const routes: Routes = [
   { path: "motor-listings", component: MotorsListingComponent },
   { path: "all-listings", component: AllListingsComponent },
   { path: "jobs-listings", component: JobsListingComponent },
-  { path: "jobs-details", component: JobsDetailsComponent }
+  { path: "jobs-details", component: JobsDetailsComponent },
+  { path: "community-listings", component: CommunityLsitingsComponent },
+  { path: "community-details", component: CommunityDetailsComponent }
 ];
 
 @NgModule({
