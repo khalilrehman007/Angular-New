@@ -231,6 +231,7 @@ export class AddPostComponent implements OnInit {
       return;
     }
     this.route.navigate(["/classified/car-ad-details"]);
+    
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
