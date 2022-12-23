@@ -116,7 +116,7 @@ export class AddPostComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.name, value: country.id, currency: country.currency });
         }
         this.showLoader = false;
       }

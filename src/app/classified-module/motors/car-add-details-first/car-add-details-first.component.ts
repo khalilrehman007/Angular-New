@@ -65,6 +65,7 @@ export class CarAddDetailsFirstComponent implements OnInit {
     });
   }
   onSubmit() {
+    console.log($(".make-and-model-select").find(":selected").text());
     if($(".make-and-model-select").val() == 0) {
       this.currentField = "make-and-model-select + .select2";
       this.error = "Select Make and Model";
@@ -108,11 +109,19 @@ export class CarAddDetailsFirstComponent implements OnInit {
     }
     let temp:any = localStorage.getItem("classifiedData");
     temp = JSON.parse(temp);
-    temp.MakeAndModelId = $(".make-and-model-select").val();
-    temp.TrimId = $(".trim-select").val();
-    temp.RegionalSpecId = $(".regional-select").val();
+    temp.MakeAndModelId = {};
+    temp.MakeAndModelId.id = $(".make-and-model-select").val();
+    temp.MakeAndModelId.text = $(".make-and-model-select").find(":selected").text();
+    temp.TrimId = {};
+    temp.TrimId.id = $(".trim-select").val();
+    temp.TrimId.text = $(".trim-select").find(":selected").text();
+    temp.RegionalSpecId = {};
+    temp.RegionalSpecId.id = $(".regional-select").val();
+    temp.RegionalSpecId.text = $(".regional-select").find(":selected").text();
     temp.Year = this.DetailsForm.value.year;
-    temp.IsInsured = $(".insured-select").val();
+    temp.IsInsured = {};
+    temp.IsInsured.id = $(".insured-select").val();
+    temp.IsInsured.text = $(".insured-select").find(":selected").text();
     temp.KiloMeters = this.DetailsForm.value.kilometers;
     temp.Price = this.DetailsForm.value.price;
     temp.PhoneNumber = this.DetailsForm.value.number;
