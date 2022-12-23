@@ -95,14 +95,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Age <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="1">Brand New</option>
-                                            <option value="2">0-1 month</option>
-                                            <option value="3">1-6 months</option>
-                                            <option value="4">6-12 months</option>
-                                            <option value="5">1-2 years</option>
-                                            <option value="6">2-5 years</option>
-                                            <option value="7">5-10 years</option>
-                                            <option value="8">10+ years</option>
+                                            <option *ngFor="let item of MobilePhoneAge " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -112,11 +105,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="5">Perfect inside and out</option>
-                                            <option value="4">Almost no noticeable problems or flaws</option>
-                                            <option value="3">A bit of wear and tear, but in good working condition</option>
-                                            <option value="2">Normal wear and tear for the age of the item, a few problems here and there</option>
-                                            <option value="1">Above average wear and tear.  The item may need a bit of repair to work properly</option>
+                                            <option *ngFor="let item of MobilePhoneCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -136,18 +125,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Color <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="2072">Black</option>
-                                            <option value="2073">Blue</option>
-                                            <option value="2074">Gold</option>
-                                            <option value="2079">Green</option>
-                                            <option value="2075">Grey</option>
-                                            <option value="2082">Multi Color</option>
-                                            <option value="2081">Pink</option>
-                                            <option value="2080">Purple</option>
-                                            <option value="2077">Red</option>
-                                            <option value="2078">Silver</option>
-                                            <option value="2076">White</option>
-                                            <option value="2083">Yellow</option>
+                                            <option *ngFor="let item of Color" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -157,9 +135,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Warranty <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="737">Yes</option>
-                                            <option value="738">No</option>
-                                            <option value="739">Does not apply</option>
+                                            <option *ngFor="let item of Warranty " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -180,12 +156,7 @@
                                     <div ngClass="select-design select2-design full-width-select2">
                                         <label>Damage Details</label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="737"> Cracked or Broken Screen</option>
-                                            <option value="738"> Unable to Turn On</option>
-                                            <option value="739"> Audio Not Working</option>
-                                            <option value="737">  Not Charging</option>
-                                            <option value="738">  Network/Connectivity Issues</option>
-                                            <option value="739">  Camera Damaged</option>
+                                            <option *ngFor="let item of DeviceDamageType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -195,8 +166,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Percentage of Battery Health</label>
                                         <select class="select2 country-select">
-                                            <option value="Below">Below 85%</option>
-                                            <option value="Above">Above 85%</option>
+                                            <option *ngFor="let item of DeviceBatteryHealth" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -206,13 +176,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Version</label>
                                         <select class="select2 country-select">
-                                            <option value="16003">US</option>
-                                            <option value="16004">UAE</option>
-                                            <option value="16005">UK</option>
-                                            <option value="16006">Japan</option>
-                                            <option value="16007">HK</option>
-                                            <option value="16008">LL/A</option>
-                                            <option value="16009">International</option>
+                                            <option *ngFor="let item of DeviceVersionType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,10 +186,7 @@
                                     <div ngClass="select-design select2-design full-width-select2">
                                         <label>Accompaniments</label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="737"> Box</option>
-                                            <option value="738">Charger</option>
-                                            <option value="739"> Headset</option>
-                                            <option value="737">  Wireless charger</option>
+                                            <option *ngFor="let item of DeviceAccompaniments" value="{{item.id}}"> {{item.name}}</option>>
                                         </select>
                                     </div>
                                 </div>
@@ -246,13 +207,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Storage Capacity <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="16023">32 GB</option>
-                                            <option value="16024">64 GB</option>
-                                            <option value="16025">128 GB</option>
-                                            <option value="16026">256 GB</option>
-                                            <option value="16027">512 GB</option>
-                                            <option value="16028">1 TB+</option>
-                                            <option value="16029">Other</option>
+                                            <option *ngFor="let item of DeviceStorageType " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -262,12 +217,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Memory <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="2084">1 GB or less</option>
-                                            <option value="2085">2 GB</option>
-                                            <option value="2086">3 GB</option>
-                                            <option value="2087">4 GB</option>
-                                            <option value="2088">6 GB</option>
-                                            <option value="2089">8 GB and more</option>
+                                            <option *ngFor="let item of DeviceMemoryType " value="{{item.id}}"> {{item.name}}</option>  
                                         </select>
                                     </div>
                                 </div>

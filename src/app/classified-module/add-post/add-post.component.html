@@ -16,6 +16,68 @@
                         <h5 class="h5-heading">Listing Details</h5>
                         <p>Please provide your details</p>
                     </div>
+                    
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Country <span ngClass="required-span">*</span></label>
+                                        <select class="select2 country-select"
+                                            [ngClass]="oldData == '' || country.length > 0 ? '' : 'd-none'">
+                                            <option value="0"> Select Country</option>
+                                            <option class="country-item-{{list.value}}" *ngFor="let list of country"
+                                                [value]="list.value"> {{
+                                                list.viewValue }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="select-design mb-4 select2-design">
+                                    <label>City <span ngClass="required-span">*</span></label>
+                                    <select class="select2 city-select"
+                                        [ngClass]="oldData == '' || city.length > 0 ? '' : 'd-none'">
+                                        <option value="0"> Select City</option>
+                                        <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city"
+                                            [value]="listcity.value"> {{
+                                            listcity.viewValue }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>District <span ngClass="required-span">*</span></label>
+                                        <select class="select2 district-select"
+                                            [ngClass]="oldData == '' || district.length > 0 ? '' : 'd-none'">
+                                            <option value="0"> Select District</option>
+                                            <option class="district-item-{{listdistrict.value}}"
+                                                *ngFor="let listdistrict of district" [value]="listdistrict.value">
+                                                {{ listdistrict.viewValue }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="address-sec" [ngClass]="showMap ? '' : 'd-none'">
+                        <div ngClass="block-wrapper-address">
+                            <label class="h6-design">Select your Location*s</label>
+                            <div ngClass="position-relative" [formGroup]="SubmitForm">
+                                <div style="width: 100%">
+                                    <div #propertyDetails__map class="property-details__map"></div>
+                                </div>
+                                <div ngClass="locate-me-sec">
+                                    <div ngClass="add-adrees-sec">
+                                        <input matInput type="text" formControlName="address"
+                                            placeholder="Search Location" #searchLocation id="searchLocation"
+                                            class="searchLocation" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="category-selecton-box">
                         <div ngClass="block-wrapper mb-4">
                             <label>Select the area that best suits your ad <span
@@ -130,78 +192,12 @@
                             </div>
                         </div>
                     </div>
-                    <div ngClass="select-boxes">
-                        <div ngClass="row">
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Country <span ngClass="required-span">*</span></label>
-                                        <select class="select2 country-select"
-                                            [ngClass]="oldData == '' || country.length > 0 ? '' : 'd-none'">
-                                            <option value="0"> Select Country</option>
-                                            <option class="country-item-{{list.value}}" *ngFor="let list of country"
-                                                [value]="list.value"> {{
-                                                list.viewValue }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="select-design mb-4 select2-design">
-                                    <label>City <span ngClass="required-span">*</span></label>
-                                    <select class="select2 city-select"
-                                        [ngClass]="oldData == '' || city.length > 0 ? '' : 'd-none'">
-                                        <option value="0"> Select City</option>
-                                        <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city"
-                                            [value]="listcity.value"> {{
-                                            listcity.viewValue }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>District <span ngClass="required-span">*</span></label>
-                                        <select class="select2 district-select"
-                                            [ngClass]="oldData == '' || district.length > 0 ? '' : 'd-none'">
-                                            <option value="0"> Select District</option>
-                                            <option class="district-item-{{listdistrict.value}}"
-                                                *ngFor="let listdistrict of district" [value]="listdistrict.value">
-                                                {{ listdistrict.viewValue }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="address-sec" [ngClass]="showMap ? '' : 'd-none'">
-                        <div ngClass="block-wrapper-address">
-                            <label class="h6-design">Select your Location*s</label>
-                            <div ngClass="position-relative" [formGroup]="SubmitForm">
-                                <div style="width: 100%">
-                                    <div #propertyDetails__map class="property-details__map"></div>
-                                </div>
-                                <div ngClass="locate-me-sec">
-                                    <div ngClass="add-adrees-sec">
-                                        <input matInput type="text" formControlName="address"
-                                            placeholder="Search Location" #searchLocation id="searchLocation"
-                                            class="searchLocation" />
-                                        <!-- <div ngClass="locate-me-btn text-right">
-                                            <button ngClass="grey-bordered-btn" (click)="getLocation()">
-                                                <img src="{{ Locate }}" /> Locate Me
-                                            </button>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- <div class="selection-cntnt">
                         <p>You have selected <span class="s-cat-name">Motors</span></p>
                     </div> -->
                     <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <a class="save-continue-btn cursor-pointer" [ngClass]="isDisabled ? 'btn-disabled' : ''" routerLink="/classified/car-ad-details">Next</a>
+                            <a class="save-continue-btn cursor-pointer" [ngClass]="isDisabled ? 'btn-disabled' : ''" (click)="onSubmit()">Next</a>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">
@@ -225,4 +221,5 @@
         </div>
     </div>
 </div>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
 <app-loader *ngIf="showLoader"></app-loader>

@@ -95,11 +95,8 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Usage <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Still with the dealer</option>
-                                            <option value="1">Only used once since it was purchased new</option>
-                                            <option value="0"> Used very rarely since it was purchased</option>
-                                            <option value="1">Used once or twice a week since purchased</option>
-                                            <option value="0"> Used as primary mode of transportation</option>
+                                            <option class="country-item" *ngFor="let item of AccessoriesUsage" value="{{item.id}}">
+                                                {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -109,8 +106,8 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> New</option>
-                                            <option value="1">Second Hand</option>
+                                            <option class="country-item" *ngFor="let item of ToolCondition" value="{{item.id}}">
+                                                {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -120,21 +117,8 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Seller type <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="Owner">Owner</option>
-                                            <option value="Dealer">Dealer</option>
-                                            <option value="Dealership">Dealership/Certified Pre-Owned</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design full-width-select2">
-                                        <label>Select Company <span class="required-span">*</span></label>
-                                        <select class="select2 country-select" multiple>
-                                            <option value="Owner"> All Motorcycles</option>
-                                            <option value="Dealer">Bajaj</option>
-                                            <option value="Dealership"> BMW Motorcycle</option>
+                                            <option class="country-item" *ngFor="let item of SellerType" value="{{item.id}}">
+                                                {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>

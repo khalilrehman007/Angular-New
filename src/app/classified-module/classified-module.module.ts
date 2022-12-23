@@ -58,6 +58,15 @@ import { SportsFiltersComponent } from './classified-listings/sports-filters/spo
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from '../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
+import { AllListingFilterComponent } from './classified-listings/all-listing-filter/all-listing-filter.component';
+import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
+import { JobsFilterComponent } from './classified-listings/jobs-filter/jobs-filter.component';
+import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-listing.component';
+import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
+import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
+import { CommunityFilterComponent } from './classified-listings/community-filter/community-filter.component';
+import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
 
 
 
@@ -98,7 +107,15 @@ import { LoaderModule } from '../loader/loader.module';
     MobileTabletFilterComponent,
     MotorsFiltersComponent,
     ServiceFiltersComponent,
-    SportsFiltersComponent
+    SportsFiltersComponent,
+    AllListingFilterComponent,
+    AllListingsComponent,
+    JobsFilterComponent,
+    JobsListingComponent,
+    JobsDetailsComponent,
+    CommunityLsitingsComponent,
+    CommunityFilterComponent,
+    CommunityDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -124,7 +141,8 @@ import { LoaderModule } from '../loader/loader.module';
     BreadcrumbsModule,
     MatSelectModule,
     MatCheckboxModule,
-    LoaderModule
+    LoaderModule,
+    AlertsModule
   ],
   exports: [
     ClassifiedHomeComponent,

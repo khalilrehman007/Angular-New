@@ -109,6 +109,9 @@ export class MotorComponentComponent implements OnInit {
     this.status1 = !this.status1;
     this.status = false;
   }
+  page1() {
+    this.route.navigate(['/classified/motor-listings'])
+  }
 
   propertyCategory: any = 1;
   // rent(){
@@ -192,7 +195,7 @@ export class MotorComponentComponent implements OnInit {
       }
     };
 
-    this.route.navigate(['/classified'], params)
+    this.route.navigate(['/classified/motor-listings'], params)
   }
 
 

@@ -152,8 +152,8 @@
                         <input matInput placeholder="Search For Anything">
                      </mat-form-field>
                 </div>
-                <div ngClass="flex-column flex-column-15">
-                    <button (click)="proceedSearch()" ngClass="search-btn"><img src="assets/images/search.svg"></button>
+                <div ngClass="flex-column flex-column-15" routerLink="/classified/motor-listings">
+                    <button ngClass="search-btn" (click)="page1()"><img src="assets/images/search.svg"></button>
                 </div>
             </div>
         </form>

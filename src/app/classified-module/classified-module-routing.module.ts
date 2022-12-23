@@ -29,6 +29,11 @@ import { SportsListingComponent } from './classified-listings/sports-listing/spo
 import { MobileTabletListingComponent } from './classified-listings/mobile-tablet-listing/mobile-tablet-listing.component';
 import { ServicesListingComponent } from './classified-listings/services-listing/services-listing.component';
 import { MotorsListingComponent } from './classified-listings/motors-listing/motors-listing.component';
+import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
+import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-listing.component';
+import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
+import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
+import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -59,7 +64,12 @@ const routes: Routes = [
   { path: "sports-equipment-listings", component: SportsListingComponent },
   { path: "phone-tablet-listings", component: MobileTabletListingComponent },
   { path: "service-listing", component: ServicesListingComponent },
-  { path: "motor-listings", component: MotorsListingComponent }
+  { path: "motor-listings", component: MotorsListingComponent },
+  { path: "all-listings", component: AllListingsComponent },
+  { path: "jobs-listings", component: JobsListingComponent },
+  { path: "jobs-details", component: JobsDetailsComponent },
+  { path: "community-listings", component: CommunityLsitingsComponent },
+  { path: "community-details", component: CommunityDetailsComponent }
 ];
 
 @NgModule({

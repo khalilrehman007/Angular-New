@@ -199,7 +199,11 @@ export class ServiceSearchComponentComponent implements OnInit, AfterViewInit {
       }
     };
 
-    this.route.navigate(['/classified'], params)
+    this.route.navigate(['/classified/service-listing'])
+  }
+
+  page2(){
+    this.route.navigate(['/classified/service-listing'])
   }
 
 

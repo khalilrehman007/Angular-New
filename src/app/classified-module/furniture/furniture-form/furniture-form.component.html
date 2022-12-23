@@ -95,14 +95,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Age <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="1">Brand New</option>
-                                            <option value="2">0-1 month</option>
-                                            <option value="3">1-6 months</option>
-                                            <option value="4">6-12 months</option>
-                                            <option value="5">1-2 years</option>
-                                            <option value="6">2-5 years</option>
-                                            <option value="7">5-10 years</option>
-                                            <option value="8">10+ years</option>
+                                            <option *ngFor="let item of Age" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -112,11 +105,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Usage <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="1">Still in original packaging</option>
-                                            <option value="2">Out of original packaging, but only used once</option>
-                                            <option value="3">Used only a few times</option>
-                                            <option value="4">Used an average amount, as frequently as would be expected</option>
-                                            <option value="5">Used an above average amount since purchased</option>
+                                            <option *ngFor="let item of AccessoriesUsage" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -126,11 +115,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="5">Perfect inside and out</option>
-                                            <option value="4">Almost no noticeable problems or flaws</option>
-                                            <option value="3">A bit of wear and tear, but in good working condition</option>
-                                            <option value="2">Normal wear and tear for the age of the item, a few problems here and there</option>
-                                            <option value="1">Above average wear and tear.  The item may need a bit of repair to work properly</option>
+                                            <option *ngFor="let item of ToolCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>

@@ -46,9 +46,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Gender <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Any</option>
-                                            <option value="1">Male</option>
-                                            <option value="0"> Female</option>
+                                            <option *ngFor="let item of Gender" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -58,8 +56,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Nationality <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Nationality</option>
-                                            <option value="1">Nationality</option>
+                                            <option *ngFor="let item of Nationality" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -69,9 +66,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Language <span class="required-span">*</span></label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="Owner"> English</option>
-                                            <option value="Dealer">Arabic</option>
-                                            <option value="Dealership">Hindi</option>
+                                            <option *ngFor="let item of Language" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -81,12 +76,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Career Level <span class="required-span">*</span></label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="ST">Student/Intern</option>
-                                            <option value="EP">Junior</option>
-                                            <option value="PO">Mid-level</option>
-                                            <option value="SR">Senior</option>
-                                            <option value="MM">Manager</option>
-                                            <option value="SM">Executive/Director</option>
+                                            <option *ngFor="let item of CareerLevel" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -96,10 +86,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Employment Type<span class="required-span">*</span></label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="FT">Full Time</option>
-                                            <option value="PT">Part Time</option>
-                                            <option value="CO">Contract</option>
-                                            <option value="TP">Temporary</option>
+                                            <option *ngFor="let item of EmploymentType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -120,12 +107,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Min. work experience<span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0">0-1 Years</option>
-                                            <option value="1">1-2 Years</option>
-                                            <option value="2">2-5 Years</option>
-                                            <option value="5">5-10 Years</option>
-                                            <option value="10">10-15 Years</option>
-                                            <option value="15">15+ Years</option>
+                                            <option *ngFor="let item of WorkExperience" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -146,15 +128,33 @@
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design full-width-select2">
-                                        <label>Skills<span class="required-span">*</span></label>
-                                        <select class="select2 country-select" multiple>
-                                            <option value="0">Designer</option>
-                                            <option value="1">Developer</option>
-                                        </select>
-                                    </div>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Skill 1" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Skill 2" lang="en" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Skill 3" lang="en" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Skill 3" lang="en" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
@@ -171,17 +171,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Monthly Salary<span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0">Negotiable</option>
-                                            <option value="1">0 - 1,999</option>
-                                            <option value="2">2,000 - 3,999</option>
-                                            <option value="3">4,000 - 5,999</option>
-                                            <option value="4">6,000 - 7,999</option>
-                                            <option value="5">8,000 - 11,999</option>
-                                            <option value="6">12,000 - 19,999</option>
-                                            <option value="7">20,000 - 29,999</option>
-                                            <option value="8">30,000 - 49,999</option>
-                                            <option value="9">50,000 - 99,999</option>
-                                            <option value="10">100,000+</option>
+                                            <option *ngFor="let item of MonthlySalary" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -191,8 +181,7 @@
                                     <div ngClass="select-design select2-design full-width-select2">
                                         <label>Benefits</label>
                                         <select class="select2 country-select" multiple>
-                                            <option value="0"> Health Insurance</option>
-                                            <option value="1">Company Visa</option>
+                                            <option *ngFor="let item of JobBenefits " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,14 +211,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Company size <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="XXS">1-10</option>
-                                            <option value="XS">11-50</option>
-                                            <option value="S">51-200</option>
-                                            <option value="M">201-500</option>
-                                            <option value="L">501-1000</option>
-                                            <option value="XL">1001-5000</option>
-                                            <option value="XXL">5001-10000</option>
-                                            <option value="MAX">10000+</option>
+                                            <option *ngFor="let item of CompanySize" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -239,8 +221,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Listed by <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="EM">Employer</option>
-                                            <option value="RE">Recruiter</option>
+                                            <option *ngFor="let item of CompanyListedBy" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
