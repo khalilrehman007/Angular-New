@@ -95,10 +95,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Fuel Type <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Gasoline</option>
-                                            <option value="1">Diesel</option>
-                                            <option value="0"> Hybrid</option>
-                                            <option value="1">Electric</option>
+                                            <option value="0" *ngFor="let item of FuelType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -117,11 +114,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Body Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Perfect inside and out</option>
-                                            <option value="1">No accidents, very few faults</option>
-                                            <option value="0"> A bit of wear & tear, all repaired</option>
-                                            <option value="1">Normal wear & tear, a few issues</option>
-                                            <option value="0"> Lots of wear & tear to the body</option>
+                                            <option value="0" *ngFor="let item of BodyCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -131,27 +124,17 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Mechanical condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="Owner">Perfect inside and out</option>
-                                            <option value="Dealer">Minor faults, all fixed</option>
-                                            <option value="Dealership">Major faults, all fixed</option>
-                                            <option value="Owner">Major faults fixed, small remain</option>
-                                            <option value="Dealer">Ongoing minor & major faults</option>
+                                            <option value="0" *ngFor="let item of MechanicalCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Year <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="Owner">2018</option>
-                                            <option value="Dealer">2019</option>
-                                            <option value="Dealership">2020</option>
-                                            <option value="Owner">2021</option>
-                                            <option value="Dealer">2022</option>
-                                        </select>
-                                    </div>
+                                    <label>Year</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Enter Years" lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
@@ -159,9 +142,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Seller type <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="Owner">Owner</option>
-                                            <option value="Dealer">Dealer</option>
-                                            <option value="Dealership">Dealership/Certified Pre-Owned</option>
+                                            <option value="0" *ngFor="let item of SellerType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -180,8 +161,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Warranty <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="no">No</option>
-                                            <option value="Yes">Yes</option>
+                                            <option value="0" *ngFor="let item of Warranty" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -210,8 +190,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>No. of Cylinders <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option value="0" *ngFor="let item of Cylinders " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -221,8 +200,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Horsepower <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="hp">Less than 150 HP</option>
-                                            <option value="hp">150 - 200 HP</option>
+                                            <option value="0" *ngFor="let item of HorsePower" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
