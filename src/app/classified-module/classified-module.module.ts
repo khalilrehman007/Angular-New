@@ -61,6 +61,9 @@ import { LoaderModule } from '../loader/loader.module';
 import { AlertsModule } from '../alerts/alerts.module';
 import { AllListingFilterComponent } from './classified-listings/all-listing-filter/all-listing-filter.component';
 import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
+import { JobsFilterComponent } from './classified-listings/jobs-filter/jobs-filter.component';
+import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-listing.component';
+import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
 
 
 
@@ -103,7 +106,10 @@ import { AllListingsComponent } from './classified-listings/all-listings/all-lis
     ServiceFiltersComponent,
     SportsFiltersComponent,
     AllListingFilterComponent,
-    AllListingsComponent
+    AllListingsComponent,
+    JobsFilterComponent,
+    JobsListingComponent,
+    JobsDetailsComponent
   ],
   imports: [
     CommonModule,

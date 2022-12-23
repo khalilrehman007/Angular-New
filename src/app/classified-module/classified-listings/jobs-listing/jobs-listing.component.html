@@ -1,0 +1,164 @@
+<app-header></app-header>
+<div ngClass="light-bg-body">
+    <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+    <section [ngClass]="'explore-banner-sec position-relative'"
+      style="background-image: url('assets/images/furniture/furniture4.jpeg')">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="inner-banner-heading text-center">
+          <h2>Jobs Listings</h2>
+        </div>
+      </div>
+    </section>
+    <section class="classified-filter-sec">
+      <app-jobs-filter></app-jobs-filter>
+    </section>
+    <section class="classified-listing-header">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="heading-apragraph-design mt-4">
+          <h2>Find your dream job In UAE</h2>
+          <p>Showing 100 off jobs in UAE</p>
+      </div>
+      <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+      <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
+          <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
+              <div class="checkbox-design position-relative">
+                  <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
+                  <button class="checkbox-btn">All</button>
+              </div>
+          </div>
+          <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
+              <div class="checkbox-design position-relative">
+                  <input type="checkbox" id="OV-Verified" name="property-types" value="OV-Verified">
+                  <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+              </div>
+              <div ngClass="block-wrapper">
+                  <mat-form-field appearance="fill" class="select-design">
+                      <mat-label>Sort by</mat-label>
+                      <mat-select [disableOptionCentering]="true">
+                          <mat-option value="New">
+                              New
+                          </mat-option>
+                          <mat-option value="Old">
+                            Old
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+          </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+    <section class="classified-listing-blocks">
+      <div [ngClass]="'container_1280px'">
+        <div class="row">
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+            <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-12 col-md-12 col-lg-12 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="job-title cursor-pointer" routerLink="/classified/jobs-details">
+                                  <h4>Cashier<span class="featured-tag">Featured</span>
+                                  </h4>
+                              </div>
+                              <div ngClass="property-action-hdr">
+                                  <div ngClass="pro-contact-details">
+                                      <div ngbDropdown class="d-inline-block">
+                                          <button ngClass="circle-btn" id="dropdownBasic21"
+                                              ngbDropdownToggle><img src="{{share}}"></button>
+                                          <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+                                              <h5>Share with:</h5>
+                                              <button ngbDropdownItem><a target="_blank"
+                                                      href="https://facebook.com"
+                                                      ngClass="facebook"><img src="{{fb}}">
+                                                      Facebook</a></button>
+                                              <button ngbDropdownItem><a target="_blank"
+                                                      href="https://web.whatsapp.com/"
+                                                      ngClass="whatsapp"><img src="{{whatsapp}}">
+                                                      WhatsApp</a></button>
+                                              <button ngbDropdownItem><a target="_blank"
+                                                      href="https://twitter.com/"
+                                                      ngClass="twitter"><img src="{{twitter}}">
+                                                      Twitter</a></button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <button
+                                      [ngClass]="'favourite-btn'">
+                                      <svg width="22" height="23" viewBox="0 0 22 23"
+                                          fill="#595ad4" xmlns="http://www.w3.org/2000/svg">
+                                          <path
+                                              d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                              stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round" />
+                                      </svg>
+                                  </button>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals cursor-pointer" routerLink="/classified/jobs-details">
+                            <div ngClass="property-addresss">
+                              <p><img src="{{homelocationsvg}}"> Al Barsha, Dubai</p>
+                          </div>
+                          <h5 class="copany-name"><span class="">Company Name:</span> AL MASAR AL AMAL</h5>
+                          <h5 class="listing-type-cateogry">Negotiable salary <span class="divider">+</span> Commission</h5>
+                          </div>
+                          <div ngClass="classified-tags-wrap d-flex flex-wrap cursor-pointer" routerLink="/classified/jobs-details">
+                             <div class="grey-bg-classified">
+                              <p>Job Type</p>
+                              <h6>Full Time</h6>
+                             </div>
+                             <div class="grey-bg-classified">
+                              <p>Experience</p>
+                              <h6>0-1 Years</h6>
+                             </div>
+                             <div class="grey-bg-classified">
+                              <p>Qualification</p>
+                              <h6>N/A</h6>
+                             </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="assets/images/property/3.png">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Loream</h5>
+                                              <p>Listed on: 12 Dec 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div ngClass="col-xl-8 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="property-contact-buttons">
+                                          <a href="" class="email">
+                                              <svg fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M11.0833 0.583984H2.91667C2.1434 0.584911 1.40207 0.892499 0.855295 1.43928C0.308514 1.98606 0.00092625 2.72739 0 3.50065L0 10.5007C0.00092625 11.2739 0.308514 12.0153 0.855295 12.562C1.40207 13.1088 2.1434 13.4164 2.91667 13.4173H11.0833C11.8566 13.4164 12.5979 13.1088 13.1447 12.562C13.6915 12.0153 13.9991 11.2739 14 10.5007V3.50065C13.9991 2.72739 13.6915 1.98606 13.1447 1.43928C12.5979 0.892499 11.8566 0.584911 11.0833 0.583984ZM2.91667 1.75065H11.0833C11.4326 1.75134 11.7737 1.85654 12.0627 2.0527C12.3517 2.24887 12.5754 2.52704 12.705 2.8514L8.23783 7.31916C7.90908 7.64659 7.46399 7.83043 7 7.83043C6.536 7.83043 6.09091 7.64659 5.76216 7.31916L1.295 2.8514C1.42459 2.52704 1.64827 2.24887 1.93728 2.0527C2.22628 1.85654 2.56737 1.75134 2.91667 1.75065ZM11.0833 12.2507H2.91667C2.45254 12.2507 2.00742 12.0663 1.67923 11.7381C1.35104 11.4099 1.16667 10.9648 1.16667 10.5007V4.37565L4.93733 8.14399C5.48486 8.69014 6.22665 8.99685 7 8.99685C7.77335 8.99685 8.51513 8.69014 9.06266 8.14399L12.8333 4.37565V10.5007C12.8333 10.9648 12.649 11.4099 12.3208 11.7381C11.9926 12.0663 11.5475 12.2507 11.0833 12.2507Z" fill="#4A565F"/>
+                                                  </svg>                                                                 
+                                              Apply</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+            <div ngClass="adds-blck-sec mt-0">
+              <img src="/assets/images/ads.png">
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer ngClass="footer-sec">
+        <app-footer></app-footer>
+    </footer>
+   </section>
+   </div>
