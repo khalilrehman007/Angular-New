@@ -1,0 +1,227 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar classified-details'">
+    <section [ngClass]="'property-listing-inner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="property-price-buttons-sec">
+                <div ngClass="row align-items-center">
+                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                        <div ngClass="property-name_detals">
+                            <h4>Cashier</h4>
+                            <div ngClass="property-addresss">
+                                <p> <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
+                                    <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
+                                </svg> 
+                                 Etihad Tower 4, Etihad Towers,</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="d-flex justify-content-end align-items-center">
+                        <div ngClass="pro-contact-details me-3">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button ngClass="share-btn" id="dropdownBasic2" ngbDropdownToggle><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 24c0-9.6 5.7-18.2 14.5-22s19-2 26 4.6l144 136c4.8 4.5 7.5 10.8 7.5 17.4s-2.7 12.9-7.5 17.4l-144 136c-7 6.6-17.2 8.4-26 4.6s-14.5-12.5-14.5-22V224H352 337.5c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8h-2.5c-2.4 0-4.8-.4-7.1-1.4C242.8 374.8 160 333.4 160 240c0-79.5 64.5-144 144-144h80V24zM0 144C0 99.8 35.8 64 80 64H96c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16H368c8.8 0 16-7.2 16-16V416c0-17.7 14.3-32 32-32s32 14.3 32 32v16c0 44.2-35.8 80-80 80H80c-44.2 0-80-35.8-80-80V144z"/></svg> Share</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                        <h5>Share with:</h5>
+                                        <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
+                                                ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
+                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
+                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsApp</a></button>
+                                        <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
+                                                ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
+                                    </div>
+                                </div>
+                        </div>
+                        <div ngClass="property-action_detals text-right">
+                            <button [ngClass]="'grey-bordered-btn'">
+                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="row">
+            <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <div ngClass="property-tabs-content">
+                        <div ngClass="blogs-link-list mb-5">
+                            <ul ngClass="list-unstyled d-flex justify-content-start">
+                                <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="overview()"><a
+                                    (click)="scroll(overviewList)">Details</a></li>
+                                <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
+                                        (click)="scroll(keyHighligh)">Descriptions</a></li>
+                                <li [ngClass]="status1 ? 'tactive' : 'thide'" (click)="Location()"><a
+                                        (click)="scroll(locationScroll)">Location</a></li>
+                            </ul>
+                        </div>
+                        <div class="key_highlight mt-4" #overviewList>
+                            <div ngClass="tabs-heading-div">
+                                <h5>Details</h5>
+                            </div>
+                            <div ngClass="property_infor-div-sec">
+                                <div ngClass="property_info-row">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Listed On</p>
+                                                <h6>27 Oct 2022</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Company Name</p>
+                                                <h6>AL MASAR AL AMAL</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Employment Type</p>
+                                                <h6>Full Time</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Remote Job</p>
+                                                <h6>No</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Monthly Salary</p>
+                                                <h6>Negotiable</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Benefits</p>
+                                                <h6>Health Insurance , Company Visa , Accommodation , Commission , As per UAE law</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Neighbourhood</p>
+                                                <h6>Deira</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Minimum Work Experience</p>
+                                                <h6>0-1 Years</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Minimum Education Level</p>
+                                                <h6>N/A</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Listed By</p>
+                                                <h6>Employer</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Company Size</p>
+                                                <h6>11-50 Employees</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Career Level</p>
+                                                <h6>Mid-level</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Gender</p>
+                                                <h6>Any</h6>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="property_info-text">
+                                                <p>Expires on</p>
+                                                <h6>21st January 2023</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="key_highlight mt-4" #keyHighligh>
+                            <div ngClass="tabs-heading-div">
+                                <h5>Descriptions</h5>
+                            </div>
+                            <div ngClass="description-block-design">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="locarions_wrapper mt-4" #locationScroll>
+                            <div ngClass="tabs-heading-div">
+                                <h5>Location</h5>
+                            </div>
+                            <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px; border-radius: 12px;overflow: hidden;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+            </div>
+            </div>
+            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div class="property-owner-details mb-4">
+                    <button class="make-oofer-btn">Apply Now</button>
+                </div>
+                <div ngClass="adds-blck-sec">
+                    <img src="/assets/images/ads.png">
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
+
+<div ngClass="gallery-modal-design">
+    <ng-template #content let-modal>
+        <button type="button" class="btn-close share-close-modal" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body share-modal-design">
+            <div class="share-inner-cntnt">
+                <h5>Share with:</h5>
+                <div class="d-flex justify-content-spacebw">
+                    <a target="_blank" href="https://facebook.com" ngClass="facebook">
+                        <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.11938 3.32003H10.9994V0.14003C10.0891 0.045377 9.17453 -0.00135428 8.25938 2.98641e-05C5.53938 2.98641e-05 3.67938 1.66003 3.67938 4.70003V7.32003H0.609375V10.88H3.67938V20H7.35937V10.88H10.4194L10.8794 7.32003H7.35937V5.05003C7.35937 4.00003 7.63938 3.32003 9.11938 3.32003Z"
+                                fill="#0d6efd" />
+                        </svg>
+                        Facebook
+                    </a>
+                    <a target="_blank" href="https://web.whatsapp.com/" ngClass="whatsapp">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z"
+                                fill="#70b662" />
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <a target="_blank" href="https://twitter.com/" ngClass="twitter">
+                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.5667 3.1442C12.5749 3.26728 12.5749 3.39095 12.5749 3.5152C12.5749 7.31094 9.68508 11.6877 4.40241 11.6877V11.6854C2.842 11.6877 1.31367 11.2409 0 10.3979C0.226917 10.4254 0.455 10.4388 0.683666 10.4394C1.9775 10.4405 3.234 10.0065 4.25075 9.20736C3.02167 9.18402 1.94367 8.38252 1.56742 7.21236C1.99792 7.29519 2.44125 7.27828 2.86417 7.16336C1.52367 6.89269 0.56 5.71494 0.56 4.34761C0.56 4.33536 0.56 4.32311 0.56 4.31144C0.959583 4.53428 1.40642 4.65736 1.86375 4.67078C0.601416 3.82786 0.21175 2.14903 0.974166 0.836532C2.4325 2.63086 4.58441 3.7217 6.89383 3.83778C6.66225 2.84028 6.979 1.79495 7.7245 1.0932C8.88124 0.0052824 10.7007 0.0612823 11.7886 1.21803C12.432 1.09145 13.0486 0.855198 13.6127 0.520949C13.398 1.18595 12.9494 1.75061 12.3497 2.10995C12.9197 2.0417 13.4756 1.88945 14 1.65728C13.6144 2.2342 13.1291 2.73761 12.5667 3.1442Z"
+                                fill="#595ad5" />
+                        </svg>
+                        Twitter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
