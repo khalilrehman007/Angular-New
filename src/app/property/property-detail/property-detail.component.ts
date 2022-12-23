@@ -30,8 +30,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
   @ViewChild('propertyDetails__map') mapElement: any;
   detailSuccess = false;
-  showLoader:boolean = false;
-  showMore:boolean=true;
+  showLoader: boolean = false;
+  showMore: boolean = true;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -62,12 +62,13 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   fb = '../../../assets/images/icons/fb-share.svg'
   tagicn = '../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../assets/images/home-location.svg'
+
   user: any
-  userPhoneNumber:string="";
-  userWhatsAppNumber:string="";
-  whatsAppShareUrl:any="";
-  facebookShareUrl:any="";
-  twitterShareUrl:any="";
+  userPhoneNumber: string = "";
+  userWhatsAppNumber: string = "";
+  whatsAppShareUrl: any = "";
+  facebookShareUrl: any = "";
+  twitterShareUrl: any = "";
   baseUrl = environment.apiUrl;
   status: boolean = true;
   status1: boolean = false;
@@ -237,7 +238,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   };
   public lineChartLegend = true;
 
-  constructor(private decimalPipe: DecimalPipe,private datePipe:DatePipe, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private decimalPipe: DecimalPipe, private datePipe: DatePipe, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -298,9 +299,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         thumbnailsSwipe: true,
         thumbnailsArrows: false,
         imageAnimation: NgxGalleryAnimation.Slide,
-        lazyLoading:false,
-        imageArrows:false,
-        imageSwipe:true
+        lazyLoading: false,
+        imageArrows: false,
+        imageSwipe: true
       },
       // max-width 800
       {
@@ -311,17 +312,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         thumbnailsColumns: 5,
         thumbnailsMargin: 5,
         thumbnailsArrows: false,
-        lazyLoading:false,
-        imageArrows:false,
-        imageSwipe:true
+        lazyLoading: false,
+        imageArrows: false,
+        imageSwipe: true
       },
       // max-width 400
       {
         breakpoint: 400,
         preview: false,
-        lazyLoading:false,
-        imageArrows:false,
-        imageSwipe:true
+        lazyLoading: false,
+        imageArrows: false,
+        imageSwipe: true
       }
     ];
 
@@ -337,23 +338,23 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
       console.log(result)
       if (result.result == 1) {
 
-      this.propertyDetails = result.data.propertyListing;
-      this.allData = result.data;
-      let temp: any = result;
-      this.shareURL += "detail?id="+this.propertyDetails.id;
-      this.userData = temp.data.user;
-      this.userPhoneNumber="tel:"+this.userData.phoneNumber;
-      this.userWhatsAppNumber="https://wa.me/"+this.userData.phoneNumber?.replace("+","");
-      this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+this.shareURL);
-      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+this.shareURL+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+this.shareURL+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-      this.propertyLat = temp.data.propertyListing.propertyLat;
-      this.propertyLng = temp.data.propertyListing.propertyLong;
-      this.buildingName = temp.data.propertyListing.buildingName;
-      let jsonData: any = JSON.stringify(temp.data)
-      let jsonParsDate: any = JSON.parse(jsonData);
-      this.propertyDetail = jsonParsDate
-
+        this.propertyDetails = result.data.propertyListing;
+        this.allData = result.data;
+        let temp: any = result;
+        this.shareURL += "detail?id=" + this.propertyDetails.id;
+        this.userData = temp.data.user;
+        this.userPhoneNumber = "tel:" + this.userData.phoneNumber;
+        this.userWhatsAppNumber = "https://wa.me/" + this.userData.phoneNumber?.replace("+", "");
+        this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + this.shareURL);
+        this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + this.shareURL + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+        this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + this.shareURL + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+        this.propertyLat = temp.data.propertyListing.propertyLat;
+        this.propertyLng = temp.data.propertyListing.propertyLong;
+        this.buildingName = temp.data.propertyListing.buildingName;
+        let jsonData: any = JSON.stringify(temp.data)
+        let jsonParsDate: any = JSON.parse(jsonData);
+        this.propertyDetail = jsonParsDate
+        this.galleryImages = [];
         //gallery images
         for (let i = 0; i < this.propertyDetails.documents.length; i++) {
           this.galleryImages.push({
@@ -414,15 +415,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
           rentType = jsonParsDate.propertyListing.rentType.name
         }
-       let companyLogoImage:any='';
-       if(this.allData?.agentDetails?.company!=null && this.allData?.agentDetails?.company?.documents.length>0){
-        let companyLogo =this.allData?.agentDetails?.company?.documents.find((y: any) => {
-          return y.registrationDocumentTypeId === 8
-        })
-        if (companyLogo != null && companyLogo != undefined) {
-          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        let companyLogoImage: any = '';
+        if (this.allData?.agentDetails?.company != null && this.allData?.agentDetails?.company?.documents.length > 0) {
+          let companyLogo = this.allData?.agentDetails?.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
         }
-       }
         if (jsonParsDate.propertyListing != null) {
           this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
           this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
@@ -460,7 +461,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
           this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
           this.propertyDetailData.propertyOffer = (jsonParsDate.propertyListing.propertyOffer !== undefined) ? jsonParsDate.propertyListing.propertyOffer.trim() : ''
-          this.propertyDetailData.tourUrl = (jsonParsDate.propertyListing.tourUrl !== undefined && jsonParsDate.propertyListing.tourUrl!==null) ? jsonParsDate.propertyListing.tourUrl.trim() : (jsonParsDate.propertyListing.youtubeUrl !== undefined && jsonParsDate.propertyListing.youtubeUrl!==null) ? jsonParsDate.propertyListing.youtubeUrl.trim():''
+          this.propertyDetailData.tourUrl = (jsonParsDate.propertyListing.tourUrl !== undefined && jsonParsDate.propertyListing.tourUrl !== null) ? jsonParsDate.propertyListing.tourUrl.trim() : (jsonParsDate.propertyListing.youtubeUrl !== undefined && jsonParsDate.propertyListing.youtubeUrl !== null) ? jsonParsDate.propertyListing.youtubeUrl.trim() : ''
           this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
           this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
           this.propertyDetailData.occupancyStatus = occupancyStatus;
@@ -482,8 +483,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.reraNo = reraNo;
           this.propertyDetailData.permitNo = permitNo;
           this.propertyDetailData.companyLogoImage = companyLogoImage;
-          this.propertyDetailData.startDate =  (jsonParsDate.propertyListing.startDate == undefined || jsonParsDate.propertyListing.startDate == null) ? '' : jsonParsDate.propertyListing.startDate;
-          this.propertyDetailData.endDate =  (jsonParsDate.propertyListing.endDate == undefined || jsonParsDate.propertyListing.endDate == null) ? '' : jsonParsDate.propertyListing.endDate;
+          this.propertyDetailData.startDate = (jsonParsDate.propertyListing.startDate == undefined || jsonParsDate.propertyListing.startDate == null) ? '' : jsonParsDate.propertyListing.startDate;
+          this.propertyDetailData.endDate = (jsonParsDate.propertyListing.endDate == undefined || jsonParsDate.propertyListing.endDate == null) ? '' : jsonParsDate.propertyListing.endDate;
 
           // share url concatination
           // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
@@ -557,145 +558,145 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         show: true,
         label: 'Listed on',
         value: this.propertyDetailData.requestedDateFormat,
-        isLink:false
+        isLink: false
       },
       {
         show: true,
         label: 'OV-Verified On',
         value: this.propertyDetailData.requestedDateFormat,
-        isLink:false
+        isLink: false
       },
       {
         show: true,
         label: 'Property Category',
         value: this.propertyDetailData.buildingType,
-        isLink:false
+        isLink: false
       },
       {
         show: true,
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingBed,
         label: 'Bedroom',
         value: this.propertyDetailData.bedrooms,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingBath,
         label: 'Bathroom',
         value: this.propertyDetailData.bathrooms,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingFurnishing,
         label: 'Furnishing Type',
         value: this.propertyDetailData.furnishingType,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingFitting,
         label: 'Fitting Type',
         value: this.propertyDetailData.fittingType,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingParking,
         label: 'Available Parking',
-        value: this.propertyDetailData.parkings==null || this.propertyDetailData.parkings==undefined || this.propertyDetailData.parkings==0?"N/A":this.propertyDetailData.parkings,
-        isLink:false
+        value: this.propertyDetailData.parkings == null || this.propertyDetailData.parkings == undefined || this.propertyDetailData.parkings == 0 ? "N/A" : this.propertyDetailData.parkings,
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingUnitNumber,
         label: 'No Of Units',
         value: this.propertyDetailData.unitNo,
-        isLink:false
+        isLink: false
       },
       {
         label: 'Carpet Area',
         show: this.propertyValidationData.hasListingCarpetArea,
         value: this.decimalPipe.transform(this.propertyDetailData.carpetArea),
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingPlotSize,
         label: this.propertyValidationData.sizeLabel,
         value: this.decimalPipe.transform(this.propertyDetailData.plotSize),
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingBuildUpArea,
         label: 'Build-up Area',
         value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyDetailData.propertyListingTypeId == 2 && this.propertyValidationData.hasListingOccupancyStatus ? true : false,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingCompletionStatus ? true : false,
         label: 'Completion Status',
         value: this.propertyDetailData.completionStatus,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingTransactionType ? true : false,
         label: 'Transaction Type',
         value: this.propertyDetailData.transactionType,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyValidationData.hasListingDeveloper ? true : false,
         label: 'Developer',
         value: this.propertyDetailData.propertyDeveloper,
-        isLink:false
+        isLink: false
       },
       {
         show: true,
         label: 'Price',
         value: this.decimalPipe.transform(this.propertyDetailData.propertyPrice) + ' ' + this.propertyDetailData.currency,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyDetailData.propertyListingTypeId == 2 ? true : false,
         label: 'Rent Type',
         value: this.propertyDetailData.rentType,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyDetailData.securityDeposit,
         label: 'Security Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.securityDepositPrice) + ' ' + this.propertyDetailData.currency,
-        isLink:false
+        isLink: false
       },
       {
         show: this.propertyDetailData.brokerageCharge,
         label: 'Brokerage Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
-        isLink:false
+        isLink: false
       },
       {
-        show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
+        show: this.propertyDetailData.rentType.trim() == 'Short Term' ? true : false,
         label: 'Rent Start Date',
-        value: this.datePipe.transform(this.propertyDetailData.startDate,'mediumDate'),
-        isLink:false
+        value: this.datePipe.transform(this.propertyDetailData.startDate, 'mediumDate'),
+        isLink: false
       },
       {
-        show: this.propertyDetailData.rentType.trim()=='Short Term'?true:false,
+        show: this.propertyDetailData.rentType.trim() == 'Short Term' ? true : false,
         label: 'Rent End Date',
-        value: this.datePipe.transform(this.propertyDetailData.endDate,'mediumDate'),
-        isLink:false
+        value: this.datePipe.transform(this.propertyDetailData.endDate, 'mediumDate'),
+        isLink: false
       },
       {
-        show: this.propertyDetailData.tourUrl.trim()!==''?true:false,
+        show: this.propertyDetailData.tourUrl.trim() !== '' ? true : false,
         label: 'Video Tour Link',
         value: this.propertyDetailData.tourUrl,
-        isLink:true
+        isLink: true
       }
     ]
 
@@ -801,29 +802,27 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
     let tempData: Array<Object> = []
     this.service.LoadSimilarProperty({ "UserId": this.userId, "PropertyListingId": this.propertyId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element: any, i: any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
+      response.data.forEach((element: any) => {
+        let mainImage: any = 'assets/images/placeholder.png';
+        if (element.documents != null && element.documents.length > 0) {
+          mainImage = this.baseUrl + element.documents[0].fileUrl;
         }
-
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: element.rentType?.name,
-            currency: element.country.currency,
-            favorite: element.favorite,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-            buildupArea: element.buildupArea,
-          });
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
+        tempData.push({
+          mainImage: mainImage, id: element.id, propertyPrice: element.propertyPrice, country: element.country, rentType: element.rentType,
+          propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
+          numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
+          bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
+          furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package
+        })
       })
     });
     this.similarPropertyDetails = tempData
@@ -870,7 +869,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
   SpSliderOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -878,23 +876,24 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
     autoWidth: false,
     pullDrag: true,
     dots: true,
+    nav: false,
+    lazyLoad: false,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     navSpeed: 700,
     responsive: {
       0: {
         items: 1
       },
-      576: {
+      400: {
         items: 2
       },
-      992: {
+      740: {
         items: 3
       },
-      1200: {
-        items: 3
+      940: {
+        items: 4
       }
-    },
-    nav: false
+    }
   }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
