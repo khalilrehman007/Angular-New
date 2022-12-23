@@ -195,6 +195,10 @@ export class JobSearchComponent implements OnInit {
     this.route.navigate(['/property/search'], params)
   }
 
+  page3(){
+    this.route.navigate(['/classified/jobs-listings'])
+  }
+
 
 
   @ViewChild('SearchInput') SearchInput: any;
