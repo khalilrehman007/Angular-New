@@ -31,15 +31,13 @@ export class HeavyVehiclesComponent implements OnInit {
       
     })
     this.service.GetClassifiedLookUpsByCategory("Warranty ").subscribe((result:any) => {
-      this.Warranty= result.data;
-      console.log(this.Warranty); 
+      this.Warranty= result.data; 
     })
     this.service.GetClassifiedLookUpsByCategory("Cylinders").subscribe((result:any) => {
       this.Cylinders = result.data; 
     })
     this.service.GetClassifiedLookUpsByCategory("HorsePower").subscribe((result:any) => {
       this.HorsePower = result.data;
-      console.log(this.HorsePower ); 
     })
   }
 
