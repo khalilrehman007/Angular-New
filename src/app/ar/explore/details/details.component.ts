@@ -211,7 +211,7 @@ export class DetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
   districtDetail: any = {};
   dataLoaded: boolean = false;

@@ -254,6 +254,6 @@ export class ServicesDetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
 }

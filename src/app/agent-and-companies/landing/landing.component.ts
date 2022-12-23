@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit, AfterViewInit {
+  showLoader:boolean=false;
   baseUrl = environment.apiUrl
   totalLength: number = 0;
   page: number = 1;
@@ -97,55 +98,133 @@ export class LandingComponent implements OnInit, AfterViewInit {
           "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
           "LanguageId": this.languageIds, "CurrentPage": 1
         };
+        this.showLoader=true;
         this.agentListData(agentObject);
         this.companiesListData({ "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
-        this.service.BestAgent(this.countryData.id).subscribe((result: any) => {
-          let tempData: Array<Object> = []
-          let response: any = result.data;
-          response.forEach((element: any, i: any) => {
-            let imageUrl: any = '../assets/images/user.png';
-            if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
-              imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
-            }
-            let fullName: any = '';
-            if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
-              fullName = element.agentDetails.user.fullName
-            }
-            let id: any = '';
-            if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
-              id = element.agentDetails.user.id
-            }
-            let expertIn: any = '';
-            if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
-              expertIn = element.agentDetails.expertIn
-            }
-            let reraNo: any = '';
-            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
-              reraNo = element.agentDetails.company.reraNo
-            }
-            let premitNo: any = '';
-            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
-              premitNo = element.agentDetails.company.premitNo
-            }
-            tempData.push(
-              {
-                id: id,
-                imageUrl: imageUrl,
-                fullName: fullName,
-                expertIn: expertIn,
-                reraNo: reraNo,
-                premitNo: premitNo,
-                salePropertyListingCount: element.salePropertyListingCount,
-                rentPropertyListingCount: element.rentPropertyListingCount,
-                commercialPropertyListingCount: element.commercialPropertyListingCount,
-
+        this.service.BestAgent(this.countryData.id).subscribe({
+          next:(result: any) => {
+            let tempData: Array<Object> = []
+            let response: any = result.data;
+            response.forEach((element: any, i: any) => {
+              let imageUrl: any = '../assets/images/user.png';
+              let companyLogo:any=''
+              if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
+                imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
               }
-            );
-          })
-          this.agentDetails = tempData
+              if (element.agentDetails != undefined && element.agentDetails?.company?.documents != undefined) {
+                let companyLogoImg =element.agentDetails.company?.documents.find((y: any) => {
+                  return y.registrationDocumentTypeId === 8
+                })
+                if (companyLogoImg != null && companyLogoImg != undefined) {
+                  companyLogo = this.baseUrl + companyLogoImg.fileUrl;
+                }
+              }
+              if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
+                imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
+              }
+              let fullName: any = '';
+              if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
+                fullName = element.agentDetails.user.fullName
+              }
+              let id: any = '';
+              if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
+                id = element.agentDetails.user.id
+              }
+              let expertIn: any = '';
+              if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
+                expertIn = element.agentDetails.expertIn
+              }
+              let reraNo: any = '';
+              if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
+                reraNo = element.agentDetails.company.reraNo
+              }
+              let premitNo: any = '';
+              if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
+                premitNo = element.agentDetails.company.premitNo
+              }
+              tempData.push(
+                {
+                  id: id,
+                  imageUrl: imageUrl,
+                  companyLogo:companyLogo,
+                  fullName: fullName,
+                  expertIn: expertIn,
+                  reraNo: reraNo,
+                  premitNo: premitNo,
+                  salePropertyListingCount: element.salePropertyListingCount,
+                  rentPropertyListingCount: element.rentPropertyListingCount,
+  
+                }
+              );
+            })
+            this.agentDetails = tempData
+            this.showLoader=false;
+          },
+          error:(err:any)=>{
+            this.showLoader=false;
+          }
         })
-        this.service.BestCompanies(this.countryData.id).subscribe((result: any) => {
-          this.bestCompanies = result.data;
+        this.showLoader=true;
+        this.service.BestCompanies(this.countryData.id).subscribe( {
+          next:(result: any) => {
+            let tempData: Array<Object> = []
+            let response: any = result.data;
+            console.log(response)
+            response.forEach((element: any, i: any) => {
+              let companyLogo:any='../assets/images/logo.png'
+              if (element.company != undefined && element.company?.documents != undefined) {
+                let companyLogoImg =element.company?.documents.find((y: any) => {
+                  return y.registrationDocumentTypeId === 8
+                })
+                if (companyLogoImg != null && companyLogoImg != undefined) {
+                  companyLogo = this.baseUrl + companyLogoImg.fileUrl;
+                }
+              }
+              let companyName: any = '';
+              if (element.company != undefined && element.company.companyName != undefined) {
+                companyName = element.company.companyName
+              }
+              let id: any = '';
+              if (element.company != undefined && element.company.id != undefined) {
+                id = element.company.id
+              }
+              let companyAdress: any = '';
+              if (element.company != undefined && element.company.companyAdress != undefined) {
+                companyAdress = element.company.companyAdress
+              }
+              let reraNo: any = '';
+              if (element.company != undefined && element.company.reraNo != undefined) {
+                reraNo = element.company.reraNo
+              }
+              let premitNo: any = '';
+              if (element.company != undefined && element.company.premitNo != undefined) {
+                premitNo = element.company.premitNo
+              }
+              let ornNo: any = '';
+              if (element.company != undefined && element.company.ornNo != undefined) {
+                ornNo = element.company.ornNo
+              }
+              tempData.push(
+                {
+                  id: id,
+                  companyLogo:companyLogo,
+                  companyName: companyName,
+                  companyAdress: companyAdress,
+                  reraNo: reraNo,
+                  premitNo: premitNo,
+                  ornNo: ornNo,
+                  salePropertyListingCount: element.statistics.salePropertyListingCount,
+                  rentPropertyListingCount: element.statistics.rentPropertyListingCount,
+                  agentsCount:element.agentNumber
+                }
+              );
+            })
+            this.bestCompanies = tempData
+            this.showLoader=false;
+          },
+          error:(err:any)=>{
+            this.showLoader=false;
+          }
         })
         clearInterval(a);
       }
@@ -215,7 +294,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
       desc: "Some of our best property agents",
       tableHeadings: [
         "Companies",
-        "Specialities",
+        "Location",
         "Agents",
         "Action"
       ],
@@ -291,6 +370,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   agentListData(data: any) {
     let tempData: Array<Object> = []
     this.service.FindAgents(data).subscribe((result: any) => {
+      console.log(result);
       let response: any = result.data
       response.agents.forEach((element: any, i: any) => {
         let imageUrl: any = '../assets/images/user.png';
@@ -317,6 +397,10 @@ export class LandingComponent implements OnInit, AfterViewInit {
         if (element.user != undefined && element.user.countryId != undefined) {
           countryId = element.user.countryId
         }
+        let address: any = '';
+        if (element.user != undefined && element.user.address != undefined) {
+          address = element.user.address
+        }
 
         let agentLanguages: any = [];
         if (element.agentLanguages != undefined && element.agentLanguages != null) {
@@ -333,6 +417,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
             companyName: companyName,
             phoneNumber: phoneNumber,
             countryId: countryId,
+            address:address,
             agentLanguages: agentLanguages,
           }
         );
@@ -343,7 +428,57 @@ export class LandingComponent implements OnInit, AfterViewInit {
   }
   companiesListData(data: any) {
     this.service.FindCompanies(data).subscribe((result: any) => {
-      this.findCompanies = result.data;
+      let tempData: Array<Object> = []
+      let response: any = result.data.companies;
+      console.log(response)
+      response.forEach((element: any, i: any) => {
+        let companyLogo:any='../assets/images/logo.png'
+        if (element.documents != undefined) {
+          let companyLogoImg =element.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogoImg != null && companyLogoImg != undefined) {
+            companyLogo = this.baseUrl + companyLogoImg.fileUrl;
+          }
+        }
+        let companyName: any = '';
+        if (element.companyName != undefined) {
+          companyName = element.companyName
+        }
+        let id: any = '';
+        if (element.id != undefined) {
+          id = element.id
+        }
+        let companyAdress: any = '';
+        if ( element.companyAdress != undefined) {
+          companyAdress = element.companyAdress
+        }
+        let reraNo: any = '';
+        if (element.reraNo != undefined) {
+          reraNo = element.reraNo
+        }
+        let premitNo: any = '';
+        if (element.premitNo != undefined) {
+          premitNo = element.premitNo
+        }
+        let ornNo: any = '';
+        if (element.ornNo != undefined) {
+          ornNo = element.ornNo
+        }
+        tempData.push(
+          {
+            id: id,
+            companyLogo:companyLogo,
+            companyName: companyName,
+            companyAdress: companyAdress,
+            reraNo: reraNo,
+            premitNo: premitNo,
+            ornNo: ornNo,
+            agents:element.agents
+          }
+        );
+      })
+      this.findCompanies = tempData;
     })
   }
   pageChanged(e: any) {

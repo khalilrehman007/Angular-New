@@ -127,7 +127,7 @@ export class ComparepageComponent implements OnInit {
         items: 2
       }
     },
-    nav: true
+    nav: false
   }
   featuredOptions: OwlOptions = {
     loop: false,
@@ -151,7 +151,7 @@ export class ComparepageComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
 
   selectProperty(compare:any){

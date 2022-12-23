@@ -1,10 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { SliderModule } from 'primeng/slider';
 import * as $ from 'jquery';
-import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppService } from 'src/app/service/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -184,6 +180,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     autoWidth: false,
     pullDrag: true,
     dots: true,
+    nav:false,
+    lazyLoad:false,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     navSpeed: 700,
     responsive: {
@@ -199,8 +197,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       940: {
         items: 4
       }
-    },
-    nav: true
+    }
   }
   easyslider: OwlOptions = {
     loop: true,
@@ -211,6 +208,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     dots: false,
     navSpeed: 700,
     autoplay: true,
+    lazyLoad:false,
     autoWidth: true,
     responsive: {
       0: {
@@ -236,6 +234,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     dots: true,
     autoplay: true,
     navSpeed: 700,
+    lazyLoad:false,
     responsive: {
       0: {
         items: 1
@@ -260,6 +259,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     dots: true,
     navSpeed: 700,
     autoplay: true,
+    lazyLoad:false,
     responsive: {
       0: {
         items: 1

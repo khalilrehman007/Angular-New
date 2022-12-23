@@ -264,7 +264,7 @@ export class ClassifiedHomeComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
   constructor(private modalService: NgbModal) {
     $(window).scrollTop(0);

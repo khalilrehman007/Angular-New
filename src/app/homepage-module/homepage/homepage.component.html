@@ -141,7 +141,7 @@
                 <div id="resedential-rent" class="tab-pane active">
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides1">
-                            <ng-template carouselSlide [id]="slide.id">
+                            <ng-template carouselSlide [id]="slide.id?.toString()">
                                 <div ngClass="property-item position-relative cursor-pointer"
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
@@ -334,7 +334,7 @@
                 <div id="resedential-rent" class="tab-pane active">
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides2">
-                            <ng-template carouselSlide [id]="slide.id">
+                            <ng-template carouselSlide [id]="slide.id?.toString()">
                                 <div ngClass="property-item position-relative cursor-pointer"
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
@@ -476,7 +476,7 @@
             <div [ngClass]="'listing-slider-area'">
                 <owl-carousel-o [options]="sellrentproperty">
                     <ng-container>
-                        <ng-template carouselSlide *ngFor="let item of slider">
+                        <ng-template carouselSlide *ngFor="let item of slider" [id]="item.id?.toString()">
                             <div ngClass="row mrg-0">
                                 <div ngClass="col-md-6 property-listing-slider-left">
                                     <h2>{{item.title}}</h2>
@@ -578,7 +578,7 @@
             <div ngClass="tenants-sec-wrapper">
                 <owl-carousel-o [options]="easyslider">
                     <ng-container *ngFor="let slide of tenantsslide">
-                        <ng-template carouselSlide [id]="slide.id">
+                        <ng-template carouselSlide [id]="slide.id.toString()">
                             <div ngClass="{{ slide.class }}">
                                 <img [src]="slide.src" ngClass="img-fluid" alt="" />
                                 <div ngClass="virtual-tour-content">
@@ -645,7 +645,7 @@
                     </div>
                     <div ngClass="col-md-6 col-sm-12">
                         <div ngClass="mockup-right">
-                            <img src="assets/images/mockup/mobile-1.png" ngClass="img-fluid" alt="" />
+                            <img src="assets/images/mockup/Home Screen.png"  ngClass="img-fluid homepage-mobile" alt="" />
                         </div>
                     </div>
                 </div>
@@ -670,7 +670,7 @@
                                 alt="" />
                             <owl-carousel-o [options]="testimonialslider">
                                 <ng-container *ngFor="let slide of clientFeedback">
-                                    <ng-template carouselSlide [id]="slide.id">
+                                    <ng-template carouselSlide [id]="slide.id?.toString()">
                                         <div ngClass="testimonial-content">
                                             <p>{{ slide.desc }}</p>
                                             <div ngClass="testimonial-info d-flex align-items-center">

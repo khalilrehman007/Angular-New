@@ -35,7 +35,7 @@ export class DetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
   constructor(private _formBuilder: FormBuilder) {}
   firstFormGroup = this._formBuilder.group({

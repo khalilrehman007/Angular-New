@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { FindAgentSearchModule } from '../find-agent-search/find-agent-search.module';
+import { LoaderModule } from '../loader/loader.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FindAgentSearchModule } from '../find-agent-search/find-agent-search.mo
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    LoaderModule,
     FindAgentSearchModule
   ]
 })

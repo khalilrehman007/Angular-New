@@ -96,31 +96,27 @@
                                 <div class="col-5 d-flex align-items-center">
                                     <img src="{{item.imageUrl}}" alt=""
                                         class="img-fluid agent-landing-featured__property-img">
-                                    <img src="assets/images/brand/betterhomes.png" alt=""
+                                    <img *ngIf="item.companyLogo!==''" src="{{item.companyLogo}}" alt=""
                                         class="img-fluid agent-landing-featured__agent-company">
                                 </div>
                                 <div class="col-7">
                                     <div class="agent-landing-featured__agent-right-panel">
                                         <h6 class="agent-landing-featured__property-heading">
                                             {{item.fullName}}</h6>
-                                        <p class="agent-landing-featured__property-text">
+                                        <p class="agent-landing-featured__property-text"><span class="sub-heading-span">Expert In:</span>
                                             {{item.expertIn}}</p>
-                                        <p class="agent-landing-featured__property-text">RERA#
+                                        <p class="agent-landing-featured__property-text"><span class="sub-heading-span">RERA#</span>
                                             {{item.reraNo}}</p>
-                                        <p class="agent-landing-featured__property-text">Permits#
+                                        <p class="agent-landing-featured__property-text"><span class="sub-heading-span">Permits#</span>
                                             {{item.premitNo}}</p>
                                         <ul class="agent-landing-featured__property-details-list">
                                             <li class="agent-landing-featured__property-details-list-item">
                                                 <p class="agent-landing-featured__property-details-list-text">
-                                                    {{item.salePropertyListingCount}}<br>Sale</p>
+                                                    {{item.salePropertyListingCount | number}}<br>Sale</p>
                                             </li>
                                             <li class="agent-landing-featured__property-details-list-item">
                                                 <p class="agent-landing-featured__property-details-list-text">
-                                                    {{item.rentPropertyListingCount}}<br>Rents</p>
-                                            </li>
-                                            <li class="agent-landing-featured__property-details-list-item">
-                                                <p class="agent-landing-featured__property-details-list-text">
-                                                    {{item.commercialPropertyListingCount}}<br>Commercial</p>
+                                                    {{item.rentPropertyListingCount | number}}<br>Rent</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -134,40 +130,42 @@
         <div class="row {{!companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of bestCompanies">
                 <div class="agent-landing-featured__property cursor-pointer"
-                    routerLink="/company-details/{{item.company.id}}">
+                    routerLink="/company-details/{{item.id}}">
                     <div class="agent-landing-featured__property-wrapper"> >
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
                             <div class="col-5 d-flex align-items-center">
-                                <img src="assets/images/brand/betterhomes.png" alt=""
-                                    class="img-fluid agent-landing-featured__property-img">
+                                <img src="{{item.companyLogo}}" alt=""
+                                    class="img-fluid agent-landing-featured__property-img company-logo-img">
                             </div>
                             <div class="col-7">
                                 <h6 class="agent-landing-featured__property-heading"
-                                    *ngIf="item.company && item.company.companyName">{{item.company.companyName}}</h6>
+                                    *ngIf="item.companyName!=='' || item.companyName!==undefined">{{item.companyName}}</h6>
                                 <p class="agent-landing-featured__property-text"
-                                    *ngIf="item.company && item.company.companyAdress">{{item.company.companyAdress}}
+                                    *ngIf="item.companyAdress!=='' && item.companyAdress!==undefined" [title]="item.companyAdress">{{item.companyAdress | slice:0:20}}
+                                    <span
+                                        *ngIf="item.companyAdress.length>20">...</span>
                                 </p>
                                 <p class="agent-landing-featured__property-text"
-                                    *ngIf="item.company && item.company.reraNo">RERA# {{item.company.reraNo}}</p>
+                                    *ngIf="item.reraNo!=='' && item.reraNo!==undefined">RERA# {{item.reraNo}}</p>
                                 <p class="agent-landing-featured__property-text"
-                                    *ngIf="item.company && item.company.permitNo">Permit# {{item.company.permitNo}}</p>
+                                *ngIf="item.permitNo!=='' && item.permitNo!==undefined">Permit# {{item.permitNo}}</p>
                                 <p class="agent-landing-featured__property-text"
-                                    *ngIf="item.company && item.company.ornNo">ORN# {{item.company.ornNo}}</p>
+                                *ngIf="item.ornNo!=='' && item.ornNo!==undefined">ORN# {{item.ornNo}}</p>
                             </div>
                         </div>
                         <ul class="agent-landing-featured__property-details-list">
                             <li class="agent-landing-featured__property-details-list-item">
                                 <p class="agent-landing-featured__property-details-list-text">
-                                    {{item.statistics.salePropertyListingCount}}<br>Sale</p>
+                                    {{item.salePropertyListingCount |number}}<br>Sale</p>
                             </li>
                             <li class="agent-landing-featured__property-details-list-item">
                                 <p class="agent-landing-featured__property-details-list-text">
-                                    {{item.statistics.rentPropertyListingCount}}<br>Rents</p>
+                                    {{item.rentPropertyListingCount |number}}<br>Rent</p>
                             </li>
                             <li class="agent-landing-featured__property-details-list-item">
                                 <p class="agent-landing-featured__property-details-list-text">
-                                    {{item.statistics.commercialPropertyListingCount}}<br>Commercial</p>
+                                    {{item.agentsCount |number}}<br>Agents</p>
                             </li>
                         </ul>
                     </div>
@@ -212,7 +210,7 @@
                                             </p>
                                             <p class="agent-landing-featured__property-text mb-3"
                                                 *ngIf="data.countryId != ''">{{filterCountry(data.countryId)}}</p>
-                                            <p class="agent-landing-featured__property-text">Languages:
+                                            <p *ngIf="data?.agentLanguages && data?.agentLanguages?.length>0" class="agent-landing-featured__property-text">Languages:
                                                 <span *ngFor="let Language of data.agentLanguages">
                                                     {{Language.spokenLanguage.name}},
                                                 </span>
@@ -221,15 +219,10 @@
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <h6 class="agent-landing-featured__property-heading">{{data.companyName}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{data.phoneNumber}}</p>
+                                    <p class="agent-landing-featured__property-text">{{data.address}}</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <div class="agent-landing-list__specialities">
-                                        <ul>
-                                            <li>{{data.expertIn}}</li>
-                                        </ul>
-                                    </div>
+                                    <p class="agent-landing-featured__property-text">{{data.expertIn=='Both'?'Residential, Commercial':data.expertIn}}</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <a class="agent-landing-list__table-btn cursor-pointer"
@@ -262,17 +255,14 @@
                         </thead>
                         <tbody class="agent-landing-list__table-body">
                             <tr class="agent-landing-list__table-row"
-                                *ngFor="let data of findCompanies.companies | paginate: { itemsPerPage: 10, currentPage: companypage, totalItems:totalLength }">
+                                *ngFor="let data of findCompanies | paginate: { itemsPerPage: 10, currentPage: companypage, totalItems:totalLength }">
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__property-wrapper">
                                         <div class="row">
                                             <div class="col-5 d-flex align-items-center">
-                                                <img *ngIf="data.documents.length > 0 && data.documents[0].fileUrl"
-                                                    src="{{baseUrl}}{{data.documents[0].fileUrl}}" alt=""
-                                                    class="img-fluid agent-landing-featured__property-img">
-                                                <img *ngIf="data.documents.length == 0"
-                                                    src="assets/images/placeholder.png" alt=""
-                                                    class="img-fluid agent-landing-featured__property-img">
+                                                <img
+                                                    src="{{data.companyLogo}}" alt=""
+                                                    class="img-fluid agent-landing-featured__agent-img">
                                             </div>
                                             <div class="col-7">
                                                 <h6 class="agent-landing-featured__property-heading"
@@ -287,14 +277,11 @@
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <div class="agent-landing-list__specialities">
-                                        <ul>
-                                            <li *ngFor="let item of data.specialities">{{item}}</li>
-                                        </ul>
-                                    </div>
+                                    <p>{{data.companyAdress}}</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <p>{{data.agents.length}}<br>Agents</p>
+                                    <p *ngIf="data?.agents?.length<=1">{{data?.agents?.length}}<br>Agent</p>
+                                    <p *ngIf="data?.agents?.length>1">{{data?.agents?.length}}<br>Agents</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <a class="agent-landing-list__table-btn cursor-pointer"
@@ -354,3 +341,4 @@
 </section>
 <app-footer></app-footer>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>

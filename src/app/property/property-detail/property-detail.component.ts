@@ -297,7 +297,10 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         thumbnailsMargin: 5,
         thumbnailsSwipe: true,
         thumbnailsArrows: false,
-        imageAnimation: NgxGalleryAnimation.Slide
+        imageAnimation: NgxGalleryAnimation.Slide,
+        lazyLoading:false,
+        imageArrows:false,
+        imageSwipe:true
       },
       // max-width 800
       {
@@ -308,11 +311,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         thumbnailsColumns: 5,
         thumbnailsMargin: 5,
         thumbnailsArrows: false,
+        lazyLoading:false,
+        imageArrows:false,
+        imageSwipe:true
       },
       // max-width 400
       {
         breakpoint: 400,
-        preview: false
+        preview: false,
+        lazyLoading:false,
+        imageArrows:false,
+        imageSwipe:true
       }
     ];
 
@@ -885,7 +894,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         items: 3
       }
     },
-    nav: true
+    nav: false
   }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url);

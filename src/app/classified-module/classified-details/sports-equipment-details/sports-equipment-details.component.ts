@@ -283,7 +283,7 @@ export class SportsEquipmentDetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    nav: false
   }
   CarsList = [
     {
