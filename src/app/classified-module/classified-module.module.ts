@@ -58,6 +58,7 @@ import { SportsFiltersComponent } from './classified-listings/sports-filters/spo
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoaderModule } from '../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
 import { AllListingFilterComponent } from './classified-listings/all-listing-filter/all-listing-filter.component';
 import { AllListingsComponent } from './classified-listings/all-listings/all-listings.component';
 import { JobsFilterComponent } from './classified-listings/jobs-filter/jobs-filter.component';
@@ -134,7 +135,8 @@ import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-det
     BreadcrumbsModule,
     MatSelectModule,
     MatCheckboxModule,
-    LoaderModule
+    LoaderModule,
+    AlertsModule
   ],
   exports: [
     ClassifiedHomeComponent,
