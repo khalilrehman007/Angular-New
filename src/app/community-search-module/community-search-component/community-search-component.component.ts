@@ -206,6 +206,10 @@ export class CommunitySearchComponentComponent implements OnInit, AfterViewInit 
     this.route.navigate(['/classified'], params)
   }
 
+  page4(){
+    this.route.navigate(['/classified/community-listings'])
+  }
+
 
 
   @ViewChild('SearchInput') SearchInput: any;
