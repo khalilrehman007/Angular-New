@@ -95,10 +95,10 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Age <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Brand New</option>
-                                            <option value="1">0-1 month</option>
-                                            <option value="0"> 1-6 months</option>
-                                            <option value="1">6-12 months</option>
+                                            <option value="0" *ngFor="let item of Age" value="{{item.id}}">
+                                                {{item.name}}
+                                            </option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -108,10 +108,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Usage <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Still with the dealer</option>
-                                            <option value="1">Only used once since it was purchased new</option>
-                                            <option value="0"> Used only a few times since it was purchased new</option>
-                                            <option value="1">Used once or twice a month since purchased</option>
+                                            <option value="0" *ngFor="let item of BoatUsage" value="{{item.id}}">{{item.name}} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -121,11 +118,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="0"> Perfect inside and out</option>
-                                            <option value="1">No accidents, very few faults</option>
-                                            <option value="0"> A bit of wear & tear, all repaired</option>
-                                            <option value="1">Normal wear & tear, a few issues</option>
-                                            <option value="0"> Lots of wear & tear to the body</option>
+                                            <option value="0" *ngFor="let item of BoatCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -135,9 +128,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Seller type <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="Owner">Owner</option>
-                                            <option value="Dealer">Dealer</option>
-                                            <option value="Dealership">Dealership/Certified Pre-Owned</option>
+                                            <option value="0" *ngFor="let item of SellerType" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -147,8 +138,8 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Warranty <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="no">No</option>
-                                            <option value="Yes">Yes</option>
+                                            <option value="no" *ngFor="let item of Warranty" value="{{item.id}}">{{item.name}}</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -158,8 +149,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Length <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="2">Under 10 ft.</option>
-                                            <option value="3">10-14 ft.</option>
+                                            <option value="2" *ngFor="let item of Length" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
