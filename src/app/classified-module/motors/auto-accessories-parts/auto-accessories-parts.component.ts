@@ -15,15 +15,12 @@ export class AutoAccessoriesPartsComponent implements OnInit {
   constructor(private service: AppService) {
     this.service.GetClassifiedLookUpsByCategory("AccessoriesUsage").subscribe((result:any) => {
       this.AccessoriesUsage = result.data;
-      console.log(this.AccessoriesUsage)
     })
     this.service.GetClassifiedLookUpsByCategory("ToolCondition").subscribe((result:any) => {
       this.ToolCondition = result.data;
-      console.log(this.ToolCondition)
     })
     this.service.GetClassifiedLookUpsByCategory("SellerType ").subscribe((result:any) => {
       this.SellerType  = result.data;
-      console.log(this.SellerType )
     })
    }
 
