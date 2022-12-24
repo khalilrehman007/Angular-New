@@ -178,9 +178,9 @@ export class ServicesDetailsComponent implements OnInit {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
       this.userData = temp.data.user;
-      this.propertyLat = temp.data.propertyListing.propertyLat;
-      this.propertyLng = temp.data.propertyListing.propertyLong;
-      this.buildingName = temp.data.propertyListing.buildingName;
+      // this.propertyLat = temp.data.propertyListing.propertyLat;
+      // this.propertyLng = temp.data.propertyListing.propertyLong;
+      // this.buildingName = temp.data.propertyListing.buildingName;
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
