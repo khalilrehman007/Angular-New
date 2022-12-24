@@ -107,7 +107,7 @@ export class HeavyVehiclesComponent implements OnInit {
         return;
       } else if ($(".Fuel-type").val() == 0) {
         this.currentField = "Fuel-type + .select2";
-        this.error = "Enter Age";
+        this.error = "Enter Fuel Type";
         this.showError = true;
         return;
       } else if (this.DetailsForm.value.Kilometers == "") {
