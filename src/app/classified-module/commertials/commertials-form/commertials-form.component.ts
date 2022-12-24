@@ -61,7 +61,7 @@ ngAfterViewInit(): void {
       return;
     } else if (this.DetailsForm.value.Description == "") {
       this.currentField = "description-input";
-      this.error = "Enter Price";
+      this.error = "Enter Descripiton";
       this.showError = true;
       return;
     } 
