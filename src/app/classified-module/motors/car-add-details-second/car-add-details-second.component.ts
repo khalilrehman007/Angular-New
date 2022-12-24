@@ -106,6 +106,7 @@ export class CarAddDetailsSecondComponent implements OnInit {
     this.status2 = !this.status2;
   }
   onSubmit() {
+    let extrasLength:any = $(".extras-select").val();
     if(this.imageData.length == 0) {
       this.currentField = "propery-pictures-sec";
       this.error = "Upload Images";
@@ -176,7 +177,7 @@ export class CarAddDetailsSecondComponent implements OnInit {
       this.error = "Steering Side";
       this.showError = true;
       return;
-    } else if($(".extras-select").val() == 0) {
+    } else if(extrasLength.length == 0) {
       this.currentField = "extras-select + .select2";
       this.error = "Select Extras";
       this.showError = true;
@@ -201,6 +202,11 @@ export class CarAddDetailsSecondComponent implements OnInit {
     tempData.BodyTypeId = this.DetailForm.value.title;
     tempData.HorsePowerId = this.DetailForm.value.title;
     tempData.SteeringSideId = this.DetailForm.value.title;
+    let temp = [];
+    for(let item of extrasLength) {
+      temp.push({"ClassifiedFeatureLookUpId": item});
+    }
+    tempData.ClassifiedFeatures = temp;
     
     let tempImg:any = [];
     for (let i = 0; i < this.imageData.length; i++) {

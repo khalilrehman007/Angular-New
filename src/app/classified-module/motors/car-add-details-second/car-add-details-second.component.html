@@ -265,8 +265,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design full-width-select2">
                                         <label>Extras</label>
-                                        <select class="select2 extras-select">
-                                            <option value="0"> Select</option>
+                                        <select class="select2 extras-select" multiple>
                                             <option *ngFor="let item of CarExtraFeature" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
