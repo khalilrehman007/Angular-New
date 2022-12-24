@@ -13,83 +13,83 @@
     <div ngClass="container_1280px">
       <div class="package_lists">
         <div ngClass="row">
-           <div class="col-xl-4 col-lg-4 col-sm-12">
+          <div class="col-xl-4 col-lg-4 col-sm-12" *ngFor="let item of packageData">
+            <div class="bundle-packages-list-block">
+              <input type="radio" name="package-radio"(click)="selectPackage(item)">
+              <div class="bundle-packages-list">
+                <div class="package-list-header">
+                  <h4>{{item.name}}</h4>
+                  <p>Active for {{item.validDays}} days</p>
+                </div>
+                <div class="package-list-price">
+                  <h2>AED <span class="price-value">{{item.price}}</span></h2>
+                </div>
+                <div class="package-list-btns">
+                  <button class="pkg_btn-block">Select {{item.name}}</button>
+                </div>
+                <div class="package-list-ul">
+                  <ul class="list-unstyled">
+                    <li class="active-listing">Active For <strong>{{item.validDays}} Days</strong></li>
+                    <!-- <li class="active-listing">Refreshed <strong>1 Time</strong></li> -->
+                    <!-- <li class="wrong-listing">No Featured Days</li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-xl-4 col-lg-4 col-sm-12">
+            <div class="bundle-packages-list-block">
+              <input type="radio" name="package-radio">
+              <div class="bundle-packages-list">
+                <div class="package-list-subheader">
+                  <h5>Recommend for you</h5>
+                </div>
+                <div class="package-list-header">
+                  <h4>Basic</h4>
+                  <p>Active with high exposure for 30 days</p>
+                </div>
+                <div class="package-list-price">
+                  <h2>AED <span class="price-value">250</span> <del>AED 464</del></h2>
+                  <p>You Save <strong>30%</strong></p>
+                </div>
+                <div class="package-list-btns">
+                  <button class="pkg_btn-block">Select Basic</button>
+                </div>
+                <div class="package-list-ul">
+                  <ul class="list-unstyled">
+                    <li class="active-listing">Active For <strong>30 Days</strong></li>
+                    <li class="active-listing">Refreshed <strong>3 Time</strong></li>
+                    <li class="active-listing">Featured for <strong>7 Days</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-sm-12">
             <div class="bundle-packages-list-block">
               <input type="radio" name="package-radio">
               <div class="bundle-packages-list">
                 <div class="package-list-header">
-                    <h4>Lite</h4>
-                    <p>Active for 30 days</p>
-                </div>
-                <div class="package-list-price">
-                    <h2>AED <span class="price-value">250</span></h2>
-                </div>
-                <div class="package-list-btns">
-                    <button class="pkg_btn-block">Select Lite</button>
-                </div>
-                <div class="package-list-ul">
-                    <ul class="list-unstyled">
-                        <li class="active-listing">Active For <strong>30 Days</strong></li>
-                        <li class="active-listing">Refreshed <strong>1 Time</strong></li>
-                        <li class="wrong-listing">No Featured Days</li>
-                    </ul>
-                </div>
-              </div>
-              </div>
-           </div>
-           <div class="col-xl-4 col-lg-4 col-sm-12">
-            <div class="bundle-packages-list-block">
-            <input type="radio" name="package-radio">
-            <div class="bundle-packages-list">
-            <div class="package-list-subheader">
-                <h5>Recommend for you</h5>
-            </div>
-              <div class="package-list-header">
-                  <h4>Basic</h4>
-                  <p>Active with high exposure for 30 days</p>
-              </div>
-              <div class="package-list-price">
-                  <h2>AED <span class="price-value">250</span> <del>AED 464</del></h2>
-                  <p>You Save <strong>30%</strong></p>
-              </div>
-              <div class="package-list-btns">
-                  <button class="pkg_btn-block">Select Basic</button>
-              </div>
-              <div class="package-list-ul">
-                  <ul class="list-unstyled">
-                      <li class="active-listing">Active For <strong>30 Days</strong></li>
-                      <li class="active-listing">Refreshed <strong>3 Time</strong></li>
-                      <li class="active-listing">Featured for <strong>7 Days</strong></li>
-                  </ul>
-              </div>
-            </div>
-            </div>
-         </div>
-         <div class="col-xl-4 col-lg-4 col-sm-12">
-            <div class="bundle-packages-list-block">
-            <input type="radio" name="package-radio">
-            <div class="bundle-packages-list">
-              <div class="package-list-header">
                   <h4>Extended</h4>
                   <p>Active with high exposure for 60 days</p>
-              </div>
-              <div class="package-list-price">
+                </div>
+                <div class="package-list-price">
                   <h2>AED <span class="price-value">399</span> <del>AED 929</del></h2>
                   <p>You Save <strong>57%</strong></p>
-              </div>
-              <div class="package-list-btns">
+                </div>
+                <div class="package-list-btns">
                   <button class="pkg_btn-block">Select Extended</button>
-              </div>
-              <div class="package-list-ul">
+                </div>
+                <div class="package-list-ul">
                   <ul class="list-unstyled">
-                      <li class="active-listing">Active For <strong>60 Days</strong></li>
-                      <li class="active-listing">Refreshed <strong>6 Time</strong></li>
-                      <li class="active-listing">Featured for <strong>14 Days</strong></li>
+                    <li class="active-listing">Active For <strong>60 Days</strong></li>
+                    <li class="active-listing">Refreshed <strong>6 Time</strong></li>
+                    <li class="active-listing">Featured for <strong>14 Days</strong></li>
                   </ul>
+                </div>
               </div>
             </div>
-            </div>
-         </div>
+          </div> -->
         </div>
       </div>
     </div>

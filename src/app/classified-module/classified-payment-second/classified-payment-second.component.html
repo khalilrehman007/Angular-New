@@ -20,8 +20,8 @@
                     <h2>Select Add On</h2>
                 </div>
                 <div class="select-add-on-lsitings">
-                    <div class="package-box-list existing">
-                        <input type="radio" name="selectexisting" checked>
+                    <div class="package-box-list">
+                        <input type="checkbox" name="selectexisting" (click)="selectBasic()" checked>
                         <div class="package-box-select-box">
                             <div class="package-box-select-text">
                                 <h4>Keep it standard</h4>
@@ -31,41 +31,43 @@
                             <p class="abs-tag red">FREE</p>
                         </div>
                     </div>
-                    <div class="package-box-cntnt">
-                        <h4>Upgrade your standard ad into a featured one</h4>
-                        <p>Featured ads are placed on top of all standard ads</p>
-                    </div>
-                    <div class="package-box-list">
-                        <input type="radio" name="selectAddon">
-                        <div class="package-box-select-box">
-                            <div class="package-box-select-text">
-                                <h4>Feature your ads for 3 days</h4>
-                                <p>Get 6x More Offers</p>
-                            </div>
-                            <button class="cstm-package_select-btn"></button>
-                            <p class="abs-tag">+AED 19</p>
+                    <div *ngIf="selectedPackage.isFeature">
+                        <div class="package-box-cntnt">
+                            <h4>Upgrade your standard ad into a featured one</h4>
+                            <p>Featured ads are placed on top of all standard ads</p>
                         </div>
-                    </div>
-                    <div class="package-box-list">
-                        <input type="radio" name="selectAddon">
-                        <div class="package-box-select-box">
-                            <div class="package-box-select-text">
-                                <h4>Feature your ads for 7 days</h4>
-                                <p>Get 10x More Offers</p>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price3Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 3 days</h4>
+                                    <p>Get 6x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price3Days}}</p>
                             </div>
-                            <button class="cstm-package_select-btn"></button>
-                            <p class="abs-tag">+AED 29</p>
                         </div>
-                    </div>
-                    <div class="package-box-list">
-                        <input type="radio" name="selectAddon">
-                        <div class="package-box-select-box">
-                            <div class="package-box-select-text">
-                                <h4>Feature your ads for 14 days</h4>
-                                <p>Get 15x More Offers</p>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price7Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 7 days</h4>
+                                    <p>Get 10x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price7Days}}</p>
                             </div>
-                            <button class="cstm-package_select-btn"></button>
-                            <p class="abs-tag">+AED 44</p>
+                        </div>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price14Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 14 days</h4>
+                                    <p>Get 15x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price14Days}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,30 +81,26 @@
                 <div class="payment-overview-cntnts">
                     <div class="payment-flex basic-ad">
                         <p>Basic Ad</p>
-                        <h6>AED 0</h6>
+                        <h6>Points 0</h6>
                     </div>
                     <div class="payment-flex feature-ad">
                         <p>Feature Ad</p>
-                        <h6>AED 29</h6>
+                        <h6>Points {{featuredPrice}}</h6>
                     </div>
                     <div class="discount-code">
                         <input type="text" placeholder="Discount Code">
                         <button type="submit">Apply</button>
                     </div>
                     <div class="payment-flex sub-totel">
-                        <p>Sub Totel</p>
-                        <h6>AED 29</h6>
-                    </div>
-                    <div class="payment-flex vat">
-                        <p>VAT 5%</p>
-                        <h6>AED 1.45</h6>
+                        <p>Sub Total</p>
+                        <h6>Points {{basicPrice + featuredPrice}}</h6>
                     </div>
                     <div class="payment-flex totEl">
                         <p>Total</p>
-                        <h6>AED 30.45</h6>
+                        <h6>Points {{basicPrice + featuredPrice}}</h6>
                     </div>
                     <div class="payment-pay-btn">
-                        <button class="pay-btn">Pay AED 30.45</button>
+                        <button class="pay-btn">Pay Points {{basicPrice + featuredPrice}}</button>
                     </div>
                 </div>
             </div>

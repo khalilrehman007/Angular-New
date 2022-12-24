@@ -257,10 +257,15 @@ export class CarAddDetailsSecondComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        console.log(res);
         if (res.result == 1) {
           this.showLoader = false;
-          this.router.navigate(["/classified/classified-payment"]);
+          tempData.id = res.data.id;
+          localStorage.setItem("classifiedFormData", JSON.stringify(tempData));
+          if(this.classifiedData.classifiedData[0].value == 1) {
+            this.router.navigate(["/classified/classified-payment"]);
+          } else {
+            this.router.navigate(["/classified/classified-payment-second"]);
+          }
         }
         else {
           this.showLoader = false;

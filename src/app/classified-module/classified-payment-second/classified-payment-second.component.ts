@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassifiedPaymentSecondComponent implements OnInit {
 
-  constructor() { }
+  selectedPackage:any = localStorage.getItem("selectedPackage");
+  basicPrice:any = 0;
+  featuredPrice:any = 0;
+  currency = localStorage.getItem("currency");
+  constructor() {
+    this.selectedPackage = JSON.parse(this.selectedPackage);
+  }
 
   ngOnInit(): void {
+  }
+
+  selectBasic() {
+    $('input[name="selectAddon"]').prop('checked', false);
+    this.featuredPrice = 0;
+  }
+  selectFeature(price:any) {
+    $('input[name="selectexisting"]').prop('checked', false);
+    this.featuredPrice = price;
   }
 
 }
