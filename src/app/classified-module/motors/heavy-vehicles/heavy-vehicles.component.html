@@ -11,7 +11,7 @@
     <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
         <div class="container_1280px">
             <div class="ads-form-design">
-                <form>
+                <form [formGroup]="DetailsForm">
                     <div class="list-property-header">
                         <h5 class="h5-heading">Please Fill your Lisitng Details</h5>
                     </div>
@@ -26,8 +26,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Title <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Title"
+                                        <mat-form-field class="full-width input-design-2 title-input" appearance="fill">
+                                            <input matInput type="text" formControlName="title" placeholder="Enter Title"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
@@ -35,8 +35,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 position-relative optional-text">
                                         <label>Phone Number</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                        <mat-form-field class="full-width input-design-2 phone-input" appearance="fill">
+                                            <input matInput type="number" formControlName="Phone" placeholder="Enter Phone Number"
                                                 lang="en" />
                                         </mat-form-field>
                                         <span class="optional-span">*Optional</span>
@@ -45,8 +45,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 aed-text position-relative">
                                         <label>Price <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Price"
+                                        <mat-form-field class="full-width input-design-2 price-input" appearance="fill">
+                                            <input matInput type="number" formControlName="Price" placeholder="Enter Price"
                                                 lang="en" />
                                         </mat-form-field>
                                         <span class="price-tag-input">AED</span>
@@ -56,7 +56,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design full-width-select2">
                                             <label>Do you want to show or hide your phone number?</label>
-                                            <select class="select2 country-select">
+                                            <select class="select2 Show-Phone-Number">
                                                 <option value="yes"> Show Number </option>
                                                 <option value="no">Hide Number</option>
                                             </select>
@@ -66,8 +66,8 @@
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Description <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2 textarea-design-2" appearance="fill">
-                                            <textarea matInput type="number" placeholder="Enter Description Here...."
+                                        <mat-form-field class="full-width input-design-2 textarea-design-2 description-input" appearance="fill">
+                                            <textarea matInput type="number" formControlName="Description" placeholder="Enter Description Here...."
                                                 ></textarea>
                                         </mat-form-field>
                                 </div>
@@ -94,7 +94,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Fuel Type <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Fuel-type">
                                             <option value="0" *ngFor="let item of FuelType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -103,8 +103,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Kilometers <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Kilometers"
+                                        <mat-form-field class="full-width input-design-2 kilometer-input" appearance="fill">
+                                            <input matInput type="text" formControlName="Kilometers" placeholder="Enter Kilometers"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
@@ -113,7 +113,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Body Condition <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Body-condition">
                                             <option value="0" *ngFor="let item of BodyCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -123,7 +123,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Mechanical condition <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Mechanical-condition">
                                             <option value="0" *ngFor="let item of MechanicalCondition" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -132,8 +132,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <label>Year</label>
-                                    <mat-form-field class="full-width input-design-2" appearance="fill">
-                                        <input matInput type="text" placeholder="Enter Years" lang="en" />
+                                    <mat-form-field class="full-width input-design-2 year-input" appearance="fill">
+                                        <input matInput type="text" formControlName="Year" placeholder="Enter Years" lang="en" />
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Seller type <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Seller-type">
                                             <option value="0" *ngFor="let item of SellerType" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -150,8 +150,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Model <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Model"
+                                        <mat-form-field class="full-width input-design-2 model-input" appearance="fill">
+                                            <input matInput type="text" formControlName="Model" placeholder="Enter Model"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
@@ -160,7 +160,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Warranty <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 warranty">
                                             <option value="0" *ngFor="let item of Warranty" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -169,8 +169,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Make <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Make Name"
+                                        <mat-form-field class="full-width input-design-2 make-input" appearance="fill">
+                                            <input matInput type="text" formControlName="Make" placeholder="Enter Make Name"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
@@ -178,8 +178,8 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-3 position-relative optional-text">
                                         <label>Capacity/Weight</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Capacity/Weight"
+                                        <mat-form-field class="full-width input-design-2 capacity-input" appearance="fill">
+                                            <input matInput type="text" formControlName="Capacity" placeholder="Enter Capacity/Weight"
                                                 lang="en" />
                                         </mat-form-field>
                                         <span class="optional-span">*Optional</span>
@@ -189,7 +189,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>No. of Cylinders <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Cylinders">
                                             <option value="0" *ngFor="let item of Cylinders " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -199,7 +199,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Horsepower <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
+                                        <select class="select2 Horsepower">
                                             <option value="0" *ngFor="let item of HorsePower" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -207,33 +207,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                            <div ngClass="block-wrapper mb-3 position-relative optional-text">
-                                    <label>Locate your item</label>
-                                    <mat-form-field class="full-width input-design-2" appearance="fill">
-                                        <input matInput type="text" placeholder="Locate your item"
-                                            lang="en" />
-                                    </mat-form-field>
-                                    <span class="optional-span">*Optional</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="address-sec">
-                        <div ngClass="block-wrapper-address">
-                            <label class="h6-design">Is the pin in the right location? </label>
-                            <p class="under-label-text">Click and drag the pin to the exact spot. Users are more likely to respond to ads that are correctly shown on the map</p>
-                            <div ngClass="position-relative">
-                                <div style="width: 100%;">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            </div>
-                            <p class="under-label-text">Make sure the car information you have entered is correct. You will only be able to make select changes once the ad is live.</p>
-                        </div>
-                    </div>
                     <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <button class="save-continue-btn cursor-pointer">Next</button>
+                            <button class="save-continue-btn cursor-pointer" (click)="onSubmit()">Next</button>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">

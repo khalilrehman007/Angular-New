@@ -58,18 +58,43 @@
 .ads-form-design label {
     margin-bottom: 7px;
 }
-.category-selection-box:hover button,.category-selection-box input:hover+button {
-    background-color: #000 !important;
+.category-selection-box:hover button,.category-selection-box input:hover+button span {
+    background-color: #645BD1  !important;
     color: #fff !important;
 }
-.category-selection-box:hover button svg path,.category-selection-box input:checked+button svg path{
+.category-selection-box:hover button svg path,.category-selection-box input:checked+button span svg path{
 fill: #fff;
 fill-opacity: 1;
 }
-.category-selection-box input:checked+button {
-    background-color: #000 !important;
+.category-selection-box input:checked+button  {
+    background-color: #645BD1  !important;
     color: #fff !important;
 }
+.motors input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+.appliances input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+.jobs input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+.furniture input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+.freelancer input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+.phones input:checked+button span  {
+    background-color: #645BD1  !important;
+    color: #fff !important;
+}
+
 .ads-form-design-section {
     position: relative;
     z-index: 9;
@@ -118,11 +143,33 @@ fill-opacity: 1;
     font-weight: 600;
 }
 .svg-wrap-span {
-    height: 30px;
+    height: 45px;
+    width: 45px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
+    border-radius: 50%;
+}
+.svg-wrap-span-motors{
+  background-color: #ccc5ed;
+}
+.svg-wrap-span-classfied{
+  background-color: #96f7e4;
+}
+.svg-wrap-span-jobs{
+  background-color:rgba(107, 201, 212, 0.2);
+}
+.svg-wrap-span-furniture{
+  background-color:rgba(135, 34, 196, 0.2);
+}
+.svg-wrap-span-mobile{
+  background-color:rgba(218, 152, 47, 0.2);
+}
+.svg-wrap-span-community{
+  background-color:rgba(64, 186, 14, 0.2);
 }
 span {
     font-family: "Cairo";
