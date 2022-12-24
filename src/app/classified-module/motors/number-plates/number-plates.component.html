@@ -11,7 +11,7 @@
     <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
         <div class="container_1280px">
             <div class="ads-form-design">
-                <form>
+                <form [formGroup]="DetailsForm">
                     <div class="list-property-header">
                         <h5 class="h5-heading">Please Fill your Lisitng Details</h5>
                     </div>
@@ -26,8 +26,8 @@
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Title <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Enter Title"
+                                        <mat-form-field class="full-width input-design-2 title-input" appearance="fill">
+                                            <input matInput type="text" formControlName="title" placeholder="Enter Title"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
@@ -35,77 +35,38 @@
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 position-relative optional-text">
                                         <label>Phone Number</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                        <mat-form-field class="full-width input-design-2 phone-input" appearance="fill">
+                                            <input matInput type="number" formControlName="phone" placeholder="Enter Phone Number"
                                                 lang="en" />
                                         </mat-form-field>
-                                        <span class="optional-span">*Optional</span>
                                 </div>
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design full-width-select2">
                                             <label>Do you want to show or hide your phone number?</label>
-                                            <select class="select2 country-select">
-                                                <option value="yes"> Show Number </option>
-                                                <option value="no">Hide Number</option>
+                                            <select class="select2 country-select show-phone-input">
+                                                <option value="-1">Select</option>
+                                                <option value="1"> Show Number </option>
+                                                <option value="0">Hide Number</option>
                                             </select>
                                         </div>
                                 </div>
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <div ngClass="select-design select2-design full-width-select2">
-                                            <label>Plate Code</label>
-                                            <select class="select2 country-select">
-                                                <option value="A">A</option>
-                                                <option value="B">B</option>
-                                            </select>
-                                        </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
                                         <label>Plate Number <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Plate Number"
+                                        <mat-form-field class="full-width input-design-2 plate-number-input" appearance="fill">
+                                            <input matInput type="number" formControlName="plateNumber" placeholder="Enter Plate Number"
                                                 lang="en" />
                                         </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                                <div ngClass="platest-design-block mb-4">
-                                        <div class="plates-btn-flex">
-                                            <button class="plates-btn_design" (click)="clickEvent()" [ngClass]="status ? 'active' : 'noactive'">Classic Design</button>
-                                            <button class="plates-btn_design" (click)="clickEvent1()" [ngClass]="status1 ? 'active' : 'noactive'">New Design</button>
-                                        </div>
-                                        <div class="plates-no-output">
-                                            <div class="plate-design-1 position-relative" [ngClass]="status ? 'show' : 'hide'">
-                                               <div class="plate-design-img">
-                                                <img src="{{plateclassic}}">
-                                               </div>
-                                               <div class="plate-design-cntnt">
-                                                <h4 clas="plate-code">B</h4>
-                                                <h4 clas="plate-number">2022</h4>
-                                               </div>
-                                            </div>
-                                            <div class="plate-design-2 position-relative" [ngClass]="status1 ? 'show' : 'hide'">
-                                                <div class="plate-design-img">
-                                                 <img src="{{platenew}}">
-                                                </div>
-                                                <div class="plate-design-cntnt">
-                                                 <h4 clas="plate-code">B</h4>
-                                                 <h4 clas="plate-number">2022</h4>
-                                                </div>
-                                             </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 aed-text position-relative">
                                         <label>Price <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter Price"
+                                        <mat-form-field class="full-width input-design-2 price-input" appearance="fill">
+                                            <input matInput type="number" formControlName="price" placeholder="Enter Price"
                                                 lang="en" />
                                         </mat-form-field>
                                         <span class="price-tag-input">AED</span>
@@ -114,8 +75,8 @@
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                         <label>Description <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2 textarea-design-2" appearance="fill">
-                                            <textarea matInput type="number" placeholder="Enter Description Here...."
+                                        <mat-form-field class="full-width input-design-2 textarea-design-2 desc-input" appearance="fill">
+                                            <textarea matInput type="number" formControlName="desc" placeholder="Enter Description Here...."
                                                 ></textarea>
                                         </mat-form-field>
                                 </div>
@@ -124,7 +85,7 @@
                     </div>
                     <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <button class="save-continue-btn cursor-pointer">Next</button>
+                            <button class="save-continue-btn cursor-pointer" (click)="onSubmit()">Next</button>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">
@@ -136,3 +97,5 @@
     </section>
 <app-footer></app-footer>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
