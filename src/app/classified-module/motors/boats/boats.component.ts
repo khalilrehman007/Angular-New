@@ -128,22 +128,6 @@ export class BoatsComponent implements OnInit {
       this.showError = true;
       return;
     }
-    let temp:any = localStorage.getItem("classifiedData");
-    temp = JSON.parse(temp);
-    temp.Title = this.DetailsForm.value.title;
-    temp.PhoneNumber = this.DetailsForm.value.Phone;
-    temp.price = this.DetailsForm.value.Price;
-    temp.description = this.DetailsForm.value.Description;
-    temp.AgeId= $(".Age").val();
-    temp.UsageId= $(".Usage").val();
-    temp.BoatConditionId= $(".Condition").val();
-    temp.SellerTypeId= $(".Seller-type").val();
-    temp.WarrantyId= $(".Warranty").val();
-    temp.LengthId= $(".length").val();
-    localStorage.setItem("classifiedData",JSON.stringify(temp));
-    console.log(temp);
-    
-    // this.router.navigate(["/classified/car-ad-submission"]);
   }
 
 }
