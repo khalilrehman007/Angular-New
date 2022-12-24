@@ -152,7 +152,7 @@ export class BoatsComponent implements OnInit {
     tempData.Price = this.DetailsForm.value.Price;
     tempData.AgeId = $(".Age").val();
     tempData.UsageId = $(".usage-input").val();
-    tempData.BodyConditionId = this.DetailsForm.value.title;
+    tempData.BoatConditionId = $(".Condition").val();
     tempData.SellerTypeId = $(".seller-type-input").val();
     tempData.WarrantyId = $(".Warranty").val();
     tempData.LengthId = $(".length").val();

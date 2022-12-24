@@ -100,6 +100,11 @@ export class CarAddDetailsSecondComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     $('.select2').select2();
+    $('input[type="number"]').on('input', (e) => {
+      let temp: any = $(e.currentTarget).val();
+      temp.replace(/[^0-9 +]+/, '');
+      $(e.currentTarget).val(temp);
+    });
   }
   status1: boolean = false;
   clickEvent1() {
@@ -315,4 +320,3 @@ export class CarAddDetailsSecondComponent implements OnInit {
     this.mainImage = index;
   }
 }
-
