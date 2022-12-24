@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Select2 } from 'select2';
 import { AppService } from 'src/app/service/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-motorcycle-detail-form',
@@ -12,6 +14,7 @@ export class MotorcycleDetailFormComponent implements OnInit {
   ads = 'assets/images/post-add.jpg';
   error: any = ""
   showError: boolean = false;
+  showLoader: boolean = false;
   classifiedData: any = localStorage.getItem("classifiedData");
   errorResponse(data: any) {
     this.showError = false;
@@ -49,7 +52,7 @@ export class MotorcycleDetailFormComponent implements OnInit {
     kilometers: new FormControl("", Validators.required),
     year: new FormControl("", Validators.required),
   });
-  constructor(private service: AppService) {
+  constructor(private service: AppService, private router: Router) {
     this.classifiedData = JSON.parse(this.classifiedData);
     this.service.GetClassifiedLookUpsByCategory("SportsBikeUsage").subscribe((result: any) => {
       this.SportsBikeUsage = result.data;
@@ -163,8 +166,9 @@ export class MotorcycleDetailFormComponent implements OnInit {
     tempData.DistrictId = this.classifiedData.districtId;
     tempData.Latitude = this.classifiedData.Latitude;
     tempData.Longitude = this.classifiedData.Longitude;
+    tempData.ClassifiedCategoryId = this.classifiedData.classifiedData[this.classifiedData.classifiedData.length - 1].value;
     tempData.Title = this.DetailsForm.value.title;
-    tempData.Description = this.DetailsForm.value.title;
+    tempData.Description = this.DetailsForm.value.desc;
     tempData.UsageId = $(".usage-input").val();
     tempData.Year = this.DetailsForm.value.year;
     tempData.KiloMeters = this.DetailsForm.value.kilometers;
@@ -195,6 +199,41 @@ export class MotorcycleDetailFormComponent implements OnInit {
     tempData.UserId = userData.id;
     console.log(tempData);
     localStorage.setItem("classifiedFormData",JSON.stringify(tempData));
+
+    let formData = new FormData();
+    formData.append("ClassifiedRequest",JSON.stringify(tempData));
+    for (let i = 0; i < this.imageData.length; i++) {
+      formData.append(i + 1 + "_" + this.imageData[i].FileName, this.imageData[i].file);
+    }
+    let token: any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    this.showLoader = true;
+    $.ajax({
+      url: `${environment.apiUrl}api/AddUpdateClassified`,
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: formData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res);
+        if (res.result == 1) {
+          this.showLoader = false;
+          this.router.navigate(["/classified/classified-payment"]);
+        }
+        else {
+          this.showLoader = false;
+          this.error = res.error;
+          this.showError = true;
+        }
+      },
+      error: (err) => {
+        this.showLoader = false;
+      }
+    });
   }
   selectFiles(event: any): void {
     let check = true;

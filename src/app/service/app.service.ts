@@ -530,4 +530,13 @@ export class AppService {
   ClassifiedSubCategories(id: any) {
     return this.http.get(this.apiurl + 'ClassifiedSubCategories/' + id);
   }
+  ClassifiedPackageByCategory(id: any) {
+    return this.http.get(this.apiurl + 'ClassifiedPackageByCategory/' + id);
+  }
+  AddUpdateClassified(data: any) {
+    return this.http.post(this.apiurl + 'AddUpdateClassified', data);
+  }
+  PopularServices(data: any) {
+    return this.http.post(this.apiurl + 'PopularServices', data);
+  }
 }

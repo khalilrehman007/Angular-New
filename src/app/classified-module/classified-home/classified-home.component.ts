@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppService } from 'src/app/service/app.service';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-classified-home',
@@ -266,8 +269,16 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private modalService: NgbModal) {
+  countryData:any = "";
+  popularServices:any = [];
+  baseUrl = environment.apiUrl;
+  constructor(private modalService: NgbModal, private service : AppService, private cookie: CookieService) {
+    this.countryData = JSON.parse(this.cookie.get("countryData"));
     $(window).scrollTop(0);
+    this.service.PopularServices({"CountryId":this.countryData.id,"CategoryId":"1"}).subscribe((result:any) => {
+      this.popularServices = result.data.slice(0, 8);
+      console.log(this.popularServices);
+    })
   }
 
   ngOnInit(): void {
