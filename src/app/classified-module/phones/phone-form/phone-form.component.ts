@@ -41,7 +41,7 @@ export class PhoneFormComponent implements OnInit {
   DetailsForm = new FormGroup({
     Title : new FormControl("", Validators.required),
     Phone : new FormControl("", Validators.required),
-    price: new FormControl("", Validators.required),
+    Price: new FormControl("", Validators.required),
     Description : new FormControl("", Validators.required),
   });
   constructor( private service : AppService, private router: Router) {
@@ -168,7 +168,7 @@ export class PhoneFormComponent implements OnInit {
         this.error = "Enter Phone Number";
         this.showError = true;
         return;
-      } else if(this.DetailsForm.value.price == "") {
+      } else if(this.DetailsForm.value.Price == "") {
         this.currentField = "Price-input";
         this.error = "Enter Price";
         this.showError = true;
@@ -195,7 +195,7 @@ export class PhoneFormComponent implements OnInit {
       temp.IsInsured.id = $(".insured-select").val();
       temp.IsInsured.text = $(".insured-select").find(":selected").text();
       temp.title = this.DetailsForm.value.Title;
-      temp.price = this.DetailsForm.value.price;
+      temp.price = this.DetailsForm.value.Price;
       temp.description = this.DetailsForm.value.Description;
       temp.phoneNumber = this.DetailsForm.value.Phone;
       localStorage.setItem("classifiedData",JSON.stringify(temp));      
