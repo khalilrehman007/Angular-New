@@ -536,4 +536,7 @@ export class AppService {
   AddUpdateClassified(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateClassified', data);
   }
+  PopularServices(data: any) {
+    return this.http.post(this.apiurl + 'PopularServices', data);
+  }
 }
