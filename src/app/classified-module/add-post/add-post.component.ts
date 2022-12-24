@@ -251,8 +251,6 @@ export class AddPostComponent implements OnInit {
       this.route.navigate(["/classified/boats-ad-details"]);
     } else if(this.selectedOptions[1].name.trim() == "Number Plates") {
       this.route.navigate(["/classified/number-plates-ad-details"]);
-    } else if(this.selectedOptions[1].name.trim() == "Export Cars") {
-      this.route.navigate(["/classified/number-plates-ad-details"]);
     }
     
   }
