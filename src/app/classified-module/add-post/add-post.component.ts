@@ -235,8 +235,8 @@ export class AddPostComponent implements OnInit {
     temp.cityId = $(".city-select").val();
     temp.districtId = $(".district-select").val();
     temp.address = this.SubmitForm.value.address;
-    temp.lat = localStorage.getItem("lat");
-    temp.lng = localStorage.getItem("lng");
+    temp.Latitude = localStorage.getItem("lat");
+    temp.Longitude = localStorage.getItem("lng");
     temp.classifiedData = this.selectedOptions;
     localStorage.setItem("classifiedData",JSON.stringify(temp));
     if(this.selectedOptions[1].name.trim() == "Used Cars for Sale") {

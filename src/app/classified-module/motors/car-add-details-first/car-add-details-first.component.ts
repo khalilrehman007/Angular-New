@@ -46,11 +46,9 @@ export class CarAddDetailsFirstComponent implements OnInit {
     })
     this.service.GetClassifiedLookUpsByCategory("Regional Spec").subscribe((result: any) => {
       this.RegionalSpec = result.data;
-      console.log(this.RegionalSpec);
     })
     this.service.GetClassifiedLookUpsByCategory("BodyCondition").subscribe((result: any) => {
       this.BodyCondition = result.data;
-      console.log(this.BodyCondition);
     })
   }
 
@@ -65,7 +63,6 @@ export class CarAddDetailsFirstComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log($(".make-and-model-select").find(":selected").text());
     if($(".make-and-model-select").val() == 0) {
       this.currentField = "make-and-model-select + .select2";
       this.error = "Select Make and Model";

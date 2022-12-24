@@ -40,6 +40,12 @@ export class CarAddDetailsSecondComponent implements OnInit {
   HorsePower: any = [];
   SteeringSide: any = [];
   CarExtraFeature: any = [];
+  selectedFiles: any;
+  imageData: any = [];
+  previews: string[] = [];
+  mainImage: any = 0;
+  data: any = {};
+  imgCheck: boolean = false;
 
   DetailForm = new FormGroup({
     title: new FormControl("", Validators.required),
@@ -100,7 +106,12 @@ export class CarAddDetailsSecondComponent implements OnInit {
     this.status2 = !this.status2;
   }
   onSubmit() {
-    if(this.DetailForm.value.title == "") {
+    if(this.imageData.length == 0) {
+      this.currentField = "propery-pictures-sec";
+      this.error = "Upload Images";
+      this.showError = true;
+      return;
+    } else if(this.DetailForm.value.title == "") {
       this.currentField = "title-input";
       this.error = "Enter Title";
       this.showError = true;
@@ -171,7 +182,92 @@ export class CarAddDetailsSecondComponent implements OnInit {
       this.showError = true;
       return;
     }
-  }
+    let tempData:any = {};
+    tempData.CountryId = this.classifiedData.countryId;
+    tempData.CityId = this.classifiedData.cityId;
+    tempData.DistrictId = this.classifiedData.districtId;
+    tempData.Latitude = this.classifiedData.Latitude;
+    tempData.Longitude = this.classifiedData.Longitude;
+    tempData.Title = this.DetailForm.value.title;
+    tempData.Description = this.DetailForm.value.title;
+    tempData.FuelTypeId = this.DetailForm.value.title;
+    tempData.BodyConditionId = this.DetailForm.value.title;
+    tempData.MechanicalConditionId = this.DetailForm.value.title;
+    tempData.ColorId = this.DetailForm.value.title;
+    tempData.WarrantyId = this.DetailForm.value.title;
+    tempData.DoorId = this.DetailForm.value.title;
+    tempData.CylinderId = this.DetailForm.value.title;
+    tempData.TransmissionTypeId = this.DetailForm.value.title;
+    tempData.BodyTypeId = this.DetailForm.value.title;
+    tempData.HorsePowerId = this.DetailForm.value.title;
+    tempData.SteeringSideId = this.DetailForm.value.title;
+    
+    let tempImg:any = [];
+    for (let i = 0; i < this.imageData.length; i++) {
+      let temp:any = {};
+      temp.FileId = i+1;
+      temp.FileName = this.imageData[i].FileName;
+      temp.Extension = this.imageData[i].Extension;
+      temp.IsMainImage = 0;
+      if(this.mainImage == i) {
+        temp.IsMainImage = 1;
+      }
+      tempImg.push(temp);
+    }
+    tempData.Documents = tempImg;
 
+    let userData:any = localStorage.getItem("user");
+    userData = JSON.parse(userData)
+    tempData.UserId = userData.id;
+    console.log(tempData);
+    localStorage.setItem("classifiedFormData",JSON.stringify(tempData));
+  }
+  selectFiles(event: any): void {
+    let check = true;
+    let temp: number = 0;
+    for (let i = 0; i < event.target.files.length; i++) {
+      if (event.target.files[i].size / 1048576 > 2) {
+        this.error = "Maximun size allowed is 2MB per Image";
+        this.showError = true;
+        check = false;
+        return;
+      }
+      // temp += event.target.files[i].size
+    }
+    if (check) {
+      temp = temp / 1048576
+      if (temp > 10) {
+        alert("Maximun size allowed is 10MB");
+        return;
+      }
+      // this.message = [];
+      // this.progressInfos = [];
+      this.selectedFiles = event.target.files;
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        let extension: any = this.selectedFiles[i].name.split(".");
+        extension = extension[extension.length - 1];
+        this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
+      }
+      if (this.selectedFiles && this.selectedFiles[0]) {
+        const numberOfFiles = this.selectedFiles.length;
+        for (let i = 0; i < numberOfFiles; i++) {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.previews.push(e.target.result);
+          };
+          reader.readAsDataURL(this.selectedFiles[i]);
+        }
+      }
+      $(".image-input").val("");
+    }
+  }
+  removeImage(index: any) {
+    this.mainImage = 0;
+    this.previews.splice(index, 1);
+    this.data?.Documents.splice(index, 1);
+  }
+  changeMainImg(index: any) {
+    this.mainImage = index;
+  }
 }
 
