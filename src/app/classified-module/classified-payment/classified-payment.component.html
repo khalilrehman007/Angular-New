@@ -3,7 +3,6 @@
   <section [ngClass]="'list-package-banner-sec position-relative'"
     style="background-image: url('assets/images/package-banner.png')">
     <div [ngClass]="'container_1280px'">
-      <!-- <app-breadcrumbs></app-breadcrumbs> -->
       <div ngClass="inner-banner-heading text-center">
         <h2>Ovaluate classified Points and Packages</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
@@ -14,112 +13,37 @@
     <div ngClass="container_1280px">
       <div class="package_lists">
         <div ngClass="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngFor="let item of packageData">
             <div class="payment_box_wrap STANDARD">
-              <input type="radio" name="payment">
+              <input type="radio" name="payment" (click)="selectPackage(item.id)">
               <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
               </div>
               <div class="payment_box_hdr">
-                <h4>Standard</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <h4>{{item.name}}</h4>
               </div>
-              <div class="payment_box_cnntn-list">
+              <div class="payment_box_cnntn-list" *ngIf="item.isFeature && selectedPackage == item.id">
                 <ul class="list-unstyled">
                     <li class="position-relative">
                         <div class="package-btns">
-                        <input type="radio" name="packageSelection">
+                        <input type="radio" name="packageSelection" (click)="selectDays(3)">
                         <button class="pkg_selection-btn"></button>
                         </div>
-                        <p>Price for 3 days <span class="price">100 Points</span></p>
+                        <p>Price for 3 days <span class="price">{{item.price3Days}} Points</span></p>
                     </li>
                     <li class="position-relative">
                         <div class="package-btns">
-                        <input type="radio" name="packageSelection">
+                        <input type="radio" name="packageSelection" (click)="selectDays(7)">
                         <button class="pkg_selection-btn"></button>
                         </div>
-                        <p>Price for 6 days <span class="price">200 Points</span></p>
+                        <p>Price for 6 days <span class="price">{{item.price7Days}} Points</span></p>
                     </li>
                     <li class="position-relative">
                         <div class="package-btns">
-                        <input type="radio" name="packageSelection">
+                        <input type="radio" name="packageSelection" (click)="selectDays(14)">
                         <button class="pkg_selection-btn"></button>
                         </div>
-                        <p>Price for 9 days <span class="price">300 Points</span></p>
-                    </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <div class="payment_box_wrap PLATINUM">
-              <input type="radio" name="payment">
-              <div class="box_list-pay">
-                <button class="cstm-btn-pay-points"></button>
-              </div>
-              <div class="payment_box_hdr">
-                <h4>Platinum</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>
-              <div class="payment_box_cnntn-list">
-                <ul class="list-unstyled">
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 3 days <span class="price">100 Points</span></p>
-                    </li>
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 6 days <span class="price">200 Points</span></p>
-                    </li>
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 9 days <span class="price">300 Points</span></p>
-                    </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <div class="payment_box_wrap PREMIUM">
-              <input type="radio" name="payment">
-              <div class="box_list-pay">
-                <button class="cstm-btn-pay-points"></button>
-              </div>
-              <div class="payment_box_hdr">
-                <h4>Premium</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>
-              <div class="payment_box_cnntn-list">
-                <ul class="list-unstyled">
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 3 days <span class="price">100 Points</span></p>
-                    </li>
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 6 days <span class="price">200 Points</span></p>
-                    </li>
-                    <li class="position-relative">
-                        <div class="package-btns">
-                        <input type="radio" name="packageSelection">
-                        <button class="pkg_selection-btn"></button>
-                        </div>
-                        <p>Price for 9 days <span class="price">300 Points</span></p>
+                        <p>Price for 9 days <span class="price">{{item.price14Days}} Points</span></p>
                     </li>
                 </ul>
               </div>
@@ -128,7 +52,7 @@
         </div>
       </div>
       <div class="text-center mt-5">
-        <button class="buy-now-btn">Next</button>
+        <button class="buy-now-btn" [ngClass]="selectedPackage == 0 ? 'btn-disabled' : ''" (click)="onSubmit()">Next</button>
       </div>
     </div>
   </section>
