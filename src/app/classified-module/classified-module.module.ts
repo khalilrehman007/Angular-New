@@ -67,6 +67,7 @@ import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-det
 import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
 import { CommunityFilterComponent } from './classified-listings/community-filter/community-filter.component';
 import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
+import { ClassifiedPaymentComponent } from './classified-payment/classified-payment.component';
 
 
 
@@ -115,7 +116,8 @@ import { CommunityDetailsComponent } from './classified-details/community-detail
     JobsDetailsComponent,
     CommunityLsitingsComponent,
     CommunityFilterComponent,
-    CommunityDetailsComponent
+    CommunityDetailsComponent,
+    ClassifiedPaymentComponent
   ],
   imports: [
     CommonModule,

@@ -34,6 +34,7 @@ import { JobsListingComponent } from './classified-listings/jobs-listing/jobs-li
 import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-details.component';
 import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
 import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
+import { ClassifiedPaymentComponent } from './classified-payment/classified-payment.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -69,7 +70,8 @@ const routes: Routes = [
   { path: "jobs-listings", component: JobsListingComponent },
   { path: "jobs-details", component: JobsDetailsComponent },
   { path: "community-listings", component: CommunityLsitingsComponent },
-  { path: "community-details", component: CommunityDetailsComponent }
+  { path: "community-details", component: CommunityDetailsComponent },
+  { path: "classified-payment", component: ClassifiedPaymentComponent }
 ];
 
 @NgModule({

@@ -116,7 +116,7 @@ export class AddPostComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.name, value: country.id, currency: country.currency });
         }
         this.showLoader = false;
       }
@@ -230,7 +230,26 @@ export class AddPostComponent implements OnInit {
       this.showError = true;
       return;
     }
-    this.route.navigate(["/classified/car-ad-details"]);
+    let temp:any = {};
+    temp.countryId = $(".country-select").val();
+    temp.cityId = $(".city-select").val();
+    temp.districtId = $(".district-select").val();
+    temp.address = this.SubmitForm.value.address;
+    temp.Latitude = localStorage.getItem("lat");
+    temp.Longitude = localStorage.getItem("lng");
+    temp.classifiedData = this.selectedOptions;
+    localStorage.setItem("classifiedData",JSON.stringify(temp));
+    if(this.selectedOptions[1].name.trim() == "Used Cars for Sale") {
+      this.route.navigate(["/classified/car-ad-details"]);
+    } else if(this.selectedOptions[1].name.trim() == "Motorcycles") {
+      this.route.navigate(["/classified/motorcycle-ad-details"]);
+    } else if(this.selectedOptions[1].name.trim() == "Auto Accessories & Parts") {
+      this.route.navigate(["/classified/auto-parts-ad-details"]);
+    } else if(this.selectedOptions[1].name.trim() == "Heavy Vehicles") {
+      this.route.navigate(["/classified/heavy-vehicles-ad-details"]);
+    } else if(this.selectedOptions[1].name.trim() == "Boats") {
+      this.route.navigate(["/classified/boats-ad-details"]);
+    }
     
   }
   animate() {
