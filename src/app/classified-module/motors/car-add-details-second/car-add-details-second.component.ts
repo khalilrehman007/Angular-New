@@ -53,7 +53,7 @@ export class CarAddDetailsSecondComponent implements OnInit {
     desc: new FormControl("", Validators.required),
   });
   constructor(private service: AppService) {
-    this.classifiedData = JSON.parse(this.classifiedData)
+    this.classifiedData = JSON.parse(this.classifiedData);
     this.service.GetClassifiedLookUpsByCategory("FuelType").subscribe((result: any) => {
       this.FuelType = result.data;
     })
