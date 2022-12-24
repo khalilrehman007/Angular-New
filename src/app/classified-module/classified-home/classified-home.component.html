@@ -28,16 +28,16 @@
         </div>
         <div class="services-block-wrap">
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mb-4" *ngFor="let serviceList of serviceTs">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mb-4" *ngFor="let serviceList of popularServices">
                     <div class="services-block-shadow position-relative">
                         <div class="services-block-img">
-                            <img src="{{serviceList.src}}">
+                            <img src="assets/images/placeholder.png">
                         </div>
                         <div class="services-block-cntnt">
                             <h4>{{serviceList.title}}</h4>
-                            <p><img src="{{pricetag}}"> {{serviceList.text}}</p>
+                            <p><img src="{{pricetag}}"> {{serviceList.price}}</p>
                         </div>
-                        <a routerLink="/{{serviceList.link}}" class="linK_overlay"></a>
+                        <a routerLink="/classified/service-details/{{serviceList.id}}" class="linK_overlay"></a>
                     </div>
                 </div>
             </div>

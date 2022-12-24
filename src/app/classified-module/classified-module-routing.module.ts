@@ -60,7 +60,7 @@ const routes: Routes = [
   { path: "furniture-details", component: FurnitureDetailsComponent },
   { path: "sports-equipment-details", component: SportsEquipmentDetailsComponent },
   { path: "phone-tablet-details", component: PhoneTabletDetailsComponent },
-  { path: "service-details", component: ServicesDetailsComponent },
+  { path: "service-details/:id", component: ServicesDetailsComponent },
   { path: "furniture-listing", component: FurnitureListingComponent },
   { path: "sports-equipment-listings", component: SportsListingComponent },
   { path: "phone-tablet-listings", component: MobileTabletListingComponent },
