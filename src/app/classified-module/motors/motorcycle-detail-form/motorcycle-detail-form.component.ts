@@ -168,7 +168,7 @@ export class MotorcycleDetailFormComponent implements OnInit {
     tempData.Longitude = this.classifiedData.Longitude;
     tempData.ClassifiedCategoryId = this.classifiedData.classifiedData[this.classifiedData.classifiedData.length - 1].value;
     tempData.Title = this.DetailsForm.value.title;
-    tempData.Description = this.DetailsForm.value.title;
+    tempData.Description = this.DetailsForm.value.desc;
     tempData.UsageId = $(".usage-input").val();
     tempData.Year = this.DetailsForm.value.year;
     tempData.KiloMeters = this.DetailsForm.value.kilometers;
