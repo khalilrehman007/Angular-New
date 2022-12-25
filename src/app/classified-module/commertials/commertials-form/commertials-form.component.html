@@ -18,66 +18,95 @@
                     <div class="class-fied-breadcrumbs">
                         <ul class="list-unstyled d-flex">
                             <li><a routerLink="/classified/ad-post">Ad Post</a></li>
-                            <li>Commertials <span class="divider-bread">/</span>  Arts & Crafts</li>
+                            <li>Commertials <span class="divider-bread">/</span> Arts & Crafts</li>
                         </ul>
                     </div>
                     <div ngClass="select-boxes">
                         <div ngClass="row">
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <label>Title <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2 title-input" appearance="fill">
-                                            <input matInput type="text" formControlName="title" placeholder="Enter Title"
-                                                lang="en" />
-                                        </mat-form-field>
+                                    <label>Title <span class="required-span">*</span></label>
+                                    <mat-form-field class="full-width input-design-2 title-input" appearance="fill">
+                                        <input matInput type="text" formControlName="title" placeholder="Enter Title"
+                                            lang="en" />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 position-relative optional-text">
-                                        <label>Phone Number</label>
-                                        <mat-form-field class="full-width input-design-2 phone-input" appearance="fill">
-                                            <input matInput type="number" formControlName="Phone" placeholder="Enter Phone Number"
-                                                lang="en" />
-                                        </mat-form-field>
-                                        <span class="optional-span">*Optional</span>
+                                    <label>Phone Number</label>
+                                    <mat-form-field class="full-width input-design-2 phone-input" appearance="fill">
+                                        <input matInput type="number" formControlName="Phone"
+                                            placeholder="Enter Phone Number" lang="en" />
+                                    </mat-form-field>
+                                    <span class="optional-span">*Optional</span>
                                 </div>
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <div ngClass="select-design select2-design full-width-select2">
-                                            <label>Do you want to show or hide your phone number?</label>
-                                            <select class="select2 Show-Phone-Number">
-                                                <option value="yes"> Show Number </option>
-                                                <option value="no">Hide Number</option>
-                                            </select>
-                                        </div>
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Do you want to show or hide your phone number?</label>
+                                        <select class="select2 Show-Phone-Number">
+                                            <option value="yes"> Show Number </option>
+                                            <option value="no">Hide Number</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                                <div ngClass="propery-pictures-sec mb-4">
+                                <div ngClass="propery-pictures-sec">
                                     <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label">
-                                                <input type="file" accept=".jpg, .png, .jpeg," multiple
-                                                    class="input-file" />
+                                                <input type="file" accept=".jpg, .png, .jpeg, .mp4" multiple
+                                                    class="input-file image-input"
+                                                    (change)="selectFiles($event);imgCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
                                                         ngClass="plus_icon-div">+</span> Upload Pictures</button>
                                             </label>
-                                            <div ngClass="upload-preview-images">
-                                                <img ngClass="img-thumb-icon"
+                                            <div class="thumbnail_img">
+                                                <img *ngIf="previews.length == 0" ngClass="img-thumb-icon"
                                                     src="../../../../assets/images/image-gallery-thumbnail.png">
+                                            </div>
+                                            <div ngClass="upload-preview-images position-relative">
+                                                <span *ngFor='let preview of previews; let i = index'>
+                                                    <button class="dlt-img" (click)="removeImage(i)">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M16.875 4.38281H3.125" stroke="#fff"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M8.125 8.12109V13.1211" stroke="#fff"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M11.875 8.12109V13.1211" stroke="#fff"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M15.625 4.38281V16.2578C15.625 16.4236 15.5592 16.5825 15.4419 16.6998C15.3247 16.817 15.1658 16.8828 15 16.8828H5C4.83424 16.8828 4.67527 16.817 4.55806 16.6998C4.44085 16.5825 4.375 16.4236 4.375 16.2578V4.38281"
+                                                                stroke="#fff" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M13.126 4.37305V3.12305C13.126 2.79153 12.9943 2.47358 12.7599 2.23916C12.5254 2.00474 12.2075 1.87305 11.876 1.87305H8.12598C7.79446 1.87305 7.47651 2.00474 7.24209 2.23916C7.00767 2.47358 6.87598 2.79153 6.87598 3.12305V4.37305"
+                                                                stroke="#fff" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <img [src]="preview" class="preview" (click)="changeMainImg(i)">
+                                                    <p class="main_pic-tag" [ngClass]="i == mainImage ? '' : 'hide' ">
+                                                        Main Picture</p>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                        <label>Description <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2 textarea-design-2 description-input" appearance="fill">
-                                            <textarea matInput type="number" formControlName="Description" placeholder="Enter Description Here...."
-                                                ></textarea>
-                                        </mat-form-field>
+                                    <label>Description <span class="required-span">*</span></label>
+                                    <mat-form-field
+                                        class="full-width input-design-2 textarea-design-2 description-input"
+                                        appearance="fill">
+                                        <textarea matInput type="number" formControlName="Description"
+                                            placeholder="Enter Description Here...."></textarea>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -94,5 +123,8 @@
             </div>
         </div>
     </section>
-<app-footer></app-footer>
+    <app-footer></app-footer>
 </section>
+
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
