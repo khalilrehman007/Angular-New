@@ -31,7 +31,7 @@
                             <p class="abs-tag red">FREE</p>
                         </div>
                     </div>
-                    <div *ngIf="selectedPackage.isFeature">
+                    <div *ngIf="selectedPackage != null && selectedPackage.isFeature">
                         <div class="package-box-cntnt">
                             <h4>Upgrade your standard ad into a featured one</h4>
                             <p>Featured ads are placed on top of all standard ads</p>

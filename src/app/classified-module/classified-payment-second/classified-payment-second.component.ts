@@ -12,7 +12,9 @@ export class ClassifiedPaymentSecondComponent implements OnInit {
   featuredPrice:any = 0;
   currency = localStorage.getItem("currency");
   constructor() {
-    this.selectedPackage = JSON.parse(this.selectedPackage);
+    if(this.selectedPackage != null) {
+      this.selectedPackage = JSON.parse(this.selectedPackage);
+    }
   }
 
   ngOnInit(): void {

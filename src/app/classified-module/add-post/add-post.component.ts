@@ -255,6 +255,8 @@ export class AddPostComponent implements OnInit {
       this.route.navigate(["/classified/job-type-selection"]);
     } else if(this.selectedOptions[1].name.trim() == "Jobs Wanted") {
       this.route.navigate(["/classified/job-requirement"]);
+    } else if(this.selectedOptions[1].name.trim() == "Auto Services") {
+      this.route.navigate(["/classified/services-form"]);
     }
     
   }
