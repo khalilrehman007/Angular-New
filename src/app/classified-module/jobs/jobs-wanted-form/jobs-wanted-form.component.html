@@ -62,6 +62,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Gender <span class="required-span">*</span></label>
                                         <select class="select2 Gender">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of Gender" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -72,6 +73,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Nationality <span class="required-span">*</span></label>
                                         <select class="select2 nationality">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of Nationality" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -82,6 +84,7 @@
                                     <div ngClass="select-design select2-design">
                                         <label>Current Location <span class="required-span">*</span></label>
                                         <select class="select2 Current-location">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of Nationality" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
@@ -100,48 +103,52 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Notice Period  <span class="required-span">*</span></label>
-                                        <select class="select2 notice-period-input" multiple>
+                                        <select class="select2 notice-period-input">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of NoticePeriod " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <!-- <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Visa Status   <span class="required-span">*</span></label>
                                         <select class="select2 visa-status-inputs" multiple>
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of VisaStatus  " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Career Level <span class="required-span">*</span></label>
-                                        <select class="select2 career-level-input" multiple>
+                                        <select class="select2 career-level-input">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of Career " value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Min. work experience<span class="required-span">*</span></label>
                                         <select class="select2 work-experience-input">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of WorkExperience" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                            <!-- <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Minimum Education Level<span class="required-span">*</span></label>
                                         <select class="select2 education-level-input">
-                                            <option value="0">N/A</option>
+                                            <option value="0">Select</option>
                                             <option value="1">High-School / Secondary</option>
                                             <option value="2">Bachelors Degree</option>
                                             <option value="3">Masters Degree</option>
@@ -149,28 +156,30 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                            </div> -->
+                            <!-- <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Monthly Salary<span class="required-span">*</span></label>
                                         <select class="select2 monthly-salary-input">
+                                            <option value="0">Select</option>
                                             <option *ngFor="let item of MonthlySalary" value="{{item.id}}"> {{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            </div> -->
+                            <!-- <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
                                         <label>Commitment <span class="required-span">*</span></label>
                                         <select class="select2 commitment-input">
+                                            <option value="0">Select</option>
                                             <option value="EM">Full Time</option>
                                             <option value="RE">Part Time</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
    
@@ -188,3 +197,5 @@
     </section>
 <app-footer></app-footer>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
