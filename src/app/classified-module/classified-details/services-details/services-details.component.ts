@@ -178,13 +178,13 @@ export class ServicesDetailsComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: '/assets/images/placeholder-big.png',
-        medium: '/assets/images/placeholder-big.png',
-        big: '/assets/images/placeholder-big.png'
-      }
-    ];
+    for (let i = 0; i < this.popularServices.documents.length; i++) {
+      this.galleryImages.push({
+        small: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+        medium: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+        big: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/")
+      });
+    }
   }
 
 
