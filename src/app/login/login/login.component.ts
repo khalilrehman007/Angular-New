@@ -23,8 +23,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   responsedata: any;
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
+  @ViewChild('signupRef', { static: true }) signupElement!: ElementRef;
 
   constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private api: AppService) {
+    this.googleAuthSDK();
   }
   ngAfterViewInit(): void {
     $(".back-tag").addClass("d-none");
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   public showPassword: boolean = false;
   ngOnInit(): void {
-    this.googleAuthSDK();
+   
   }
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -77,9 +79,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
   callLogin() {
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+    this.auth2.attachClickHandler(this.signupElement.nativeElement, {},
       (googleAuthUser: any) => {
-        //Print profile details in the console logs
         let profile = googleAuthUser.getBasicProfile();
         let temp: any = "";
         if (localStorage.getItem("deviceToken")) {
@@ -90,7 +91,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             localStorage.setItem('token', JSON.stringify(result.data.refreshToken))
             localStorage.setItem('user', JSON.stringify(result.data))
             this.notifyService.showSuccess(result.message, result.message);
-            this._location.back();
+            this.route.navigate(['/'])
           }
         })
       }, (error: any) => {

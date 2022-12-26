@@ -109,7 +109,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
         numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
         bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
-        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package,
+        propertyListingTypeId:element.propertyListingTypeId,propertyCategoryId:element.propertyCategoryId
       })
     })
   }
@@ -134,7 +135,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
         numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
         bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
-        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package,
+        propertyListingTypeId:element.propertyListingTypeId,propertyCategoryId:element.propertyCategoryId
       })
     })
   }
@@ -625,7 +627,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
 
   wishlistStatus: any;
-  AddToFavorite(id: any, status: any, part: any) {
+  AddToFavorite(id: any, status: any, listingTypeId: any,categoryId:any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
@@ -636,33 +638,30 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       this.route.navigate(['login']);
     }
 
-    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
-      let responsedata: any = data
-      if (responsedata.message == "Favorite is Removed successfully") {
-        this.wishlistStatus = "Favorite is Removed successfully"
-        this.notifyService.showSuccess('Favorite is Removed successfully', "");
-      } else {
-        this.wishlistStatus = "Favorite is added successfully"
-        this.notifyService.showSuccess('Favorite is added successfully', "");
-      }
-    });
-    if (part == "resedential-old") {
-      setTimeout(() => {
-        this.oldData1();
-      }, 1000);
-    } else if (part == "resedential-new") {
-      setTimeout(() => {
-        this.newData1();
-      }, 1000);
-    } else if (part == "commercial-old") {
-      setTimeout(() => {
-        this.oldData2();
-      }, 1000);
-    } else if (part == "commercial-new") {
-      setTimeout(() => {
-        this.newData2();
-      }, 1000);
-    }
+    const promise=new Promise((resolve,reject)=>{
+      this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+        let responsedata: any = data
+        if (responsedata.message == "Favorite is Removed successfully") {
+          this.wishlistStatus = "Favorite is Removed successfully"
+          this.notifyService.showSuccess('Favorite is Removed successfully', "");
+        } else {
+          this.wishlistStatus = "Favorite is added successfully"
+          this.notifyService.showSuccess('Favorite is added successfully', "");
+        }
+        resolve(true);
+      });
+    })
+        promise.then(()=>{
+          if (listingTypeId==1 && categoryId==1) {
+            this.oldData1();
+        } else if (listingTypeId==2 && categoryId==1) {
+            this.newData1();
+        } else if (listingTypeId==1 && categoryId==2) {
+            this.oldData2();
+        } else if (listingTypeId==2 && categoryId==2) {
+            this.newData2();
+        }
+        })
   }
   openVerticallyCentered(content: any, id: any) {
     this.shareURL += "property/detail?id=" + id;

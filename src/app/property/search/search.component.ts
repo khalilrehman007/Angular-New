@@ -236,21 +236,12 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     if (data.cityId !== null && data.cityId !== undefined) {
       params.CityIds = JSON.stringify([data.cityId]);
     }
-    console.log(data);
     this.route.navigate(
       ['/property/search'],
       { queryParams: params }
     );
   }
-  callNumberText = "Call Now"
-  callNumber(text: any) {
-    if (text == "Call Now") {
-      this.callNumberText = "+9000000000"
-    } else {
-      this.callNumberText = "Call Now"
-    }
-  }
-
+ 
   allSearch() {
     this.service.clearSearch.next(true);
   }
@@ -306,102 +297,100 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.showLoader = true;
     let tempData: Array<Object> = []
-    this.service.LoadSearchListing(data).subscribe((response: any) => {
-      this.totalRecord = response.data.totalRecord;
-      setTimeout(() => {
-        localStorage.setItem('listingForMap', JSON.stringify(data))
-      }, 1000);
-      response.data.propertyListings.forEach((element: any, i: any) => {
-        let documentsCheck: any = true;
-        let rentTypeName = ''
-        if (element.rentType != null && this.PropertyListingTypeId != 2) {
-          rentTypeName = element.rentType.name
-        }
-        let documents: any = []
-        if (element.documents?.length >= 0) {
-          documents = element.documents
-        } else {
-          documentsCheck = false
-        }
-
-        let userImage = '../assets/images/user.png'
-        let fullName = ''
-        let userId = ''
-        let userEmail = ''
-        let userPhoneNumber = ''
-        let userWhatsAppNumber = ''
-        if (element.user != null && element.user !== undefined && element.user?.imageUrl != null) {
-          userImage = this.baseUrl + element.user.imageUrl
-          fullName = element.user.fullName
-          userId = element.user.id
-          userEmail = "mailto:" + element.user.email
-          userPhoneNumber = "tel:" + element.user.phoneNumber
-          userWhatsAppNumber = "https://wa.me/" + element.user.phoneNumber?.replace("+", "");
-        }
-        if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
-          this.showRecentTransactions = true;
-        }
-        else {
-          this.showRecentTransactions = false;
-        }
-        if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
-          this.showAvgSqft = true;
-        }
-        else {
-          this.showAvgSqft = false;
-        }
-        if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
-          || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
-        ) {
-          this.showPriceRange = true;
-        }
-        else {
-          this.showPriceRange = false;
-        }
-        if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
-          this.showDIDiv = false;
-        }
-        else {
-          this.showDIDiv = true;
-        }
-        this.shareURL += "detail?id=" + element.id;
-        this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
-        this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-        this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + encodeURI(this.shareURL) + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
-
-        tempData.push(
-          {
-            buildupArea: element.buildupArea,
-            plotSize: element.plotSize,
-            id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
-            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.rentAvgPriceSqft, RecentRentTxns: element.recentRentTxns,
-            documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
-            furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat,
-            rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
-            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale", showRecentTransactions: this.showRecentTransactions,
-            showAvgSqft: this.showAvgSqft, showPriceRange: this.showPriceRange, showDIDiv: this.showDIDiv,
-            whatsAppShareUrl: this.whatsAppShareUrl, facebookShareUrl: this.facebookShareUrl, twitterShareUrl: this.twitterShareUrl,
-            userEmail: userEmail, userWhatsAppNumber: userWhatsAppNumber,
-            userPhoneNumber: userPhoneNumber
+    this.service.LoadSearchListing(data).subscribe({
+      next:(response: any) => {
+        this.totalRecord = response.data.totalRecord;
+        response.data.propertyListings.forEach((element: any, i: any) => {
+          let documentsCheck: any = true;
+          let rentTypeName = ''
+          if (element.rentType != null && this.PropertyListingTypeId != 2) {
+            rentTypeName = element.rentType.name
           }
-        );
-        this.shareURL = this.shareURLTemp
-      })
-      this.searchListing = tempData;
-      this.currency = response.data?.propertyListings[0]?.country.currency;
-      this.halfList = Math.floor(this.searchListing.length / 2);
-      this.showLoader = false;
-    },
-      (error) => {
+          let documents: any = []
+          if (element.documents?.length >= 0) {
+            documents = element.documents
+          } else {
+            documentsCheck = false
+          }
+  
+          let userImage = '../assets/images/user.png'
+          let fullName = ''
+          let userId = ''
+          let userEmail = ''
+          let userPhoneNumber = ''
+          let userWhatsAppNumber = ''
+          if (element.user != null && element.user !== undefined && element.user?.imageUrl != null) {
+            userImage = this.baseUrl + element.user.imageUrl
+            fullName = element.user.fullName
+            userId = element.user.id
+            userEmail = "mailto:" + element.user.email
+            userPhoneNumber = "tel:" + element.user.phoneNumber
+            userWhatsAppNumber = "https://wa.me/" + element.user.phoneNumber?.replace("+", "");
+          }
+          if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
+            this.showRecentTransactions = true;
+          }
+          else {
+            this.showRecentTransactions = false;
+          }
+          if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
+            this.showAvgSqft = true;
+          }
+          else {
+            this.showAvgSqft = false;
+          }
+          if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
+            || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
+          ) {
+            this.showPriceRange = true;
+          }
+          else {
+            this.showPriceRange = false;
+          }
+          if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
+            this.showDIDiv = false;
+          }
+          else {
+            this.showDIDiv = true;
+          }
+          this.shareURL += "detail?id=" + element.id;
+          this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
+          this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+          this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + encodeURI(this.shareURL) + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+  
+          tempData.push(
+            {
+              buildupArea: element.buildupArea,
+              plotSize: element.plotSize,
+              id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
+              StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.rentAvgPriceSqft, RecentRentTxns: element.recentRentTxns,
+              documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
+              propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
+              buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+              furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+              requestedDateFormat: element.requestedDateFormat,
+              rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
+              listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale", showRecentTransactions: this.showRecentTransactions,
+              showAvgSqft: this.showAvgSqft, showPriceRange: this.showPriceRange, showDIDiv: this.showDIDiv,
+              whatsAppShareUrl: this.whatsAppShareUrl, facebookShareUrl: this.facebookShareUrl, twitterShareUrl: this.twitterShareUrl,
+              userEmail: userEmail, userWhatsAppNumber: userWhatsAppNumber,
+              userPhoneNumber: userPhoneNumber
+            }
+          );
+          this.shareURL = this.shareURLTemp
+        })
+        this.searchListing = tempData;
+        this.currency = response.data?.propertyListings[0]?.country.currency;
+        this.halfList = Math.floor(this.searchListing.length / 2);
+        this.showLoader = false;
+      },
+      error:(err:any)=>{
         this.showLoader = false;
       }
+    }
     );
   }
 
-  modelPropertyPictures: any = []
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
@@ -419,24 +408,19 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.route.navigate(['login']);
     }
 
-    let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
-    }
     this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
       let responsedata: any = data
       if (responsedata.message == "Favorite is Removed successfully") {
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
         setTimeout(() => {
-          this.loadListingProperty(params);
+          this.loadListingProperty(this.filterParams);
         }, 1000);
       } else {
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
         setTimeout(() => {
-          this.loadListingProperty(params);
+          this.loadListingProperty(this.filterParams);
         }, 1000);
       }
     });

@@ -471,7 +471,8 @@
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('shorttermrent')">
                                 <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'"
-                                    routerLink="/property/short-term-rent">
+                                [routerLink]="['/property/short-term-rent']"
+                                [queryParams]="{Type:'Rent',PropertyListingTypeId: 1,CountryId:currentCountry?.id,RentTypeId:1}">
                                     Short-Term Rent
                                 </a>
                             </li>

@@ -69,7 +69,7 @@
                                                     <mat-select [disableOptionCentering]="true"  [(value)]="formData.PropertyTypeId"
                                                         (selectionChange)="valuationPurpose($event)">
                                                         <mat-option *ngFor="let item of propertyType" [value]="item.id">
-                                                            {{item.typeDescription}}
+                                                            {{item.typeDescriptionAr}}
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -91,7 +91,7 @@
                                                         (selectionChange)="onPurposeSelect($event)">
                                                         <mat-option *ngFor="let item of purposeOfValuation"
                                                             [value]="item.id">
-                                                            {{item.purposeDescription}}
+                                                            {{item.purposeDescriptionAr}}
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -107,22 +107,22 @@
                                                     *ngFor="let item of propertyStatusData;"
                                                     (click)="propertyStatus(item.id, item.statusDescription)">
                                                     <input type="radio" id="{{item.statusDescription}}" name="current-status"
-                                                        value="{{item.statusDescription}}" *ngIf="formData.PropertyStatusId == item.id" checked>
+                                                        value="{{item.statusDescriptionAr}}" *ngIf="formData.PropertyStatusId == item.id" checked>
                                                     <input type="radio" id="{{item.statusDescription}}" name="current-status"
                                                         value="{{item.statusDescription}}" *ngIf="formData.PropertyStatusId != item.id">
-                                                    <button class="checkbox-btn">{{item.statusDescription}}</button>
+                                                    <button class="checkbox-btn">{{item.statusDescriptionAr}}</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">{{propertyData.numberLabel}} <span
+                                            <label class="h6-design">{{propertyData.numberLabelAr}} <span
                                                     ngClass="required-span">*</span></label>
                                             <div class="apartment-no-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="text" (keypress)="validateInput($event)" (input)="getInput($event, false)"
-                                                        placeholder="أدخل {{propertyData.numberLabel}} رقم على سبيل المثال 999"
+                                                        placeholder="أدخل {{propertyData.numberLabelAr}} رقم على سبيل المثال 999"
                                                         formControlName="apartmentNo">
                                                 </mat-form-field>
                                             </div>
@@ -207,7 +207,7 @@
                                                         placeholder="أدخل عمر البناء على سبيل المثال 10" (keypress)="validateAgeInput($event)" 
                                                         (input)="getValue($event, false)">
                                                 </mat-form-field>
-                                                <p ngClass="input-overlay-layer">Yrs.</p>
+                                                <p ngClass="input-overlay-layer">اعوام</p>
                                             </div>
                                         </div>
                                     </div>
@@ -227,18 +227,18 @@
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">{{propertyData.typeDescription}} الحجم بالقدم المربع.
+                                            <label class="h6-design">{{propertyData.typeDescriptionAr}} الحجم بالقدم المربع.
                                                 <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative apartment-size-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="text" formControlName="apartmentSize" (keypress)="validateSizeInput($event)" (input)="getSizeInput($event, false)"
-                                                        placeholder="{{propertyData.typeDescription}} الحجم بالقدم المربع.">
+                                                        placeholder="{{propertyData.typeDescriptionAr}} الحجم بالقدم المربع.">
                                                 </mat-form-field>
                                                 <div ngClass="input-overlay-layer select-design">
                                                     <mat-form-field appearance="fill">
                                                         <mat-select [(value)]="selected">
                                                             <mat-option value="option1"> للقدم المربع</mat-option>
-                                                            <mat-option value="option2">Sq. M.</mat-option>
+                                                            <mat-option value="option2">المساحة (متر مربع)</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </div>
@@ -257,7 +257,7 @@
                                                     <mat-form-field appearance="fill">
                                                         <mat-select [(value)]="selected">
                                                             <mat-option value="option1">للقدم المربع</mat-option>
-                                                            <mat-option value="option2">Sq. M.</mat-option>
+                                                            <mat-option value="option2">المساحة (متر مربع)</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </div>
@@ -270,7 +270,7 @@
                                                 <label>بالقرب من</label>
                                                 <div class="located-near-input">
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label> Select Near Locations</mat-label>
+                                                        <mat-label> حدد المواقع القريبة</mat-label>
                                                         <mat-select [disableOptionCentering]="true" multiple
                                                             [(value)]="locatedNearData"
                                                             (selectionChange)="getLocatedNear($event)">
@@ -302,7 +302,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                         *ngIf="propertyData.hasLastRenovatedDate">
-                                        <h6 class="h6-design">Last Renovated on</h6>
+                                        <h6 class="h6-design">آخر تجديد في</h6>
                                         <div class="input-date-picker input-design renovated-input">
                                             <mat-form-field appearance="fill">
                                                 <input matInput [matDatepicker]="picker" [max]="maxDate"
@@ -357,14 +357,14 @@
                                                         (click)="getFurnishingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="furnishing-types"
                                                             value="Furnished" checked>
-                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                        <button class="checkbox-btn">{{item.nameAR}}</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
                                                         *ngIf="item.id != formData.FurnishingType"
                                                         (click)="getFurnishingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="furnishing-types"
                                                             value="Furnished">
-                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                        <button class="checkbox-btn">{{item.nameAR}}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -469,8 +469,7 @@
                                             </div>
                                             <div ngClass="col-xl-3 col-lg-3 col-sm-12" *ngIf="item.id != 1">
                                                 <div ngClass="unit_add-more" (click)="removeUnits(item.id)">
-                                                    <button ngClass="add_unit-btn btn-remove-unit"><img src="{{minus}}">Remove
-                                                        Unit</button>
+                                                    <button ngClass="add_unit-btn btn-remove-unit"><img src="{{minus}}">إزالة الوحدة</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -481,8 +480,8 @@
                                         <div class="col-sm-12">
                                             <div ngClass="select-design select2-design select2-design-full">
                                             <label class="h6-design">حدد الميزات</label>
-                                            <select class="select2 features-select" multiple="multiple">
-                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
+                                            <select class="select2 features-select" multiple="multiple" >
+                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureNameAr}}</option>
                                             </select>
                                             </div>
                                         </div>

@@ -41,7 +41,7 @@
                                             *ngIf="formData.TitleDeedNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[0].documentNameAr}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
                                                             <input type="file" #fileInput
@@ -71,7 +71,7 @@
                                             *ngIf="formData.MunicipalityNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">{{documentType[1].documentName}}</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[1].documentNameAr}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
                                                             <input type="file" #affectioninput
@@ -101,7 +101,7 @@
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <div ngClass="d-flex align-items-center justify-content-spacebw">
-                                                        <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
+                                                        <h6 ngClass="blue-heading">{{documentType[2].documentNameAr}}</h6>
                                                         <button ngClass="camera-bitton" (click)="openCamera()">
                                                             <mat-icon>camera_alt</mat-icon>
                                                         </button>
@@ -150,7 +150,7 @@
                                                         <button mat-button (click)="emirateInput0.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[0] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[3].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[3].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,7 +166,7 @@
                                                         <button mat-button (click)="emirateInput1.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[1] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[4].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[4].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,7 +182,7 @@
                                                         <button mat-button (click)="emirateInput2.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[2] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[5].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[5].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +198,7 @@
                                                         <button mat-button (click)="emirateInput3.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[3] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[6].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[6].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                                         <button mat-button (click)="emirateInput4.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[4] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[7].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[7].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,7 +230,7 @@
                                                         <button mat-button (click)="emirateInput5.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[5] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[8].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[8].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +246,7 @@
                                                         <button mat-button (click)="emirateInput6.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[6] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[9].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[9].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -605,7 +605,7 @@
                                                             <img src="{{reportimg}}">
                                                         </div>
                                                         <div ngClass="reports_title-list">
-                                                            <h5>{{certificateData.packageTypes[i].name}}</h5>
+                                                            <h5>{{certificateData.packageTypes[i].nameAr}}</h5>
                                                             <p *ngIf="i == 0">
                                                                 <span
                                                                     ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}{{currency}}</span>
@@ -629,10 +629,10 @@
                                                     <div ngClass="reports_cntnt-list">
                                                         <div ngClass="reports_cntnt-list-inner"
                                                             *ngFor="let item2 of certificateData.packageCategories; let j = index ">
-                                                            <h4>{{item2.name}}</h4>
+                                                            <h4>{{item2.nameAr}}</h4>
                                                             <ul *ngFor="let item3 of data[i][j]">
                                                                 <li *ngIf="item3.selected == true">
-                                                                    {{item3.packageTopic.name}}</li>
+                                                                    {{item3.packageTopic.nameAr}}</li>
                                                                 <li *ngIf="item3.selected == false">-</li>
                                                             </ul>
                                                         </div>
@@ -664,13 +664,13 @@
                                                             (click)="reportLanguage(1)">
                                                             <input type="radio" id="english" name="building-type"
                                                                 value="english" />
-                                                            <button class="checkbox-btn">English Language</button>
+                                                            <button class="checkbox-btn">اللغة الإنجليزية</button>
                                                         </div>
                                                         <div class="checkbox-design position-relative"
                                                             (click)="reportLanguage(2)">
                                                             <input type="radio" id="arabic" name="building-type"
                                                                 value="arabic" />
-                                                            <button class="checkbox-btn">Arabic Language</button>
+                                                            <button class="checkbox-btn">اللغة العربية</button>
                                                         </div>
                                                     </div>
                                                 </div>

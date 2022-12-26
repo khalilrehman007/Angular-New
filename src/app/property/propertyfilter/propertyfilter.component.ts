@@ -62,6 +62,8 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     PriceEnd: new FormControl(""),
     minCarpet: new FormControl(""),
     maxCarpet: new FormControl(""),
+    startDate:new FormControl(),
+    endDate:new FormControl()
   });
   status: boolean = false;
   clickEvent() {
@@ -71,7 +73,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   clickEvent2() {
     this.status2 = !this.status2;
   }
-  constructor(private cookie: CookieService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
+  constructor(private cookie: CookieService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, public route: Router, private modalService: NgbModal) {
     this.clearSearch();
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
@@ -111,9 +113,16 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     //Fetch Property Rent Types
     this.service.RentTypes().subscribe((data: any) => {
       data.data.forEach((x: any) => {
+        if(route.url.includes('/short-term-rent')){
+          if (x.id == 1) {
+            this.rentType.push(x);
+          }
+        }
+        else{
         if (x.id !== 1) {
           this.rentType.push(x);
         }
+      }
       });
     });
     //Fetch Propert Categories List
@@ -163,6 +172,12 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     }
     if (params.PriceEnd !== undefined && params.PriceEnd !== null) {
       this.SubmitForm.controls.PriceEnd.patchValue(params.PriceEnd);
+    }
+    if (params.startDate !== undefined && params.startDate !== null) {
+      this.SubmitForm.controls.startDate.patchValue(new Date(params.startDate));
+    }
+    if (params.endDate !== undefined && params.endDate !== null) {
+      this.SubmitForm.controls.endDate.patchValue(new Date(params.endDate));
     }
     if (params.ProfessionalTypeId !== undefined && params.ProfessionalTypeId !== null) {
       this.postedById = parseInt(params.ProfessionalTypeId);
@@ -569,7 +584,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     else if (this.route.url.includes('/short-term-rent')) {
       this.route.navigate(
         ['/property/short-term-rent'],
-        { queryParams: { Type: this.type, PropertyListingTypeId: this.PropertyListingTypeId, CountryId: this.countryData?.id } }
+        { queryParams: { Type: this.type, PropertyListingTypeId: this.PropertyListingTypeId, CountryId: this.countryData?.id,RentTypeId:1 } }
       );
     }
     else {
@@ -608,6 +623,12 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     }
     if (this.SubmitForm.controls.PriceEnd.value !== '') {
       formData.PriceEnd = this.SubmitForm.controls.PriceEnd.value;
+    }
+    if (this.SubmitForm.controls.startDate.value !== '') {
+      formData.startDate = this.SubmitForm.controls.startDate.value;
+    }
+    if (this.SubmitForm.controls.endDate.value !== '') {
+      formData.endDate = this.SubmitForm.controls.endDate.value;
     }
     if (this.postedById !== '') {
       formData.ProfessionalTypeId = this.postedById;

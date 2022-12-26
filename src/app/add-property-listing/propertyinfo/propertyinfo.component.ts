@@ -71,6 +71,7 @@ export class PropertyinfoComponent implements OnInit {
     countryId: new FormControl(null, Validators.required),
     cityId: new FormControl(null, Validators.required),
     districtId: new FormControl(null, Validators.required),
+    listingPermitNo: new FormControl(null),
   });
   get validate() {
     return this.SubmitForm.controls;
@@ -342,6 +343,7 @@ export class PropertyinfoComponent implements OnInit {
       console.log(this.oldData,this.routeId)
       this.SubmitForm.patchValue({
         address: this.oldData.PropertyAddress,
+        listingPermitNo:this.oldData.listingPermitNo,
       })
       this.countryId = this.oldData.CountryId;
       this.SubmitForm.controls['countryId'].patchValue(this.oldData.CountryId, { emitEvent: false, onlySelf: true });
@@ -366,6 +368,7 @@ export class PropertyinfoComponent implements OnInit {
           });
           this.districtId = this.oldData.DistrictId;
           this.SubmitForm.controls['districtId'].patchValue(this.oldData.DistrictId, { emitEvent: false, onlySelf: true });
+          this.setListingPermitValidator(this.cityId);
         }
         if(this.routeId!=0){
           this.SubmitForm.get('countryId')?.disable({emitEvent:false,onlySelf:true});
@@ -374,6 +377,17 @@ export class PropertyinfoComponent implements OnInit {
           this.SubmitForm.get('address')?.disable({emitEvent:false,onlySelf:true});
         }
       });
+    }
+  }
+  setListingPermitValidator(cityId:any){
+    if(cityId==1){
+      this.SubmitForm.controls['listingPermitNo'].setValidators(Validators.required);
+      this.SubmitForm.controls['listingPermitNo'].updateValueAndValidity();
+    }
+    else{
+      this.SubmitForm.controls['listingPermitNo'].clearValidators();
+      this.SubmitForm.controls['listingPermitNo'].updateValueAndValidity();
+      this.SubmitForm.controls['listingPermitNo'].patchValue(null);
     }
   }
   loadDataForEdit(object: any) {
@@ -446,6 +460,7 @@ export class PropertyinfoComponent implements OnInit {
     oldData.PropertyDeveloperId = object.propertyDeveloperId;
     oldData.PropertyListingStatusId = object.propertyListingStatusId;
     oldData.UnitNumber = object.unitNumber;
+    oldData.listingPermitNo = object.listingPermitNo;
     let temp:any = [];
     object.propertyFeatures?.forEach((x: any) => {
       temp.push({
@@ -474,9 +489,9 @@ export class PropertyinfoComponent implements OnInit {
 
     this.SubmitForm.patchValue({
       address: oldData.PropertyAddress,
+      listingPermitNo: oldData.listingPermitNo
     })
     this.countryId = oldData.CountryId;
-    console.log(this.countryId)
     this.SubmitForm.controls['countryId'].patchValue(oldData.CountryId, { emitEvent: false, onlySelf: true });
     this.service.LoadCities(this.countryId).subscribe(e => {
       let temp: any = e;
@@ -497,6 +512,7 @@ export class PropertyinfoComponent implements OnInit {
           }
         });
         this.districtId = oldData.DistrictId;
+        this.setListingPermitValidator(this.cityId);
         this.SubmitForm.controls['districtId'].patchValue(oldData.DistrictId, { emitEvent: false, onlySelf: true });
         this.getLocationDetails(districtName, true);
         this.showMap = true;
@@ -514,12 +530,8 @@ export class PropertyinfoComponent implements OnInit {
         localStorage.setItem('propertyData', JSON.stringify(oldData))
     });
   }
-  // changeInfo() {
-  //   $("#searchLocation").focus();
-  //   let temp: any = $("#searchLocation").offset();
-  //   temp = temp.top;
-  //   $(window).scrollTop(temp - 200);
-  // }
+
+
   loadCountriesData() {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
@@ -582,6 +594,7 @@ export class PropertyinfoComponent implements OnInit {
       })
       this.cityName = temp[0].viewValue;
       this.cityId = e;
+      this.setListingPermitValidator(this.cityId);
       this.service.LoadDistrict(e).subscribe(e => {
         let temp: any = e;
         if (temp.message == "District list fetched successfully") {
@@ -621,26 +634,32 @@ export class PropertyinfoComponent implements OnInit {
   onSubmit() {
 
     if (this.SubmitForm.get('countryId')?.hasError('required')) {
-      this.currentField = "country-select";
+      this.currentField = ".country-select";
       this.error = "Select Country";
       this.showError = true;
       return;
     } else if (this.SubmitForm.get('cityId')?.hasError('required')) {
-      this.currentField = "city-select";
+      this.currentField = ".city-select";
       this.error = "Select City";
       this.showError = true;
       return;
     } else if (this.SubmitForm.get('districtId')?.hasError('required')) {
-      this.currentField = "district-select";
+      this.currentField = ".district-select";
       this.error = "Select District";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.address?.trim() == "") {
-      this.currentField = "add-adrees-sec";
+      this.currentField = ".add-adrees-sec";
       this.error = "Select Address";
       this.showError = true;
       return;
     }
+    else if (this.SubmitForm.get('listingPermitNo')?.hasError('required')) {
+      this.currentField = ".Permit-input";
+      this.error = "Enter Permit No #";
+      this.showError = true;
+      return;
+    } 
     let existingData: any = localStorage.getItem('propertyData');
     existingData = JSON.parse(existingData);
     if (existingData != null && existingData != undefined) {
@@ -652,6 +671,7 @@ export class PropertyinfoComponent implements OnInit {
       existingData.DistrictId = this.districtId;
       let temp: any = document.getElementById("searchLocation");
       existingData.PropertyAddress = temp.value;
+      existingData.listingPermitNo = this.SubmitForm.value.listingPermitNo;
       existingData.PropertyAddressArabic = localStorage.getItem("arabicAddress");
       existingData.PropertyLat = localStorage.getItem("lat");
       existingData.PropertyLong = localStorage.getItem("lng");
@@ -667,6 +687,7 @@ export class PropertyinfoComponent implements OnInit {
       this.data.DistrictId = this.districtId;
       let temp: any = document.getElementById("searchLocation");
       this.data.PropertyAddress = temp.value;
+      this.data.listingPermitNo =this.SubmitForm.value.listingPermitNo;
       this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
       this.data.PropertyLat = localStorage.getItem("lat");
       this.data.PropertyLong = localStorage.getItem("lng");
@@ -675,10 +696,10 @@ export class PropertyinfoComponent implements OnInit {
     this.route.navigate(['/add-property/listpropertyinfo'])
   }
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
+    let temp: any = $( this.currentField).offset()?.top;
+    $(this.currentField).addClass("blink");
+    $(this.currentField).on("click", () => {
+      $(this.currentField).removeClass("blink");
       this.currentField = "";
     })
     $(window).scrollTop(temp - 100);

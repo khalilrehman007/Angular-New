@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   @ViewChild('signupRef', { static: true }) signupElement!: ElementRef;
 
   constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService, private cookie: CookieService) {
+    this.googleAuthSDK();
     localStorage.clear();
     this.response.ProfessionalTypes().subscribe((result: any) => {
       this.signUpPropertytype = result.data;
@@ -94,7 +95,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
             localStorage.setItem('token', JSON.stringify(result.data.refreshToken))
             localStorage.setItem('user', JSON.stringify(result.data))
             this.notifyService.showSuccess(result.message, result.message);
-            this.route.navigate([''])
+            this.route.navigate(['/'])
           }
         })
       }, (error: any) => {
@@ -102,7 +103,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit() {
-    this.googleAuthSDK();
+    
     $(document).ready(function () {
       $('.dropdown-toggle').click(function () {
         $(this).next().toggleClass('active');

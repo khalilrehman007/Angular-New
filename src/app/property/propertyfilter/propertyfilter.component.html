@@ -213,11 +213,11 @@
                                         <input type="number" formControlName="PriceEnd" placeholder="Any">
                                     </div>
                                 </div>
-                                <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId != 2">
+                                <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId !== 2">
                                     <h5 ngClass="h5-design">Rental Type</h5>
                                 </div>
                             </div>
-                            <div class="inneR-border-wrap">
+                            <div class="inneR-border-wrap" *ngIf="PropertyListingTypeId !== 2">
                                 <div class="checkbox-flex-box autoflex-layout">
                                     <div (click)="changeRentalType(item.id)" class="checkbox-design position-relative"
                                         *ngFor="let item of rentType">
@@ -244,7 +244,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <div ngClass="block-item six1-block" *ngIf="router.url === '/property/short-term-rent'">
+        <div ngClass="block-item six1-block" *ngIf="route.url.includes('/short-term-rent')">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
                     <button ngClass="drop-down_btn" (click)="clickEvent2()">Availability</button>
@@ -254,7 +254,7 @@
                             <div ngClass="availity-from input-date-picker input-design">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Availability From</mat-label>
-                                    <input matInput [matDatepicker]="pickerFrom">
+                                    <input matInput [matDatepicker]="pickerFrom" formControlName="startDate" [max]="SubmitForm.controls.endDate.value">
                                     <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerFrom></mat-datepicker>
                                 </mat-form-field>
@@ -262,7 +262,7 @@
                             <div ngClass="availity-to input-date-picker input-design">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Availability To</mat-label>
-                                    <input matInput [matDatepicker]="pickerTo">
+                                    <input matInput [matDatepicker]="pickerTo" formControlName="endDate" [min]="SubmitForm.controls.startDate.value">
 
                                     <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                                     <mat-datepicker #pickerTo></mat-datepicker>

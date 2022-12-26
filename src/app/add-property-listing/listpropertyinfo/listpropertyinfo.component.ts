@@ -35,8 +35,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   genders: any;
   propertyManages: any;
   occupancy: any;
-  // petPolicy: any;
-  // petPolicyData: any = [];
   developerData: any = [];
   locatedNearData: any = [];
   rentTypes: any;
@@ -57,7 +55,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   managedCheck: boolean = false;
   occupancyCheck: boolean = false;
   rentTypeCheck: boolean = false;
-  // petPolicyCheck: boolean = false;
   parkingCheck: boolean = false;
   propertyTypeCheck: boolean = false;
   bedroomCheck: boolean = false;

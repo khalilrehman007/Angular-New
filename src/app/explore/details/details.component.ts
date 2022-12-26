@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
@@ -7,13 +7,15 @@ import { environment } from 'src/environments/environment';
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit,AfterViewInit {
   homelocationsvg = '../../../../assets/images/home-location.svg'
   bedsvg = '../../../../assets/images/icons/Bed.svg'
   bathsvg = '../../../../assets/images/home-location.svg'
@@ -28,14 +30,13 @@ export class DetailsComponent implements OnInit {
   rera = 'assets/images/rera.png'
   tagicn= '../../../assets/images/icons/tag-icn.svg'
   baseUrl = environment.apiUrl;
+  countryData:any;
   blogs: any;
   submitted = false;
   responsedata: any;
   content: any;
   dynamicSlides1: any = [];
-  // dynamicSlides2: any = [];
-  commercialdynamicSlides: any = [];
-  // commercialdynamicSlides2: any = [];
+  dynamicSlides2: any = [];
   homebanners: any = [];
   transaction: any = [];
   country: any = [];
@@ -53,147 +54,96 @@ export class DetailsComponent implements OnInit {
   id: number = 1;
   propertyDetails: any;
   oldData1() {
-    let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe(data => {
-      this.propertyDetails = data;
-      this.propertyDetails = this.propertyDetails.data;
-
-      this.propertyDetails.forEach((element:any, i:any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-        let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = ''+element.rentType.name
-        }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            rentType: rentType,
-            currency: element.country.currency,
-            price: element.propertyPrice,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            propertyAddress: element.propertyAddress,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-      this.dynamicSlides1 = tempData
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe((resp:any) => {
+      this.SetResidentialSlideData(resp.data);
     });
   }
   newData1() {
-    let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe(data => {
-      this.propertyDetails = data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element:any, i:any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-        let rentType: any = ''
-        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-        //   rentType = '/ '+element.rentType.name
-        // }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-      this.dynamicSlides1 = tempData
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe((resp:any) => {
+      this.SetResidentialSlideData(resp.data);
     });
   }
-
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        clearInterval(a);
+      }
+    })
+  }
   oldData2() {
-    let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe(data => {
-      this.propertyDetails = data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element:any, i:any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-        let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = '/ '+element.rentType.name
-        }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-      this.commercialdynamicSlides = tempData
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe((resp:any) => {
+      this.SetCommercialSlideData(resp.data)
     });
   }
   newData2() {
-    let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe(data => {
-      this.propertyDetails = data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element:any, i:any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-        let rentType: any = ''
-        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-        //   rentType = '/ '+element.rentType.name
-        // }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-      this.commercialdynamicSlides = tempData
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe((resp:any) => {
+      this.SetCommercialSlideData(resp.data)
     });
   }
 
+  SetResidentialSlideData(data: any) {
+    console.log(data)
+    this.dynamicSlides1 = [];
+    data.forEach((element: any) => {
+      let mainImage: any = 'assets/images/placeholder.png';
+      if (element.documents != null && element.documents.length > 0) {
+        mainImage = this.baseUrl + element.documents[0].fileUrl;
+      }
+      let companyLogoImage = '';
+      if (element.company != null && element.company?.documents.length > 0) {
+        let companyLogo = element.company?.documents.find((y: any) => {
+          return y.registrationDocumentTypeId === 8
+        })
+        if (companyLogo != null && companyLogo != undefined) {
+          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        }
+      }
+      this.dynamicSlides1.push({
+        mainImage: mainImage, id: element.id, propertyPrice: element.propertyPrice, country: element.country, rentType: element.rentType,
+        propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
+        numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
+        bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package,
+        propertyListingTypeId:element.propertyListingTypeId,propertyCategoryId:element.propertyCategoryId
+      })
+    })
+  }
+  SetCommercialSlideData(data:any){
+    this.dynamicSlides2 = [];
+    data.forEach((element: any) => {
+      let mainImage: any = 'assets/images/placeholder.png';
+      if (element.documents != null && element.documents.length > 0) {
+        mainImage = this.baseUrl + element.documents[0].fileUrl;
+      }
+      let companyLogoImage = '';
+      if (element.company != null && element.company?.documents.length > 0) {
+        let companyLogo = element.company?.documents.find((y: any) => {
+          return y.registrationDocumentTypeId === 8
+        })
+        if (companyLogo != null && companyLogo != undefined) {
+          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        }
+      }
+      this.dynamicSlides2.push({
+        mainImage: mainImage, id: element.id, propertyPrice: element.propertyPrice, country: element.country, rentType: element.rentType,
+        propertyTitle: element.propertyTitle, requestedDateFormat: element.requestedDateFormat, numberOfUsershortListedProperty: element.numberOfUsershortListedProperty,
+        numberOfUserSeeingProperty: element.numberOfUserSeeingProperty, propertyAddress: element.propertyAddress, propertyType: element.propertyType,
+        bedrooms: element.bedrooms, bathrooms: element.bathrooms, plotSize: element.plotSize, buildupArea: element.buildupArea, carpetArea: element.carpetArea,
+        furnishingType: element.furnishingType, companyLogoImage: companyLogoImage, favorite: element.favorite, package: element.package,
+        propertyListingTypeId:element.propertyListingTypeId,propertyCategoryId:element.propertyCategoryId
+      })
+    })
+  }
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
-    autoWidth:false,
+    autoWidth: false,
     pullDrag: true,
     dots: true,
+    nav:false,
+    lazyLoad:false,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     navSpeed: 700,
     responsive: {
@@ -209,15 +159,27 @@ export class DetailsComponent implements OnInit {
       940: {
         items: 4
       }
-    },
-    nav: false
+    }
   }
   districtDetail: any = {};
   dataLoaded: boolean = false;
   userId: any;
   user: any
-
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService,private modalService: NgbModal) {
+  shareURL: any = "";
+  shareURLTemp: any = "";
+  whatsAppShareUrl: any = "";
+  facebookShareUrl: any = "";
+  twitterShareUrl: any = "";
+  constructor(private domSanitizer: DomSanitizer,private authService: AuthService, private cookie: CookieService,private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService,private modalService: NgbModal) {
+    let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    this.shareURLTemp = this.shareURL;
+    console.log(this.shareURL)
     $(window).scrollTop(0);
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -308,7 +270,7 @@ export class DetailsComponent implements OnInit {
   }
 
   wishlistStatus: any;
-  AddToFavorite(id: any, status: any, part: any) {
+  AddToFavorite(id: any, status: any, listingTypeId: any,categoryId:any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.router.navigate(['/login'])
@@ -318,36 +280,38 @@ export class DetailsComponent implements OnInit {
       this.notifyService.showError('You not having access', "");
       this.router.navigate(['login']);
     }
-
-    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
-      let responsedata: any = data
-      if (responsedata.message == "Favorite is Removed successfully") {
-        this.wishlistStatus = "Favorite is Removed successfully"
-        this.notifyService.showSuccess('Favorite is Removed successfully', "");
-      } else {
-        this.wishlistStatus = "Favorite is added successfully"
-        this.notifyService.showSuccess('Favorite is added successfully', "");
-      }
-    });
-    if (part == "resedential-old") {
-      setTimeout(() => {
-        this.oldData1();
-      }, 1000);
-    } else if (part == "resedential-new") {
-      setTimeout(() => {
-        this.newData1();
-      }, 1000);
-    } else if (part == "commercial-old") {
-      setTimeout(() => {
-        this.oldData2();
-      }, 1000);
-    } else if (part == "commercial-new") {
-      setTimeout(() => {
-        this.newData2();
-      }, 1000);
+const promise=new Promise((resolve,reject)=>{
+  this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+    let responsedata: any = data
+    if (responsedata.message == "Favorite is Removed successfully") {
+      this.wishlistStatus = "Favorite is Removed successfully"
+      this.notifyService.showSuccess('Favorite is Removed successfully', "");
+    } else {
+      this.wishlistStatus = "Favorite is added successfully"
+      this.notifyService.showSuccess('Favorite is added successfully', "");
     }
+    resolve(true);
+  });
+})
+    promise.then(()=>{
+      if (listingTypeId==1 && categoryId==1) {
+        this.oldData1();
+    } else if (listingTypeId==2 && categoryId==1) {
+        this.newData1();
+    } else if (listingTypeId==1 && categoryId==2) {
+        this.oldData2();
+    } else if (listingTypeId==2 && categoryId==2) {
+        this.newData2();
+    }
+    })
+   
   }
-  openVerticallyCentered(content: any) {
+  openVerticallyCentered(content: any, id: any) {
+    this.shareURL += "property/detail?id=" + id;
+    this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
+    this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+    this.twitterShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url=" + encodeURI(this.shareURL) + "%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+    this.shareURL = this.shareURLTemp;
     this.modalService.open(content, { centered: true });
   }
 }

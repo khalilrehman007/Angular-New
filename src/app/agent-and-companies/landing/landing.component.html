@@ -92,8 +92,7 @@
                 <div class="col-lg-4" *ngFor="let item of agentDetails">
                     <div class="agent-landing-featured__agent">
                         <div class="agent-landing-featured__property-wrapper">
-                            <img src="assets/images/tag/featured.png" alt=""
-                                class="agent-landing-featured__property-tag">
+                            <button ngClass="agent-landing-featured__property-tag">Featured</button>
                             <div class="row cursor-pointer" routerLink="/agent-details/{{item.id}}">
                                 <div class="row height-100">
                                     <div class="col-5 d-flex align-items-center">
@@ -137,9 +136,8 @@
                 <div class="col-lg-4" *ngFor="let item of bestCompanies">
                     <div class="agent-landing-featured__property cursor-pointer"
                         routerLink="/company-details/{{item.id}}">
-                        <div class="agent-landing-featured__property-wrapper"> >
-                            <img src="assets/images/tag/featured.png" alt=""
-                                class="agent-landing-featured__property-tag">
+                        <div class="agent-landing-featured__property-wrapper"> 
+                            <button ngClass="agent-landing-featured__property-tag">Featured</button>
                             <div class="row">
                                 <div class="col-5 d-flex align-items-center">
                                     <img src="{{item.companyLogo}}" alt=""
