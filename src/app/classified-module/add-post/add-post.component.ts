@@ -209,6 +209,7 @@ export class AddPostComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   onSubmit() {
+    console.log(this.selectedOptions);
     if ($(".country-select").val() == 0) {
       this.currentField = "country-select + .select2";
       this.error = "Select Country";
@@ -259,36 +260,36 @@ export class AddPostComponent implements OnInit {
       this.route.navigate(["/classified/services-form"]);
     } else if (this.selectedOptions[1].name.trim() == "Freelancers") {
       this.route.navigate(["/classified/freelancer-form"]);
-    }
-    if (this.selectedOptions[1].name.trim() == "Auto Services") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Domestic") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Event & Entertainment") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Freelancers") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Health & Wellbeing Services") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Home Maintenance") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Movers & Removals") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Other Services") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Restoration & Repairs") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Tutors & Classes") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Web & Computer Services") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Mobile Phones") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Mobile Phone & Tablet Accessories") {
-      this.route.navigate(["/classified/community-form"]);
-    } else if (this.selectedOptions[1].name.trim() == "Tablets") {
-      this.route.navigate(["/classified/community-form"]);
-    }
+    } else if (this.selectedOptions[0].name.trim() == "Furniture") {
+      this.route.navigate(["/classified/furniture-form"]);
+    } else if (this.selectedOptions[0].name.trim() == "Mobile Phones") {
+      this.route.navigate(["/classified/phone-form"]);
+    } 
+    // else if (this.selectedOptions[1].name.trim() == "Domestic") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Event & Entertainment") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Health & Wellbeing Services") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Home Maintenance") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Movers & Removals") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Other Services") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Restoration & Repairs") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Tutors & Classes") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Web & Computer Services") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Mobile Phones") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Mobile Phone & Tablet Accessories") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // } else if (this.selectedOptions[1].name.trim() == "Tablets") {
+    //   this.route.navigate(["/classified/community-form"]);
+    // }
 
   }
   animate() {
