@@ -16,7 +16,6 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import 'hammerjs';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { CookieService } from 'ngx-cookie-service';
 
 
 declare const google: any;
@@ -27,7 +26,6 @@ declare const google: any;
   styleUrls: ['./services-details.component.scss']
 })
 export class ServicesDetailsComponent implements OnInit {
-  isDisabled: boolean = false;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -59,7 +57,7 @@ export class ServicesDetailsComponent implements OnInit {
   tagicn = '../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
-  baseUrl = environment.apiUrl;
+  baseUrl = 'https://beta.ovaluate.com/'
   status: boolean = true;
   status1: boolean = false;
   status2: boolean = true;
@@ -97,11 +95,9 @@ export class ServicesDetailsComponent implements OnInit {
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
-  countryData:any = "";
-  popularServices:any = [];
 
 
-  constructor(private cookie: CookieService, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -125,11 +121,6 @@ export class ServicesDetailsComponent implements OnInit {
     });
     this.galleryOptions = [];
     this.galleryImages = [];
-    this.countryData = JSON.parse(this.cookie.get("countryData"));
-    this.service.PopularServices({"CountryId":this.countryData.id,"CategoryId":"1"}).subscribe((result:any) => {
-      this.popularServices = result.data;
-      console.log(this.popularServices);
-    })
   }
   goBack() {
     this.location.back();
@@ -140,16 +131,7 @@ export class ServicesDetailsComponent implements OnInit {
   locationAddress1 = '';
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  ngOnInit(): void {
-    let user: any = localStorage.getItem("user");
-    user=JSON.parse(user);
-    if(user==null || user == undefined){
-      user=localStorage.getItem("user");
-      user=JSON.parse(user)
-      this.isDisabled = user?.professionalTypeId ? true : false;
-    }else{
-      this.isDisabled = user?.ProfessionalTypeId ? true : false;
-    }
+  ngOnInit() {
     this.galleryOptions = [
       {
         width: '100%',
@@ -178,13 +160,13 @@ export class ServicesDetailsComponent implements OnInit {
       }
     ];
 
-    for (let i = 0; i < this.popularServices.documents.length; i++) {
-      this.galleryImages.push({
-        small: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
-        medium: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
-        big: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/")
-      });
-    }
+    this.galleryImages = [
+      {
+        small: '/assets/images/placeholder-big.png',
+        medium: '/assets/images/placeholder-big.png',
+        big: '/assets/images/placeholder-big.png'
+      }
+    ];
   }
 
 
