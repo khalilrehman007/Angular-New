@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2 } from 'select2';
 import { AppService } from 'src/app/service/app.service';
-
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-jobs-wanted-form',
   templateUrl: './jobs-wanted-form.component.html',
@@ -9,6 +11,23 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class JobsWantedFormComponent implements OnInit {
   ads= 'assets/images/post-add.jpg'
+  error: any = ""
+  showError: boolean = false;
+  showLoader: boolean = false;
+  classifiedData: any = localStorage.getItem("classifiedData");
+  errorResponse(data: any) {
+    this.showError = false;
+    this.animate();
+  }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+    })
+    $(window).scrollTop(temp - 100);
+  }
+  currentField: any;
   file: any;
   Gender: any=[];
   Nationality : any= [];
@@ -18,7 +37,15 @@ export class JobsWantedFormComponent implements OnInit {
   Career : any= [];
   MonthlySalary : any= [];
   WorkExperience : any= [];
-  constructor(private service : AppService) {
+  cv:any = "";
+  DetailsForm = new FormGroup({
+    title: new FormControl("", Validators.required),
+    Phone: new FormControl("", Validators.required),
+    Description: new FormControl("", Validators.required),
+    Company: new FormControl("", Validators.required),
+  });
+  constructor(private service : AppService, private router : Router) {
+    this.classifiedData = JSON.parse(this.classifiedData);
     this.service.GetClassifiedLookUpsByCategory("Gender").subscribe((result:any) => {
       this.Gender = result.data;
     })
@@ -49,10 +76,134 @@ export class JobsWantedFormComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    $('.select2').select2({ placeholder: "Search..." });
+    $('.select2').select2();
+    $('input[type="number"]').on('input', (e) => {
+      let temp: any = $(e.currentTarget).val();
+      temp.replace(/[^0-9 +]+/, '');
+      $(e.currentTarget).val(temp);
+    });
   }
    handleChange(a: any) {
       this.file = a.target.files[0].name;
+      let extension: any = a.target.files[0].name.split(".");
+      extension = extension[extension.length - 1];
+      this.cv = { "FileName": a.target.files[0].name, "Extension": extension, file: a.target.files[0] };
+  }
+  onSubmit() {
+    if (this.DetailsForm.value.title == "") {
+      this.currentField = "title-input";
+      this.error = "Enter Title";
+      this.showError = true;
+      return;
+    } else if (this.DetailsForm.value.Phone == "") {
+      this.currentField = "phone-input";
+      this.error = "Enter Phone Number";
+      this.showError = true;
+      return;
+    } else if (this.DetailsForm.value.Description == "") {
+      this.currentField = "description-input";
+      this.error = "Enter Price";
+      this.showError = true;
+      return;
+    } else if ($(".Gender").val() == 0) {
+      this.currentField = "Gender + .select2";
+      this.error = "Enter Gender";
+      this.showError = true;
+      return;
+    } else if ($(".nationality").val() == 0) {
+      this.currentField = "nationality + .select2";
+      this.error = "Enter Nationality";
+      this.showError = true;
+      return;
+    } else if ($(".Current-location").val() == 0) {
+      this.currentField = "Current-location + .select2";
+      this.error = "Enter Current Location";
+      this.showError = true;
+      return;
+    } else if (this.DetailsForm.value.Company == "") {
+      this.currentField = "company-input";
+      this.error = "Enter Current Comapany";
+      this.showError = true;
+      return;
+    } else if ($(".notice-period-input").val() == 0) {
+      this.currentField = "notice-period-input + .select2";
+      this.error = "Enter Notice Period";
+      this.showError = true;
+      return;
+    } else if ($(".work-experience-input").val() == 0) {
+      this.currentField = "work-experience-input + .select2";
+      this.error = "Enter Work Exerience";
+      this.showError = true;
+      return;
+    } else if (this.cv == 0) {
+      this.currentField = "upload-file-text-btn";
+      this.error = "Upload CV";
+      this.showError = true;
+      return;
+    }
+    let tempData: any = {};
+    tempData.CountryId = this.classifiedData.countryId;
+    tempData.CityId = this.classifiedData.cityId;
+    tempData.DistrictId = this.classifiedData.districtId;
+    tempData.Latitude = this.classifiedData.Latitude;
+    tempData.Longitude = this.classifiedData.Longitude;
+    tempData.ClassifiedCategoryId = this.classifiedData.classifiedData[this.classifiedData.classifiedData.length - 1].value;
+    tempData.Title = this.DetailsForm.value.title;
+    tempData.Description = this.DetailsForm.value.Description;
+    tempData.PhoneNumber = this.DetailsForm.value.Phone;
+    tempData.GenderId = $(".Gender").val();
+    tempData.NationalityId = $(".Nationality").val();
+    tempData.CurrentLocationId = $(".Current-location").val();
+    tempData.CurrentLocationId = $(".Current-location").val();
+    tempData.CompanyName = this.DetailsForm.value.Company;
+    tempData.NoticePeriodId = $(".notice-period-input").val();
+    tempData.CareerLevelId = $(".career-level-input").val();
+    tempData.WorkExperienceId = $(".work-experience-input").val();
+    tempData.Documents = [{"FileId":1,"IsMainImage":1,"FileName":this.cv.FileName,"Extension":this.cv.Extension}];
+
+    let userData:any = localStorage.getItem("user");
+    userData = JSON.parse(userData)
+    tempData.UserId = userData.id;
+    console.log(tempData);
+    localStorage.setItem("classifiedFormData",JSON.stringify(tempData));
+    let formData = new FormData();
+    formData.append("ClassifiedRequest",JSON.stringify(tempData));
+    formData.append("1_" + this.cv.FileName,this.cv.file);
+    let token: any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    this.showLoader = true;
+    $.ajax({
+      url: `${environment.apiUrl}api/AddUpdateClassified`,
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: formData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res);
+        if (res.result == 1) {
+          this.showLoader = false;
+          tempData.id = res.data.id;
+          localStorage.setItem("classifiedFormData", JSON.stringify(tempData));
+          if(this.classifiedData.classifiedData[0].value == 1) {
+            this.router.navigate(["/classified/classified-payment"]);
+          } else {
+            this.router.navigate(["/classified/classified-payment-second"]);
+          }
+        }
+        else {
+          this.showLoader = false;
+          this.error = res.error;
+          this.showError = true;
+        }
+      },
+      error: (err) => {
+        this.showLoader = false;
+      }
+    });
   }
 }
 

@@ -69,7 +69,7 @@ export class AddPostComponent implements OnInit {
   classifiedCategories: any = [];
   selectedCategory: any = "";
   selectedOptions: any = [];
-  startBinding:boolean = false;
+  startBinding: boolean = false;
   isDisabled: boolean = true;
 
   showSubCategories: boolean = false;
@@ -230,7 +230,7 @@ export class AddPostComponent implements OnInit {
       this.showError = true;
       return;
     }
-    let temp:any = {};
+    let temp: any = {};
     temp.countryId = $(".country-select").val();
     temp.cityId = $(".city-select").val();
     temp.districtId = $(".district-select").val();
@@ -238,19 +238,58 @@ export class AddPostComponent implements OnInit {
     temp.Latitude = localStorage.getItem("lat");
     temp.Longitude = localStorage.getItem("lng");
     temp.classifiedData = this.selectedOptions;
-    localStorage.setItem("classifiedData",JSON.stringify(temp));
-    if(this.selectedOptions[1].name.trim() == "Used Cars for Sale") {
+    localStorage.setItem("classifiedData", JSON.stringify(temp));
+    if (this.selectedOptions[1].name.trim() == "Used Cars for Sale") {
       this.route.navigate(["/classified/car-ad-details"]);
-    } else if(this.selectedOptions[1].name.trim() == "Motorcycles") {
+    } else if (this.selectedOptions[1].name.trim() == "Motorcycles") {
       this.route.navigate(["/classified/motorcycle-ad-details"]);
-    } else if(this.selectedOptions[1].name.trim() == "Auto Accessories & Parts") {
+    } else if (this.selectedOptions[1].name.trim() == "Auto Accessories & Parts") {
       this.route.navigate(["/classified/auto-parts-ad-details"]);
-    } else if(this.selectedOptions[1].name.trim() == "Heavy Vehicles") {
+    } else if (this.selectedOptions[1].name.trim() == "Heavy Vehicles") {
       this.route.navigate(["/classified/heavy-vehicles-ad-details"]);
-    } else if(this.selectedOptions[1].name.trim() == "Boats") {
+    } else if (this.selectedOptions[1].name.trim() == "Boats") {
       this.route.navigate(["/classified/boats-ad-details"]);
+    } else if (this.selectedOptions[1].name.trim() == "Number Plates") {
+      this.route.navigate(["/classified/number-plates-ad-details"]);
+    } else if (this.selectedOptions[1].name.trim() == "I'm hiring") {
+      this.route.navigate(["/classified/job-type-selection"]);
+    } else if (this.selectedOptions[1].name.trim() == "Jobs Wanted") {
+      this.route.navigate(["/classified/job-requirement"]);
+    } else if (this.selectedOptions[1].name.trim() == "Auto Services") {
+      this.route.navigate(["/classified/services-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Freelancers") {
+      this.route.navigate(["/classified/freelancer-form"]);
     }
-    
+    if (this.selectedOptions[1].name.trim() == "Auto Services") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Domestic") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Event & Entertainment") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Freelancers") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Health & Wellbeing Services") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Home Maintenance") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Movers & Removals") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Other Services") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Restoration & Repairs") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Tutors & Classes") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Web & Computer Services") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Mobile Phones") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Mobile Phone & Tablet Accessories") {
+      this.route.navigate(["/classified/community-form"]);
+    } else if (this.selectedOptions[1].name.trim() == "Tablets") {
+      this.route.navigate(["/classified/community-form"]);
+    }
+
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
@@ -437,7 +476,7 @@ export class AddPostComponent implements OnInit {
     }
   }
   categorySelect(index: any, id: any, name: any) {
-    if(index == 0) {
+    if (index == 0) {
       this.selectedOptions = this.selectedOptions.slice(0, index + 1)
       $(".select-boxes-wrapper").html("");
     }
@@ -497,8 +536,8 @@ export class AddPostComponent implements OnInit {
         this.isDisabled = false;
         this.startBinding = true;
         this.selectedOptions = this.selectedOptions.slice(0, index + 1)
-        $(".select-boxes-wrapper .select-boxes").each(function() {
-          if($(this).data("index") > index - 1 && index != -1) {
+        $(".select-boxes-wrapper .select-boxes").each(function () {
+          if ($(this).data("index") > index - 1 && index != -1) {
             $(this).html("");
             $(this).html("").remove();
           }
@@ -510,14 +549,14 @@ export class AddPostComponent implements OnInit {
   bindEvents() {
     $(".category-select").off();
     $(".category-select").on("change", (e) => {
-      if(!this.startBinding) {
+      if (!this.startBinding) {
         let index = $(e.currentTarget).data("index") + 1;
         let value = $(e.currentTarget).val();
         let name = $(e.currentTarget).find("option:selected").text();
-        if(value == "-1") {
+        if (value == "-1") {
           this.selectedOptions = this.selectedOptions.slice(0, index)
-          $(".select-boxes-wrapper .select-boxes").each(function() {
-            if($(this).data("index") > index - 1) {
+          $(".select-boxes-wrapper .select-boxes").each(function () {
+            if ($(this).data("index") > index - 1) {
               $(this).html("").remove();
             }
           })

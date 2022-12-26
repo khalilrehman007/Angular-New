@@ -35,6 +35,7 @@ import { JobsDetailsComponent } from './classified-details/jobs-details/jobs-det
 import { CommunityLsitingsComponent } from './classified-listings/community-lsitings/community-lsitings.component';
 import { CommunityDetailsComponent } from './classified-details/community-details/community-details.component';
 import { ClassifiedPaymentComponent } from './classified-payment/classified-payment.component';
+import { ClassifiedPaymentSecondComponent } from './classified-payment-second/classified-payment-second.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -60,7 +61,7 @@ const routes: Routes = [
   { path: "furniture-details", component: FurnitureDetailsComponent },
   { path: "sports-equipment-details", component: SportsEquipmentDetailsComponent },
   { path: "phone-tablet-details", component: PhoneTabletDetailsComponent },
-  { path: "service-details", component: ServicesDetailsComponent },
+  { path: "service-details/:id", component: ServicesDetailsComponent },
   { path: "furniture-listing", component: FurnitureListingComponent },
   { path: "sports-equipment-listings", component: SportsListingComponent },
   { path: "phone-tablet-listings", component: MobileTabletListingComponent },
@@ -71,7 +72,8 @@ const routes: Routes = [
   { path: "jobs-details", component: JobsDetailsComponent },
   { path: "community-listings", component: CommunityLsitingsComponent },
   { path: "community-details", component: CommunityDetailsComponent },
-  { path: "classified-payment", component: ClassifiedPaymentComponent }
+  { path: "classified-payment", component: ClassifiedPaymentComponent },
+  { path: "classified-payment-second", component: ClassifiedPaymentSecondComponent }
 ];
 
 @NgModule({

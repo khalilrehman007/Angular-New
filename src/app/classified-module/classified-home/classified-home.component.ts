@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppService } from 'src/app/service/app.service';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-classified-home',
   templateUrl: './classified-home.component.html',
   styleUrls: ['./classified-home.component.scss']
 })
-export class ClassifiedHomeComponent implements OnInit {
+export class ClassifiedHomeComponent implements OnInit, AfterViewInit {
   isDisabled: boolean = false;
   pricetag = '../../../assets/images/icons/price-tag.svg'
   applestore = '../../../assets/images/apple-store.png'
@@ -266,8 +269,23 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private modalService: NgbModal) {
+  countryData:any = "";
+  popularServices:any = [];
+  baseUrl = environment.apiUrl;
+  constructor(private modalService: NgbModal, private service : AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.service.PopularServices({"CountryId":this.countryData.id,"CategoryId":"1"}).subscribe((result:any) => {
+          this.popularServices = result.data.slice(0, 8);
+          console.log(this.popularServices);
+        })
+        clearInterval(a);
+      }
+    })
   }
 
   ngOnInit(): void {

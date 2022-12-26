@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Select2 } from 'select2';
 import { AppService } from 'src/app/service/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-car-add-details-second',
@@ -13,6 +16,7 @@ export class CarAddDetailsSecondComponent implements OnInit {
   info = 'assets/images/icons/info-icn.svg';
   error: any = ""
   showError: boolean = false;
+  showLoader: boolean = false;
   errorResponse(data: any) {
     this.showError = false;
     this.animate();
@@ -52,7 +56,7 @@ export class CarAddDetailsSecondComponent implements OnInit {
     tour: new FormControl("", Validators.required),
     desc: new FormControl("", Validators.required),
   });
-  constructor(private service: AppService) {
+  constructor(private service: AppService, private router: Router) {
     this.classifiedData = JSON.parse(this.classifiedData);
     this.service.GetClassifiedLookUpsByCategory("FuelType").subscribe((result: any) => {
       this.FuelType = result.data;
@@ -96,6 +100,11 @@ export class CarAddDetailsSecondComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     $('.select2').select2();
+    $('input[type="number"]').on('input', (e) => {
+      let temp: any = $(e.currentTarget).val();
+      temp.replace(/[^0-9 +]+/, '');
+      $(e.currentTarget).val(temp);
+    });
   }
   status1: boolean = false;
   clickEvent1() {
@@ -189,19 +198,20 @@ export class CarAddDetailsSecondComponent implements OnInit {
     tempData.DistrictId = this.classifiedData.districtId;
     tempData.Latitude = this.classifiedData.Latitude;
     tempData.Longitude = this.classifiedData.Longitude;
+    tempData.ClassifiedCategoryId = this.classifiedData.classifiedData[this.classifiedData.classifiedData.length - 1].value;
     tempData.Title = this.DetailForm.value.title;
-    tempData.Description = this.DetailForm.value.title;
-    tempData.FuelTypeId = this.DetailForm.value.title;
-    tempData.BodyConditionId = this.DetailForm.value.title;
-    tempData.MechanicalConditionId = this.DetailForm.value.title;
-    tempData.ColorId = this.DetailForm.value.title;
-    tempData.WarrantyId = this.DetailForm.value.title;
-    tempData.DoorId = this.DetailForm.value.title;
-    tempData.CylinderId = this.DetailForm.value.title;
-    tempData.TransmissionTypeId = this.DetailForm.value.title;
-    tempData.BodyTypeId = this.DetailForm.value.title;
-    tempData.HorsePowerId = this.DetailForm.value.title;
-    tempData.SteeringSideId = this.DetailForm.value.title;
+    tempData.Description = this.DetailForm.value.desc;
+    tempData.FuelTypeId = $(".fuel-select").val();
+    tempData.BodyConditionId = $(".body-type-select").val();
+    tempData.MechanicalConditionId = $(".mechanical-condition-select").val();
+    tempData.ColorId = $(".color-select").val();
+    tempData.WarrantyId = $(".warranty-select").val();
+    tempData.DoorId = $(".doors-select").val();
+    tempData.CylinderId = $(".cylinders-select").val();
+    tempData.TransmissionTypeId = $(".transmission-select").val();
+    tempData.BodyTypeId = $(".body-type-select").val();
+    tempData.HorsePowerId = $(".horsepower-select").val();
+    tempData.SteeringSideId = $(".steering-side-select").val();
     let temp = [];
     for(let item of extrasLength) {
       temp.push({"ClassifiedFeatureLookUpId": item});
@@ -227,6 +237,46 @@ export class CarAddDetailsSecondComponent implements OnInit {
     tempData.UserId = userData.id;
     console.log(tempData);
     localStorage.setItem("classifiedFormData",JSON.stringify(tempData));
+
+    let formData = new FormData();
+    formData.append("ClassifiedRequest",JSON.stringify(tempData));
+    for (let i = 0; i < this.imageData.length; i++) {
+      formData.append(i + 1 + "_" + this.imageData[i].FileName, this.imageData[i].file);
+    }
+    let token: any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    this.showLoader = true;
+    $.ajax({
+      url: `${environment.apiUrl}api/AddUpdateClassified`,
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: formData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        if (res.result == 1) {
+          this.showLoader = false;
+          tempData.id = res.data.id;
+          localStorage.setItem("classifiedFormData", JSON.stringify(tempData));
+          if(this.classifiedData.classifiedData[0].value == 1) {
+            this.router.navigate(["/classified/classified-payment"]);
+          } else {
+            this.router.navigate(["/classified/classified-payment-second"]);
+          }
+        }
+        else {
+          this.showLoader = false;
+          this.error = res.error;
+          this.showError = true;
+        }
+      },
+      error: (err) => {
+        this.showLoader = false;
+      }
+    });
   }
   selectFiles(event: any): void {
     let check = true;
@@ -238,7 +288,6 @@ export class CarAddDetailsSecondComponent implements OnInit {
         check = false;
         return;
       }
-      // temp += event.target.files[i].size
     }
     if (check) {
       temp = temp / 1048576
@@ -276,4 +325,3 @@ export class CarAddDetailsSecondComponent implements OnInit {
     this.mainImage = index;
   }
 }
-

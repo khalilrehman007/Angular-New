@@ -1,0 +1,113 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+  <section [ngClass]="'list-package-banner-sec position-relative'"
+    style="background-image: url('assets/images/package-banner.png')">
+    <div [ngClass]="'container_1280px'">
+      <!-- <app-breadcrumbs></app-breadcrumbs> -->
+      <div ngClass="inner-banner-heading text-center">
+        <h2>Ovaluate classified Points and Packages</h2>
+        <p>Select a package that is right for you</p>
+      </div>
+    </div>
+  </section>
+  <section ngClass="packagepoints-wrapper">
+    <div ngClass="container_1280px">
+      <div class="package_lists">
+        <div ngClass="row">
+           <div class="col-xl-6 col-lg-6 col-sm-12">
+              <div class="select-add-ons">
+                <div class="select-add-on-header">
+                    <h2>Select Add On</h2>
+                </div>
+                <div class="select-add-on-lsitings">
+                    <div class="package-box-list">
+                        <input type="checkbox" name="selectexisting" (click)="selectBasic()" checked>
+                        <div class="package-box-select-box">
+                            <div class="package-box-select-text">
+                                <h4>Keep it standard</h4>
+                                <p>Normal Visibility</p>
+                            </div>
+                            <button class="cstm-package_select-btn"></button>
+                            <p class="abs-tag red">FREE</p>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedPackage != null && selectedPackage.isFeature">
+                        <div class="package-box-cntnt">
+                            <h4>Upgrade your standard ad into a featured one</h4>
+                            <p>Featured ads are placed on top of all standard ads</p>
+                        </div>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price3Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 3 days</h4>
+                                    <p>Get 6x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price3Days}}</p>
+                            </div>
+                        </div>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price7Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 7 days</h4>
+                                    <p>Get 10x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price7Days}}</p>
+                            </div>
+                        </div>
+                        <div class="package-box-list">
+                            <input type="radio" name="selectAddon" (click)="selectFeature(selectedPackage.price14Days)">
+                            <div class="package-box-select-box">
+                                <div class="package-box-select-text">
+                                    <h4>Feature your ads for 14 days</h4>
+                                    <p>Get 15x More Offers</p>
+                                </div>
+                                <button class="cstm-package_select-btn"></button>
+                                <p class="abs-tag">+Points {{selectedPackage.price14Days}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+           </div>
+           <div class="col-xl-6 col-lg-6 col-sm-12">
+            <div class="payment-overview-list">
+                <div class="payment-overview-header">
+                    <h2>Select Add On</h2>
+                </div>
+                <div class="payment-overview-cntnts">
+                    <div class="payment-flex basic-ad">
+                        <p>Basic Ad</p>
+                        <h6>Points 0</h6>
+                    </div>
+                    <div class="payment-flex feature-ad">
+                        <p>Feature Ad</p>
+                        <h6>Points {{featuredPrice}}</h6>
+                    </div>
+                    <div class="discount-code">
+                        <input type="text" placeholder="Discount Code">
+                        <button type="submit">Apply</button>
+                    </div>
+                    <div class="payment-flex sub-totel">
+                        <p>Sub Total</p>
+                        <h6>Points {{basicPrice + featuredPrice}}</h6>
+                    </div>
+                    <div class="payment-flex totEl">
+                        <p>Total</p>
+                        <h6>Points {{basicPrice + featuredPrice}}</h6>
+                    </div>
+                    <div class="payment-pay-btn">
+                        <button class="pay-btn">Pay Points {{basicPrice + featuredPrice}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</section>

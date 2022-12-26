@@ -3,6 +3,8 @@ import { Select2 } from 'select2';
 import { AppService } from 'src/app/service/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-phone-form',
@@ -13,6 +15,17 @@ export class PhoneFormComponent implements OnInit {
   ads= 'assets/images/post-add.jpg'
   error: any = ""
   showError: boolean = false;
+  selectedFiles: any;
+  imageData: any = [];
+  previews: string[] = [];
+  mainImage: any = 0;
+  data: any = {};
+  imgCheck: boolean = false;
+  showLoader: boolean = false;
+  classifiedData: any = localStorage.getItem("classifiedData");
+
+
+
   errorResponse(data: any) {
     this.showError = false;
     this.animate();
@@ -45,6 +58,8 @@ export class PhoneFormComponent implements OnInit {
     Description : new FormControl("", Validators.required),
   });
   constructor( private service : AppService, private router: Router) {
+    this.classifiedData = JSON.parse(this.classifiedData);
+
     this.service.GetClassifiedLookUpsByCategory("MobilePhoneAge ").subscribe((result:any) => {
       this.MobilePhoneAge = result.data;
     })
@@ -103,12 +118,14 @@ export class PhoneFormComponent implements OnInit {
         this.error = "Select Condition";
         this.showError = true;
         return;
-      } else if($(".Model").val() == 0) {
-        this.currentField = "Model + .select2";
-        this.error = "Select Model";
-        this.showError = true;
-        return;
-      } else if($(".Color").val() == 0) {
+      } 
+      // else if($(".Model").val() == 0) {
+      //   this.currentField = "Model + .select2";
+      //   this.error = "Select Model";
+      //   this.showError = true;
+      //   return;
+      // } 
+      else if($(".Color").val() == 0) {
         this.currentField = "Color + .select2";
         this.error = "Select Color";
         this.showError = true;
@@ -118,7 +135,7 @@ export class PhoneFormComponent implements OnInit {
         this.error = "Select Warranty";
         this.showError = true;
         return;
-      } else if($(".Damage-on-Device").val() == 0) {
+      } else if($(".Damage-on-Device").val() == -1) {
         this.currentField = "Damage-on-Device + .select2";
         this.error = "Select Demage";
         this.showError = true;
@@ -143,7 +160,7 @@ export class PhoneFormComponent implements OnInit {
         this.error = "Select Accompaniments";
         this.showError = true;
         return;
-      } else if($(".carrier-Lock").val() == 0) {
+      } else if($(".carrier-Lock").val() == -1) {
         this.currentField = "carrier-Lock + .select2";
         this.error = "Select Carries Lock";
         this.showError = true;
@@ -179,27 +196,144 @@ export class PhoneFormComponent implements OnInit {
         this.showError = true;
         return;
       }
-      let temp:any = localStorage.getItem("classifiedData");
-      temp = JSON.parse(temp);
-      temp.age = {};
-      temp.age.id = $(".Age-select").val();
-      temp.Age.text = $(".Age-select").find(":selected").text();
-      temp.TrimId = {};
-      temp.TrimId.id = $(".trim-select").val();
-      temp.TrimId.text = $(".trim-select").find(":selected").text();
-      temp.RegionalSpecId = {};
-      temp.RegionalSpecId.id = $(".regional-select").val();
-      temp.RegionalSpecId.text = $(".regional-select").find(":selected").text();
-      temp.Year = this.DetailsForm.value.Title;
-      temp.IsInsured = {};
-      temp.IsInsured.id = $(".insured-select").val();
-      temp.IsInsured.text = $(".insured-select").find(":selected").text();
-      temp.title = this.DetailsForm.value.Title;
-      temp.price = this.DetailsForm.value.Price;
-      temp.description = this.DetailsForm.value.Description;
-      temp.phoneNumber = this.DetailsForm.value.Phone;
-      localStorage.setItem("classifiedData",JSON.stringify(temp));      
+      let tempData:any = {};
+      tempData.CountryId = this.classifiedData.countryId;
+      tempData.CityId = this.classifiedData.cityId;
+      tempData.DistrictId = this.classifiedData.districtId;
+      tempData.Latitude = this.classifiedData.Latitude;
+      tempData.Longitude = this.classifiedData.Longitude;
+      tempData.ClassifiedCategoryId = this.classifiedData.classifiedData[this.classifiedData.classifiedData.length - 1].value;
+      tempData.title = this.DetailsForm.value.Title;
+      tempData.phoneNumber = this.DetailsForm.value.Phone;
+      tempData.price = this.DetailsForm.value.Price;
+      tempData.showPhone = $(".Show-phone-Input").val();
+      tempData.description = this.DetailsForm.value.Description;
+      tempData.ageId = $(".Age-select").val();
+      tempData.BodyConditionId = $(".Condition").val();
+      tempData.ColorId = $(".Color").val();
+      tempData.WarrantyId = $(".Warranty").val();
+      tempData.isDeviceDamaged = $(".Damage-on-Device").val();
+      tempData.damageDetails= $(".Demage-Details").val();
+      tempData.BatteryHealthId= $(".Battery-Health").val();
+      tempData.DeviceVersionId= $(".Version").val();
+      tempData.accompaniments= $(".Accompaniments").val();
+      tempData.isCarrierLocked= $(".carrier-Lock").val();
+      tempData.Capacity= $(".Storage-Capacity").val();
+      tempData.MemoryId= $(".Memory").val();
+      // temp.model = $(".Model").val();
+          
       // this.router.navigate(["/classified/car-ad-submission"]);
+
+      let tempImg:any = [];
+      for (let i = 0; i < this.imageData.length; i++) {
+        let temp:any = {};
+        temp.FileId = i+1;
+        temp.FileName = this.imageData[i].FileName;
+        temp.Extension = this.imageData[i].Extension;
+        temp.IsMainImage = 0;
+        if(this.mainImage == i) {
+          temp.IsMainImage = 1;
+        }
+        tempImg.push(temp);
+      }
+      tempData.Documents = tempImg;
+  
+      let userData:any = localStorage.getItem("user");
+      userData = JSON.parse(userData)
+      tempData.UserId = userData.id;
+      console.log(tempData);
+      localStorage.setItem("classifiedFormData",JSON.stringify(tempData));
+  
+      let formData = new FormData();
+      formData.append("ClassifiedRequest",JSON.stringify(tempData));
+      for (let i = 0; i < this.imageData.length; i++) {
+        formData.append(i + 1 + "_" + this.imageData[i].FileName, this.imageData[i].file);
+      }
+      let token: any = localStorage.getItem("token");
+      token = JSON.parse(token);
+      this.showLoader = true;
+      $.ajax({
+        url: `${environment.apiUrl}api/AddUpdateClassified`,
+        method: "post",
+        contentType: false,
+        processData: false,
+        data: formData,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          console.log(res);
+          if (res.result == 1) {
+            this.showLoader = false;
+            tempData.id = res.data.id;
+            localStorage.setItem("classifiedFormData", JSON.stringify(tempData));
+            if(this.classifiedData.classifiedData[0].value == 1) {
+              this.router.navigate(["/classified/classified-payment"]);
+            } else {
+              this.router.navigate(["/classified/classified-payment-second"]);
+            }
+          }
+          else {
+            this.showLoader = false;
+            this.error = res.error;
+            this.showError = true;
+          }
+        },
+        error: (err) => {
+          this.showLoader = false;
+        }
+      });
+
     }
+
+    selectFiles(event: any): void {
+      let check = true;
+      let temp: number = 0;
+      for (let i = 0; i < event.target.files.length; i++) {
+        if (event.target.files[i].size / 1048576 > 2) {
+          this.error = "Maximun size allowed is 2MB per Image";
+          this.showError = true;
+          check = false;
+          return;
+        }
+        // temp += event.target.files[i].size
+      }
+      if (check) {
+        temp = temp / 1048576
+        if (temp > 10) {
+          alert("Maximun size allowed is 10MB");
+          return;
+        }
+        // this.message = [];
+        // this.progressInfos = [];
+        this.selectedFiles = event.target.files;
+        for (let i = 0; i < this.selectedFiles.length; i++) {
+          let extension: any = this.selectedFiles[i].name.split(".");
+          extension = extension[extension.length - 1];
+          this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
+        }
+        if (this.selectedFiles && this.selectedFiles[0]) {
+          const numberOfFiles = this.selectedFiles.length;
+          for (let i = 0; i < numberOfFiles; i++) {
+            const reader = new FileReader();
+            reader.onload = (e: any) => {
+              this.previews.push(e.target.result);
+            };
+            reader.readAsDataURL(this.selectedFiles[i]);
+          }
+        }
+        $(".image-input").val("");
+      }
+    }
+    removeImage(index: any) {
+      this.mainImage = 0;
+      this.previews.splice(index, 1);
+      this.data?.Documents.splice(index, 1);
+    }
+    changeMainImg(index: any) {
+      this.mainImage = index;
+    }
+
 }
 
