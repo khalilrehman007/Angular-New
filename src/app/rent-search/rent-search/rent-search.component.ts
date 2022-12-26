@@ -56,6 +56,8 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
     PriceEnd: new FormControl(""),
     minCarpet: new FormControl(""),
     maxCarpet: new FormControl(""),
+    bedrooms: new FormControl(),
+    bathrooms: new FormControl(),
   });
   status: boolean = false;
   clickEvent() {
@@ -65,7 +67,7 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
   clickEvent2() {
     this.status2 = !this.status2;
   }
-  constructor(private cookie: CookieService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
+  constructor(private cookie: CookieService, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
 
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
@@ -266,14 +268,6 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
   propertyType(id: any) {
     this.PropertyCategoryId = id
   }
-  //Baths Selection
-  baths(event: any) {
-    this.Bathrooms = event.value
-  }
-  //Beds Selection
-  beds(event: any) {
-    this.Bedrooms = event.value
-  }
   //Professional Type Id Change
   postedBy(event: any) {
     this.postedById = event.value
@@ -409,11 +403,11 @@ export class RentSearchComponent implements OnInit, AfterViewInit {
     formData.Type = this.type;
     formData.CountryId = this.countryData.id;
     formData.PropertyListingTypeId = this.PropertyListingTypeId;
-    if (this.Bedrooms !== "" && this.Bedrooms !== undefined) {
-      formData.Bedrooms = this.Bedrooms;
+    if (this.SubmitForm.controls.bedrooms.value!==undefined && this.SubmitForm.controls.bedrooms.value?.length>0) {
+      formData.Bedrooms = JSON.stringify(this.SubmitForm.controls.bedrooms.value);
     }
-    if (this.Bathrooms !== "" && this.Bathrooms !== undefined) {
-      formData.Bathrooms = this.Bathrooms;
+    if (this.SubmitForm.controls.bathrooms.value!==undefined && this.SubmitForm.controls.bathrooms.value?.length>0) {
+      formData.Bathrooms = JSON.stringify(this.SubmitForm.controls.bathrooms.value);
     }
     if (this.selectedRentType !== '') {
       formData.RentTypeId = this.selectedRentType;

@@ -113,10 +113,10 @@
                                 <h6>{{propertyDetailData.typeDescription}}</h6>
                                 <div ngClass="property-details-highlights">
                                     <span ngClass="bed" *ngIf="propertyValidationData.hasListingBed">
-                                        <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
+                                        <img src="{{bedsvg}}" alt="">  {{propertyDetailData.bedrooms===0?'Studio':propertyDetailData.bedrooms===1?propertyDetailData.bedrooms+' Bed':propertyDetailData.bedrooms+' Beds'}}
                                     </span>
                                     <span ngClass="bath" *ngIf="propertyValidationData.hasListingBath">
-                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
+                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms===1 || propertyDetailData.bathrooms===0?propertyDetailData.bathrooms+' Bath':propertyDetailData.bathrooms+' Baths'}} 
                                     </span>
                                     <span ngClass="area">
                                         <img src="{{squaremetersvg}}" alt="">{{propertyDetailData.plotSize == null ||
