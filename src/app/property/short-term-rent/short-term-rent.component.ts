@@ -147,13 +147,13 @@ export class ShortTermRentComponent implements OnInit,AfterViewInit,OnDestroy {
         this.filterParams.PropertyListingTypeId = params.PropertyListingTypeId;
       }
       if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
-        this.filterParams.Bedrooms = params.Bedrooms;
+        this.filterParams.BedroomList = JSON.parse(params.Bedrooms);
       }
       if (params.CountryId !== undefined && params.CountryId !== null) {
         this.filterParams.CountryId = params.CountryId;
       }
       if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
-        this.filterParams.Bathrooms = params.Bathrooms;
+        this.filterParams.BathroomList = JSON.parse(params.Bathrooms);
       }
       if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
         this.filterParams.RentTypeId = params.RentTypeId;

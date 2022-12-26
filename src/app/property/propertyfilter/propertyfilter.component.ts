@@ -63,7 +63,9 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     minCarpet: new FormControl(""),
     maxCarpet: new FormControl(""),
     startDate:new FormControl(),
-    endDate:new FormControl()
+    endDate:new FormControl(),
+    bathrooms: new FormControl(),
+    bedrooms: new FormControl(),
   });
   status: boolean = false;
   clickEvent() {
@@ -156,10 +158,10 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   //Set Parameters data
   SetParamsData(params: any) {
     if (params.Bedrooms !== undefined && params.Bedrooms !== null) {
-      this.Bedrooms = params.Bedrooms;
+      this.SubmitForm.controls.bedrooms.patchValue(JSON.parse(params.Bedrooms));
     }
     if (params.Bathrooms !== undefined && params.Bathrooms !== null) {
-      this.Bathrooms = params.Bathrooms;
+      this.SubmitForm.controls.bathrooms.patchValue(JSON.parse(params.Bathrooms));
     }
     if (params.RentTypeId !== undefined && params.RentTypeId !== null) {
       this.selectedRentType = params.RentTypeId;
@@ -430,10 +432,6 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
   baths(event: any) {
     this.Bathrooms = event.value
   }
-  //Beds Selection
-  beds(event: any) {
-    this.Bedrooms = event.value
-  }
   //Professional Type Id Change
   postedBy(event: any) {
     this.postedById = event.value
@@ -548,7 +546,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     }
   }
   clearSearch() {
-    this.Bedrooms = null; this.Bathrooms = null; this.selectedRentType = '';
+    this.selectedRentType = '';
     this.PropertyCategoryId = '';
     this.SubmitForm.reset();
     this.postedById = '';
@@ -563,7 +561,7 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
 
   }
   clearAllSearch() {
-    this.Bedrooms = null; this.Bathrooms = null; this.selectedRentType = '';
+    this.selectedRentType = '';
     this.PropertyCategoryId = '';
     this.SubmitForm.reset();
     this.postedById = '';
@@ -606,11 +604,11 @@ export class PropertyfilterComponent implements OnInit, AfterViewInit {
     formData.Type=this.type;
     formData.CountryId = this.countryData.id;
     formData.PropertyListingTypeId = this.PropertyListingTypeId;
-    if (this.Bedrooms !== "" && this.Bedrooms !== undefined) {
-      formData.Bedrooms = this.Bedrooms;
+    if (this.SubmitForm.controls.bedrooms.value!==undefined && this.SubmitForm.controls.bedrooms.value?.length>0) {
+      formData.Bedrooms = JSON.stringify(this.SubmitForm.controls.bedrooms.value);
     }
-    if (this.Bathrooms !== "" && this.Bathrooms !== undefined) {
-      formData.Bathrooms = this.Bathrooms;
+    if (this.SubmitForm.controls.bathrooms.value!==undefined && this.SubmitForm.controls.bathrooms.value?.length>0) {
+      formData.Bathrooms = JSON.stringify(this.SubmitForm.controls.bathrooms.value);
     }
     if (this.selectedRentType !== '') {
       formData.RentTypeId = this.selectedRentType;

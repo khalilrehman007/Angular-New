@@ -505,12 +505,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getBedroom(e: any) {
     this.bedroomCheck = true;
     this.data.BedRooms = e.value;
+    console.log(this.data.BedRooms)
   }
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
+    let temp: any = $(this.currentField).offset()?.top;
+    $(this.currentField).addClass("blink");
+    $(this.currentField).on("click", () => {
+      $(this.currentField).removeClass("blink");
       this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
@@ -696,208 +697,189 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   onSubmit() {
 
     if (this.listingTypeId == 0) {
-      this.currentField = "listing-type-input";
+      this.currentField = ".listing-type-input";
       this.error = "Select Listing Type";
       this.showError = true;
       return;
     } else if (this.categoryID == 0) {
-      this.currentField = "category-input";
+      this.currentField = ".category-input";
       this.error = "Select Category ID";
       this.showError = true;
       return;
     } else if (!this.data.PropertyTypeId) {
-      this.currentField = "type-input";
+      this.currentField = ".type-input";
       this.error = "Select Property Type";
       this.showError = true;
       return;
-    } else if (this.listingConditions.hasPropertyAge && this.SubmitForm.value.PropertyAge == "") {
-      this.currentField = "property-age-input";
+    }
+    else if (this.SubmitForm.value.propertyTitle == "") {
+      this.currentField = ".title-input";
+      this.error = "Enter Property Title";
+      this.showError = true;
+      return;
+    } 
+    else if (this.listingConditions.hasPropertyAge && this.SubmitForm.value.PropertyAge == "") {
+      this.currentField = ".property-age-input";
       this.error = "Enter Property Age";
       this.showError = true;
       return;
     }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern') && this.listingConditions.hasPropertyAge) {
-      this.currentField =  "property-age-input";
+      this.currentField =  ".property-age-input";
       this.error = "Property Age accepts numbers only";
       this.showError = true;
       return;
     } 
     else if (this.SubmitForm.get('PropertyAge')?.hasError('maxLength')) {
-      this.currentField =  "property-age-input";
+      this.currentField =  ".property-age-input";
       this.error = "Maximum 2 digits are allowed";
       this.showError = true;
       return;
     }  
     else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "" && this.selectedPropertyType.hasListingBuilding) {
-      this.currentField = "building-name-input";
+      this.currentField = ".building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasListingUnitNumber && this.SubmitForm.value.UnitNo == "") {
-      this.currentField = "unit-no-input";
+      this.currentField = ".unit-no-input";
       this.error = "Enter Unit No";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingBed && !this.data.BedRooms) {
-      this.currentField = "bedroom-input";
+    } else if (this.selectedPropertyType.hasListingBed && this.data.BedRooms==='') {
+      console.log(this.data.BedRooms==undefined || this.data.BedRooms==null)
+      this.currentField = ".bedroom-input";
       this.error = "Select Bedrooms";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingBath && !this.data.BathRooms) {
-      this.currentField = "bathroom-input";
+    } else if (this.selectedPropertyType.hasListingBath && this.data.BathRooms==='') {
+      console.log(this.data.BedRooms)
+      this.currentField = ".bathroom-input";
       this.error = "Select BathRooms";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasListingFurnishing && !this.data.FurnishingType) {
-      this.currentField = "furnishing-input";
+      this.currentField = ".furnishing-input";
       this.error = "Select Furnishing Type";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasListingFitting && !this.data.FittingType) {
-      this.currentField = "fitting-input";
+      this.currentField = ".fitting-input";
       this.error = "Select Fitting Type";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasListingCarpetArea && this.SubmitForm.value.carpetArea == "") {
-      this.currentField = "carpet-input";
+      this.currentField = ".carpet-input";
       this.error = "Enter Carpet Area";
       this.showError = true;
       return;
     }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern') && this.selectedPropertyType.hasListingCarpetArea) {
-      this.currentField = "carpet-input";
+      this.currentField = ".carpet-input";
       this.error = "Carpet area accepts numbers only";
       this.showError = true;
       return;
     } 
      else if (this.selectedPropertyType.hasListingBuildUpArea && this.SubmitForm.value.buildupArea == "") {
-      this.currentField = "buildup-input";
+      this.currentField = ".buildup-input";
       this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
     }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern') && this.selectedPropertyType.hasListingBuildUpArea) {
-      this.currentField = "buildup-input";
+      this.currentField = ".buildup-input";
       this.error = "BuildUp area accepts numbers only";
       this.showError = true;
       return;
     } 
     else if (this.selectedPropertyType.hasListingPlotSize && this.SubmitForm.value.size == "") {
-      this.currentField = "size-input";
+      this.currentField = ".size-input";
       this.error = "Enter Size";
       this.showError = true;
       return;
     }else if (this.SubmitForm.get('size')?.hasError('pattern') && this.selectedPropertyType.hasListingPlotSize) {
-      this.currentField = "size-input";
+      this.currentField = ".size-input";
       this.error = "Size accepts numbers only";
       this.showError = true;
       return;
     }
      else if (this.listingConditions.hasOccupancyStatus && this.selectedPropertyType.hasListingOccupancyStatus && !this.data.OccupancyStatusId) {
-      this.currentField = "occupanycy-input";
+      this.currentField = ".occupanycy-input";
       this.error = "Select Occupancy Status";
       this.showError = true;
       return;
     }
-    //  else if (this.selectedPropertyType.hasListingBalocny && !this.data.Balcony) {
-    //   this.currentField = "balcony-input";
-    //   this.error = "Select Balcony";
-    //   this.showError = true;
-    //   return;
-    // } 
-    // else if (this.selectedPropertyType.hasListingParking && !this.data.Parkings) {
-    //   this.currentField = "parking-input";
-    //   this.error = "Select Parking";
-    //   this.showError = true;
-    //   return;
-    // }
      else if (this.listingConditions.hasTransactionType && this.selectedPropertyType.hasListingTransactionType && !this.data.PropertyTransactionTypeId) {
-      this.currentField = "transaction-type-input";
+      this.currentField = ".transaction-type-input";
       this.error = "Select Transaction Type";
       this.showError = true;
       return;
     } else if (this.listingConditions.hasCompletionStatus && this.selectedPropertyType.hasListingCompletionStatus && !this.data.PropertyCompletionStatusId) {
-      this.currentField = "completion-status-input";
+      this.currentField = ".completion-status-input";
       this.error = "Select Completetion Status";
       this.showError = true;
       return;
     } else if (this.SubmitForm.get('price')?.hasError('pattern')) {
-      this.currentField = "price-input";
+      this.currentField = ".price-input";
       this.error = "Price accepts numbers only";
       this.showError = true;
       return;
     } 
     else if (this.SubmitForm.value.price == "") {
-      this.currentField = "price-input";
+      this.currentField = ".price-input";
       this.error = "Enter Price";
       this.showError = true;
       return;
     }
-    // else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
-    //   this.currentField = "maintenance-input";
-    //   this.error = "Enter Maintenance Price";
-    //   this.showError = true;
-    //   return;
-    // }
+    
     else if (this.SubmitForm.get('maintenance')?.hasError('pattern')) {
-      this.currentField = "maintenance-input";
+      this.currentField = ".maintenance-input";
       this.error = "Maintenance Fee accepts numbers only";
       this.showError = true;
       return;
     }  
     else if (this.listingConditions.hasRentType && !this.data.RentTypeId) {
-      this.currentField = "rent-type-input";
+      this.currentField = ".rent-type-input";
       this.error = "Select Rent Type";
       this.showError = true;
       return;
     } else if (this.listingConditions.hasSecurityDeposit && !this.data.SecurityDeposit) {
-      this.currentField = "security-deposit-input";
+      this.currentField = ".security-deposit-input";
       this.error = "Select Security Deposit";
       this.showError = true;
       return;
     } else if (this.data.SecurityDeposit == "true" && this.SubmitForm.value.AED == "") {
-      this.currentField = "security-price-input";
+      this.currentField = ".security-price-input";
       this.error = "Enter Security Deposit Price";
       this.showError = true;
       return;
     }else if (this.SubmitForm.get('AED')?.hasError('pattern')) {
-      this.currentField = "security-price-input";
+      this.currentField = ".security-price-input";
       this.error = "Security deposit accepts numbers only";
       this.showError = true;
       return;
     }   
     else if (this.listingConditions.hasBrokerageCharge && !this.data.BrokerageCharge) {
-      this.currentField = "brokage-type-input";
+      this.currentField = ".brokage-type-input";
       this.error = "Select Brokerage Type";
       this.showError = true;
       return;
     } else if (this.data.BrokerageCharge == "true" && this.SubmitForm.value.brokerageAed == "") {
-      this.currentField = "brokage-price-input";
+      this.currentField = ".brokage-price-input";
       this.error = "Enter Brokerage Price";
       this.showError = true;
       return;
     }
     else if (this.SubmitForm.get('brokerageAed')?.hasError('pattern')) {
-      this.currentField = "brokage-price-input";
+      this.currentField = ".brokage-price-input";
       this.error = "Brokerage Charge accepts numbers only";
       this.showError = true;
       return;
     }  
-    // else if (this.locatedNearData.length == 0) {
-    //   this.currentField = "located-near-input";
-    //   this.error = "Select Near Location";
-    //   this.showError = true;
-    //   return;
-    // }
-     else if (this.SubmitForm.value.propertyTitle == "") {
-      this.currentField = "title-input";
-      this.error = "Enter Property Title";
-      this.showError = true;
-      return;
-    } else if (this.SubmitForm.value.propertyDescription == "") {
-      this.currentField = "desc-input";
+    else if (this.SubmitForm.value.propertyDescription == "") {
+      this.currentField = ".desc-input";
       this.error = "Enter Property Description";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasListingPropertyFeature && this.featuresFormData.length == 0) {
-      this.currentField = "features-select-wrapper";
+      this.currentField = ".features-select-wrapper";
       this.error = "Select Property Features";
       this.showError = true;
       return;

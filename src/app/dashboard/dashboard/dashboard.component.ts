@@ -616,7 +616,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName,propertyType: element.propertyType
           }
         );
       })
@@ -1067,7 +1067,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription, plotSize: element.plotSize,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat,
+            requestedDateFormat: element.requestedDateFormat,propertyType: element.propertyType,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, unitType: element.country.unitType
           }
         );

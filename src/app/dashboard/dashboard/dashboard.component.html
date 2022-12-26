@@ -1536,17 +1536,17 @@
                                                                         [routerLink]="['/property/detail']"
                                                                         [queryParams]="{id: listing.id}">
                                                                         <ul class="agent-details__property-detail-list">
-                                                                            <li
+                                                                            <li  *ngIf="listing.propertyType?.hasListingBed"
                                                                                 class="agent-details__property-detail-list-item beds">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{listing.bedrooms}} Beds
+                                                                                {{listing.bedrooms===0?'Studio':listing.bedrooms===1?listing.bedrooms+' Bed':listing.bedrooms+' Beds'}}
                                                                             </li>
-                                                                            <li
+                                                                            <li *ngIf="listing.propertyType?.hasListingBath"
                                                                                 class="agent-details__property-detail-list-item bath">
                                                                                 <img src="assets/images/icons/Bath-tub.svg"
                                                                                     alt="">
-                                                                                {{listing.bathrooms}} Bath
+                                                                                {{listing.bathrooms===1 || listing.bathrooms===0?listing.bathrooms+' Bath':listing.bathrooms+' Baths'}} 
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item sqft">
@@ -1560,7 +1560,7 @@
                                                                                 listing.carpetArea==0?0:listing.carpetArea.toLocaleString():listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
                                                                                 }} {{listing.unitType}}
                                                                             </li>
-                                                                            <li
+                                                                            <li *ngIf="listing.propertyType?.hasFurnishing"
                                                                                 class="agent-details__property-detail-list-item furnising">
                                                                                 <img src="assets/images/icons/furnishing.svg"
                                                                                     alt="">

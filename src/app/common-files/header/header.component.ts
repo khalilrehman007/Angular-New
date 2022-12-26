@@ -184,79 +184,91 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'Sign in' : JSON.parse(this.loggedInUser).fullName,
-      link: this.loggedInUser == null ? 'login' : 'profile',
+      link: this.loggedInUser == null ? '/login' : '/profile',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
-      link: 'property/search/Buy',
+      link: '/property/search',
+      queryParams:{Type:'Buy',PropertyListingTypeId: 2,CountryId:this.currentCountry?.id}
     },
     {
       src: '../../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
-      link: 'property/search/Rent',
+      link: '/property/search',
+      queryParams:{Type:'Rent',PropertyListingTypeId: 1,CountryId:this.currentCountry?.id}
     },
-    {
-      src: '../../../assets/images/icons/sell.svg',
-      class: 'nav-items sell',
-      text: 'Sell',
-      link: 'sellrent',
-    },
+    // {
+    //   src: '../../../assets/images/icons/sell.svg',
+    //   class: 'nav-items sell',
+    //   text: 'Sell',
+    //   link: 'sellrent',
+    // },
     {
       src: '../../../assets/images/icons/find-agents.svg',
       class: 'nav-items find-agents',
       text: 'Find Agents',
-      link: 'find-agent',
+      link: '/find-agent',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/world.svg',
       class: 'nav-items guide',
       text: 'Areas',
-      link: 'explore',
+      link: '/explore',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/book.svg',
       class: 'nav-items blog',
       text: 'Blog',
-      link: 'blog',
+      link: '/blog',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/building.svg',
       class: 'nav-items valuation',
       text: 'Property Valuation',
-      link: 'valuation',
+      link: '/valuation',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/sell-property-tab.svg',
       class: 'nav-items sellrentproperty',
       text: 'Sell/Rent Property',
-      link: 'sellrent',
+      link: '/sellrent',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/data-intelligence.svg',
       class: 'nav-items data-intelligence',
       text: 'Data Intelligence',
-      link: 'data-intelligence/data/transaction-data',
+      link: '/data-intelligence/data/transaction-data',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/classified-colored.svg',
       class: 'nav-items classified',
       text: 'Classified',
-      link: 'classified',
+      link: '/classified',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/wallet.svg',
       class: 'nav-items my-wallet',
       text: 'My Wallet',
-      link: 'profile/wallet',
+      link: '/profile/wallet',
+      queryParams:{}
     },
     {
       src: '../../../assets/images/icons/compare-new.svg',
       class: 'nav-items my-wallet',
       text: 'Compare',
-      link: 'compare',
+      link: '/compare',
+      queryParams:{}
     }
   ]
 

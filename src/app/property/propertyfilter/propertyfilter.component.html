@@ -119,8 +119,8 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Beds</mat-label>
-                    <mat-select [disableOptionCentering]="true" (selectionChange)="beds($event)" [(value)]="Bedrooms">
-                        <mat-option value="">
+                    <mat-select [disableOptionCentering]="true" formControlName="bedrooms" multiple>
+                        <mat-option value="0">
                             0 (Studio)
                         </mat-option>
                         <mat-option value="1">
@@ -161,10 +161,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Baths</mat-label>
-                    <mat-select [disableOptionCentering]="true" (selectionChange)="baths($event)" [(value)]="Bathrooms">
-                        <mat-option value="">
-                            0
-                        </mat-option>
+                    <mat-select [disableOptionCentering]="true" formControlName="bathrooms" multiple>
                         <mat-option value="1">
                             1
                         </mat-option>

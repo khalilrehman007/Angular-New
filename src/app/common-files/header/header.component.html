@@ -8,7 +8,7 @@
                 </button>
             </li>
             <li ngClass={{side.class}} *ngFor="let side of sidebar">
-                <a routerLink="/{{side.link}}">
+                <a [routerLink]="side.link" [queryParams]="side.queryParams">
                     <img src={{side.src}} ngClass="icon" alt="">
                     <span ngClass="side-nav-text">{{side.text}}</span>
                 </a>

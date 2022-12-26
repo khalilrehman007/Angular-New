@@ -143,10 +143,10 @@
                                                     <h5>{{list.propertyTitle}}</h5>
                                                     <div style="margin-top: 10px !important;" ngClass="property-details-highlights">
                                                         <span *ngIf="list.propertyType?.hasListingBed" ngClass="bed">
-                                                            <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
+                                                            <img src="{{bedsvg}}" alt="">  {{list.bedrooms===0?'Studio':list.bedrooms===1?list.bedrooms+' Bed':list.bedrooms+' Beds'}}
                                                         </span>
                                                         <span *ngIf="list.propertyType?.hasListingBath" ngClass="bath">
-                                                            <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
+                                                            <img src="{{bathsvg}}" alt="">{{list.bathrooms===1 || list.bathrooms===0?list.bathrooms+' Bath':list.bathrooms+' Baths'}} 
                                                         </span>
                                                         <span ngClass="area">
                                                             <img src="{{squaremetersvg}}" alt="">  {{list.plotSize == null ||

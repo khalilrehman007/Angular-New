@@ -448,26 +448,26 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ProceedSearch() {
-    this.submitted = true;
-    if (this.search.invalid) {
-      return;
-    }
-    if (this.search.valid) {
-      this.service.ProceedSearch(this.search.value).subscribe(result => {
-        if (result != null) {
-          this.responsedata = result;
-          this.responsedata.data = this.responsedata.data;
-          localStorage.setItem('token', this.responsedata.data.refreshToken)
-          localStorage.setItem('user', JSON.stringify(this.responsedata.data))
-          this.notifyService.showSuccess(this.responsedata.message, "");
-        } else {
-          this.notifyService.showError("Unable to login", "");
-        }
-        this.route.navigate([''])
-      });
-    }
-  }
+  // ProceedSearch() {
+  //   this.submitted = true;
+  //   if (this.search.invalid) {
+  //     return;
+  //   }
+  //   if (this.search.valid) {
+  //     this.service.ProceedSearch(this.search.value).subscribe(result => {
+  //       if (result != null) {
+  //         this.responsedata = result;
+  //         this.responsedata.data = this.responsedata.data;
+  //         localStorage.setItem('token', this.responsedata.data.refreshToken)
+  //         localStorage.setItem('user', JSON.stringify(this.responsedata.data))
+  //         this.notifyService.showSuccess(this.responsedata.message, "");
+  //       } else {
+  //         this.notifyService.showError("Unable to login", "");
+  //       }
+  //       this.route.navigate([''])
+  //     });
+  //   }
+  // }
 
   LoadPropertyCategories() {
     this.service.LoadPropertyCategories().subscribe(data => {
