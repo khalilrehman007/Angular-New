@@ -321,6 +321,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
           let userWhatsAppNumber = ''
           if (element.user != null && element.user !== undefined && element.user?.imageUrl != null) {
             userImage = this.baseUrl + element.user.imageUrl
+          }
+          if (element.user != null && element.user !== undefined) {
             fullName = element.user.fullName
             userId = element.user.id
             userEmail = "mailto:" + element.user.email
@@ -380,6 +382,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
           this.shareURL = this.shareURLTemp
         })
         this.searchListing = tempData;
+        console.log(this.searchListing);
         this.currency = response.data?.propertyListings[0]?.country.currency;
         this.halfList = Math.floor(this.searchListing.length / 2);
         this.showLoader = false;
