@@ -539,4 +539,10 @@ export class AppService {
   PopularServices(data: any) {
     return this.http.post(this.apiurl + 'PopularServices', data);
   }
+  GetClassifiedTrimLookUpsByMakeModelId(id: any) {
+    return this.http.get(this.apiurl + 'GetClassifiedTrimLookUpsByMakeModelId/' + id);
+  }
+  GetClassifiedFormMappingById(id: any) {
+    return this.http.get(this.apiurl + 'GetClassifiedFormMappingById/' + id);
+  }
 }

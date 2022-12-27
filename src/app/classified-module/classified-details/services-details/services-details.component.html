@@ -6,7 +6,7 @@
                 <div ngClass="row align-items-center">
                     <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>Recovery services towing car </h4>
+                            <h4>{{name}}</h4>
                             <div ngClass="property-addresss">
                                 <p> <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
@@ -51,7 +51,8 @@
             <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             <div ngClass="property-gallery-main-sec">
                 <div ngClass="property-gallery-main-slider">
-                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+                    <ngx-gallery *ngIf="galleryImages && galleryImages.length" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
                 </div>
             </div>
             <div ngClass="property-tabs-content">
@@ -68,7 +69,7 @@
                                 <h5>Descriptions</h5>
                             </div>
                             <div ngClass="description-block-design">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                <p>{{description}}
                                 </p>
                             </div>
                         </div>

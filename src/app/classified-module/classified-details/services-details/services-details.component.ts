@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -16,6 +16,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import 'hammerjs';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CookieService } from 'ngx-cookie-service';
 
 
 declare const google: any;
@@ -26,6 +27,7 @@ declare const google: any;
   styleUrls: ['./services-details.component.scss']
 })
 export class ServicesDetailsComponent implements OnInit {
+  @ViewChild('servicesDetails__map') mapElement: any;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -90,14 +92,20 @@ export class ServicesDetailsComponent implements OnInit {
   buildingName: any;
   map: any;
   bounds: any = [];
-  id: number = 1;
+  // id: number = 1;
   userData: any = "";
+  countryData: any = "";
+  name: any = [];
+  name0: any = [];
+  description: any;
+  longitude: any = 0;
+  latitude: any = 0;
+  checkLength1 : any;
+  popularServices: any = [];
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
-
-
-  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService, private cookie: CookieService) {  
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -121,6 +129,87 @@ export class ServicesDetailsComponent implements OnInit {
     });
     this.galleryOptions = [];
     this.galleryImages = [];
+    
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.service.PopularServices({ "CountryId": this.countryData.id, "CategoryId": "1" }).subscribe((result: any) => {
+          this.popularServices = result.data;
+          console.log(this.popularServices);
+          if (this.popularServices = result.data['id']) {
+            let temp: any = [];
+            this.name = this.popularServices.title;
+            this.description = this.popularServices.description;
+            this.propertyLat = this.popularServices.latitude;
+            this.propertyLng = this.popularServices.longitude;
+            this.buildingName = this.popularServices.buildingName;
+            let jsonData: any = JSON.stringify(temp)
+            let jsonParsDate: any = JSON.parse(jsonData);
+            this.isload = true;            
+            for (let i = 0; i < this.popularServices.documents.length; i++) {
+              this.galleryImages.push({
+                small: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+                medium: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+                big: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/")
+              });
+            }
+            // this.map = new google.maps.Map(this.mapElement.nativeElement, {
+            //   center: { "lat": parseFloat(this.latitude), "lng": parseFloat(this.longitude) },
+            //   zoom: 16,
+            //   disableDefaultUI: true,
+            // });
+            // let marker = new google.maps.Marker({
+            //   position: { "lat": parseFloat(this.latitude), "lng": parseFloat(this.longitude) },
+            //   map: this.map,
+            //   label: {
+            //     className: 'map-marker-label',
+            //     text: this.buildingName == "" ? "Location" : this.buildingName
+            //   },
+            // });
+          } else {        
+          }
+          if (this.popularServices = result.data[0]) {
+            let temp: any = [];
+            this.name = this.popularServices.title;
+            this.description = this.popularServices.description;
+            this.propertyLat = this.popularServices.latitude;
+            this.propertyLng = this.popularServices.longitude;
+            this.buildingName = this.popularServices.buildingName;
+            let jsonData: any = JSON.stringify(temp)
+            let jsonParsDate: any = JSON.parse(jsonData);
+            this.isload = true;            
+            for (let i = 0; i < this.popularServices.documents.length; i++) {
+              this.galleryImages.push({
+                small: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+                medium: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/"),
+                big: this.baseUrl + this.popularServices.documents[i].fileUrl.replaceAll("\\", "/")
+              });
+            }
+            // this.map = new google.maps.Map(this.mapElement.nativeElement, {
+            //   center: { "lat": parseFloat(this.latitude), "lng": parseFloat(this.longitude) },
+            //   zoom: 16,
+            //   disableDefaultUI: true,
+            // });
+            // let marker = new google.maps.Marker({
+            //   position: { "lat": parseFloat(this.latitude), "lng": parseFloat(this.longitude) },
+            //   map: this.map,
+            //   label: {
+            //     className: 'map-marker-label',
+            //     text: this.buildingName == "" ? "Location" : this.buildingName
+            //   },
+            // });
+          } else {
+
+          }
+         
+  
+        })
+        
+        clearInterval(a);
+      }
+    })
   }
   goBack() {
     this.location.back();
@@ -176,23 +265,23 @@ export class ServicesDetailsComponent implements OnInit {
   documentCheck: any = true
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
-      let temp: any = e;
-      this.userData = temp.data.user;
+      let temp: any = [];
+      // this.userData = temp.data.user;
       // this.propertyLat = temp.data.propertyListing.propertyLat;
       // this.propertyLng = temp.data.propertyListing.propertyLong;
       // this.buildingName = temp.data.propertyListing.buildingName;
-      let jsonData: any = JSON.stringify(temp.data)
-      let jsonParsDate: any = JSON.parse(jsonData);
-      this.propertyDetail = jsonParsDate
-      this.isload = true
+      // let jsonData: any = JSON.stringify(temp.data)
+      // let jsonParsDate: any = JSON.parse(jsonData);
+      // this.propertyDetail = jsonParsDate
+      // this.isload = true
 
-      this.map = new mapboxgl.Map({
-        accessToken: environment.mapbox.accessToken,
-        container: 'property-near-map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [this.propertyLng, this.propertyLat],
-        zoom: 11,
-      })
+      // this.map = new mapboxgl.Map({
+      //   accessToken: environment.mapbox.accessToken,
+      //   container: 'property-near-map',
+      //   style: 'mapbox://styles/mapbox/streets-v11',
+      //   center: [this.propertyLng, this.propertyLat],
+      //   zoom: 11,
+      // })
       let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
         new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }) // add popups
           .setHTML(this.buildingName)
@@ -256,4 +345,5 @@ export class ServicesDetailsComponent implements OnInit {
     },
     nav: false
   }
-}
+  
+ }
