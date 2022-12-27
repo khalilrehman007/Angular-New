@@ -577,7 +577,7 @@
         <div ngClass="container_1280px tenants-bar-left">
             <div ngClass="tenants-sec-wrapper">
                 <owl-carousel-o [options]="easyslider">
-                    <ng-container *ngFor="let slide of tenantsslide">
+                    <ng-container *ngFor="let slide of ovaluateFeatures">
                         <ng-template carouselSlide [id]="slide.id.toString()">
                             <div ngClass="{{ slide.class }}">
                                 <img [src]="slide.src" ngClass="img-fluid" alt="" />

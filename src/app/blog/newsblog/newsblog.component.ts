@@ -10,13 +10,21 @@ import { environment } from 'src/environments/environment';
 })
 export class NewsblogComponent implements OnInit {
   baseUrl:string=environment.apiUrl;
+  showLoader:boolean=false;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   blogs: any;
   newsBlog: any;
   constructor(private service:AppService) {
     $(window).scrollTop(0);
-    this.service.BlogCategorybyId(2).subscribe((result:any)=> {
-      this.newsBlog = result.data;
+    this.showLoader=true;
+    this.service.BlogCategorybyId(2).subscribe({
+      next:(result:any)=> {
+        this.newsBlog = result.data;
+        this.showLoader=false;
+      },
+      error:(err)=>{
+        this.showLoader=false;
+      }
     })
   }
 

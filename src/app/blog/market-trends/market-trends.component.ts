@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MarketTrendsComponent implements OnInit, AfterViewInit {
   baseUrl:string=environment.apiUrl;
+  showLoader:boolean=false;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {
@@ -60,27 +61,28 @@ export class MarketTrendsComponent implements OnInit, AfterViewInit {
   countryData:any = "";
   constructor(private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
-    this.service.BlogCategorybyId(6).subscribe((result: any) => {
-      this.marketTrendsBlog = result.data;
+    this.showLoader=true;
+    this.service.BlogCategorybyId(6).subscribe({
+      next:(result: any) => {
+        this.marketTrendsBlog = result.data;
+        this.showLoader=false;
+      },
+      error:(err)=>{
+        this.showLoader=false;
+      }
+      
     })
   }
   ngAfterViewInit(): void {
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
-        this.LoadBlogs();
         clearInterval(a);
       }
     },100);
   }
 
   ngOnInit(): void {
-  }
-  LoadBlogs() {
-    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
-      this.blogs = data;
-      this.blogs = this.blogs.data;
-    });
   }
   status: boolean = false;
   clickEvent() {

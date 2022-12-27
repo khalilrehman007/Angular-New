@@ -16,6 +16,7 @@ import { ExploreblogComponent } from './exploreblog/exploreblog.component';
 import { LeftAtHomeComponent } from './left-at-home/left-at-home.component';
 import { LawblogComponent } from './lawblog/lawblog.component';
 import { MarketTrendsComponent } from './market-trends/market-trends.component';
+import { LoaderModule } from '../loader/loader.module';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { MarketTrendsComponent } from './market-trends/market-trends.component';
     CarouselModule,
     MatTabsModule,
     NgbModule,
-    BreadcrumbsModule
-
+    BreadcrumbsModule,
+    LoaderModule,
   ]
 })
 export class BlogModule { }

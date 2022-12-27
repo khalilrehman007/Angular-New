@@ -203,10 +203,10 @@ export class TransactionDataComponent implements OnInit {
       return (Math.round(e / 10000000) / 100) + "B";
     } else if (e >= 1000000) {
       return (Math.round(e / 10000) / 100) + "M";
-    } else if (e >= 1000) {
-      return (Math.round(e / 10) / 100) + "k";
+    } else if (e >= 100000) {
+      return (Math.round(e / 100) / 100) + "k";
     } else {
-      return (Math.round(e * 100) / 100);
+      return (Math.round(e * 100) / 100).toLocaleString();
     }
   }
   getDate(e: any) {
@@ -595,6 +595,7 @@ export class TransactionDataComponent implements OnInit {
       }
     }
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {
+      console.log(result);
       if (result.message == "Residential Transaction Data fetched successfully") {
         this.showLoader = false;
         this.transactionData = result.data;

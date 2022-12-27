@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TipsAdviceComponent implements OnInit, AfterViewInit {
   baseUrl:string=environment.apiUrl;
+  showLoader:boolean=false;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {
@@ -60,8 +61,15 @@ export class TipsAdviceComponent implements OnInit, AfterViewInit {
   countryData:any = "";
   constructor(private service:AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
-    this.service.BlogCategorybyId(1).subscribe((result:any)=> {
-      this.tipsAndAdvice = result.data;
+    this.showLoader=true;
+    this.service.BlogCategorybyId(1).subscribe({
+      next:(result:any)=> {
+        this.tipsAndAdvice = result.data;
+        this.showLoader=false;
+      },
+      error:(err)=>{
+        this.showLoader=false;
+      }
     })
   }
   ngAfterViewInit(): void {
@@ -77,10 +85,13 @@ export class TipsAdviceComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   LoadBlogs(){
-    this.service.LoadBlogs(this.countryData.id).subscribe(data=>{
-      this.blogs=data;
-      this.blogs=this.blogs.data;
-
+    this.service.LoadBlogs(this.countryData.id).subscribe({
+      next:(data)=>{
+        this.blogs=data;
+        this.blogs=this.blogs.data;
+      },
+      error:(err)=>{
+      }
     });
   }
   status: boolean = false;

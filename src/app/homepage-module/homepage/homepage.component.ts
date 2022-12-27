@@ -140,29 +140,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       })
     })
   }
-  tenantsslide = [
-    {
-      id: 'slide1',
-      src: 'assets/images/icons/virtul-toor.svg',
-      heading: 'Virtual home tour',
-      desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
-      class: 'virtual-tour'
-    },
-    {
-      id: 'slide2',
-      src: 'assets/images/icons/best-deal.svg',
-      heading: 'Find the best deal',
-      desc: 'Browse thousands of properties, save your favorites and set up search alerts so you don’t miss the best home deal!',
-      class: 'find-best-deal'
-    },
-    {
-      id: 'slide3',
-      src: 'assets/images/icons/ready-apply.svg',
-      heading: 'Get ready to apply',
-      desc: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
-      class: 'get-ready-apply'
-    }
-  ]
+
   Exploreplaces = [
     {
       src: 'assets/images/explore-places/1.jpg',
@@ -561,30 +539,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
 
   getLoadFeedback() {
-    // this.clientFeedback = [
-    //   {
-    //     id: 'slide1',
-    //     src:'assets/images/testimonial/user.png',
-    //     heading:'Tanveer Ahemad',
-    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-    //     location: 'Bur Dubai, Dubai, UAE'
-    //   },
-    //   {
-    //     id: 'slide2',
-    //     src:'assets/images/testimonial/user.png',
-    //     heading:'Tanveer Ahemad',
-    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-    //     location: 'Bur Dubai, Dubai, UAE'
-    //   },
-    //   {
-    //     id: 'slide3',
-    //     src:'assets/images/testimonial/user.png',
-    //     heading:'Tanveer Ahemad',
-    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-    //     location: 'Bur Dubai, Dubai, UAE'
-    //   }
-    // ];
-
     let tempData: Array<Object> = []
     this.service.LoadFeeback().subscribe(data => {
       let response: any = data;
@@ -612,11 +566,11 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       response.data.forEach((element: any, i: any) => {
         let image = element.ovaluateFeatureDocument.fileUrl
         let className: any
-        if (element.title == "Get ready to apply.  ") {
+        if (element.title.includes('Get ready to apply.')) {
           className = "get-ready-apply"
-        } else if (element.title == "Virtual home tour.") {
+        } else if (element.title.includes('Virtual home tour.')) {
           className = "virtual-tour"
-        } else if (element.title == "Find the best deal.") {
+        } else if (element.title.includes('Find the best deal.')) {
           className = "find-best-deal"
         }
         tempData.push(

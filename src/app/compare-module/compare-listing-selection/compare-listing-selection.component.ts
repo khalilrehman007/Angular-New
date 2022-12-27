@@ -164,8 +164,9 @@ export class CompareListingSelectionComponent implements OnInit {
             }
           });
         }
+        // Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
         let params: any = {
-          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
           "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
           "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId,
           FurnishingTypeId: this.FurnishingTypeId, MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea,
@@ -214,12 +215,12 @@ export class CompareListingSelectionComponent implements OnInit {
     //   }
     // }
 
-
+    // Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
     let propertyTypeId: any = [temp.propertyTypeId ?? ""]
     let params: any = {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
       FurnishingTypeId: this.FurnishingTypeId, CityID: temp.cityId ?? "", CountryId: temp.countryId ?? "",
-      "PropertyTypeIds": propertyTypeId, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+      "PropertyTypeIds": propertyTypeId, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, 
       "PropertyCategoryId": temp.propertyCategoryId ?? "", "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": temp.propertyListingTypeId ?? "", "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
@@ -273,14 +274,14 @@ export class CompareListingSelectionComponent implements OnInit {
       }
     });
   }
-
+  // Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
   pageChanged(value: any) {
 
     this.page = value;
     let params: any = {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
       FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, 
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
@@ -294,12 +295,13 @@ export class CompareListingSelectionComponent implements OnInit {
     });
   }
 
+  // Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
   sortedBy(event: any) {
     this.sortedById = event.value
     let params: any = {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
       FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, 
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
